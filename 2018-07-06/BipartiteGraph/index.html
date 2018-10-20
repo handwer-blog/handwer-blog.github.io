@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/NewAvatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/NewAvatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/NewAvatar.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/NewAvatar.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="编程,题解,图论,二分图," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Handwer's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="二分图真是个奇怪又好玩的东西  注：本文包含《HDU2063 过山车》题解 本文部分内容有误（因为作者太弱），等待修正">
+<meta name="keywords" content="编程,题解,图论,二分图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二分图匹配学习笔记 &amp; HDU2063 题解">
+<meta property="og:url" content="https://blog.handwer-std.top/2018-07-06/BipartiteGraph/index.html">
+<meta property="og:site_name" content="Handwer&#39;s Blog">
+<meta property="og:description" content="二分图真是个奇怪又好玩的东西  注：本文包含《HDU2063 过山车》题解 本文部分内容有误（因为作者太弱），等待修正">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/06/oQPHl.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/06/oQa4J.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/06/oW9gr.png">
+<meta property="og:image" content="https://s1.ax2x.com/2018/07/06/oWBQY.png">
+<meta property="og:updated_time" content="2018-09-25T23:06:20.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二分图匹配学习笔记 &amp; HDU2063 题解">
+<meta name="twitter:description" content="二分图真是个奇怪又好玩的东西  注：本文包含《HDU2063 过山车》题解 本文部分内容有误（因为作者太弱），等待修正">
+<meta name="twitter:image" content="https://s1.ax2x.com/2018/07/06/oQPHl.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.handwer-std.top/2018-07-06/BipartiteGraph/"/>
+
+
+
+
+
+  <title>二分图匹配学习笔记 & HDU2063 题解 | Handwer's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Handwer's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-frlink">
+          <a href="/frlink/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            我的朋友
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.handwer-std.top/2018-07-06/BipartiteGraph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Handwer STD">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/NewAvatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Handwer's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">二分图匹配学习笔记 & HDU2063 题解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-06T21:36:45+08:00">
+                2018-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-07-06/BipartiteGraph/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018-07-06/BipartiteGraph/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+   		  
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>二分图真是个奇怪又好玩的东西</p>
+</blockquote>
+<p>注：本文包含<a href="acm.hdu.edu.cn/showproblem.php?pid=2063">《HDU2063 过山车》</a>题解</p>
+<p><strong>本文部分内容有误（因为作者太弱），等待修正</strong></p>
+<a id="more"></a>
+<h1 id="二分图"><a href="#二分图" class="headerlink" title="二分图"></a>二分图</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>设图$G=(V,E)$是一个无向图，若顶点集合$V$可分割为两个互不相交的子集$X$和$Y$，且图中每条边连接的顶点一个在$X$中，一个在$Y$中，则称$G$是一个二分图。</p>
+<h2 id="判定"><a href="#判定" class="headerlink" title="判定"></a>判定</h2><p>若某一图是联通的，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 任选一个点V作为顶点，定义距离标号为0</span><br><span class="line">2. 将V的邻接点标号设为1，接着将它的未标号的邻接点的标号设为2，以此类推 </span><br><span class="line">3. 将所有标号为奇数的点归为X，标号为偶数的点归为Y</span><br></pre></td></tr></table></figure>
+<p>以上内容可以采用BFS完成</p>
+<p>依次检查每一条边，看看是否满足顶点一个在$X$中，一个在$Y$中</p>
+<hr>
+<p>若某一图不连通，就在每个联通块里进行判定</p>
+<h1 id="二分图匹配"><a href="#二分图匹配" class="headerlink" title="二分图匹配"></a>二分图匹配</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>给定一个二分图$G$，在$G$的子图$M$中，$M$的边集${E}$中的任意两条边都不依附于同一个顶点，则称$M$是一个匹配。</p>
+<p>图中蓝色的边是数量为2的匹配</p>
+<p><img src="https://s1.ax2x.com/2018/07/06/oQPHl.png" alt="oQPHl.png"></p>
+<h2 id="最大匹配-amp-完全匹配"><a href="#最大匹配-amp-完全匹配" class="headerlink" title="最大匹配 &amp; 完全匹配"></a>最大匹配 &amp; 完全匹配</h2><p>选择边数最大的子图称为「二分图的最大匹配问题」</p>
+<p>如果一个匹配中图的每一个顶点都和某条边相关联，则称此匹配为「完全匹配」（或「完备匹配」）</p>
+<p>图中为一个完全匹配</p>
+<p><img src="https://s1.ax2x.com/2018/07/06/oQa4J.png" alt="oQa4J.png"></p>
+<h2 id="增广路径"><a href="#增广路径" class="headerlink" title="增广路径"></a>增广路径</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>设$M$为二分图$G$已匹配边的集合，若$P$是$G$上其中一条联通两个未匹配顶点的路径（起点在$X$部，终点在$Y$部），且属$M$的边和不属$M$的边在$P$上交替出现，则称$P$为相对于$M$的一条增广路径</p>
+<h3 id="寻找增广路"><a href="#寻找增广路" class="headerlink" title="寻找增广路"></a>寻找增广路</h3><p>设$M$为二分图$G$所有已匹配边的集合，</p>
+<p>如图，蓝色为在$M$里的边，黄色为不在$M$里的边</p>
+<p><img src="https://s1.ax2x.com/2018/07/06/oW9gr.png" alt="oW9gr.png"></p>
+<p>从$x_4$到$y_2$找一条路径：</p>
+<p>$<br>x_4 \rightarrow y_3 \rightarrow x_2 \rightarrow y1 \rightarrow x1 \rightarrow y2<br>$</p>
+<p>这条路径就是<strong>「增广路径」</strong></p>
+<p>其中属于$M$的边有：<br>${x2,y3}, {x1,y1}$</p>
+<p>不属于$M$的边有：<br>${x4,y3}, {x2,y1},{x1,y2}$</p>
+<p>显然，<i><b>不属于$M$的边比属于$M$的边要多一条</b></i></p>
+<hr>
+<p>将这条增广路上的边全都「反色」，如图</p>
+<p><img src="https://s1.ax2x.com/2018/07/06/oWBQY.png" alt="oWBQY.png"></p>
+<p>可以发现，匹配仍然合法，但是匹配数多了一对</p>
+<pre><code>另外，单独的一条连接两个未匹配点的边显然也是增广路   
+</code></pre><p>那么可知，当不能再找到增广轨时，就得到了一个「最大匹配」，这就是匈牙利算法的基本思路</p>
+<h3 id="增广路径性质"><a href="#增广路径性质" class="headerlink" title="增广路径性质"></a>增广路径性质</h3><p>由增广路的定义可以推出下述三个结论：</p>
+<ol>
+<li>P的路径长度必定为奇数，第一条边和最后一条边都不属于M，因为两个端点分属两个集合，且未匹配。</li>
+<li>P经过取反操作可以得到一个更大的匹配M’。</li>
+<li>M为G的最大匹配当且仅当不存在相对于M的增广路径。</li>
+</ol>
+<h2 id="匈牙利算法"><a href="#匈牙利算法" class="headerlink" title="匈牙利算法"></a>匈牙利算法</h2><p>用增广路求最大匹配（称作匈牙利算法，匈牙利数学家Edmonds于1965年提出）</p>
+<h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><ol>
+<li>置$M$为空</li>
+<li>找出一条增广路$P$，通过取反操作获得更大的匹配$M‘$代替$M$</li>
+<li>重复2直到找不出增广路</li>
+</ol>
+<h3 id="找增广路径的算法"><a href="#找增广路径的算法" class="headerlink" title="找增广路径的算法"></a>找增广路径的算法</h3><p>我们采用DFS的办法找一条增广路径： </p>
+<p>从X部一个未匹配的顶点u开始，找一个未访问的邻接点v（v一定是Y部顶点）。</p>
+<p>对于$v$，分两种情况：</p>
+<ol>
+<li>如果$v$未匹配，则已经找到一条增广路</li>
+<li>如果$v$已经匹配，则取出$v$的匹配顶点$w$($w$一定是$X$部顶点)，边$(w,v)$目前是匹配的，根据“取反”的想法，要将$(w,v)$改为未匹配，$(u,v)$设为匹配，能实现这一点的条件是看从$w$为起点能否新找到一条增广路径$P’$。如果行，则$u \rightarrow v \rightarrow P’$就是一条以$u$为起点的增广路径。</li>
+</ol>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><p>mx[i]表示与X部i点匹配的Y部顶点编号 </p>
+<p>my[i]表示与Y部i点匹配的X部顶点编号</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span><span class="comment">//寻找从u出发的增广路径</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> each v∈u的邻接点</span><br><span class="line">        <span class="keyword">if</span>(v未访问)&#123;</span><br><span class="line">            标记v已访问;</span><br><span class="line">            <span class="keyword">if</span>(v未匹配||dfs(my[v]))&#123;</span><br><span class="line">                mx[u]=v;</span><br><span class="line">                my[v]=u; </span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;<span class="comment">//有从u出发的增广路径</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//无法找到从u出发的增广路径</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="《HDU2063-过山车》题解"><a href="#《HDU2063-过山车》题解" class="headerlink" title="《HDU2063 过山车》题解"></a>《HDU2063 过山车》题解</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>RPG girls今天和大家一起去游乐场玩，终于可以坐上梦寐以求的过山车了。可是，过山车的每一排只有两个座位，而且还有条不成文的规矩，就是每个女生必须找个个男生做partner和她同坐。但是，每个女孩都有各自的想法，举个例子把，Rabbit只愿意和XHD或PQK做partner，Grass只愿意和linle或LL做partner，PrincessSnow愿意和水域浪子或伪酷儿做partner。考虑到经费问题，boss刘决定只让找到partner的人去坐过山车，其他的人，嘿嘿，就站在下面看着吧。聪明的Acmer，你可以帮忙算算最多有多少对组合可以坐上过山车吗？</p>
+<h2 id="Input-Output-格式-amp-样例"><a href="#Input-Output-格式-amp-样例" class="headerlink" title="Input/Output 格式 &amp; 样例"></a>Input/Output 格式 &amp; 样例</h2><p><strong>Input</strong></p>
+<p>输入数据的第一行是三个整数$K , M , N$，分别表示可能的组合数目，女生的人数，男生的人数。$0&lt;K&lt;=1000,<br>1&lt;=N,M&lt;=500$.接下来的$K$行，每行有两个数，分别表示女生$A_i$愿意和男生$B_j$做partner。最后一个$0$结束输入。</p>
+<p><strong>Output</strong></p>
+<p>对于每组数据，输出一个整数，表示可以坐上过山车的最多组合数。</p>
+<p><strong>Sample Input</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">6 3 3</span><br><span class="line">1 1</span><br><span class="line">1 2</span><br><span class="line">1 3</span><br><span class="line">2 1</span><br><span class="line">2 3</span><br><span class="line">3 1</span><br><span class="line">0</span><br></pre></td></tr></table></figure></p>
+<p><strong>Sample Output</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>「每个女生必须找个个男生做partner和她同坐」</p>
+<p>好了，可以看出这是匹配问题，问你如何匹配</p>
+<p>「Rabbit只愿意和XHD或PQK做partner，Grass只愿意和linle或LL做partner，PrincessSnow愿意和水域浪子或伪酷儿做partner」</p>
+<p>这句话告诉了我们如何建边：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">把所有女生的顶点放到集合X中，所有男生的顶点放到集合Y中，</span><br><span class="line">从Rabbit分别建一条到XHD的边和一条到PQK的边，</span><br><span class="line">从Grass分别建一条到linle的边和一条到LL的边……</span><br></pre></td></tr></table></figure>
+<p>那么显然这就是一个二分图，而本题要求的就是这个二分图的最大匹配</p>
+<p>又是一道模板题</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">500</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> t[MAXN][MAXN], <span class="built_in">map</span>[MAXN];</span><br><span class="line"><span class="keyword">bool</span> vis[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> k, m, n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 核心代码</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (t[u][i] &amp;&amp; !vis[i]) &#123;</span><br><span class="line">            vis[i] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">map</span>[i] || dfs(<span class="built_in">map</span>[i])) &#123;</span><br><span class="line">                <span class="built_in">map</span>[i] = u;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;k, &amp;m, &amp;n), k != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">memset</span>(t, <span class="number">0</span>, <span class="keyword">sizeof</span>(t));</span><br><span class="line">        <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="keyword">sizeof</span>(vis));</span><br><span class="line">        <span class="built_in">memset</span>(<span class="built_in">map</span>, <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="built_in">map</span>));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> x, y;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;x, &amp;y);</span><br><span class="line">            t[x][y] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">            <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="keyword">sizeof</span>(vis));</span><br><span class="line">            <span class="keyword">if</span> (dfs(i)) ++ans;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Handwer STD
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.handwer-std.top/2018-07-06/BipartiteGraph/" title="二分图匹配学习笔记 & HDU2063 题解">https://blog.handwer-std.top/2018-07-06/BipartiteGraph/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/题解/" rel="tag"># 题解</a>
+          
+            <a href="/tags/图论/" rel="tag"># 图论</a>
+          
+            <a href="/tags/二分图/" rel="tag"># 二分图</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018-07-04/Kakutani/" rel="next" title="2017 国庆清北刷题冲刺班 《角谷猜想》">
+                <i class="fa fa-chevron-left"></i> 2017 国庆清北刷题冲刺班 《角谷猜想》
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018-07-15/Luogu-P1149/" rel="prev" title="洛谷P1149《火柴棒等式》">
+                洛谷P1149《火柴棒等式》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/NewAvatar.jpg"
+                alt="Handwer STD" />
+            
+              <p class="site-author-name" itemprop="name">Handwer STD</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/handwerstd" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:handwerstudotie@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.luogu.org/space/show?uid=56626" target="_blank" title="Luogu">
+                      
+                        <i class="fa fa-fw fa-code"></i>Luogu</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://t.me/handwer/" target="_blank" title="Telegram">
+                      
+                        <i class="fa fa-fw fa-telegram"></i>Telegram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二分图"><span class="nav-number">1.</span> <span class="nav-text">二分图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判定"><span class="nav-number">1.2.</span> <span class="nav-text">判定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二分图匹配"><span class="nav-number">2.</span> <span class="nav-text">二分图匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大匹配-amp-完全匹配"><span class="nav-number">2.2.</span> <span class="nav-text">最大匹配 &amp; 完全匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增广路径"><span class="nav-number">2.3.</span> <span class="nav-text">增广路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寻找增广路"><span class="nav-number">2.3.2.</span> <span class="nav-text">寻找增广路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增广路径性质"><span class="nav-number">2.3.3.</span> <span class="nav-text">增广路径性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匈牙利算法"><span class="nav-number">2.4.</span> <span class="nav-text">匈牙利算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法步骤"><span class="nav-number">2.4.1.</span> <span class="nav-text">算法步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#找增广路径的算法"><span class="nav-number">2.4.2.</span> <span class="nav-text">找增广路径的算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现"><span class="nav-number">2.4.3.</span> <span class="nav-text">算法实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#《HDU2063-过山车》题解"><span class="nav-number">3.</span> <span class="nav-text">《HDU2063 过山车》题解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">3.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input-Output-格式-amp-样例"><span class="nav-number">3.2.</span> <span class="nav-text">Input/Output 格式 &amp; 样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">3.3.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">3.4.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Handwer STD</span>
+
+  
+</div>
+
+
+  <div class="powered-by" style="font-size:12px">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info" style="font-size:12px">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+<span class="post-meta-divider" style="font-size:12px">|</span>
+<span id="busuanzi_container_site_uv" style="font-size:12px">
+你是第<span id="busuanzi_value_site_uv" style="font-size:12px"></span>个来访问的dalao
+</span>
+<div style="color:black;font-size:10px">
+<span class="from">————</span>
+</div>
+<div style="color:black;font-size:12px">
+<script type="text/javascript" src="https://api.imjad.cn/hitokoto/?cat=&amp;charset=utf-8&amp;length=50&amp;encode=js&amp;fun=sync&amp;source="></script><div id="hitokoto"><script>hitokoto()</script><span class="hitokoto" title=""></span></div>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz',
+        appKey: 'y8tzSOvAsnOqNYwRNQI7WG9v',
+        placeholder: '想说什么？',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":220},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

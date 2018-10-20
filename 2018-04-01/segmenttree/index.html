@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/NewAvatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/NewAvatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/NewAvatar.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/NewAvatar.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="编程,线段树,数据结构,模板," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Handwer's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="快速查找和修改区间  注意：本文包含洛谷 P3372 【模板】线段树 1 题解">
+<meta name="keywords" content="编程,线段树,数据结构,模板">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线段树 模板">
+<meta property="og:url" content="https://blog.handwer-std.top/2018-04-01/segmenttree/index.html">
+<meta property="og:site_name" content="Handwer&#39;s Blog">
+<meta property="og:description" content="快速查找和修改区间  注意：本文包含洛谷 P3372 【模板】线段树 1 题解">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-25T23:06:21.100Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="线段树 模板">
+<meta name="twitter:description" content="快速查找和修改区间  注意：本文包含洛谷 P3372 【模板】线段树 1 题解">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.handwer-std.top/2018-04-01/segmenttree/"/>
+
+
+
+
+
+  <title>线段树 模板 | Handwer's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Handwer's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-frlink">
+          <a href="/frlink/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            我的朋友
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.handwer-std.top/2018-04-01/segmenttree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Handwer STD">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/NewAvatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Handwer's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">线段树 模板</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T00:26:09+08:00">
+                2018-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-04-01/segmenttree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018-04-01/segmenttree/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+   		  
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>快速查找和修改区间</p>
+</blockquote>
+<p>注意：本文包含<a href="https://www.luogu.org/problemnew/show/P3372" target="_blank" rel="noopener">洛谷 P3372 【模板】线段树 1</a> 题解</p>
+<a id="more"></a>
+<h1 id="线段树模板"><a href="#线段树模板" class="headerlink" title="线段树模板"></a>线段树模板</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>什么是线段树？</li>
+</ul>
+<p>线段树是一种二叉搜索树，与区间树相似，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。</p>
+<ul>
+<li>线段树的主要用途及好处？</li>
+</ul>
+<p>线段树可以快速的查找某一个节点在若干条线段中出现的次数，时间复杂度为O(logN）。</p>
+<ul>
+<li>线段树的应用？</li>
+</ul>
+<p>最简单的应用就是记录线段是否被覆盖，随时查询当前被覆盖线段的总长度。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="基础函数"><a href="#基础函数" class="headerlink" title="基础函数"></a>基础函数</h3><p>我们选择一个$O(1)$的取儿子函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">leftChild</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> p &lt;&lt; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 左子树 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">rightChild</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> p &lt;&lt; <span class="number">1</span> | <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 右子树</span></span><br></pre></td></tr></table></figure>
+<p>线段树的维护：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushUp</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	t[p] = t[leftChild(p)] + t[rightChild(p)];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 向上维护区间</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushUpMin</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	t[p] = <span class="built_in">std</span>::min(t[leftChild(p)], t[rightChild(p)]);</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 向t[p]下放Min标签</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushUpMax</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	t[p] = <span class="built_in">std</span>::max(t[leftChild(p)], t[rightChild(p)]);</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 向t[p]下放Max标签</span></span><br></pre></td></tr></table></figure>
+<p>递归建树：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> lli;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">buildTree</span><span class="params">(lli p, lli l, lli r)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">		ans[p] = a[l];</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 如果左右区间相同，则必是叶子节点</span></span><br><span class="line">	lli mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	buildTree(leftChild(p), l, mid);</span><br><span class="line">	buildTree(rightChild(p), mid + <span class="number">1</span>, r);</span><br><span class="line">	<span class="comment">// 递归</span></span><br><span class="line">	pushUp(p); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 递归 + 二分建树</span></span><br></pre></td></tr></table></figure>
+<h3 id="区间修改函数"><a href="#区间修改函数" class="headerlink" title="区间修改函数"></a>区间修改函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Record</span><span class="params">(lli p, lli l, lli r, lli k)</span> </span>&#123;</span><br><span class="line">	tag[p] = tag[p] + k;</span><br><span class="line">	ans[p] = ans[p] + k * (r - l + <span class="number">1</span>);</span><br><span class="line">	<span class="comment">// 因为是区间统一改变，所以ans要加元素个数 </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 记录当前节点所代表的区间</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushDown</span><span class="params">(lli p, lli l, lli r)</span> </span>&#123;</span><br><span class="line">	lli mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	Record(leftChild(p), l, mid, tag[p]);</span><br><span class="line">	Record(rightChild(p), mid + <span class="number">1</span>, r, tag[p]);</span><br><span class="line">	tag[p] = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">// 每次更新两个儿子节点，不断向下传递 </span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(lli nl, lli nr, lli l, lli r, lli p, lli k)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 将要修改从 nl 到 nr 的区间</span></span><br><span class="line">	<span class="comment">// l,r 为当前节点所储存的区间 </span></span><br><span class="line">	<span class="comment">// p 为当前节点的编号</span></span><br><span class="line">	<span class="keyword">if</span> (nl &lt;= l &amp;&amp; r &lt;= nr) &#123;</span><br><span class="line">		ans[p] += k * (r - l + <span class="number">1</span>);</span><br><span class="line">		tag[p] += k;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125; </span><br><span class="line">	pushDown(p, l, r);	</span><br><span class="line">	lli mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (nl &lt;= mid) update(nl, nr, l, mid, leftChild(p), k)</span><br><span class="line">	<span class="keyword">if</span> (nr &gt; mid) update(nl, nr,mid + <span class="number">1</span>, r, rightChild(p), k);</span><br><span class="line">	pushUp(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 更新区间</span></span><br></pre></td></tr></table></figure>
+<h3 id="查询区间函数"><a href="#查询区间函数" class="headerlink" title="查询区间函数"></a>查询区间函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> lli <span class="title">query</span><span class="params">(lli qx, lli qy, lli l, lli r, lli p)</span> </span>&#123;</span><br><span class="line">	lli res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy) <span class="keyword">return</span> ans[p];</span><br><span class="line">	lli mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	pushDown(p, l, r);</span><br><span class="line">	<span class="keyword">if</span> (qx &lt;= mid) res += query(qx, qy, l, mid, leftChild(p));</span><br><span class="line">	<span class="keyword">if</span> (mid + <span class="number">1</span> &lt;= qy) res += query(qx, qy, mid + <span class="number">1</span>, r, rightChild(p));</span><br><span class="line">	<span class="keyword">return</span> res; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 查询区间</span></span><br></pre></td></tr></table></figure>
+<p>依然采用二分的形式…</p>
+<h1 id="洛谷-P3372-题解"><a href="#洛谷-P3372-题解" class="headerlink" title="洛谷 P3372 题解"></a>洛谷 P3372 题解</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>已知一个数列，你需要进行下面两种操作：</p>
+<p>1.将某区间每一个数加上x</p>
+<p>2.求出某区间每一个数的和</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行包含两个整数N、M，分别表示该数列数字的个数和操作的总个数。</p>
+<p>第二行包含N个用空格分隔的整数，其中第i个数字表示数列第i项的初始值。</p>
+<p>接下来M行每行包含3或4个整数，表示一个操作，具体如下：</p>
+<p>操作1： 格式：1 x y k 含义：将区间[x,y]内每个数加上k</p>
+<p>操作2： 格式：2 x y 含义：输出区间[x,y]内每个数的和</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出包含若干行整数，即为所有操作2的结果。</p>
+<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">5 5</span><br><span class="line">1 5 4 2 3</span><br><span class="line">2 2 4</span><br><span class="line">1 2 3 2</span><br><span class="line">2 3 4</span><br><span class="line">1 1 5 1</span><br><span class="line">2 1 4</span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">11</span><br><span class="line">8</span><br><span class="line">20</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>就是把上面的函数都复制下来就行了= =</p>
+<p>没什么多解释的</p>
+<p>注释见上面代码</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="comment">// using namespace std;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ull;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1000000</span> + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">ull n, m, a[MAXN], ans[MAXN &lt;&lt; <span class="number">2</span>], tag[MAXN &lt;&lt; <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">ls</span><span class="params">(ll x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x &lt;&lt; <span class="number">1</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">rs</span><span class="params">(ll x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x &lt;&lt; <span class="number">1</span> | <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">scan</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld %lld"</span>, &amp;n, &amp;m);</span><br><span class="line">	<span class="keyword">for</span> (ll i = <span class="number">1</span>;i &lt;= n;i++) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushUp</span><span class="params">(ll p)</span> </span>&#123;</span><br><span class="line">	ans[p] = ans[ls(p)] + ans[rs(p)];</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">build</span><span class="params">(ll p, ll l, ll r)</span> </span>&#123;</span><br><span class="line">	tag[p] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">		ans[p] = a[l];</span><br><span class="line">		<span class="keyword">return</span>; </span><br><span class="line">	&#125;</span><br><span class="line">	ll mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	build(ls(p), l, mid);</span><br><span class="line">	build(rs(p), mid + <span class="number">1</span>, r);</span><br><span class="line">	pushUp(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">rec</span><span class="params">(ll p, ll l, ll r, ll k)</span> </span>&#123;</span><br><span class="line">	tag[p] = tag[p] + k;</span><br><span class="line">	ans[p] = ans[p] + k * (r - l + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushDown</span><span class="params">(ll p,ll l, ll r)</span> </span>&#123;</span><br><span class="line">	ll mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	rec(ls(p), l, mid, tag[p]);</span><br><span class="line">	rec(rs(p), mid + <span class="number">1</span>, r, tag[p]);</span><br><span class="line">	tag[p] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(ll nl, ll nr, ll l, ll r, ll p, ll k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (nl &lt;= l &amp;&amp; r &lt;= nr) &#123;</span><br><span class="line">		ans[p] += k * (r - l + <span class="number">1</span>);</span><br><span class="line">		tag[p] += k;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	pushDown(p, l, r);</span><br><span class="line">	ll mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (nl &lt;= mid) update(nl, nr, l, mid, ls(p), k);</span><br><span class="line">	<span class="keyword">if</span> (nr &gt; mid) update(nl, nr, mid + <span class="number">1</span>, r, rs(p), k);</span><br><span class="line">	pushUp(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(ll qx, ll qy, ll l, ll r, ll p)</span> </span>&#123;</span><br><span class="line">	ll res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy) <span class="keyword">return</span> ans[p];</span><br><span class="line">	ll mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	pushDown(p, l, r);</span><br><span class="line">	<span class="keyword">if</span> (qx &lt;= mid) res += query(qx, qy, l, mid, ls(p));</span><br><span class="line">	<span class="keyword">if</span> (qy &gt; mid) res += query(qx, qy, mid + <span class="number">1</span>, r, rs(p));</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ios::sync_with_stdio(false);</span></span><br><span class="line">	ll a1, b, c, d, e, f;</span><br><span class="line">	scan();</span><br><span class="line">	build(<span class="number">1</span>, <span class="number">1</span>, n);</span><br><span class="line">	<span class="keyword">while</span> (m--) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;a1);</span><br><span class="line">		<span class="keyword">switch</span>(a1) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:&#123;</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%lld %lld %lld"</span>, &amp;b, &amp;c, &amp;d);</span><br><span class="line">				update(b, c, <span class="number">1</span>, n, <span class="number">1</span>, d);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:&#123;</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%lld %lld"</span>, &amp;e, &amp;f);</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, query(e, f, <span class="number">1</span>, n, <span class="number">1</span>));	</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 注意一下，stdio 和 iostream 混用会出现很多奇怪的bug！</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Handwer STD
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.handwer-std.top/2018-04-01/segmenttree/" title="线段树 模板">https://blog.handwer-std.top/2018-04-01/segmenttree/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/线段树/" rel="tag"># 线段树</a>
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/模板/" rel="tag"># 模板</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018-03-31/calculating-pi/" rel="next" title="计算π">
+                <i class="fa fa-chevron-left"></i> 计算π
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018-04-14/Luogu-P1536/" rel="prev" title="洛谷P1536 《村村通》">
+                洛谷P1536 《村村通》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/NewAvatar.jpg"
+                alt="Handwer STD" />
+            
+              <p class="site-author-name" itemprop="name">Handwer STD</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/handwerstd" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:handwerstudotie@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.luogu.org/space/show?uid=56626" target="_blank" title="Luogu">
+                      
+                        <i class="fa fa-fw fa-code"></i>Luogu</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://t.me/handwer/" target="_blank" title="Telegram">
+                      
+                        <i class="fa fa-fw fa-telegram"></i>Telegram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线段树模板"><span class="nav-number">1.</span> <span class="nav-text">线段树模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础函数"><span class="nav-number">1.2.1.</span> <span class="nav-text">基础函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区间修改函数"><span class="nav-number">1.2.2.</span> <span class="nav-text">区间修改函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询区间函数"><span class="nav-number">1.2.3.</span> <span class="nav-text">查询区间函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#洛谷-P3372-题解"><span class="nav-number">2.</span> <span class="nav-text">洛谷 P3372 题解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">2.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">2.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">2.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入样例"><span class="nav-number">2.4.</span> <span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出样例"><span class="nav-number">2.5.</span> <span class="nav-text">输出样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.6.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">2.7.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Handwer STD</span>
+
+  
+</div>
+
+
+  <div class="powered-by" style="font-size:12px">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info" style="font-size:12px">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+<span class="post-meta-divider" style="font-size:12px">|</span>
+<span id="busuanzi_container_site_uv" style="font-size:12px">
+你是第<span id="busuanzi_value_site_uv" style="font-size:12px"></span>个来访问的dalao
+</span>
+<div style="color:black;font-size:10px">
+<span class="from">————</span>
+</div>
+<div style="color:black;font-size:12px">
+<script type="text/javascript" src="https://api.imjad.cn/hitokoto/?cat=&amp;charset=utf-8&amp;length=50&amp;encode=js&amp;fun=sync&amp;source="></script><div id="hitokoto"><script>hitokoto()</script><span class="hitokoto" title=""></span></div>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz',
+        appKey: 'y8tzSOvAsnOqNYwRNQI7WG9v',
+        placeholder: '想说什么？',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":220},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
