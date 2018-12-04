@@ -1,389 +1,540 @@
 <!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.0 -->
+    <script>
+        window.materialVersion = "1.5.0"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+    <link rel="dns-prefetch" href="https://cdn1.lncld.net"/>
+
+
+    <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
 
 
 
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
 
 
 
-  
-  
+
+
+
+
+
+
+    <!-- Title -->
+    
+    <title>
+        
+            动态规划练习题代码 | 
+        
+        Handwer&#39;s Blog
+    </title>
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Handwer STD">
+    <meta name="description" itemprop="description" content="
+DP 是啥？能吃吗？
+">
+    <meta name="keywords" content=",编程,NOIP,动态规划，DP">
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(window.oldVersion){var remove=window.oldVersion.reduce(function(p,c){return p||data.indexOf("/*"+c+"*/")!==-1},false);if(remove){lsloader.removeLS(key)}}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload,isJs){if(typeof cssonload==="boolean"){isJs=cssonload;cssonload=undefined}isJs=isJs||false;cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}code=code.split(versionString)[1];if(isJs){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload,isJs)}};lsloader.requestResource=function(name,path,cssonload,isJs){var that=this;if(isJs){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else{this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/NewAvatar.jpg">
+    <link rel="icon" sizes="192x192" href="/img/NewAvatar.jpg">
+    <link rel="apple-touch-icon" href="/img/NewAvatar.jpg">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Handwer&#39;s Blog">
+
+    <!-- Site Verification -->
     
     
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
 
+    <!-- RSS -->
+    
+        
+            <link rel=alternate type="application/atom+xml" href="atom.xml">
+        
+    
 
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
 
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
 
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?wVD10yF7FjOOiaRzv/nD6g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/hemisu-dark.min.css?cJWwRh1M8i55NfDkR4B8bQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
 
+    
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+    
 
+    <!-- Config CSS -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
 
 
 
 
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
 
 
+<!-- Import Font -->
+<!-- Import Roboto -->
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/NewAvatar.jpg?v=5.1.4">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/NewAvatar.jpg?v=5.1.4">
+<!-- Import Material Icon -->
 
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/NewAvatar.jpg?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/NewAvatar.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="编程,NOIP,动态规划，DP," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Handwer's Blog" type="application/atom+xml" />
-
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
 
 
-<meta name="description" content="DP 是啥？能吃吗？">
-<meta name="keywords" content="编程,NOIP,动态规划，DP">
-<meta property="og:type" content="article">
-<meta property="og:title" content="动态规划练习题代码">
-<meta property="og:url" content="https://blog.handwer-std.top/2018-08-03/DP-Exercise/index.html">
-<meta property="og:site_name" content="Handwer&#39;s Blog">
-<meta property="og:description" content="DP 是啥？能吃吗？">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-24T04:41:19.969Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动态规划练习题代码">
-<meta name="twitter:description" content="DP 是啥？能吃吗？">
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","https://cdn.bootcss.com/jquery/2.2.1/jquery.js", true)</script>
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://blog.handwer-std.top">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="动态规划练习题代码 | Handwer&#39;s Blog">
+    <meta property="og:image" content="https://blog.handwer-std.top/img/NewAvatar.jpg" />
+    <meta property="og:description" content="
+DP 是啥？能吃吗？
+">
+    <meta property="og:article:tag" content="编程"> <meta property="og:article:tag" content="NOIP"> <meta property="og:article:tag" content="动态规划，DP"> 
+
+    
+        <meta property="article:published_time" content="Fri Aug 03 2018 10:46:24 GMT+0800" />
+        <meta property="article:modified_time" content="Sat Nov 24 2018 12:41:19 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="动态规划练习题代码 | Handwer&#39;s Blog">
+    <meta name="twitter:description" content="
+DP 是啥？能吃吗？
+">
+    <meta name="twitter:image" content="https://blog.handwer-std.top/img/NewAvatar.jpg">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://blog.handwer-std.top" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://blog.handwer-std.top/2018-08-03/DP-Exercise/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://blog.handwer-std.top/2018-08-03/DP-Exercise/index.html",
+    "headline": "动态规划练习题代码",
+    "datePublished": "Fri Aug 03 2018 10:46:24 GMT+0800",
+    "dateModified": "Sat Nov 24 2018 12:41:19 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Handwer STD",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/NewAvatar.jpg"
+        },
+        "description": "充满着无尽的能量与自信，向着未来出发。"
     },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
+    "publisher": {
+        "@type": "Organization",
+        "name": "Handwer&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/NewAvatar.jpg"
+        }
+    },
+    "keywords": ",编程,NOIP,动态规划，DP",
+    "description": "
+DP 是啥？能吃吗？
+",
+}
 </script>
 
 
+    
 
-  <link rel="canonical" href="https://blog.handwer-std.top/2018-08-03/DP-Exercise/"/>
+    <!-- Analytics -->
+    
+    
+    
 
-
-
-
-
-  <title>动态规划练习题代码 | Handwer's Blog</title>
-  
-
-
-
-
-
-
-
+    <!-- Custom Head -->
+    
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  
-  
     
-  
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
     
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Handwer's Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
+    -->
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
     </button>
-  </div>
-</div>
 
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-frlink">
-          <a href="/frlink/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
-            
-            我的朋友
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#数字三角形问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">数字三角形问题</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一维线性动态规划"><span class="post-toc-number">2.</span> <span class="post-toc-text">一维线性动态规划</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最长上升子序列"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">最长上升子序列</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#「NOIP2004」合唱队形"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">「NOIP2004」合唱队形</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线段覆盖"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">线段覆盖</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#多维动态规划"><span class="post-toc-number">3.</span> <span class="post-toc-text">多维动态规划</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#「NOIP2008」传纸条"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">「NOIP2008」传纸条</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#「NOIP2008-普及」-传球游戏"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">「NOIP2008 普及」 传球游戏</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#背包问题"><span class="post-toc-number">4.</span> <span class="post-toc-text">背包问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#NASA-的食物计划"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">NASA 的食物计划</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#装箱问题"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">装箱问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#榨取kkksc03"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">榨取kkksc03</span></a></li></ol></li></ol>
     </ul>
-  
+    
 
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                动态规划练习题代码
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/NewAvatar.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
-  </div>
-  <div id="local-search-result"></div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Handwer STD</strong>
+        <span>8月 03, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/NOIP/">NOIP</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/动态规划，DP/">动态规划，DP</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/编程/">编程</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=动态规划练习题代码&url=https://blog.handwer-std.top/2018-08-03/DP-Exercise/index.html&pic=https://blog.handwer-std.top/img/NewAvatar.jpg&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=动态规划练习题代码&url=https://blog.handwer-std.top/2018-08-03/DP-Exercise/index.html&via=Handwer STD" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.handwer-std.top/2018-08-03/DP-Exercise/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.handwer-std.top/2018-08-03/DP-Exercise/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Handwer&#39;s Blog&title=动态规划练习题代码&summary=&pics=https://blog.handwer-std.top/img/NewAvatar.jpg&url=https://blog.handwer-std.top/2018-08-03/DP-Exercise/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=https://blog.handwer-std.top/2018-08-03/DP-Exercise/index.html&text=动态规划练习题代码" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Telegram
+            </li>
+        </a>
+    
+</ul>
+
 </div>
 
+                
 
-
-    </div>
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.handwer-std.top/2018-08-03/DP-Exercise/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Handwer STD">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/NewAvatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Handwer's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">动态规划练习题代码</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-03T10:46:24+08:00">
-                2018-08-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018-08-03/DP-Exercise/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018-08-03/DP-Exercise/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-   		  
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <blockquote>
 <p>DP 是啥？能吃吗？</p>
 </blockquote>
@@ -391,333 +542,896 @@
 <p>本文内容难度：从<code>普及-</code>到<code>普及+/提高</code></p>
 <h1 id="数字三角形问题"><a href="#数字三角形问题" class="headerlink" title="数字三角形问题"></a>数字三角形问题</h1><p>给你一个数字三角形，计算出从三角形的顶至底的一条路径，使该路径经过的数字总和最大，</p>
 <p>规定每一步只能从一个数走到下一层上和它最近的左边的数或者右边的数</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 设f[i][j]表示从第i行第j列走到底部的最优答案</span></span><br><span class="line"><span class="comment"> * 转移方程：f[i][j] = a[i][j] + max(f[i+1][j], f[i+1][j+1])</span></span><br><span class="line"><span class="comment"> * 注意边界</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> f[MAXN][MAXN];</span><br><span class="line"><span class="keyword">int</span> a[MAXN][MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">-23333333</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j) &#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j) &#123;</span><br><span class="line">            f[i][j] = a[i][j] + <span class="built_in">std</span>::max(f[i<span class="number">-1</span>][j], f[i<span class="number">-1</span>][j<span class="number">-1</span>]);</span><br><span class="line">    		ans = <span class="built_in">std</span>::max(ans, f[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="一维线性动态规划"><a href="#一维线性动态规划" class="headerlink" title="一维线性动态规划"></a>一维线性动态规划</h1><h2 id="最长上升子序列"><a href="#最长上升子序列" class="headerlink" title="最长上升子序列"></a>最长上升子序列</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">10000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 注意子序列可以不连续</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 设f[i]表示目前选第i个数时的最长上升子序列的长度</span></span><br><span class="line"><span class="comment"> * 也就是以第i个数结尾的最长上升子序列的长度</span></span><br><span class="line"><span class="comment"> * f[i] = std::max(1, f[j] + 1)</span></span><br><span class="line"><span class="comment"> * 其中1 &lt;= j &lt; i, a[j] &lt; a[i]</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 时间复杂度O(n^2)</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> f[MAXN], a[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j)  &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt; a[i]) f[i] = <span class="built_in">std</span>::max(<span class="number">1</span>, f[j] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; f[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="「NOIP2004」合唱队形"><a href="#「NOIP2004」合唱队形" class="headerlink" title="「NOIP2004」合唱队形"></a>「NOIP2004」合唱队形</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG(x) std::cerr &lt;&lt; #x &lt;&lt; <span class="meta-string">'='</span> &lt;&lt; x &lt;&lt; std::endl;</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">10000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 正着求一遍最长上升子序列，反着求一遍最长上升子序列</span></span><br><span class="line"><span class="comment"> * （也就是接着求一遍最长下降子序列）</span></span><br><span class="line"><span class="comment"> * 用f数组存最长上升子序列长度</span></span><br><span class="line"><span class="comment"> * 用g数组存最长下降子序列长度</span></span><br><span class="line"><span class="comment"> * 答案是n - max(f[i] + g[i] - 1)</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> f[MAXN], g[MAXN], a[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt; a[i]) f[i] = <span class="built_in">std</span>::max(f[i], f[j] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt;= <span class="number">1</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = n+<span class="number">1</span>; j &gt; i; --j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt; a[i]) g[i] = <span class="built_in">std</span>::max(g[i], g[j] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">-23333333</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">    	ans = <span class="built_in">std</span>::max(ans, f[i] + g[i] - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; n - ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="线段覆盖"><a href="#线段覆盖" class="headerlink" title="线段覆盖"></a>线段覆盖</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* -- DP 做法 -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1000000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 先对线段排序</span></span><br><span class="line"><span class="comment"> * 再设f[i]表示前i条线段中不重叠的最大数量</span></span><br><span class="line"><span class="comment"> * f[i] = max(f[i - 1], f[j] + 1)</span></span><br><span class="line"><span class="comment"> * 其中1 &lt;= j &lt; i, 第j条线段的右端点 &lt;= 第i条线段的左端点</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 这个时间复杂度洛谷会RE（实为TLE） */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Line</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> left, right;</span><br><span class="line">&#125; line[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> f[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">stlCmp</span><span class="params">(Line x, Line y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x.right &lt; y.right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">    	<span class="built_in">cin</span> &gt;&gt; line[i].left &gt;&gt; line[i].right;</span><br><span class="line">    	<span class="keyword">if</span> (line[i].left &gt; line[i].right) swap(line[i].left, line[i].right);</span><br><span class="line">    &#125;</span><br><span class="line">    sort(line + <span class="number">1</span>, line + <span class="number">1</span> + n, stlCmp);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (line[j].right &lt;= line[i].left) f[i] = <span class="built_in">std</span>::max(f[i], f[j] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">-23333333</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) ans = <span class="built_in">std</span>::max(ans, f[i]); </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans + <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* -- 贪心做法 -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1000000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Line</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> left, right;</span><br><span class="line">&#125; line[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">stlCmp</span><span class="params">(Line x, Line y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x.right &lt; y.right;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">cin</span> &gt;&gt; line[i].left &gt;&gt; line[i].right;</span><br><span class="line">    sort(line + <span class="number">1</span>, line + <span class="number">1</span> + n, stlCmp);</span><br><span class="line">    <span class="keyword">int</span> maxRight = <span class="number">-23333333</span>, lines = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (maxRight &lt;= line[i].left) ++lines, maxRight = line[i].right;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; lines &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="多维动态规划"><a href="#多维动态规划" class="headerlink" title="多维动态规划"></a>多维动态规划</h1><h2 id="「NOIP2008」传纸条"><a href="#「NOIP2008」传纸条" class="headerlink" title="「NOIP2008」传纸条"></a>「NOIP2008」传纸条</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">50</span> + <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*/</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 设dp[i][j][x][y] 表示第一张纸条传到了(i, j)，第二张纸条传到了(x, y)时</span></span><br><span class="line"><span class="comment"> * 的最大答案 </span></span><br><span class="line"><span class="comment"> * dp[i][j][k][l] = std::max(</span></span><br><span class="line"><span class="comment"> *                      std::max(</span></span><br><span class="line"><span class="comment"> *					        dp[i-1][j][k-1][l], </span></span><br><span class="line"><span class="comment"> *                          dp[i][j-1][k-1][l]</span></span><br><span class="line"><span class="comment"> *					    ), </span></span><br><span class="line"><span class="comment"> *					    std::max(</span></span><br><span class="line"><span class="comment"> *					        dp[i-1][j][k][l-1], </span></span><br><span class="line"><span class="comment"> *					        dp[i][j-1][k][l-1]</span></span><br><span class="line"><span class="comment"> *						)</span></span><br><span class="line"><span class="comment"> *					) </span></span><br><span class="line"><span class="comment"> *					+ a[i][j] </span></span><br><span class="line"><span class="comment"> *					+ a[k][l] </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 其中 j+1 &lt;= l &lt;= n</span></span><br><span class="line"><span class="comment"> * 最终答案是dp[m][n-1][m-1][n] </span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment">/*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dp[MAX][MAX][MAX][MAX];</span><br><span class="line"><span class="keyword">int</span> n, m, a[MAX][MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">bool</span> returnValue)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        x = -x;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) putint(x / <span class="number">10</span>, <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    <span class="keyword">if</span> (returnValue) <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    m = getint(), n = getint();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) &#123;</span><br><span class="line">            a[i][j] = getint();</span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= m; ++k) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> l = j + <span class="number">1</span>; l &lt;= n; ++l) &#123;</span><br><span class="line">                    dp[i][j][k][l] = <span class="built_in">std</span>::max(<span class="built_in">std</span>::max(dp[i<span class="number">-1</span>][j][k<span class="number">-1</span>][l], dp[i<span class="number">-1</span>][j][k][l<span class="number">-1</span>]), <span class="built_in">std</span>::max(dp[i][j<span class="number">-1</span>][k<span class="number">-1</span>][l], dp[i][j<span class="number">-1</span>][k][l<span class="number">-1</span>])) + a[i][j] + a[k][l];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    putint(dp[m][n<span class="number">-1</span>][m<span class="number">-1</span>][n], <span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="「NOIP2008-普及」-传球游戏"><a href="#「NOIP2008-普及」-传球游戏" class="headerlink" title="「NOIP2008 普及」 传球游戏"></a>「NOIP2008 普及」 传球游戏</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">30</span> + <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">30</span> + <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*/</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 设dp[i][j]表示球传到第i次，传到第j个小朋友手中时的方案数</span></span><br><span class="line"><span class="comment"> * dp[i][j] = dp[i-1][j-1] + dp[i-1][j+1] </span></span><br><span class="line"><span class="comment"> * 其中dp[0][1] = 1，ans = dp[m][1] </span></span><br><span class="line"><span class="comment">/*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> dp[MAXM][MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">char</span> ch = getchar();</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">		<span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">		ch = getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">		s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">		ch = getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">bool</span> returnValue)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		x = -x;</span><br><span class="line">		<span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (x &gt;= <span class="number">10</span>) putint(x / <span class="number">10</span>, <span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">	<span class="keyword">if</span> (returnValue) <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">	n = getint(), m = getint();</span><br><span class="line">	dp[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">		dp[i][<span class="number">1</span>] = dp[i<span class="number">-1</span>][<span class="number">2</span>] + dp[i<span class="number">-1</span>][n];</span><br><span class="line">		dp[i][n] = dp[i<span class="number">-1</span>][<span class="number">1</span>] + dp[i<span class="number">-1</span>][n<span class="number">-1</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span>; j &lt; n; ++j) &#123;</span><br><span class="line">			dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + dp[i<span class="number">-1</span>][j+<span class="number">1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	putint(dp[m][<span class="number">1</span>], <span class="literal">true</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;cctype&gt;
+using namespace std;
+
+const int MAXN = 100;
+
+/*
+ * 
+ * 设f[i][j]表示从第i行第j列走到底部的最优答案
+ * 转移方程：f[i][j] = a[i][j] + max(f[i+1][j], f[i+1][j+1])
+ * 注意边界
+ * 
+ */
+
+int f[MAXN][MAXN];
+int a[MAXN][MAXN];
+
+int main(int argc, char *const argv[]) {
+    int n;
+    cin &gt;&gt; n;
+    int ans = -23333333;
+    for (int i = 1; i &lt;= n; ++i) {
+        for (int j = 1; j &lt;= i; ++j) {
+            cin &gt;&gt; a[i][j];
+        }
+    }
+    for (int i = 1; i &lt;= n; ++i) {
+        for (int j = 1; j &lt;= i; ++j) {
+            f[i][j] = a[i][j] + std::max(f[i-1][j], f[i-1][j-1]);
+            ans = std::max(ans, f[i][j]);
+        }
+    }
+    cout &lt;&lt; ans &lt;&lt; endl;
+}
+
+</code></pre>
+<h1 id="一维线性动态规划"><a href="#一维线性动态规划" class="headerlink" title="一维线性动态规划"></a>一维线性动态规划</h1><h2 id="最长上升子序列"><a href="#最长上升子序列" class="headerlink" title="最长上升子序列"></a>最长上升子序列</h2><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int MAXN = 10000 + 10;
+
+/*
+ *
+ * 注意子序列可以不连续
+ * 
+ * 设f[i]表示目前选第i个数时的最长上升子序列的长度
+ * 也就是以第i个数结尾的最长上升子序列的长度
+ * f[i] = std::max(1, f[j] + 1)
+ * 其中1 &lt;= j &lt; i, a[j] &lt; a[i]
+ * 
+ * 时间复杂度O(n^2)
+ * 
+ */
+
+int f[MAXN], a[MAXN];
+
+int main(int argc, char *const argv[]) {
+    int n;
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; ++i) {
+        cin &gt;&gt; a[i];
+    }
+    for (int i = 1; i &lt;= n; ++i) {
+        for (int j = 0; j &lt; i; ++j)  {
+            if (a[j] &lt; a[i]) f[i] = std::max(1, f[j] + 1);
+        }
+    }
+    cout &lt;&lt; f[n];
+}
+
+</code></pre>
+<h2 id="「NOIP2004」合唱队形"><a href="#「NOIP2004」合唱队形" class="headerlink" title="「NOIP2004」合唱队形"></a>「NOIP2004」合唱队形</h2><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#define DEBUG(x) std::cerr &lt;&lt; #x &lt;&lt; &#39;=&#39; &lt;&lt; x &lt;&lt; std::endl;
+using namespace std;
+
+const int MAXN = 10000 + 10;
+
+/*
+ *
+ * 正着求一遍最长上升子序列，反着求一遍最长上升子序列
+ * （也就是接着求一遍最长下降子序列）
+ * 用f数组存最长上升子序列长度
+ * 用g数组存最长下降子序列长度
+ * 答案是n - max(f[i] + g[i] - 1)
+ * 
+ */
+
+int f[MAXN], g[MAXN], a[MAXN];
+
+int main(int argc, char *const argv[]) {
+    int n;
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; ++i) cin &gt;&gt; a[i];
+    for (int i = 1; i &lt;= n; ++i) {
+        for (int j = 0; j &lt; i; ++j) {
+            if (a[j] &lt; a[i]) f[i] = std::max(f[i], f[j] + 1);
+        }
+    }
+    for (int i = n; i &gt;= 1; --i) {
+        for (int j = n+1; j &gt; i; --j) {
+            if (a[j] &lt; a[i]) g[i] = std::max(g[i], g[j] + 1);
+        }
+    }
+    int ans = -23333333;
+    for (int i = 1; i &lt;= n; ++i) {
+        ans = std::max(ans, f[i] + g[i] - 1);
+    }
+    cout &lt;&lt; n - ans &lt;&lt; endl;
+    return 0;
+}
+
+</code></pre>
+<h2 id="线段覆盖"><a href="#线段覆盖" class="headerlink" title="线段覆盖"></a>线段覆盖</h2><pre><code class="cpp">/* -- DP 做法 -- */
+#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int MAXN = 1000000 + 10;
+
+/*
+ *
+ * 先对线段排序
+ * 再设f[i]表示前i条线段中不重叠的最大数量
+ * f[i] = max(f[i - 1], f[j] + 1)
+ * 其中1 &lt;= j &lt; i, 第j条线段的右端点 &lt;= 第i条线段的左端点
+ * 
+ */
+
+/* 这个时间复杂度洛谷会RE（实为TLE） */
+
+struct Line {
+    int left, right;
+} line[MAXN];
+
+int f[MAXN];
+
+bool stlCmp(Line x, Line y) {
+    return x.right &lt; y.right;
+}
+
+int main(int argc, char *const argv[]) {
+    ios::sync_with_stdio(false);
+    int n;
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; ++i) {
+        cin &gt;&gt; line[i].left &gt;&gt; line[i].right;
+        if (line[i].left &gt; line[i].right) swap(line[i].left, line[i].right);
+    }
+    sort(line + 1, line + 1 + n, stlCmp);
+    for (int i = 1; i &lt;= n; ++i) {
+        for (int j = 1; j &lt;= i; ++j) {
+            if (line[j].right &lt;= line[i].left) f[i] = std::max(f[i], f[j] + 1);
+        }
+    }
+    int ans = -23333333;
+    for (int i = 1; i &lt;= n; ++i) ans = std::max(ans, f[i]); 
+    cout &lt;&lt; ans + 1 &lt;&lt; endl;    
+    return 0;
+}
+
+</code></pre>
+<pre><code class="cpp">/* -- 贪心做法 -- */
+#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int MAXN = 1000000 + 10;
+
+struct Line {
+    int left, right;
+} line[MAXN];
+
+bool stlCmp(Line x, Line y) {
+    return x.right &lt; y.right;    
+}
+
+int main(int argc, char *const argv[]) {
+    int n;
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; ++i) cin &gt;&gt; line[i].left &gt;&gt; line[i].right;
+    sort(line + 1, line + 1 + n, stlCmp);
+    int maxRight = -23333333, lines = 0;
+    for (int i = 1; i &lt;= n; ++i) {
+        if (maxRight &lt;= line[i].left) ++lines, maxRight = line[i].right;
+    } 
+    cout &lt;&lt; lines &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+<h1 id="多维动态规划"><a href="#多维动态规划" class="headerlink" title="多维动态规划"></a>多维动态规划</h1><h2 id="「NOIP2008」传纸条"><a href="#「NOIP2008」传纸条" class="headerlink" title="「NOIP2008」传纸条"></a>「NOIP2008」传纸条</h2><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;cctype&gt;
+using namespace std;
+
+const int MAX = 50 + 5;
+
+/*/
+ *
+ * 设dp[i][j][x][y] 表示第一张纸条传到了(i, j)，第二张纸条传到了(x, y)时
+ * 的最大答案 
+ * dp[i][j][k][l] = std::max(
+ *                      std::max(
+ *                            dp[i-1][j][k-1][l], 
+ *                          dp[i][j-1][k-1][l]
+ *                        ), 
+ *                        std::max(
+ *                            dp[i-1][j][k][l-1], 
+ *                            dp[i][j-1][k][l-1]
+ *                        )
+ *                    ) 
+ *                    + a[i][j] 
+ *                    + a[k][l] 
+ * 
+ * 其中 j+1 &lt;= l &lt;= n
+ * 最终答案是dp[m][n-1][m-1][n] 
+ *
+/*/
+
+int dp[MAX][MAX][MAX][MAX];
+int n, m, a[MAX][MAX];
+
+inline int getint() {
+    int s = 0, x = 1;
+    char ch = getchar();
+    while (!isdigit(ch)) {
+        if (ch == &#39;-&#39;) x = -1;
+        ch = getchar();
+    }
+    while (isdigit(ch)) {
+        s = s * 10 + ch - &#39;0&#39;;
+        ch = getchar();
+    }
+    return s * x;
+}
+
+inline void putint(int x, bool returnValue) {
+    if (x &lt; 0) {
+        x = -x;
+        putchar(&#39;-&#39;);
+    }
+    if (x &gt;= 10) putint(x / 10, false);
+    putchar(x % 10 + &#39;0&#39;);
+    if (returnValue) putchar(&#39;\n&#39;);
+}
+
+int main(int argc, char *const argv[]) {
+    m = getint(), n = getint();
+    for (int i = 1; i &lt;= m; ++i) {
+        for (int j = 1; j &lt;= n; ++j) {
+            a[i][j] = getint();
+        } 
+    } 
+    for (int i = 1; i &lt;= m; ++i) {
+        for (int j = 1; j &lt;= n; ++j) {
+            for (int k = 1; k &lt;= m; ++k) {
+                for (int l = j + 1; l &lt;= n; ++l) {
+                    dp[i][j][k][l] = std::max(std::max(dp[i-1][j][k-1][l], dp[i-1][j][k][l-1]), std::max(dp[i][j-1][k-1][l], dp[i][j-1][k][l-1])) + a[i][j] + a[k][l];
+                }
+            }
+        }
+    }
+    putint(dp[m][n-1][m-1][n], true);
+    return 0;
+}
+
+
+</code></pre>
+<h2 id="「NOIP2008-普及」-传球游戏"><a href="#「NOIP2008-普及」-传球游戏" class="headerlink" title="「NOIP2008 普及」 传球游戏"></a>「NOIP2008 普及」 传球游戏</h2><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;cctype&gt;
+using namespace std;
+
+const int MAXN = 30 + 2;
+const int MAXM = 30 + 2;
+
+/*/
+ *
+ * 设dp[i][j]表示球传到第i次，传到第j个小朋友手中时的方案数
+ * dp[i][j] = dp[i-1][j-1] + dp[i-1][j+1] 
+ * 其中dp[0][1] = 1，ans = dp[m][1] 
+/*/
+
+int n, m;
+int dp[MAXM][MAXN];
+
+inline int getint() {
+    int s = 0, x = 1;
+    char ch = getchar();
+    while (!isdigit(ch)) {
+        if (ch == &#39;-&#39;) x = -1;
+        ch = getchar();
+    }
+    while (isdigit(ch)) {
+        s = s * 10 + ch - &#39;0&#39;;
+        ch = getchar();
+    }
+    return s * x;
+}
+
+inline void putint(int x, bool returnValue) {
+    if (x &lt; 0) {
+        x = -x;
+        putchar(&#39;-&#39;);
+    }
+    if (x &gt;= 10) putint(x / 10, false);
+    putchar(x % 10 + &#39;0&#39;);
+    if (returnValue) putchar(&#39;\n&#39;);
+}
+
+int main(int argc, char *const argv[]) {
+    n = getint(), m = getint();
+    dp[0][1] = 1;
+    for (int i = 1; i &lt;= m; ++i) {
+        dp[i][1] = dp[i-1][2] + dp[i-1][n];
+        dp[i][n] = dp[i-1][1] + dp[i-1][n-1];
+        for (int j = 2; j &lt; n; ++j) {
+            dp[i][j] = dp[i-1][j-1] + dp[i-1][j+1];
+        }
+    }
+    putint(dp[m][1], true);
+    return 0;
+}
+
+
+</code></pre>
 <h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><h2 id="NASA-的食物计划"><a href="#NASA-的食物计划" class="headerlink" title="NASA 的食物计划"></a>NASA 的食物计划</h2><p><code>普及-</code>，很水</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">50</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXVolume = <span class="number">400</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXWeight = <span class="number">400</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> maxVolume, maxWeight, n;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> f[MAXVolume][MAXWeight];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Food</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> Volume;</span><br><span class="line">    <span class="keyword">int</span> Weight;</span><br><span class="line">    <span class="keyword">int</span> Calories;</span><br><span class="line">&#125; food[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">bool</span> newLine)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span>) x = -x;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) putint(x / <span class="number">10</span>, <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    <span class="keyword">if</span> (newLine) <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    maxVolume = getint();</span><br><span class="line">    maxWeight = getint();</span><br><span class="line">    n = getint();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        food[i].Volume = getint();</span><br><span class="line">        food[i].Weight = getint();</span><br><span class="line">        food[i].Calories = getint();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = maxVolume; j &gt;= food[i].Volume; --j) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = maxWeight; k &gt;= food[i].Weight; --k) &#123;</span><br><span class="line">                f[j][k] = <span class="built_in">std</span>::max(f[j][k], f[j - food[i].Volume][k - food[i].Weight] + food[i].Calories);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, f[maxVolume][maxWeight]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;cctype&gt;
+using namespace std;
+
+const int MAXN = 50 + 5;
+const int MAXVolume = 400 + 10;
+const int MAXWeight = 400;
+
+int maxVolume, maxWeight, n;
+
+int f[MAXVolume][MAXWeight];
+
+struct Food {
+    int Volume;
+    int Weight;
+    int Calories;
+} food[MAXN];
+
+inline int getint() {
+    int s = 0, x = 1;
+    char ch = getchar();
+    while (!isdigit(ch)) {
+        if (ch == &#39;-&#39;) x = -1;
+        ch = getchar();
+    }
+    while (isdigit(ch)) {
+        s = s * 10 + ch - &#39;0&#39;;
+        ch = getchar();
+    }
+    return s * x;
+}
+
+inline void putint(int x, bool newLine) {
+    if (x &lt; 0) x = -x;
+    if (x &gt;= 10) putint(x / 10, false);
+    putchar(x % 10 + &#39;0&#39;);
+    if (newLine) putchar(&#39;\n&#39;);
+}
+
+int main(int argc, char *const argv[]) {
+    maxVolume = getint();
+    maxWeight = getint();
+    n = getint();
+    for (int i = 1; i &lt;= n; ++i) {
+        food[i].Volume = getint();
+        food[i].Weight = getint();
+        food[i].Calories = getint();
+    }
+    for (int i = 1; i &lt;= n; ++i) {
+        for (int j = maxVolume; j &gt;= food[i].Volume; --j) {
+            for (int k = maxWeight; k &gt;= food[i].Weight; --k) {
+                f[j][k] = std::max(f[j][k], f[j - food[i].Volume][k - food[i].Weight] + food[i].Calories);
+            }
+        }
+    }
+    printf(&quot;%d\n&quot;, f[maxVolume][maxWeight]);
+    return 0;
+}
+</code></pre>
 <h2 id="装箱问题"><a href="#装箱问题" class="headerlink" title="装箱问题"></a>装箱问题</h2><p>真 · 背包问题模板题</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">30</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXV = <span class="number">20000</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> item[MAXN];</span><br><span class="line"><span class="keyword">int</span> f[MAXN][MAXV];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, v;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; v;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; item[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= v; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j &gt;= item[i]) f[i][j] = <span class="built_in">std</span>::max(f[i<span class="number">-1</span>][j], f[i<span class="number">-1</span>][j-item[i]] + item[i]);</span><br><span class="line">            <span class="keyword">else</span> f[i][j] = f[i<span class="number">-1</span>][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; v - f[n][v] &lt;&lt; <span class="built_in">endl</span>; </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int MAXN = 30 + 5;
+const int MAXV = 20000; 
+
+int item[MAXN];
+int f[MAXN][MAXV];
+
+int main(int argc, char *const argv[]) {
+    int n, v;
+    cin &gt;&gt; v;
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; ++i) {
+        cin &gt;&gt; item[i];
+    }
+    for (int i = 1; i &lt;= n; ++i) {
+        for (int j = 1; j &lt;= v; ++j) {
+            if (j &gt;= item[i]) f[i][j] = std::max(f[i-1][j], f[i-1][j-item[i]] + item[i]);
+            else f[i][j] = f[i-1][j];
+        }
+    }
+    cout &lt;&lt; v - f[n][v] &lt;&lt; endl; 
+    return 0;
+}
+
+
+</code></pre>
 <h2 id="榨取kkksc03"><a href="#榨取kkksc03" class="headerlink" title="榨取kkksc03"></a>榨取kkksc03</h2><p>实在想不通这题为啥是<code>普及/提高-</code>，不应该是<code>普及-</code>吗</p>
 <p><del>所以这就是你评<code>普及/提高-</code>的理由？</del></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">bool</span> __RETURN = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">bool</span> __NO_RETURN = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">100</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">200</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXT = <span class="number">200</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m ,T; </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Dream</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> time;</span><br><span class="line">    <span class="keyword">int</span> cost;</span><br><span class="line">&#125; d[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dp[MAXN][MAXM][MAXT];</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 设dp[i][j][k]表示当选择第i个愿望，</span></span><br><span class="line"><span class="comment"> * 时间不超过j，金钱不超过k时的最大数量</span></span><br><span class="line"><span class="comment"> * dp[i][j][k] = max(dp[i-1][j][k], dp[i-1][j-d[i].time][k-d[i].cost] + 1)</span></span><br><span class="line"><span class="comment"> * 其中 j &gt;= d[i].time, k &gt;= d[i].cost </span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">bool</span> returnValue)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        x = -x;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) putint(x / <span class="number">10</span>, <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    <span class="keyword">if</span> (returnValue) <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    n = getint(), m = getint(), T = getint();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        d[i].time = getint();</span><br><span class="line">        d[i].cost = getint();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= T; ++k) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt;= d[i].time &amp;&amp; k &gt;= d[i].cost) &#123;</span><br><span class="line">                    dp[i][j][k] = <span class="built_in">std</span>::max(dp[i<span class="number">-1</span>][j][k], dp[i<span class="number">-1</span>][j - d[i].time][k - d[i].cost] + <span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j][k] = dp[i<span class="number">-1</span>][j][k];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    putint(dp[n][m][T], __RETURN); </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;cctype&gt;
+using namespace std;
 
-      
+const bool __RETURN = true;
+const bool __NO_RETURN = false;
+
+const int MAXN = 100 + 10;
+const int MAXM = 200 + 10;
+const int MAXT = 200 + 10;
+
+int n, m ,T; 
+
+struct Dream {
+    int time;
+    int cost;
+} d[MAXN];
+
+int dp[MAXN][MAXM][MAXT];
+
+/*
+ *
+ * 设dp[i][j][k]表示当选择第i个愿望，
+ * 时间不超过j，金钱不超过k时的最大数量
+ * dp[i][j][k] = max(dp[i-1][j][k], dp[i-1][j-d[i].time][k-d[i].cost] + 1)
+ * 其中 j &gt;= d[i].time, k &gt;= d[i].cost 
+ *
+ */
+
+inline int getint() {
+    int s = 0, x = 1;
+    char ch = getchar();
+    while (!isdigit(ch)) {
+        if (ch == &#39;-&#39;) x = -1;
+        ch = getchar();
+    }
+    while (isdigit(ch)) {
+        s = s * 10 + ch - &#39;0&#39;;
+        ch = getchar();
+    }
+    return s * x;
+}
+
+inline void putint(int x, bool returnValue) {
+    if (x &lt; 0) {
+        x = -x;
+        putchar(&#39;-&#39;);
+    }
+    if (x &gt;= 10) putint(x / 10, false);
+    putchar(x % 10 + &#39;0&#39;);
+    if (returnValue) putchar(&#39;\n&#39;);
+}
+
+int main(int argc, char *const argv[]) {
+    n = getint(), m = getint(), T = getint();
+    for (int i = 1; i &lt;= n; ++i) {
+        d[i].time = getint();
+        d[i].cost = getint();
+    }
+    for (int i = 1; i &lt;= n; ++i) {
+        for (int j = 1; j &lt;= m; ++j) {
+            for (int k = 1; k &lt;= T; ++k) {
+                if (j &gt;= d[i].time &amp;&amp; k &gt;= d[i].cost) {
+                    dp[i][j][k] = std::max(dp[i-1][j][k], dp[i-1][j - d[i].time][k - d[i].cost] + 1);
+                } else {
+                    dp[i][j][k] = dp[i-1][j][k];
+                }
+            }
+        }
+    }
+    putint(dp[n][m][T], __RETURN); 
+    return 0;
+}
+
+
+</code></pre>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"> CC BY-NC-SA 3.0 </a> 许可协议。转载请注明出处！
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="https://blog.handwer-std.top/2018-08-03/DP-Exercise/">https://blog.handwer-std.top/2018-08-03/DP-Exercise/</a>
+                    </p>
+                </blockquote>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <div id="comment" class="comment"></div>
+<script>
+    window.onload = function() {
+        new Valine({
+            av: AV, // source from av-min.js
+            el: '.comment',
+            app_id: "C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz",
+            app_key: "y8tzSOvAsnOqNYwRNQI7WG9v",
+            placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!'
+        });
+    }
+</script>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2018-08-05/mul-inverse-modulo/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018-07-28/Luogu-P1892/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
     </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/NewAvatar.jpg" alt="Handwer STD's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        handwerstudotie@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:handwerstudotie@gmail.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
     
-    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
     
 
+    <!-- Archives  -->
     
 
+    <!-- Categories  -->
     
 
+    <!-- Pages  -->
     
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    Handwer STD
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://blog.handwer-std.top/2018-08-03/DP-Exercise/" title="动态规划练习题代码">https://blog.handwer-std.top/2018-08-03/DP-Exercise/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">book</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/frlink" title="友链">
+                
+                    <i class="material-icons sidebar-material-icons">link</i>
+                
+                友链
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">62</span>
+            </a>
+        </li>
+        
+    
 </ul>
 
-      </div>
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+    <a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+             sidebar.about_theme
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+    </a>
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
     
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/编程/" rel="tag"># 编程</a>
-          
-            <a href="/tags/NOIP/" rel="tag"># NOIP</a>
-          
-            <a href="/tags/动态规划，DP/" rel="tag"># 动态规划，DP</a>
-          
-        </div>
-      
+</aside>
 
-      
-      
-      
+                    
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018-07-28/Luogu-P1892/" rel="next" title="洛谷P1892《[BOI2003]团伙》">
-                <i class="fa fa-chevron-left"></i> 洛谷P1892《[BOI2003]团伙》
-              </a>
-            
-          </div>
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
-          <span class="post-nav-divider"></span>
+                    
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018-08-05/mul-inverse-modulo/" rel="prev" title="乘法逆元求法">
-                乘法逆元求法 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
     
-    <div class="sidebar-inner">
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
 
-      
+    <!-- Facebook -->
+    
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
+    <!-- Google + -->
+    
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/handwerstd" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+        <a href="https://www.zhihu.com/people/handwer/activities" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-zhihu">
+                <span class="visuallyhidden">Zhihu</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Bilibili -->
+    
+        <a href="http://space.bilibili.com/88949565?" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-bilibili">
+                <span class="visuallyhidden">Bilibili</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Telegram -->
+    
+        <a href="https://t.me/handwer" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-telegram">
+                <span class="visuallyhidden">Telegram</span>
+            </button><!--
+     --></a>
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Handwer's Blog
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/NewAvatar.jpg"
-                alt="Handwer STD" />
-            
-              <p class="site-author-name" itemprop="name">Handwer STD</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
+        </div>
 
-          <nav class="site-state motion-element">
+        <!-- Paradox Footer Right Section -->
 
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">62</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
 
-            
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">56</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
             </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/handwerstd" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:handwerstudotie@gmail.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.luogu.org/space/show?uid=56626" target="_blank" title="Luogu">
-                      
-                        <i class="fa fa-fw fa-code"></i>Luogu</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://t.me/handwer/" target="_blank" title="Telegram">
-                      
-                        <i class="fa fa-fw fa-telegram"></i>Telegram</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
         </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数字三角形问题"><span class="nav-number">1.</span> <span class="nav-text">数字三角形问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一维线性动态规划"><span class="nav-number">2.</span> <span class="nav-text">一维线性动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最长上升子序列"><span class="nav-number">2.1.</span> <span class="nav-text">最长上升子序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#「NOIP2004」合唱队形"><span class="nav-number">2.2.</span> <span class="nav-text">「NOIP2004」合唱队形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线段覆盖"><span class="nav-number">2.3.</span> <span class="nav-text">线段覆盖</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多维动态规划"><span class="nav-number">3.</span> <span class="nav-text">多维动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#「NOIP2008」传纸条"><span class="nav-number">3.1.</span> <span class="nav-text">「NOIP2008」传纸条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#「NOIP2008-普及」-传球游戏"><span class="nav-number">3.2.</span> <span class="nav-text">「NOIP2008 普及」 传球游戏</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#背包问题"><span class="nav-number">4.</span> <span class="nav-text">背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NASA-的食物计划"><span class="nav-number">4.1.</span> <span class="nav-text">NASA 的食物计划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装箱问题"><span class="nav-number">4.2.</span> <span class="nav-text">装箱问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#榨取kkksc03"><span class="nav-number">4.3.</span> <span class="nav-text">榨取kkksc03</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Handwer STD</span>
-
-  
-</div>
-
-
-  <div class="powered-by" style="font-size:12px">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info" style="font-size:12px">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
-
-
-
-<span class="post-meta-divider" style="font-size:12px">|</span>
-<span id="busuanzi_container_site_uv" style="font-size:12px">
-你是第<span id="busuanzi_value_site_uv" style="font-size:12px"></span>个来访问的dalao
-</span>
-<div style="color:black;font-size:10px">
-<span class="from">————</span>
-</div>
-<div style="color:black;font-size:12px">
-<script type="text/javascript" src="https://api.imjad.cn/hitokoto/?cat=&amp;charset=utf-8&amp;length=50&amp;encode=js&amp;fun=sync&amp;source="></script><div id="hitokoto"><script>hitokoto()</script><span class="hitokoto" title=""></span></div>
-</div>
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
+</footer>
 
-    
 
-  </div>
+                    <!-- Import JS File -->
 
-  
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
 </script>
 
 
@@ -726,504 +1440,116 @@
 
 
 
+    <!-- Busuanzi -->
+    <script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-  
 
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/valine@1.1.1/dist/Valine.min.js"></script>
 
 
 
 
 
-  
-  
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
 
+<!-- Import prettify js  -->
 
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
 
 
 
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: false,
-        appId: 'C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz',
-        appKey: 'y8tzSOvAsnOqNYwRNQI7WG9v',
-        placeholder: '想说什么？',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
     });
 
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
 
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
+<!-- MathJax Load-->
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
         }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
+    });
+</script>
+
+    <script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
-  
 
-  
 
-</body>
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
 </html>
