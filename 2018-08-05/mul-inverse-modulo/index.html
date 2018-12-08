@@ -402,21 +402,7 @@
 <p>$a \times a^{p-2} \equiv 1(mod\ p)$</p>
 <p>由定义可得，$a$的乘法逆元就是$a^{p-2}$</p>
 <p>这就要用到「快速幂」</p>
-<pre><code class="cpp">inline int slowPower(int a, int b, int p) {
-    int ans = 1;
-    if (b == 1) return 1;
-    while (b) {
-        if (b &amp; 1) ans = ans * a % p;
-        a = a * a % p;
-        b /= 1;
-    }
-    return ans;
-}
-
-inline int invMod(int x, int p) {
-    return slowPower(x, p-1, p);
-}
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">slowPower</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (b) &#123;</span><br><span class="line">        <span class="keyword">if</span> (b &amp; <span class="number">1</span>) ans = ans * a % p;</span><br><span class="line">        a = a * a % p;</span><br><span class="line">        b /= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">invMod</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> slowPower(x, p<span class="number">-1</span>, p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -567,7 +553,7 @@ inline int invMod(int x, int p) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

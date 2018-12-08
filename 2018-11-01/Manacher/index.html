@@ -397,132 +397,14 @@
 <p>于是我们考虑在优化的思想基础上进行再次优化。</p>
 <hr>
 <p>在此之前，我们首先要解决一个棘手的问题——字符串的长度。<br>一个字符串子串的对称轴是在字母中间还是在字母上，是由子串长度为偶数还是奇数决定的。于是，为了统一对于奇数长度字符串和偶数长度字符串的做法，我们需要对字符串进行修改。（代码见「代码实现」<code>Pre()</code>部分）</p>
-<pre><code>就比如说
- - - - - - -
-|%|%|%|w|y|h|
-我们要用一些无关紧要的字符填一下
- - - - - - - - - - - -
-|%|!|%|!|%|!|w|!|y|!|h|
-这样更好处理
-</code></pre><p>修改完了之后，就是真正的<code>Manacher()</code>过程了<br>首先，我们要用一个变量<code>maxRight</code>记录「当前的 最靠右的 回文子串的 右端点」，和一个变量<code>mid</code>记录「当前的 最靠右的 回文子串的 对称轴所在的 字符的 下标」，注意这里的<code>mid</code>是可以不赋初值的</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">就比如说</span><br><span class="line"> - - - - - -</span><br><span class="line">|<span class="string">%</span>|<span class="string">%</span>|<span class="string">%</span>|<span class="string">w</span>|<span class="string">y</span>|<span class="string">h</span>|</span><br><span class="line">我们要用一些无关紧要的字符填一下</span><br><span class="line"> - - - - - - - - - - -</span><br><span class="line">|<span class="string">%</span>|<span class="string">!</span>|<span class="string">%</span>|<span class="string">!</span>|<span class="string">%</span>|<span class="string">!</span>|<span class="string">w</span>|<span class="string">!</span>|<span class="string">y</span>|<span class="string">!</span>|<span class="string">h</span>|</span><br><span class="line">这样更好处理</span><br></pre></td></tr></table></figure>
+<p>修改完了之后，就是真正的<code>Manacher()</code>过程了<br>首先，我们要用一个变量<code>maxRight</code>记录「当前的 最靠右的 回文子串的 右端点」，和一个变量<code>mid</code>记录「当前的 最靠右的 回文子串的 对称轴所在的 字符的 下标」，注意这里的<code>mid</code>是可以不赋初值的</p>
 <p>我们循环枚举<strong>经过处理的字符串</strong>的每一个字符。对于每一个字符的下标<code>i</code>，如果<code>i &lt; maxRight</code>，那么我们就可以获取<code>external[i]</code>的部分信息（<code>external[i]</code>的意义和上文相同），否则就只能将<code>external[i]</code>设为1</p>
 <p>接着就是和暴力一样的扩展了，我这里选择用<code>for</code>语句实现（</p>
 <p>最后更新一下<code>maxRight</code>和<code>mid</code>即可</p>
 <p>最终答案就是<code>external[]</code>的最大值——而不是2倍，因为<strong>这是我们扩展过的字符串，最终答案还要$\times \frac{1}{2}$</strong>。</p>
 <h1 id="Manacher-Algorithm-的代码实现"><a href="#Manacher-Algorithm-的代码实现" class="headerlink" title="Manacher Algorithm 的代码实现"></a>Manacher Algorithm 的代码实现</h1><p>同样也是「manacher模版」的代码实现。</p>
-<pre><code class="cpp">/* -- Basic Headers -- */
-#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;cctype&gt;
-#include &lt;algorithm&gt;
-
-/* -- STL Iterators -- */
-#include &lt;vector&gt;
-#include &lt;string&gt;
-#include &lt;stack&gt;
-#include &lt;queue&gt;
-
-/* -- External Headers -- */
-
-/* -- Defined Functions -- */
-#define For(a,x,y) for (int a = x; a &lt;= y; ++a)
-#define Forw(a,x,y) for (int a = x; a &lt; y; ++a)
-#define Bak(a,y,x) for (int a = y; a &gt;= x; --a)
-
-/* -- Defined Words -- */
-
-using namespace std;
-
-namespace FastIO {
-
-    inline int getint() {
-        int s = 0, x = 1;
-        char ch = getchar();
-        while (!isdigit(ch)) {
-            if (ch == &#39;-&#39;) x = -1;
-            ch = getchar();
-        }
-        while (isdigit(ch)) {
-            s = s * 10 + ch - &#39;0&#39;;
-            ch = getchar();
-        }
-        return s * x;
-    }
-    inline void __basic_putint(int x) {
-        if (x &lt; 0) {
-            x = -x;
-            putchar(&#39;-&#39;);
-        }
-        if (x &gt;= 10) __basic_putint(x / 10);
-        putchar(x % 10 + &#39;0&#39;);
-    }
-
-    inline void putint(int x, char external) {
-        __basic_putint(x);
-        putchar(external);
-    }
-}
-
-
-namespace Solution {
-    const int MAXN = 31000000 + 10;
-    // 没错，就是要开这么大
-
-    int n, external[MAXN];
-    char s[MAXN], str[MAXN &lt;&lt; 1];
-
-    void Pre() {
-        str[0] = str[1] = &#39;~&#39;;
-        for (int i = 0; i &lt; n; ++i) {
-            str[i * 2 + 2] = s[i];
-            str[i * 2 + 3] = &#39;~&#39;;
-        }
-        n = n * 2 + 2;
-        str[n] = 0;
-    }
-
-    void Manacher() {
-        int maxRight = 0, mid = 0; // mid 初值无所谓
-        for (int i = 1; i &lt; n; ++i) {
-            if (i &lt; maxRight) {
-                external[i] = std::min(external[(mid &lt;&lt; 1) - i], external[mid] + mid - i);
-            } else {
-                external[i] = 1;
-            }
-            for (; str[i + external[i]] == str[i - external[i]]; ++external[i]);
-            if (external[i] + i &gt; maxRight) {
-                maxRight = external[i] + i;
-                mid = i;
-            }
-        }
-    }
-
-    void Work() {
-        cin &gt;&gt; s;
-        n = (int) strlen(s);
-        Pre();
-        Manacher();
-        int ans = 1;
-        for (int i = 0; i &lt; n; ++i) ans = std::max(ans, external[i]);
-        cout &lt;&lt; ans - 1 &lt;&lt; endl;
-    }
-}
-
-int main(int argc, char *const argv[]) {
-#define HANDWER_FILE
-#ifndef HANDWER_FILE
-    freopen(&quot;testdata.in&quot;, &quot;r&quot;, stdin);
-    freopen(&quot;testdata.out&quot;, &quot;w&quot;, stdout);
-#endif
-    using namespace Solution;
-    using namespace FastIO;
-    Work();
-    return 0;
-}
-
-</code></pre>
-
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* -- Basic Headers -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- STL Iterators -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- External Headers -- */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- Defined Functions -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> For(a,x,y) for (int a = x; a &lt;= y; ++a)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Forw(a,x,y) for (int a = x; a &lt; y; ++a)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Bak(a,y,x) for (int a = y; a &gt;= x; --a)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- Defined Words -- */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> FastIO &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">char</span> ch = getchar();</span><br><span class="line">        <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">            ch = getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">            s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">            ch = getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s * x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">inline</span> <span class="keyword">void</span> __basic_putint(<span class="keyword">int</span> x) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            x = -x;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) __basic_putint(x / <span class="number">10</span>);</span><br><span class="line">        <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">char</span> external)</span> </span>&#123;</span><br><span class="line">        __basic_putint(x);</span><br><span class="line">        <span class="built_in">putchar</span>(external);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Solution &#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">31000000</span> + <span class="number">10</span>;</span><br><span class="line">    <span class="comment">// 没错，就是要开这么大</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> n, external[MAXN];</span><br><span class="line">    <span class="keyword">char</span> s[MAXN], str[MAXN &lt;&lt; <span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Pre</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        str[<span class="number">0</span>] = str[<span class="number">1</span>] = <span class="string">'~'</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            str[i * <span class="number">2</span> + <span class="number">2</span>] = s[i];</span><br><span class="line">            str[i * <span class="number">2</span> + <span class="number">3</span>] = <span class="string">'~'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        n = n * <span class="number">2</span> + <span class="number">2</span>;</span><br><span class="line">        str[n] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Manacher</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> maxRight = <span class="number">0</span>, mid = <span class="number">0</span>; <span class="comment">// mid 初值无所谓</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &lt; maxRight) &#123;</span><br><span class="line">                external[i] = <span class="built_in">std</span>::min(external[(mid &lt;&lt; <span class="number">1</span>) - i], external[mid] + mid - i);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                external[i] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (; str[i + external[i]] == str[i - external[i]]; ++external[i]);</span><br><span class="line">            <span class="keyword">if</span> (external[i] + i &gt; maxRight) &#123;</span><br><span class="line">                maxRight = external[i] + i;</span><br><span class="line">                mid = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; s;</span><br><span class="line">        n = (<span class="keyword">int</span>) <span class="built_in">strlen</span>(s);</span><br><span class="line">        Pre();</span><br><span class="line">        Manacher();</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) ans = <span class="built_in">std</span>::max(ans, external[i]);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans - <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> HANDWER_FILE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> HANDWER_FILE</span></span><br><span class="line">    freopen(<span class="string">"testdata.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    freopen(<span class="string">"testdata.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> Solution;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> FastIO;</span><br><span class="line">    Work();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -670,7 +552,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

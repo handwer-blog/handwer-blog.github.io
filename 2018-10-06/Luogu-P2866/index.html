@@ -393,15 +393,9 @@
 <h1 id="Input-Output-格式-amp-样例"><a href="#Input-Output-格式-amp-样例" class="headerlink" title="Input / Output 格式 &amp; 样例"></a>Input / Output 格式 &amp; 样例</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行：一个数N表示奶牛的数量。</p>
 <p>第2到N+1行：第i+1行包含一个整数表示第i头奶牛的高。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>第一行：一个整数，即c1到cN的和</p>
-<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><pre><code>6
-10
-3
-7
-4
-12
-2
-</code></pre><h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><pre><code>5
-</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这就是一个单调栈的模板</p>
+<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">12</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这就是一个单调栈的模板</p>
 <p>循环读入，每次push读入的数进一个单调栈并维护这个栈的单调性，最后答案累加栈的大小-1即可（显然题意说明奶牛是看不见自己的发型的，要把自己减去）</p>
 <hr>
 <p>以上操作的推导过程：</p>
@@ -411,117 +405,7 @@
 <li>接下来累计答案</li>
 <li>最后将当前奶牛的高度push进去</li>
 </ul>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><pre><code class="cpp">/* -- Basic Headers -- */
-#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;cctype&gt;
-#include &lt;algorithm&gt;
-
-/* -- STL Iterators -- */
-#include &lt;vector&gt;
-#include &lt;string&gt;
-#include &lt;stack&gt;
-#include &lt;queue&gt;
-
-/* -- External Headers -- */
-
-/* -- Defined Functions -- */
-#define For(a,x,y) for (int a = x; a &lt;= y; ++a)
-#define Forw(a,x,y) for (int a = x; a &lt; y; ++a)
-#define Bak(a,y,x) for (int a = y; a &gt;= x; --a)
-
-/* -- Defined Words -- */
-
-using namespace std;
-
-namespace FastIO {
-    void DEBUG(char comment[], int x) {
-        cerr &lt;&lt; comment &lt;&lt; x &lt;&lt; endl;
-    }
-
-    inline int getint() {
-        int s = 0, x = 1;
-        char ch = getchar();
-        while (!isdigit(ch)) {
-            if (ch == &#39;-&#39;) x = -1;
-            ch = getchar();
-        }
-        while (isdigit(ch)) {
-            s = s * 10 + ch - &#39;0&#39;;
-            ch = getchar();
-        }
-        return s * x;
-    }
-    inline void __basic_putint(int x) {
-        if (x &lt; 0) {
-            x = -x;
-            putchar(&#39;-&#39;);
-        }
-        if (x &gt;= 10) __basic_putint(x / 10);
-        putchar(x % 10 + &#39;0&#39;);
-    }
-
-    inline void putint(int x, char external) {
-        __basic_putint(x);
-        putchar(external);
-    }
-}
-
-namespace Solution {
-    const int MAXN = 80000 + 10;
-    struct Stack {
-        int seq[MAXN];
-        int tail;
-
-        Stack() {
-            memset(seq, 0, sizeof(seq));
-            tail = 0;
-        }
-        void Pop() {
-            tail--;
-        }
-        int Top() {
-            return seq[tail];
-        }
-        bool isEmpty() {
-            return tail == 0;
-        }
-        void Push(int x) {
-            while (!isEmpty() &amp;&amp; Top() &lt;= x) Pop();
-            seq[++tail] = x;
-        }
-        int Size() {
-            return tail;
-        }
-        int __tail_location() {
-            return tail;
-        }
-    } stk;
-    // 手写栈无所畏惧
-
-    int n;
-}
-
-int main(int argc, char *const argv[]) {
-    #ifdef HANDWER_FILE
-    freopen(&quot;testdata.in&quot;, &quot;r&quot;, stdin);
-    freopen(&quot;testdata.out&quot;, &quot;w&quot;, stdout);
-    #endif
-    using namespace Solution;
-    using namespace FastIO;
-    n = getint();
-    long long int ans = 0;
-    For (i, 1, n) {
-        int x = getint();
-        stk.Push(x);
-        ans += stk.Size() - 1;
-    }
-    cout &lt;&lt; ans &lt;&lt; endl;
-    return 0;
-}
-
-</code></pre>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* -- Basic Headers -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- STL Iterators -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- External Headers -- */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- Defined Functions -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> For(a,x,y) for (int a = x; a &lt;= y; ++a)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Forw(a,x,y) for (int a = x; a &lt; y; ++a)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Bak(a,y,x) for (int a = y; a &gt;= x; --a)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- Defined Words -- */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> FastIO &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DEBUG</span><span class="params">(<span class="keyword">char</span> comment[], <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cerr</span> &lt;&lt; comment &lt;&lt; x &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">char</span> ch = getchar();</span><br><span class="line">        <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">            ch = getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">            s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">            ch = getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s * x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">inline</span> <span class="keyword">void</span> __basic_putint(<span class="keyword">int</span> x) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            x = -x;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) __basic_putint(x / <span class="number">10</span>);</span><br><span class="line">        <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">char</span> external)</span> </span>&#123;</span><br><span class="line">        __basic_putint(x);</span><br><span class="line">        <span class="built_in">putchar</span>(external);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Solution &#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">80000</span> + <span class="number">10</span>;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Stack</span> &#123;</span></span><br><span class="line">        <span class="keyword">int</span> seq[MAXN];</span><br><span class="line">        <span class="keyword">int</span> tail;</span><br><span class="line">        </span><br><span class="line">        Stack() &#123;</span><br><span class="line">            <span class="built_in">memset</span>(seq, <span class="number">0</span>, <span class="keyword">sizeof</span>(seq));</span><br><span class="line">            tail = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            tail--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">Top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> seq[tail];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> tail == <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">while</span> (!isEmpty() &amp;&amp; Top() &lt;= x) Pop();</span><br><span class="line">            seq[++tail] = x;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">Size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> tail;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> __tail_location() &#123;</span><br><span class="line">            <span class="keyword">return</span> tail;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; stk;</span><br><span class="line">	<span class="comment">// 手写栈无所畏惧</span></span><br><span class="line">	</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">ifdef</span> HANDWER_FILE</span></span><br><span class="line">    freopen(<span class="string">"testdata.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    freopen(<span class="string">"testdata.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> Solution;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> FastIO;</span><br><span class="line">    n = getint();</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    For (i, <span class="number">1</span>, n) &#123;</span><br><span class="line">        <span class="keyword">int</span> x = getint();</span><br><span class="line">        stk.Push(x);</span><br><span class="line">        ans += stk.Size() - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -672,7 +556,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

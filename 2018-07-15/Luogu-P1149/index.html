@@ -405,28 +405,16 @@
 <p>一个整数 $n$($n&lt;=24$) 。</p>
 <p><strong>输出格式：</strong></p>
 <p>一个整数，能拼成的不同等式的数目。</p>
-<p><strong>输入样例#1：</strong></p>
-<pre><code>14
-</code></pre><p><strong>输出样例#1：</strong></p>
-<pre><code>2
-</code></pre><p><strong>输入样例#2：</strong></p>
-<pre><code>18
-</code></pre><p><strong>输出样例#2：</strong></p>
-<pre><code>9
-</code></pre><h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>【输入输出样例1解释】</p>
+<p><strong>输入样例#1：</strong><br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">14</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>输出样例#1：</strong><br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>输入样例#2：</strong><br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">18</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>输出样例#2：</strong><br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>【输入输出样例1解释】</p>
 <p>$2$ 个等式为 $0+1=1$ 和 $1+0=1$ 。</p>
 <p>【输入输出样例2解释】</p>
 <p>$9$ 个等式为：</p>
-<pre><code>0+4=4
-0+11=11
-1+10=11
-2+2=4
-2+7=9
-4+0=4
-7+2=9
-10+1=11
-11+0=11
-</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><h2 id="枚举思路"><a href="#枚举思路" class="headerlink" title="枚举思路"></a>枚举思路</h2><p>我们可以枚举$A$和$B$</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>+<span class="number">4</span>=<span class="number">4</span></span><br><span class="line"><span class="number">0</span>+<span class="number">11</span>=<span class="number">11</span></span><br><span class="line"><span class="number">1</span>+<span class="number">10</span>=<span class="number">11</span></span><br><span class="line"><span class="number">2</span>+<span class="number">2</span>=<span class="number">4</span></span><br><span class="line"><span class="number">2</span>+<span class="number">7</span>=<span class="number">9</span></span><br><span class="line"><span class="number">4</span>+<span class="number">0</span>=<span class="number">4</span></span><br><span class="line"><span class="number">7</span>+<span class="number">2</span>=<span class="number">9</span></span><br><span class="line"><span class="number">10</span>+<span class="number">1</span>=<span class="number">11</span></span><br><span class="line"><span class="number">11</span>+<span class="number">0</span>=<span class="number">11</span></span><br></pre></td></tr></table></figure>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><h2 id="枚举思路"><a href="#枚举思路" class="headerlink" title="枚举思路"></a>枚举思路</h2><p>我们可以枚举$A$和$B$</p>
 <big><strong>上界？</strong></big>
 
 <p>手算啊</p>
@@ -447,43 +435,9 @@
 <h2 id="预处理思路"><a href="#预处理思路" class="headerlink" title="预处理思路"></a>预处理思路</h2><p>火柴棒数怎么求？</p>
 <p>新建一个数组 f[10000 * 2 + 10] ，表示i这个数字需要用f[i]根火柴</p>
 <p>题目已经给出了f[0~9]，如何处理出f[10~(10000*2)]？</p>
-<pre><code class="cpp">f[i] = f[i/10] + f[i%10]; // (i &gt;= 10)
-/*
-这里的i/10可以取它除了个位上其他位的数，在前面已经处理过，
-所以可以直接使用；这里的i%10可以取它个位上的数，也处理过，
-可以直接使用。两个火柴棒数目一相加，就能获得火柴棒的总数。
-*/
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">f[i] = f[i/<span class="number">10</span>] + f[i%<span class="number">10</span>]; <span class="comment">// (i &gt;= 10)</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">这里的i/10可以取它除了个位上其他位的数，在前面已经处理过，</span></span><br><span class="line"><span class="comment">所以可以直接使用；这里的i%10可以取它个位上的数，也处理过，</span></span><br><span class="line"><span class="comment">可以直接使用。两个火柴棒数目一相加，就能获得火柴棒的总数。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 <p>循环一遍就好了</p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-using namespace std;
-
-int sticks[10001 * 2];
-
-int main(int argc, char *const argv[]) {
-    sticks[0] = sticks[6] = sticks[9] = 6;
-    sticks[1] = 2;
-    sticks[2] = sticks[3] = sticks[5] = 5;
-    sticks[4] = 4;
-    sticks[7] = 3;
-    sticks[8] = 7;
-    int n;
-    cin &gt;&gt; n;
-    int sum = 0;
-    for (int i = 10; i &lt;= 20000; ++i) {
-        sticks[i] = sticks[i/10] + sticks[i%10];
-    }
-    for (int i = 0; i &lt;= 9999; ++i) {
-        for (int j = 0; j &lt;= 9999; ++j) {
-            if (sticks[i] + 2 + sticks[j] + 2 + sticks[i+j] == n) ++sum;
-        }
-    } 
-    cout &lt;&lt; sum &lt;&lt; endl;
-    return 0;
-}
-</code></pre>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> sticks[<span class="number">10001</span> * <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">	sticks[<span class="number">0</span>] = sticks[<span class="number">6</span>] = sticks[<span class="number">9</span>] = <span class="number">6</span>;</span><br><span class="line">	sticks[<span class="number">1</span>] = <span class="number">2</span>;</span><br><span class="line">	sticks[<span class="number">2</span>] = sticks[<span class="number">3</span>] = sticks[<span class="number">5</span>] = <span class="number">5</span>;</span><br><span class="line">	sticks[<span class="number">4</span>] = <span class="number">4</span>;</span><br><span class="line">	sticks[<span class="number">7</span>] = <span class="number">3</span>;</span><br><span class="line">	sticks[<span class="number">8</span>] = <span class="number">7</span>;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">10</span>; i &lt;= <span class="number">20000</span>; ++i) &#123;</span><br><span class="line">		sticks[i] = sticks[i/<span class="number">10</span>] + sticks[i%<span class="number">10</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">9999</span>; ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">9999</span>; ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (sticks[i] + <span class="number">2</span> + sticks[j] + <span class="number">2</span> + sticks[i+j] == n) ++sum;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -632,7 +586,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

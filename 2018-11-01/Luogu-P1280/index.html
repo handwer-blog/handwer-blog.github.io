@@ -395,15 +395,9 @@
 <h1 id="Input-Output-格式-amp-样例"><a href="#Input-Output-格式-amp-样例" class="headerlink" title="Input / Output 格式 &amp; 样例"></a>Input / Output 格式 &amp; 样例</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>输入数据第一行含两个用空格隔开的整数$N$和$K(1≤N≤10000，1≤K≤10000)$，$N$表示尼克的工作时间，单位为分钟，$K$表示任务总数。</p>
 <p>接下来共有$K$行，每一行有两个用空格隔开的整数$P$和$T$，表示该任务从第$P$分钟开始，持续时间为$T$分钟，其中$1≤P≤N$，$1≤P+T-1≤N$。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出文件仅一行，包含一个整数，表示尼克可能获得的最大空暇时间。</p>
-<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><pre><code>15 6
-1 2
-1 6
-4 11
-8 5
-8 1
-11 5
-</code></pre><h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><pre><code>4
-</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>DP</p>
+<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">15 </span><span class="number">6</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">6</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">11</span></span><br><span class="line"><span class="symbol">8 </span><span class="number">5</span></span><br><span class="line"><span class="symbol">8 </span><span class="number">1</span></span><br><span class="line"><span class="symbol">11 </span><span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>DP</p>
 <p>我们设<code>f[i]</code>表示在前<code>i</code>分钟内的最大空闲时间<br>但是发现第<code>i</code>分钟的空闲时间是由后面的任务决定的<br>所以我们考虑倒着扫一遍</p>
 <hr>
 <p>我们设<code>f[i]</code>表示在第<code>i</code>$\rightarrow$<code>n</code>分钟内的最大空闲时间<br>转移方程：</p>
@@ -412,123 +406,7 @@
 <li>当第<code>i</code>分钟有任务时，<code>f[i] = std::max(f[i], f[i + seq[j]].time)</code>，其中<code>seq[j].time</code>表示第<code>j</code>个任务的耗时</li>
 </ul>
 <p>如何判断当前有没有任务？<br>我们开一个数组<code>sum[i]</code>表示第<code>i</code>分钟的任务个数<br>更新就很好更新了——<br><code>++sum[seq[j].startTime]</code>，其中<code>seq[j].startTime</code>表示第<code>j</code>个任务的开始时间</p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><pre><code class="cpp">/* -- Basic Headers -- */
-#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;cctype&gt;
-#include &lt;algorithm&gt;
-
-/* -- STL Iterators -- */
-#include &lt;vector&gt;
-#include &lt;string&gt;
-#include &lt;stack&gt;
-#include &lt;queue&gt;
-
-/* -- External Headers -- */
-
-/* -- Defined Functions -- */
-#define For(a,x,y) for (int a = x; a &lt;= y; ++a)
-#define Forw(a,x,y) for (int a = x; a &lt; y; ++a)
-#define Bak(a,y,x) for (int a = y; a &gt;= x; --a)
-
-/* -- Defined Words -- */
-
-using namespace std;
-
-namespace FastIO {
-
-    inline int getint() {
-        int s = 0, x = 1;
-        char ch = getchar();
-        while (!isdigit(ch)) {
-            if (ch == &#39;-&#39;) x = -1;
-            ch = getchar();
-        }
-        while (isdigit(ch)) {
-            s = s * 10 + ch - &#39;0&#39;;
-            ch = getchar();
-        }
-        return s * x;
-    }
-    inline void __basic_putint(int x) {
-        if (x &lt; 0) {
-            x = -x;
-            putchar(&#39;-&#39;);
-        }
-        if (x &gt;= 10) __basic_putint(x / 10);
-        putchar(x % 10 + &#39;0&#39;);
-    }
-
-    inline void putint(int x, char external) {
-        __basic_putint(x);
-        putchar(external);
-    }
-}
-
-
-namespace Solution {
-    /*/
-     *
-     * 设f[i]表示i-n的空闲时间
-     * f[i] = f[i+1] + 1（无任务）
-     * f[i] = max(f[i], f[i + seq[x]])（有任务）
-     *
-    /*/
-    const int MAXK = 10000 + 10;
-    const int MAXN = MAXK;
-
-    struct QwQ {
-        int start, time;
-    } qwq[MAXK];
-
-    int n, k;
-    int sum[MAXN];
-    int f[MAXN];
-    int num = 1;
-
-    bool stlCmp(QwQ x, QwQ y) { return x.start &gt; y.start; }
-
-    void Work() {
-        using FastIO::getint;
-        n = getint();
-        k = getint();
-        For (i, 1, k) {
-            qwq[i].start = getint();
-            qwq[i].time = getint();
-            ++sum[qwq[i].start];
-        }
-        sort(qwq + 1, qwq + 1 + k, stlCmp);
-        // 既然是倒序，所以输入也要排序
-        for (int i = n; i &gt;= 1; --i) {
-            if (sum[i] == 0) f[i] = f[i + 1] + 1; // 当前时刻没有任务
-            else {
-                for (int j = 1; j &lt;= sum[i]; ++j) {
-                    f[i] = std::max(f[i], f[i + qwq[num].time]); 
-                    // 当前时刻有至少一个任务，把它们都扫一遍
-                    ++num;
-                    // 用一个变量 num 表示当前扫到的任务
-                }
-            }
-        }
-        FastIO::putint(f[1], &#39;\n&#39;);
-        // 输出
-    }
-}
-
-int main(int argc, char *const argv[]) {
-#define HANDWER_FILE
-#ifndef HANDWER_FILE
-    freopen(&quot;testdata.in&quot;, &quot;r&quot;, stdin);
-    freopen(&quot;testdata.out&quot;, &quot;w&quot;, stdout);
-#endif
-    using namespace Solution;
-    using namespace FastIO;
-    Work();
-    return 0;
-}
-
-</code></pre>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* -- Basic Headers -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- STL Iterators -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- External Headers -- */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- Defined Functions -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> For(a,x,y) for (int a = x; a &lt;= y; ++a)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Forw(a,x,y) for (int a = x; a &lt; y; ++a)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Bak(a,y,x) for (int a = y; a &gt;= x; --a)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- Defined Words -- */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> FastIO &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">char</span> ch = getchar();</span><br><span class="line">        <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">            ch = getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">            s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">            ch = getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s * x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">inline</span> <span class="keyword">void</span> __basic_putint(<span class="keyword">int</span> x) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            x = -x;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) __basic_putint(x / <span class="number">10</span>);</span><br><span class="line">        <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">char</span> external)</span> </span>&#123;</span><br><span class="line">        __basic_putint(x);</span><br><span class="line">        <span class="built_in">putchar</span>(external);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Solution &#123;</span><br><span class="line">    <span class="comment">/*/</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 设f[i]表示i-n的空闲时间</span></span><br><span class="line"><span class="comment">     * f[i] = f[i+1] + 1（无任务）</span></span><br><span class="line"><span class="comment">     * f[i] = max(f[i], f[i + seq[x]])（有任务）</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">    /*/</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> MAXK = <span class="number">10000</span> + <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> MAXN = MAXK;</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">QwQ</span> &#123;</span></span><br><span class="line">        <span class="keyword">int</span> start, time;</span><br><span class="line">    &#125; qwq[MAXK];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> n, k;</span><br><span class="line">    <span class="keyword">int</span> sum[MAXN];</span><br><span class="line">    <span class="keyword">int</span> f[MAXN];</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">stlCmp</span><span class="params">(QwQ x, QwQ y)</span> </span>&#123; <span class="keyword">return</span> x.start &gt; y.start; &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">using</span> FastIO::getint;</span><br><span class="line">        n = getint();</span><br><span class="line">        k = getint();</span><br><span class="line">        For (i, <span class="number">1</span>, k) &#123;</span><br><span class="line">            qwq[i].start = getint();</span><br><span class="line">            qwq[i].time = getint();</span><br><span class="line">            ++sum[qwq[i].start];</span><br><span class="line">        &#125;</span><br><span class="line">        sort(qwq + <span class="number">1</span>, qwq + <span class="number">1</span> + k, stlCmp);</span><br><span class="line">        <span class="comment">// 既然是倒序，所以输入也要排序</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt;= <span class="number">1</span>; --i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (sum[i] == <span class="number">0</span>) f[i] = f[i + <span class="number">1</span>] + <span class="number">1</span>; <span class="comment">// 当前时刻没有任务</span></span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= sum[i]; ++j) &#123;</span><br><span class="line">                    f[i] = <span class="built_in">std</span>::max(f[i], f[i + qwq[num].time]); </span><br><span class="line">                    <span class="comment">// 当前时刻有至少一个任务，把它们都扫一遍</span></span><br><span class="line">                    ++num;</span><br><span class="line">                    <span class="comment">// 用一个变量 num 表示当前扫到的任务</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        FastIO::putint(f[<span class="number">1</span>], <span class="string">'\n'</span>);</span><br><span class="line">        <span class="comment">// 输出</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> HANDWER_FILE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> HANDWER_FILE</span></span><br><span class="line">    freopen(<span class="string">"testdata.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    freopen(<span class="string">"testdata.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> Solution;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> FastIO;</span><br><span class="line">    Work();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -677,7 +555,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

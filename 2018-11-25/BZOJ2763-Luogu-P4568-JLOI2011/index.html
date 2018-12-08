@@ -398,179 +398,17 @@
 <p>接下来有m行，每行三个整数，a,b,c，表示存在一种航线，能从城市a到达城市b，或从城市b到达城市a，价格为c。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>只有一行，包含一个整数，为最少花费。</p>
 <h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><p>输入样例#1： </p>
-<pre><code>5 6 1
-0 4
-0 1 5
-1 2 5
-2 3 5
-3 4 5
-2 3 3
-0 2 100
-</code></pre><p>输出样例#1：</p>
-<pre><code>8
-</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这就是分层图最短路的<strong>模板</strong><br><del>但为什么是<code>省选/NOI-</code>呢</del></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">5 </span><span class="number">6</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">4</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">1</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">4</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span> <span class="number">3</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">2</span> <span class="number">100</span></span><br></pre></td></tr></table></figure>
+<p>输出样例#1：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这就是分层图最短路的<strong>模板</strong><br><del>但为什么是<code>省选/NOI-</code>呢</del></p>
 <p>我们用DP的思想来看<br>设<code>dis[i][j]</code>表示起点到<code>i</code>点在<code>j</code>层的最短路</p>
 <p>如何分层？<br>理解性记忆。<br>例如本题最多有十层，第<code>k</code>层表示免费了<code>k</code>次的最短路</p>
 <p>如何跑最短路？<br>洛谷卡SPFA，BZOJ不卡SPFA，但是都要注意把空间开大10倍，不然是过不去的（5次TLE的惨痛经验）<br>在跑 Dijkstra 的时候，我们用了一个<code>pair</code>来存当前到达的点和已走过的路径；这次我们需要多维护一个东西：当前的层数。</p>
-<pre><code class="cpp">struct Node {
-    int id; // 当前到达的点
-    int weight; // 已走过的路径
-    int now; // 当前的层数
-
-    Node() {
-        id = weight = now = 0;
-    }
-
-    // 重载运算符，用于优先队列
-    bool operator &lt; (const Node &amp;that) const {
-        return weight &gt; that.weight;
-    }
-};
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> id; <span class="comment">// 当前到达的点</span></span><br><span class="line">	<span class="keyword">int</span> weight; <span class="comment">// 已走过的路径</span></span><br><span class="line">	<span class="keyword">int</span> now; <span class="comment">// 当前的层数</span></span><br><span class="line">	</span><br><span class="line">	Node() &#123;</span><br><span class="line">		id = weight = now = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 重载运算符，用于优先队列</span></span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Node &amp;that) <span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> weight &gt; that.weight;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>在更新<code>dis</code>的时候，我们需要对这一层的点和下一层的点分别进行更新</p>
-<pre><code class="cpp">if (!vis[to][Floor] &amp;&amp; dis[to][Floor] &gt; dis[now][Floor] + edge[e].weight) {
-    dis[to][Floor] = dis[now][Floor] + edge[e].weight;
-    q.push(NewNode(to, dis[to][Floor], Floor));
-}
-
-if (!vis[to][Floor] &amp;&amp; Floor + 1 &lt;= K &amp;&amp; dis[to][Floor + 1] &gt; dis[now][Floor]) {
-    dis[to][Floor + 1] = dis[now][Floor];
-    q.push(NewNode(to, dis[to][Floor + 1], Floor + 1));
-}
-</code></pre>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><pre><code class="cpp">/* -- Basic Headers -- */
-#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;cctype&gt;
-#include &lt;algorithm&gt;
-#include &lt;queue&gt;
-
-/* -- Defined Functions -- */
-#define For(a,x,y) for (int a = x; a &lt;= y; ++a)
-#define Forw(a,x,y) for (int a = x; a &lt; y; ++a)
-#define Bak(a,y,x) for (int a = y; a &gt;= x; --a)
-
-namespace FastIO {
-    inline int getint() {
-        int s = 0, x = 1;
-        char ch = getchar();
-        while (!isdigit(ch)) {
-            if (ch == &#39;-&#39;) x = -1;
-            ch = getchar();
-        }
-        while (isdigit(ch)) {
-            s = s * 10 + ch - &#39;0&#39;;
-            ch = getchar();
-        }
-        return s * x;
-    }
-    inline void __basic_putint(int x) {
-        if (x &lt; 0) {
-            x = -x;
-            putchar(&#39;-&#39;);
-        }
-        if (x &gt;= 10) __basic_putint(x / 10);
-        putchar(x % 10 + &#39;0&#39;);
-    }
-
-    inline void putint(int x, char external) {
-        __basic_putint(x);
-        putchar(external);
-    }
-}
-
-
-namespace Solution {
-    const int MAXN = 100000 + 10;
-    const int MAXM = 500000 + 10;
-    const int MAXK = 10 + 5;
-
-    struct Node {
-        int id, weight, now;
-        Node() {
-            id = weight = now = 0;
-        }
-        bool operator &lt; (const Node &amp;that) const {
-            return weight &gt; that.weight;
-        }
-    } head[MAXN];
-
-    struct Edge {
-        int now, next, weight;
-    } edge[MAXM];
-
-    int n, m, k, s, t, K, cnt, dis[MAXN][MAXK];
-    bool vis[MAXN][MAXK];
-
-    inline void addEdge(int prev, int next, int weight) {
-        edge[++cnt].now = next;
-        edge[cnt].weight = weight;
-        edge[cnt].next = head[prev].id;
-        head[prev].id = cnt;
-    }
-
-    Node NewNode(int id, int weight, int now) {
-        Node tmp;
-        tmp.id = id;
-        tmp.weight = weight;
-        tmp.now = now;
-        return tmp;
-    }
-
-    void SPFA() {
-        memset(dis, 0x7f, sizeof(dis));
-        std::priority_queue&lt;Node&gt; q;
-        For (i, 0, K) dis[s][i] = 0;
-        q.push(NewNode(s, 0, 0));
-        while (!q.empty()) {
-            Node NowNode = q.top();
-            q.pop();
-            int Floor = NowNode.now;
-            int now = NowNode.id;
-            if (vis[now][Floor]) continue;
-            vis[now][Floor] = true;
-            for (int e = head[now].id; e; e = edge[e].next) {
-                int to = edge[e].now;
-                if (!vis[to][Floor] &amp;&amp; dis[to][Floor] &gt; dis[now][Floor] + edge[e].weight) {
-                    dis[to][Floor] = dis[now][Floor] + edge[e].weight;
-                    q.push(NewNode(to, dis[to][Floor], Floor));
-                }
-                if (!vis[to][Floor] &amp;&amp; Floor + 1 &lt;= K &amp;&amp; dis[to][Floor + 1] &gt; dis[now][Floor]) {
-                    dis[to][Floor + 1] = dis[now][Floor];
-                    q.push(NewNode(to, dis[to][Floor + 1], Floor + 1));
-                }
-            }
-        }
-    }
-}
-
-signed main() {
-    using namespace Solution;
-    using FastIO::getint;
-    n = getint();
-    m = getint();
-    k = getint();
-    s = getint();
-    t = getint();
-    K = k;
-    For (i, 1, m) {
-        int prev = getint();
-        int next = getint();
-        int weight = getint();
-        addEdge(prev, next, weight);
-        addEdge(next, prev, weight);
-    }
-    SPFA();
-    int ans = 2147482333;
-    for (int i = 0; i &lt;= k; ++i) {
-        ans = std::min(ans, dis[t][i]);
-    }
-    FastIO::putint(ans, &#39;\n&#39;);
-    return 0;
-}
-
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!vis[to][Floor] &amp;&amp; dis[to][Floor] &gt; dis[now][Floor] + edge[e].weight) &#123;</span><br><span class="line">    dis[to][Floor] = dis[now][Floor] + edge[e].weight;</span><br><span class="line">    q.push(NewNode(to, dis[to][Floor], Floor));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!vis[to][Floor] &amp;&amp; Floor + <span class="number">1</span> &lt;= K &amp;&amp; dis[to][Floor + <span class="number">1</span>] &gt; dis[now][Floor]) &#123;</span><br><span class="line">    dis[to][Floor + <span class="number">1</span>] = dis[now][Floor];</span><br><span class="line">    q.push(NewNode(to, dis[to][Floor + <span class="number">1</span>], Floor + <span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* -- Basic Headers -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- Defined Functions -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> For(a,x,y) for (int a = x; a &lt;= y; ++a)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Forw(a,x,y) for (int a = x; a &lt; y; ++a)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Bak(a,y,x) for (int a = y; a &gt;= x; --a)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> FastIO &#123;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">char</span> ch = getchar();</span><br><span class="line">        <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">            ch = getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">            s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">            ch = getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s * x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">inline</span> <span class="keyword">void</span> __basic_putint(<span class="keyword">int</span> x) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            x = -x;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) __basic_putint(x / <span class="number">10</span>);</span><br><span class="line">        <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">char</span> external)</span> </span>&#123;</span><br><span class="line">        __basic_putint(x);</span><br><span class="line">        <span class="built_in">putchar</span>(external);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Solution &#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">100000</span> + <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">500000</span> + <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> MAXK = <span class="number">10</span> + <span class="number">5</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">        <span class="keyword">int</span> id, weight, now;</span><br><span class="line">        Node() &#123;</span><br><span class="line">            id = weight = now = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Node &amp;that) <span class="keyword">const</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> weight &gt; that.weight;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; head[MAXN];</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">        <span class="keyword">int</span> now, next, weight;</span><br><span class="line">    &#125; edge[MAXM];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> n, m, k, s, t, K, cnt, dis[MAXN][MAXK];</span><br><span class="line">    <span class="keyword">bool</span> vis[MAXN][MAXK];</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> prev, <span class="keyword">int</span> next, <span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">        edge[++cnt].now = next;</span><br><span class="line">        edge[cnt].weight = weight;</span><br><span class="line">        edge[cnt].next = head[prev].id;</span><br><span class="line">        head[prev].id = cnt;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">Node <span class="title">NewNode</span><span class="params">(<span class="keyword">int</span> id, <span class="keyword">int</span> weight, <span class="keyword">int</span> now)</span> </span>&#123;</span><br><span class="line">        Node tmp;</span><br><span class="line">        tmp.id = id;</span><br><span class="line">        tmp.weight = weight;</span><br><span class="line">        tmp.now = now;</span><br><span class="line">        <span class="keyword">return</span> tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">SPFA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">memset</span>(dis, <span class="number">0x7f</span>, <span class="keyword">sizeof</span>(dis));</span><br><span class="line">        <span class="built_in">std</span>::priority_queue&lt;Node&gt; q;</span><br><span class="line">        For (i, <span class="number">0</span>, K) dis[s][i] = <span class="number">0</span>;</span><br><span class="line">        q.push(NewNode(s, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">            Node NowNode = q.top();</span><br><span class="line">            q.pop();</span><br><span class="line">            <span class="keyword">int</span> Floor = NowNode.now;</span><br><span class="line">            <span class="keyword">int</span> now = NowNode.id;</span><br><span class="line">            <span class="keyword">if</span> (vis[now][Floor]) <span class="keyword">continue</span>;</span><br><span class="line">            vis[now][Floor] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> e = head[now].id; e; e = edge[e].next) &#123;</span><br><span class="line">                <span class="keyword">int</span> to = edge[e].now;</span><br><span class="line">                <span class="keyword">if</span> (!vis[to][Floor] &amp;&amp; dis[to][Floor] &gt; dis[now][Floor] + edge[e].weight) &#123;</span><br><span class="line">                    dis[to][Floor] = dis[now][Floor] + edge[e].weight;</span><br><span class="line">                    q.push(NewNode(to, dis[to][Floor], Floor));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (!vis[to][Floor] &amp;&amp; Floor + <span class="number">1</span> &lt;= K &amp;&amp; dis[to][Floor + <span class="number">1</span>] &gt; dis[now][Floor]) &#123;</span><br><span class="line">                    dis[to][Floor + <span class="number">1</span>] = dis[now][Floor];</span><br><span class="line">                    q.push(NewNode(to, dis[to][Floor + <span class="number">1</span>], Floor + <span class="number">1</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> Solution;</span><br><span class="line">    <span class="keyword">using</span> FastIO::getint;</span><br><span class="line">    n = getint();</span><br><span class="line">    m = getint();</span><br><span class="line">    k = getint();</span><br><span class="line">    s = getint();</span><br><span class="line">    t = getint();</span><br><span class="line">    K = k;</span><br><span class="line">    For (i, <span class="number">1</span>, m) &#123;</span><br><span class="line">        <span class="keyword">int</span> prev = getint();</span><br><span class="line">        <span class="keyword">int</span> next = getint();</span><br><span class="line">        <span class="keyword">int</span> weight = getint();</span><br><span class="line">        addEdge(prev, next, weight);</span><br><span class="line">        addEdge(next, prev, weight);</span><br><span class="line">    &#125;</span><br><span class="line">    SPFA();</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">2147482333</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= k; ++i) &#123;</span><br><span class="line">        ans = <span class="built_in">std</span>::min(ans, dis[t][i]);</span><br><span class="line">    &#125;</span><br><span class="line">    FastIO::putint(ans, <span class="string">'\n'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -725,7 +563,7 @@ signed main() {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -393,19 +393,13 @@
 <p>输入数据保证这一行只有 $0−9$、$+$、 $\times$ 这 $12$ 种字符。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>一个整数，表示这个表达式的值。</p>
 <p>注意：当答案长度多于 4 位时，请只输出最后 4 位，前导 0 不输出。</p>
-<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><p>Case #1:</p>
-<pre><code>1+1*3+4
-</code></pre><p>Case #2:</p>
-<pre><code>1+1234567890*1
-</code></pre><p>Case #3:</p>
-<pre><code>1+1000000003*1
-</code></pre><h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><p>Case #1:</p>
-<pre><code>8
-</code></pre><p>Case #2:</p>
-<pre><code>7891
-</code></pre><p>Case #3:</p>
-<pre><code>4
-</code></pre><h1 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h1><p>对于 30\%的数据，0≤表达式中加法运算符和乘法运算符的总数≤100；</p>
+<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><p>Case #1:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>+<span class="number">1</span>*<span class="number">3</span>+<span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>Case #2:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>+<span class="number">1234567890</span>*<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>Case #3:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>+<span class="number">1000000003</span>*<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><p>Case #1:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure></p>
+<p>Case #2:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">7891</span></span><br></pre></td></tr></table></figure></p>
+<p>Case #3:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h1><p>对于 30\%的数据，0≤表达式中加法运算符和乘法运算符的总数≤100；</p>
 <p>对于 80\%的数据，0≤表达式中加法运算符和乘法运算符的总数≤1000；</p>
 <p>对于100\%的数据，0≤表达式中加法运算符和乘法运算符的总数≤100000。</p>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>我们开两个单调栈，一个栈<code>num</code>来存储数字，一个栈<code>operators</code>来存储符号</p>
@@ -419,124 +413,7 @@
 <p>处理完输入之后，我们再对数字栈里剩下的数字进行处理</p>
 <p>最后输出即可</p>
 <h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><p>这里面所有的注释都是我在DEBUG的时候手推的样例</p>
-<pre><code class="cpp">/* -- Basic Headers -- */
-#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;cctype&gt;
-#include &lt;algorithm&gt;
-
-/* -- STL Iterators -- */
-#include &lt;vector&gt;
-#include &lt;string&gt;
-#include &lt;stack&gt;
-#include &lt;queue&gt;
-
-/* -- External Headers -- */
-
-/* -- Defined Functions -- */
-#define For(a,x,y) for (int a = x; a &lt;= y; ++a)
-#define Forw(a,x,y) for (int a = x; a &lt; y; ++a)
-#define Bak(a,y,x) for (int a = y; a &gt;= x; --a)
-
-/* -- Defined Words -- */
-
-using namespace std;
-
-namespace FastIO {
-    void DEBUG(char comment[], int x) {
-        cerr &lt;&lt; comment &lt;&lt; x &lt;&lt; endl;
-    }
-
-    inline int getint() {
-        int s = 0, x = 1;
-        char ch = getchar();
-        while (!isdigit(ch)) {
-            if (ch == &#39;-&#39;) x = -1;
-            ch = getchar();
-        }
-        while (isdigit(ch)) {
-            s = s * 10 + ch - &#39;0&#39;;
-            ch = getchar();
-        }
-        return s * x;
-    }
-    inline void __basic_putint(int x) {
-        if (x &lt; 0) {
-            x = -x;
-            putchar(&#39;-&#39;);
-        }
-        if (x &gt;= 10) __basic_putint(x / 10);
-        putchar(x % 10 + &#39;0&#39;);
-    }
-
-    inline void putint(int x, char external) {
-        __basic_putint(x);
-        putchar(external);
-    }
-}
-
-namespace Solution {
-    stack&lt;int&gt; num;
-    stack&lt;int&gt; operators;
-    // 1: + -
-    // 2: * /
-
-    const int MOD = 10000;
-    long long int ans = 0;
-
-    bool Priority(char op1, char op2) {
-        // false -&gt; op1 is lower
-        // true -&gt; op1 is higher
-        if (op1 == op2) return false;
-        if (op1 == &#39;~&#39;) return false;
-        if (op1 == &#39;+&#39; &amp;&amp; op2 == &#39;*&#39;) return false;
-        if (op1 == &#39;*&#39; &amp;&amp; op2 == &#39;+&#39;) return true;
-    }
-}
-
-int main(int argc, char *const argv[]) {
-    #ifdef HANDWER_FILE
-    freopen(&quot;testdata.in&quot;, &quot;r&quot;, stdin);
-    freopen(&quot;testdata.out&quot;, &quot;w&quot;, stdout);
-    #endif
-    using namespace Solution;
-    using namespace FastIO;
-    // 1+1*3+4
-    int ans = 0, now = 0;
-    char op = 0;
-    cin &gt;&gt; ans; // 1
-    num.push(ans % MOD); // &lt; 1
-    operators.push(&#39;~&#39;); // &lt; ~
-    while (cin &gt;&gt; op &gt;&gt; now) { // +1 // *3 // +4
-        char op1 = operators.top(); // ~ // + // *
-        while (Priority(op1, op)) { // false // false // true // false
-            int opNum = num.top(); // // // 3
-            num.pop(); // // //  &lt; 1 1
-            int opNum2 = num.top(); // // // 1
-            num.pop(); // // // &lt; 1 
-            if (op1 == &#39;+&#39;) num.push((opNum + opNum2) % MOD); // // // false
-            if (op1 == &#39;*&#39;) num.push(opNum * opNum2 % MOD); // // // &lt; 1 3
-            operators.pop(); // &lt; +
-            op1 = operators.top(); // +
-        }
-        operators.push(op); // &lt; + // &lt; + * // &lt; + +
-        num.push(now); // &lt; 1 1 // &lt; 1 1 3 // &lt; 1 3 4
-    }
-    while (num.size() &gt; 1) { // true // true // false
-        int op = num.top(); // 4 // 7
-        num.pop(); // &lt; 1 3 // &lt; 1
-        int op2 = num.top(); // 3 // 1
-        num.pop(); // &lt; 1 // &lt;
-        char ope = operators.top();
-        operators.pop();
-        if (ope == &#39;+&#39;) num.push((op + op2) % MOD); // &lt; 1 7 // &lt; 8
-        if (ope == &#39;*&#39;) num.push(op * op2 % MOD);
-    }
-    FastIO::putint(num.top() % MOD, &#39;\n&#39;); // 8
-    return 0;
-}
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* -- Basic Headers -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- STL Iterators -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- External Headers -- */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- Defined Functions -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> For(a,x,y) for (int a = x; a &lt;= y; ++a)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Forw(a,x,y) for (int a = x; a &lt; y; ++a)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Bak(a,y,x) for (int a = y; a &gt;= x; --a)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- Defined Words -- */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> FastIO &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DEBUG</span><span class="params">(<span class="keyword">char</span> comment[], <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cerr</span> &lt;&lt; comment &lt;&lt; x &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">char</span> ch = getchar();</span><br><span class="line">        <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">            ch = getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">            s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">            ch = getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s * x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">inline</span> <span class="keyword">void</span> __basic_putint(<span class="keyword">int</span> x) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            x = -x;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) __basic_putint(x / <span class="number">10</span>);</span><br><span class="line">        <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">char</span> external)</span> </span>&#123;</span><br><span class="line">        __basic_putint(x);</span><br><span class="line">        <span class="built_in">putchar</span>(external);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Solution &#123;</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; num;</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; operators;</span><br><span class="line">    <span class="comment">// 1: + -</span></span><br><span class="line">    <span class="comment">// 2: * /</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> MOD = <span class="number">10000</span>;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">Priority</span><span class="params">(<span class="keyword">char</span> op1, <span class="keyword">char</span> op2)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// false -&gt; op1 is lower</span></span><br><span class="line">        <span class="comment">// true -&gt; op1 is higher</span></span><br><span class="line">        <span class="keyword">if</span> (op1 == op2) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (op1 == <span class="string">'~'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (op1 == <span class="string">'+'</span> &amp;&amp; op2 == <span class="string">'*'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (op1 == <span class="string">'*'</span> &amp;&amp; op2 == <span class="string">'+'</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">ifdef</span> HANDWER_FILE</span></span><br><span class="line">    freopen(<span class="string">"testdata.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    freopen(<span class="string">"testdata.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> Solution;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> FastIO;</span><br><span class="line">    <span class="comment">// 1+1*3+4</span></span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>, now = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> op = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; ans; <span class="comment">// 1</span></span><br><span class="line">    num.push(ans % MOD); <span class="comment">// &lt; 1</span></span><br><span class="line">    operators.push(<span class="string">'~'</span>); <span class="comment">// &lt; ~</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; op &gt;&gt; now) &#123; <span class="comment">// +1 // *3 // +4</span></span><br><span class="line">        <span class="keyword">char</span> op1 = operators.top(); <span class="comment">// ~ // + // *</span></span><br><span class="line">        <span class="keyword">while</span> (Priority(op1, op)) &#123; <span class="comment">// false // false // true // false</span></span><br><span class="line">            <span class="keyword">int</span> opNum = num.top(); <span class="comment">// // // 3</span></span><br><span class="line">            num.pop(); <span class="comment">// // //  &lt; 1 1</span></span><br><span class="line">            <span class="keyword">int</span> opNum2 = num.top(); <span class="comment">// // // 1</span></span><br><span class="line">            num.pop(); <span class="comment">// // // &lt; 1 </span></span><br><span class="line">            <span class="keyword">if</span> (op1 == <span class="string">'+'</span>) num.push((opNum + opNum2) % MOD); <span class="comment">// // // false</span></span><br><span class="line">            <span class="keyword">if</span> (op1 == <span class="string">'*'</span>) num.push(opNum * opNum2 % MOD); <span class="comment">// // // &lt; 1 3</span></span><br><span class="line">            operators.pop(); <span class="comment">// &lt; +</span></span><br><span class="line">            op1 = operators.top(); <span class="comment">// +</span></span><br><span class="line">        &#125;</span><br><span class="line">        operators.push(op); <span class="comment">// &lt; + // &lt; + * // &lt; + +</span></span><br><span class="line">        num.push(now); <span class="comment">// &lt; 1 1 // &lt; 1 1 3 // &lt; 1 3 4</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (num.size() &gt; <span class="number">1</span>) &#123; <span class="comment">// true // true // false</span></span><br><span class="line">    	<span class="keyword">int</span> op = num.top(); <span class="comment">// 4 // 7</span></span><br><span class="line">    	num.pop(); <span class="comment">// &lt; 1 3 // &lt; 1</span></span><br><span class="line">    	<span class="keyword">int</span> op2 = num.top(); <span class="comment">// 3 // 1</span></span><br><span class="line">    	num.pop(); <span class="comment">// &lt; 1 // &lt;</span></span><br><span class="line">    	<span class="keyword">char</span> ope = operators.top();</span><br><span class="line">    	operators.pop();</span><br><span class="line">        <span class="keyword">if</span> (ope == <span class="string">'+'</span>) num.push((op + op2) % MOD); <span class="comment">// &lt; 1 7 // &lt; 8</span></span><br><span class="line">        <span class="keyword">if</span> (ope == <span class="string">'*'</span>) num.push(op * op2 % MOD);</span><br><span class="line">    &#125;</span><br><span class="line">    FastIO::putint(num.top() % MOD, <span class="string">'\n'</span>); <span class="comment">// 8</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -687,7 +564,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

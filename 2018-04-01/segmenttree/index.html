@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="编程,线段树,数据结构,模板," />
+  <meta name="keywords" content="编程,线段树,模板,数据结构," />
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="快速查找和修改区间  注意：本文包含洛谷 P3372 【模板】线段树 1 题解">
-<meta name="keywords" content="编程,线段树,数据结构,模板">
+<meta name="keywords" content="编程,线段树,模板,数据结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线段树 模板">
 <meta property="og:url" content="https://blog.handwer-std.top/2018-04-01/segmenttree/index.html">
@@ -402,95 +402,13 @@
 </ul>
 <p>最简单的应用就是记录线段是否被覆盖，随时查询当前被覆盖线段的总长度。</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="基础函数"><a href="#基础函数" class="headerlink" title="基础函数"></a>基础函数</h3><p>我们选择一个$O(1)$的取儿子函数：</p>
-<pre><code class="cpp">inline int leftChild(int p) {
-    return p &lt;&lt; 1;
-}
-// 左子树 
-
-inline int rightChild(int p) {
-    return p &lt;&lt; 1 | 1;
-}
-// 右子树 
-
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">leftChild</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> p &lt;&lt; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 左子树 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">rightChild</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> p &lt;&lt; <span class="number">1</span> | <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 右子树</span></span><br></pre></td></tr></table></figure>
 <p>线段树的维护：</p>
-<pre><code class="cpp">void pushUp(int p) {
-    t[p] = t[leftChild(p)] + t[rightChild(p)];
-}
-// 向上维护区间
-
-void pushUpMin(int p) {
-    t[p] = std::min(t[leftChild(p)], t[rightChild(p)]);
-} 
-// 向t[p]下放Min标签
-
-void pushUpMax(int p) {
-    t[p] = std::max(t[leftChild(p)], t[rightChild(p)]);
-} 
-// 向t[p]下放Max标签
-
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushUp</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	t[p] = t[leftChild(p)] + t[rightChild(p)];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 向上维护区间</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushUpMin</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	t[p] = <span class="built_in">std</span>::min(t[leftChild(p)], t[rightChild(p)]);</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 向t[p]下放Min标签</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushUpMax</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	t[p] = <span class="built_in">std</span>::max(t[leftChild(p)], t[rightChild(p)]);</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 向t[p]下放Max标签</span></span><br></pre></td></tr></table></figure>
 <p>递归建树：</p>
-<pre><code class="cpp">typedef long long int lli;
-
-void buildTree(lli p, lli l, lli r) {
-    if (l == r) {
-        ans[p] = a[l];
-        return;
-    }
-    // 如果左右区间相同，则必是叶子节点
-    lli mid = (l + r) &gt;&gt; 1;
-    buildTree(leftChild(p), l, mid);
-    buildTree(rightChild(p), mid + 1, r);
-    // 递归
-    pushUp(p); 
-} 
-// 递归 + 二分建树
-</code></pre>
-<h3 id="区间修改函数"><a href="#区间修改函数" class="headerlink" title="区间修改函数"></a>区间修改函数</h3><pre><code class="cpp">
-inline void Record(lli p, lli l, lli r, lli k) {
-    tag[p] = tag[p] + k;
-    ans[p] = ans[p] + k * (r - l + 1);
-    // 因为是区间统一改变，所以ans要加元素个数 
-}
-// 记录当前节点所代表的区间
-
-inline void pushDown(lli p, lli l, lli r) {
-    lli mid = (l + r) &gt;&gt; 1;
-    Record(leftChild(p), l, mid, tag[p]);
-    Record(rightChild(p), mid + 1, r, tag[p]);
-    tag[p] = 0;
-    // 每次更新两个儿子节点，不断向下传递 
-} 
-
-inline void update(lli nl, lli nr, lli l, lli r, lli p, lli k) {
-    // 将要修改从 nl 到 nr 的区间
-    // l,r 为当前节点所储存的区间 
-    // p 为当前节点的编号
-    if (nl &lt;= l &amp;&amp; r &lt;= nr) {
-        ans[p] += k * (r - l + 1);
-        tag[p] += k;
-        return;
-    } 
-    pushDown(p, l, r);    
-    lli mid = (l + r) &gt;&gt; 1;
-    if (nl &lt;= mid) update(nl, nr, l, mid, leftChild(p), k)
-    if (nr &gt; mid) update(nl, nr,mid + 1, r, rightChild(p), k);
-    pushUp(p);
-}
-// 更新区间 
-</code></pre>
-<h3 id="查询区间函数"><a href="#查询区间函数" class="headerlink" title="查询区间函数"></a>查询区间函数</h3><pre><code class="cpp">inline lli query(lli qx, lli qy, lli l, lli r, lli p) {
-    lli res = 0;
-    if (qx &lt;= l &amp;&amp; r &lt;= qy) return ans[p];
-    lli mid = (l + r) &gt;&gt; 1;
-    pushDown(p, l, r);
-    if (qx &lt;= mid) res += query(qx, qy, l, mid, leftChild(p));
-    if (mid + 1 &lt;= qy) res += query(qx, qy, mid + 1, r, rightChild(p));
-    return res; 
-}
-// 查询区间 
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> lli;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">buildTree</span><span class="params">(lli p, lli l, lli r)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">		ans[p] = a[l];</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 如果左右区间相同，则必是叶子节点</span></span><br><span class="line">	lli mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	buildTree(leftChild(p), l, mid);</span><br><span class="line">	buildTree(rightChild(p), mid + <span class="number">1</span>, r);</span><br><span class="line">	<span class="comment">// 递归</span></span><br><span class="line">	pushUp(p); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 递归 + 二分建树</span></span><br></pre></td></tr></table></figure>
+<h3 id="区间修改函数"><a href="#区间修改函数" class="headerlink" title="区间修改函数"></a>区间修改函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Record</span><span class="params">(lli p, lli l, lli r, lli k)</span> </span>&#123;</span><br><span class="line">	tag[p] = tag[p] + k;</span><br><span class="line">	ans[p] = ans[p] + k * (r - l + <span class="number">1</span>);</span><br><span class="line">	<span class="comment">// 因为是区间统一改变，所以ans要加元素个数 </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 记录当前节点所代表的区间</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushDown</span><span class="params">(lli p, lli l, lli r)</span> </span>&#123;</span><br><span class="line">	lli mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	Record(leftChild(p), l, mid, tag[p]);</span><br><span class="line">	Record(rightChild(p), mid + <span class="number">1</span>, r, tag[p]);</span><br><span class="line">	tag[p] = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">// 每次更新两个儿子节点，不断向下传递 </span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(lli nl, lli nr, lli l, lli r, lli p, lli k)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 将要修改从 nl 到 nr 的区间</span></span><br><span class="line">	<span class="comment">// l,r 为当前节点所储存的区间 </span></span><br><span class="line">	<span class="comment">// p 为当前节点的编号</span></span><br><span class="line">	<span class="keyword">if</span> (nl &lt;= l &amp;&amp; r &lt;= nr) &#123;</span><br><span class="line">		ans[p] += k * (r - l + <span class="number">1</span>);</span><br><span class="line">		tag[p] += k;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125; </span><br><span class="line">	pushDown(p, l, r);	</span><br><span class="line">	lli mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (nl &lt;= mid) update(nl, nr, l, mid, leftChild(p), k)</span><br><span class="line">	<span class="keyword">if</span> (nr &gt; mid) update(nl, nr,mid + <span class="number">1</span>, r, rightChild(p), k);</span><br><span class="line">	pushUp(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 更新区间</span></span><br></pre></td></tr></table></figure>
+<h3 id="查询区间函数"><a href="#查询区间函数" class="headerlink" title="查询区间函数"></a>查询区间函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> lli <span class="title">query</span><span class="params">(lli qx, lli qy, lli l, lli r, lli p)</span> </span>&#123;</span><br><span class="line">	lli res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy) <span class="keyword">return</span> ans[p];</span><br><span class="line">	lli mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	pushDown(p, l, r);</span><br><span class="line">	<span class="keyword">if</span> (qx &lt;= mid) res += query(qx, qy, l, mid, leftChild(p));</span><br><span class="line">	<span class="keyword">if</span> (mid + <span class="number">1</span> &lt;= qy) res += query(qx, qy, mid + <span class="number">1</span>, r, rightChild(p));</span><br><span class="line">	<span class="keyword">return</span> res; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 查询区间</span></span><br></pre></td></tr></table></figure>
 <p>依然采用二分的形式…</p>
 <h1 id="洛谷-P3372-题解"><a href="#洛谷-P3372-题解" class="headerlink" title="洛谷 P3372 题解"></a>洛谷 P3372 题解</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>已知一个数列，你需要进行下面两种操作：</p>
 <p>1.将某区间每一个数加上x</p>
@@ -501,122 +419,12 @@ inline void update(lli nl, lli nr, lli l, lli r, lli p, lli k) {
 <p>操作1： 格式：1 x y k 含义：将区间[x,y]内每个数加上k</p>
 <p>操作2： 格式：2 x y 含义：输出区间[x,y]内每个数的和</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出包含若干行整数，即为所有操作2的结果。</p>
-<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><pre><code>5 5
-1 5 4 2 3
-2 2 4
-1 2 3 2
-2 3 4
-1 1 5 1
-2 1 4
-</code></pre><h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><pre><code>11
-8
-20
-</code></pre><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>就是把上面的函数都复制下来就行了= =</p>
+<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">5 </span><span class="number">5</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">5</span> <span class="number">4</span> <span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">2</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">3</span> <span class="number">2</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">1</span> <span class="number">5</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">1</span> <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">11</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">20</span></span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>就是把上面的函数都复制下来就行了= =</p>
 <p>没什么多解释的</p>
 <p>注释见上面代码</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;string&gt;
-// using namespace std;
-
-typedef long long int ll;
-typedef unsigned long long int ull;
-
-const int MAXN = 1000000 + 1;
-
-ull n, m, a[MAXN], ans[MAXN &lt;&lt; 2], tag[MAXN &lt;&lt; 2];
-
-inline ll ls(ll x) {
-    return x &lt;&lt; 1; 
-}
-
-inline ll rs(ll x) {
-    return x &lt;&lt; 1 | 1;
-}
-
-void scan(){
-    scanf(&quot;%lld %lld&quot;, &amp;n, &amp;m);
-    for (ll i = 1;i &lt;= n;i++) {
-        scanf(&quot;%lld&quot;, &amp;a[i]);
-    }
-}
-
-inline void pushUp(ll p) {
-    ans[p] = ans[ls(p)] + ans[rs(p)];
-} 
-
-inline void build(ll p, ll l, ll r) {
-    tag[p] = 0;
-    if (l == r) {
-        ans[p] = a[l];
-        return; 
-    }
-    ll mid = (l + r) &gt;&gt; 1;
-    build(ls(p), l, mid);
-    build(rs(p), mid + 1, r);
-    pushUp(p);
-}
-
-inline void rec(ll p, ll l, ll r, ll k) {
-    tag[p] = tag[p] + k;
-    ans[p] = ans[p] + k * (r - l + 1);
-}
-
-inline void pushDown(ll p,ll l, ll r) {
-    ll mid = (l + r) &gt;&gt; 1;
-    rec(ls(p), l, mid, tag[p]);
-    rec(rs(p), mid + 1, r, tag[p]);
-    tag[p] = 0;
-}
-
-inline void update(ll nl, ll nr, ll l, ll r, ll p, ll k) {
-    if (nl &lt;= l &amp;&amp; r &lt;= nr) {
-        ans[p] += k * (r - l + 1);
-        tag[p] += k;
-        return;
-    }
-    pushDown(p, l, r);
-    ll mid = (l + r) &gt;&gt; 1;
-    if (nl &lt;= mid) update(nl, nr, l, mid, ls(p), k);
-    if (nr &gt; mid) update(nl, nr, mid + 1, r, rs(p), k);
-    pushUp(p);
-}
-
-ll query(ll qx, ll qy, ll l, ll r, ll p) {
-    ll res = 0;
-    if (qx &lt;= l &amp;&amp; r &lt;= qy) return ans[p];
-    ll mid = (l + r) &gt;&gt; 1;
-    pushDown(p, l, r);
-    if (qx &lt;= mid) res += query(qx, qy, l, mid, ls(p));
-    if (qy &gt; mid) res += query(qx, qy, mid + 1, r, rs(p));
-    return res;
-}
-
-int main() {
-    // ios::sync_with_stdio(false);
-    ll a1, b, c, d, e, f;
-    scan();
-    build(1, 1, n);
-    while (m--) {
-        scanf(&quot;%lld&quot;, &amp;a1);
-        switch(a1) {
-            case 1:{
-                scanf(&quot;%lld %lld %lld&quot;, &amp;b, &amp;c, &amp;d);
-                update(b, c, 1, n, 1, d);
-                break;
-            }
-            case 2:{
-                scanf(&quot;%lld %lld&quot;, &amp;e, &amp;f);
-                printf(&quot;%lld\n&quot;, query(e, f, 1, n, 1));    
-                break;
-            }
-        }
-    }
-    return 0;
-}
-// 注意一下，stdio 和 iostream 混用会出现很多奇怪的bug！
-</code></pre>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="comment">// using namespace std;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ull;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1000000</span> + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">ull n, m, a[MAXN], ans[MAXN &lt;&lt; <span class="number">2</span>], tag[MAXN &lt;&lt; <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">ls</span><span class="params">(ll x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x &lt;&lt; <span class="number">1</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">rs</span><span class="params">(ll x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x &lt;&lt; <span class="number">1</span> | <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">scan</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld %lld"</span>, &amp;n, &amp;m);</span><br><span class="line">	<span class="keyword">for</span> (ll i = <span class="number">1</span>;i &lt;= n;i++) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushUp</span><span class="params">(ll p)</span> </span>&#123;</span><br><span class="line">	ans[p] = ans[ls(p)] + ans[rs(p)];</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">build</span><span class="params">(ll p, ll l, ll r)</span> </span>&#123;</span><br><span class="line">	tag[p] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">		ans[p] = a[l];</span><br><span class="line">		<span class="keyword">return</span>; </span><br><span class="line">	&#125;</span><br><span class="line">	ll mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	build(ls(p), l, mid);</span><br><span class="line">	build(rs(p), mid + <span class="number">1</span>, r);</span><br><span class="line">	pushUp(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">rec</span><span class="params">(ll p, ll l, ll r, ll k)</span> </span>&#123;</span><br><span class="line">	tag[p] = tag[p] + k;</span><br><span class="line">	ans[p] = ans[p] + k * (r - l + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushDown</span><span class="params">(ll p,ll l, ll r)</span> </span>&#123;</span><br><span class="line">	ll mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	rec(ls(p), l, mid, tag[p]);</span><br><span class="line">	rec(rs(p), mid + <span class="number">1</span>, r, tag[p]);</span><br><span class="line">	tag[p] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(ll nl, ll nr, ll l, ll r, ll p, ll k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (nl &lt;= l &amp;&amp; r &lt;= nr) &#123;</span><br><span class="line">		ans[p] += k * (r - l + <span class="number">1</span>);</span><br><span class="line">		tag[p] += k;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	pushDown(p, l, r);</span><br><span class="line">	ll mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (nl &lt;= mid) update(nl, nr, l, mid, ls(p), k);</span><br><span class="line">	<span class="keyword">if</span> (nr &gt; mid) update(nl, nr, mid + <span class="number">1</span>, r, rs(p), k);</span><br><span class="line">	pushUp(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(ll qx, ll qy, ll l, ll r, ll p)</span> </span>&#123;</span><br><span class="line">	ll res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy) <span class="keyword">return</span> ans[p];</span><br><span class="line">	ll mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	pushDown(p, l, r);</span><br><span class="line">	<span class="keyword">if</span> (qx &lt;= mid) res += query(qx, qy, l, mid, ls(p));</span><br><span class="line">	<span class="keyword">if</span> (qy &gt; mid) res += query(qx, qy, mid + <span class="number">1</span>, r, rs(p));</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ios::sync_with_stdio(false);</span></span><br><span class="line">	ll a1, b, c, d, e, f;</span><br><span class="line">	scan();</span><br><span class="line">	build(<span class="number">1</span>, <span class="number">1</span>, n);</span><br><span class="line">	<span class="keyword">while</span> (m--) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;a1);</span><br><span class="line">		<span class="keyword">switch</span>(a1) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:&#123;</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%lld %lld %lld"</span>, &amp;b, &amp;c, &amp;d);</span><br><span class="line">				update(b, c, <span class="number">1</span>, n, <span class="number">1</span>, d);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:&#123;</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%lld %lld"</span>, &amp;e, &amp;f);</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, query(e, f, <span class="number">1</span>, n, <span class="number">1</span>));	</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 注意一下，stdio 和 iostream 混用会出现很多奇怪的bug！</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -656,9 +464,9 @@ int main() {
           
             <a href="/tags/线段树/" rel="tag"># 线段树</a>
           
-            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
-          
             <a href="/tags/模板/" rel="tag"># 模板</a>
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
           
         </div>
       
@@ -767,7 +575,7 @@ int main() {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

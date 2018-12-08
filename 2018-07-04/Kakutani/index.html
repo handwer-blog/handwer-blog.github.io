@@ -402,19 +402,10 @@
 <p>一共$n$行。</p>
 <p>每行一个正整数，表示输入每个$x$对应的答案。</p>
 <p><strong>Sample Input 1</strong></p>
-<pre><code>5
-13713
-141713
-1333333372589
-1411733
-2147483647
-</code></pre><p><strong>Sample Output1</strong></p>
-<pre><code>0
-11
-3333332589
-1
-21836
-</code></pre><h2 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h2><p>对于$10%$的数据，$0&lt;=x&lt;=2147483647$<br>对于另外的$10%$数据，给定的数字没有数码$3$<br>对于另外的$10%$数据，$n=1$<br>对于全部的数据，$n$($1&lt;=n&lt;=1000$)，$1&lt;=x&lt;=10^L$($0&lt;=L&lt;=10^4$)</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">13713</span></span><br><span class="line"><span class="number">141713</span></span><br><span class="line"><span class="number">1333333372589</span></span><br><span class="line"><span class="number">1411733</span></span><br><span class="line"><span class="number">2147483647</span></span><br></pre></td></tr></table></figure>
+<p><strong>Sample Output1</strong></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">11</span></span><br><span class="line"><span class="number">3333332589</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">21836</span></span><br></pre></td></tr></table></figure>
+<h2 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h2><p>对于$10%$的数据，$0&lt;=x&lt;=2147483647$<br>对于另外的$10%$数据，给定的数字没有数码$3$<br>对于另外的$10%$数据，$n=1$<br>对于全部的数据，$n$($1&lt;=n&lt;=1000$)，$1&lt;=x&lt;=10^L$($0&lt;=L&lt;=10^4$)</p>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>「$1&lt;=x&lt;=10^L$($0&lt;=L&lt;=10^4$)」</p>
 <p>显而易见的高精</p>
 <p>进而联想到字符串模拟</p>
@@ -422,91 +413,13 @@
 <ul>
 <li>顺序不能乱</li>
 </ul>
-<pre><code>先执行删除4和7的操作，再执行删除13的操作
-</code></pre><ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先执行删除<span class="number">4</span>和<span class="number">7</span>的操作，再执行删除<span class="number">13</span>的操作</span><br></pre></td></tr></table></figure>
+<ul>
 <li>在删除13时要检查是否残留</li>
 </ul>
-<pre><code>样例里有一个数据1411733
-先删除4和7，得到11133
-再删除13，得到113
-
-假如只删除一次13，那么就会有残留的13出现
-所以要在删除之后进行检查，
-否则就需要递归，将13再次删除
-</code></pre><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p><a href="https://aor.sd.cn/status/c758e25f7995b52f5662fa42a25f384e" target="_blank" rel="noopener">评测记录 AC</a></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;string&gt;
-#include &lt;cctype&gt;
-using namespace std;
-
-inline string eraseAll4s(string x) {
-    string ret = &quot;&quot;;
-    int len = x.length();
-    for (int i = 0; i &lt; len; ++i) if (x[i] == &#39;4&#39;) x[i] = &#39;-&#39;; // 删除的&#39;4&#39;用&#39;-&#39;表示
-    for (int i = 0; i &lt; len; ++i) if (isdigit(x[i])) ret += x[i]; // 采集存留的数字，组成一个新的字符串
-    return ret;
-}
-
-inline string eraseAll7s(string x) {
-    // 代码思想一样，不再赘述
-    string ret = &quot;&quot;;
-    int len = x.length();
-    for (int i = 0; i &lt; len; ++i) if (x[i] == &#39;7&#39;) x[i] = &#39;-&#39;;
-    for (int i = 0; i &lt; len; ++i) if (isdigit(x[i])) ret += x[i];
-    return ret;
-}
-
-inline string eraseAll13s(string x) {
-    string ret = &quot;&quot;;
-    int len = x.length();
-    for (int i = 0; i &lt; len - 1; ++i) {
-        if (x[i] == &#39;1&#39; &amp;&amp; x[i+1] == &#39;3&#39;) x[i] = x[i+1] = &#39;-&#39;;
-        // 注意这里要同时检测两个字符
-    }
-    bool b = false;
-    for (int i = 0; i &lt; len; ++i) if (isdigit(x[i])) ret += x[i];
-    for (int i = 0; i &lt; len - 1; ++i) {
-        // 重新进行检查
-        if (ret[i] == &#39;1&#39; &amp;&amp; ret[i+1] == &#39;3&#39;) {
-            b = true;
-            break;
-        }
-    }
-    if (b) {
-        ret = eraseAll13s(ret); // 递归删除
-    }
-    return ret;
-}
-
-string Modify(string x) {
-    string ret = &quot;&quot;;
-    ret = eraseAll4s(x);
-    ret = eraseAll7s(ret);
-    ret = eraseAll13s(ret);
-    // 进行删除
-    if (ret == &quot;&quot;) ret = &quot;0&quot;;
-    return ret;
-}
-
-int main(int argc, char *const argv[]) {
-    ios::sync_with_stdio(false);
-    int n;
-    string v;
-    cin &gt;&gt; n;
-    while (n --&gt; 0) { 
-        /* 
-           这里是一个比较神奇的 while()，
-           效果相当于 for (int i = 0; i &lt; n; ++i)，
-           但是会对n进行修改，下标也是从n-1到0
-        */
-        cin &gt;&gt; v;
-        cout &lt;&lt; Modify(v) &lt;&lt; endl;
-    }
-    return 0;
-}
-</code></pre>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">样例里有一个数据<span class="number">1411733</span></span><br><span class="line">先删除<span class="number">4</span>和<span class="number">7</span>，得到<span class="number">11133</span></span><br><span class="line">再删除<span class="number">13</span>，得到<span class="number">113</span></span><br><span class="line"></span><br><span class="line">假如只删除一次<span class="number">13</span>，那么就会有残留的<span class="number">13</span>出现</span><br><span class="line">所以要在删除之后进行检查，</span><br><span class="line">否则就需要递归，将<span class="number">13</span>再次删除</span><br></pre></td></tr></table></figure>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p><a href="https://aor.sd.cn/status/c758e25f7995b52f5662fa42a25f384e" target="_blank" rel="noopener">评测记录 AC</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="built_in">string</span> <span class="title">eraseAll4s</span><span class="params">(<span class="built_in">string</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> ret = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">int</span> len = x.length();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) <span class="keyword">if</span> (x[i] == <span class="string">'4'</span>) x[i] = <span class="string">'-'</span>; <span class="comment">// 删除的'4'用'-'表示</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) <span class="keyword">if</span> (<span class="built_in">isdigit</span>(x[i])) ret += x[i]; <span class="comment">// 采集存留的数字，组成一个新的字符串</span></span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="built_in">string</span> <span class="title">eraseAll7s</span><span class="params">(<span class="built_in">string</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 代码思想一样，不再赘述</span></span><br><span class="line">    <span class="built_in">string</span> ret = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">int</span> len = x.length();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) <span class="keyword">if</span> (x[i] == <span class="string">'7'</span>) x[i] = <span class="string">'-'</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) <span class="keyword">if</span> (<span class="built_in">isdigit</span>(x[i])) ret += x[i];</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="built_in">string</span> <span class="title">eraseAll13s</span><span class="params">(<span class="built_in">string</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> ret = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">int</span> len = x.length();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x[i] == <span class="string">'1'</span> &amp;&amp; x[i+<span class="number">1</span>] == <span class="string">'3'</span>) x[i] = x[i+<span class="number">1</span>] = <span class="string">'-'</span>;</span><br><span class="line">        <span class="comment">// 注意这里要同时检测两个字符</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> b = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) <span class="keyword">if</span> (<span class="built_in">isdigit</span>(x[i])) ret += x[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="comment">// 重新进行检查</span></span><br><span class="line">        <span class="keyword">if</span> (ret[i] == <span class="string">'1'</span> &amp;&amp; ret[i+<span class="number">1</span>] == <span class="string">'3'</span>) &#123;</span><br><span class="line">            b = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (b) &#123;</span><br><span class="line">        ret = eraseAll13s(ret); <span class="comment">// 递归删除</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">Modify</span><span class="params">(<span class="built_in">string</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> ret = <span class="string">""</span>;</span><br><span class="line">    ret = eraseAll4s(x);</span><br><span class="line">    ret = eraseAll7s(ret);</span><br><span class="line">    ret = eraseAll13s(ret);</span><br><span class="line">    <span class="comment">// 进行删除</span></span><br><span class="line">    <span class="keyword">if</span> (ret == <span class="string">""</span>) ret = <span class="string">"0"</span>;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">string</span> v;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">while</span> (n --&gt; <span class="number">0</span>) &#123; </span><br><span class="line">        <span class="comment">/* </span></span><br><span class="line"><span class="comment">           这里是一个比较神奇的 while()，</span></span><br><span class="line"><span class="comment">           效果相当于 for (int i = 0; i &lt; n; ++i)，</span></span><br><span class="line"><span class="comment">           但是会对n进行修改，下标也是从n-1到0</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; v;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; Modify(v) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -657,7 +570,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

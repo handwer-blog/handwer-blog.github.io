@@ -401,122 +401,15 @@
 <h1 id="Input-Output-格式-amp-样例"><a href="#Input-Output-格式-amp-样例" class="headerlink" title="Input / Output 格式 &amp; 样例"></a>Input / Output 格式 &amp; 样例</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>输入文件第一行为一个整数n(1≤n≤100)，表示二叉树结点个数。接下来的n-1行，表示从结点x到结点y（约定根结点为1），最后一行两个整数u、v，表示求从结点u到结点v的距离。</p>
 <h2 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h2><p>三个数，每个数占一行，依次表示给定二叉树的深度、宽度及结点u到结点v间距离。</p>
 <h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p><strong>输入样例：</strong></p>
-<pre><code>10                                
-1 2                            
-1 3                            
-2 4
-2 5
-3 6
-3 7
-5 8
-5 9
-6 10
-8 6
-</code></pre><p><strong>输出样例：</strong></p>
-<pre><code>4
-4
-8
-</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>树的深度可以取$max${$depth[i]$}</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">10 </span>                               </span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span>                            </span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span>                            </span><br><span class="line"><span class="symbol">2 </span><span class="number">4</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">5</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">6</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">7</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">8</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">9</span></span><br><span class="line"><span class="symbol">6 </span><span class="number">10</span></span><br><span class="line"><span class="symbol">8 </span><span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>树的深度可以取$max${$depth[i]$}</p>
 <p>树的宽度可以在取深度的时候拿一个桶记录下来，再循环取一遍$max$</p>
 <p>两点之间的距离可以先求$LCA$，再用一个公式算出来</p>
 <p>$$distance = (depth[u] - depth[lca]) \times 2 + depth[v] - depth[lca]$$</p>
 <p>其中$lca = LCA(u, v)$</p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;cctype&gt;
-using namespace std;
-
-const int MAXN = 100 + 10;
-
-struct Edge {
-    int prev, next;
-} edge[MAXN * 2];
-
-int head[MAXN], father[MAXN][22], lg[MAXN], depth[MAXN];
-int cnt, n, m, s;
-int KangShifu[MAXN];
-
-inline int getint() {
-    int s = 0, x = 1;
-    char ch = getchar();
-    while (!isdigit(ch)) {
-        if (ch == &#39;-&#39;) x = -1;
-        ch = getchar();
-    }
-    while (isdigit(ch)) {
-        s = s * 10 + ch - &#39;0&#39;;
-        ch = getchar();
-    }
-    return s * x;
-}
-
-inline void putint(int x, bool returnValue) {
-    if (x &lt; 0) {
-        x = -x;
-        putchar(&#39;-&#39;);
-    }
-    if (x &gt;= 10) putint(x / 10, false);
-    putchar(x % 10 + &#39;0&#39;);
-    if (returnValue) putchar(&#39;\n&#39;);
-}
-
-inline void addEdge(int prev, int next) {
-    edge[++cnt].prev = prev;
-    edge[cnt].next = head[next];
-    head[next] = cnt; 
-} 
-
-void dfsInit(int root, int fa) {
-    depth[root] = depth[fa] + 1;
-    father[root][0] = fa;
-    for (int i = 1; (1 &lt;&lt; i) &lt;= depth[root]; ++i) {
-        father[root][i] = father[father[root][i-1]][i-1];
-    }
-    for (int e = head[root]; e; e = edge[e].next) {
-        if (edge[e].prev != fa) dfsInit(edge[e].prev, root);
-    }
-}
-
-int LCA(int x, int y) {
-    if (depth[x] &lt; depth[y]) swap(x, y);
-    while (depth[x] &gt; depth[y]) 
-        x = father[x][lg[depth[x] - depth[y]] - 1];
-    if (x == y) return x;
-    for (int i = lg[depth[x]]; i &gt;= 0; --i) {
-        if (father[x][i] != father[y][i]) x = father[x][i], y = father[y][i];
-    }
-    return father[x][0];
-}
-
-int main(int argc, char *const argv[]) {
-    n = getint();
-    for (int i = 1; i &lt; n; ++i) {
-        int prev = getint(), next = getint();
-        addEdge(prev, next);
-        addEdge(next, prev);
-    } 
-    int u = getint();
-    int v = getint();
-    dfsInit(1, 0);
-    for (int i = 1; i &lt;= n; ++i) {
-        lg[i] = lg[i-1] + (1 &lt;&lt; lg[i-1] == i);
-    }
-    int lca = LCA(u, v);
-    int Depth = -23333;
-    for (int i = 1; i &lt;= n; ++i) {
-        Depth = std::max(Depth, depth[i]);
-        ++KangShifu[depth[i]];
-    }
-    int width = -23333;
-    for (int i = 1; i &lt;= Depth + 2; ++i) width = std::max(width, KangShifu[i]);
-    putint(Depth, true);
-    putint(width, true);
-    putint((depth[u] - depth[lca]) * 2 + (depth[v] - depth[lca]), true);
-    return 0;
-}
-
-</code></pre>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">100</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> prev, next;</span><br><span class="line">&#125; edge[MAXN * <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> head[MAXN], father[MAXN][<span class="number">22</span>], lg[MAXN], depth[MAXN];</span><br><span class="line"><span class="keyword">int</span> cnt, n, m, s;</span><br><span class="line"><span class="keyword">int</span> KangShifu[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">bool</span> returnValue)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        x = -x;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) putint(x / <span class="number">10</span>, <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    <span class="keyword">if</span> (returnValue) <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> prev, <span class="keyword">int</span> next)</span> </span>&#123;</span><br><span class="line">    edge[++cnt].prev = prev;</span><br><span class="line">    edge[cnt].next = head[next];</span><br><span class="line">    head[next] = cnt; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfsInit</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    depth[root] = depth[fa] + <span class="number">1</span>;</span><br><span class="line">    father[root][<span class="number">0</span>] = fa;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; (<span class="number">1</span> &lt;&lt; i) &lt;= depth[root]; ++i) &#123;</span><br><span class="line">        father[root][i] = father[father[root][i<span class="number">-1</span>]][i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> e = head[root]; e; e = edge[e].next) &#123;</span><br><span class="line">        <span class="keyword">if</span> (edge[e].prev != fa) dfsInit(edge[e].prev, root);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LCA</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (depth[x] &lt; depth[y]) swap(x, y);</span><br><span class="line">    <span class="keyword">while</span> (depth[x] &gt; depth[y]) </span><br><span class="line">        x = father[x][lg[depth[x] - depth[y]] - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (x == y) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = lg[depth[x]]; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (father[x][i] != father[y][i]) x = father[x][i], y = father[y][i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> father[x][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    n = getint();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> prev = getint(), next = getint();</span><br><span class="line">        addEdge(prev, next);</span><br><span class="line">        addEdge(next, prev);</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">int</span> u = getint();</span><br><span class="line">    <span class="keyword">int</span> v = getint();</span><br><span class="line">    dfsInit(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">    	lg[i] = lg[i<span class="number">-1</span>] + (<span class="number">1</span> &lt;&lt; lg[i<span class="number">-1</span>] == i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> lca = LCA(u, v);</span><br><span class="line">    <span class="keyword">int</span> Depth = <span class="number">-23333</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        Depth = <span class="built_in">std</span>::max(Depth, depth[i]);</span><br><span class="line">        ++KangShifu[depth[i]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> width = <span class="number">-23333</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= Depth + <span class="number">2</span>; ++i) width = <span class="built_in">std</span>::max(width, KangShifu[i]);</span><br><span class="line">    putint(Depth, <span class="literal">true</span>);</span><br><span class="line">    putint(width, <span class="literal">true</span>);</span><br><span class="line">    putint((depth[u] - depth[lca]) * <span class="number">2</span> + (depth[v] - depth[lca]), <span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -669,7 +562,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

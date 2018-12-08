@@ -395,105 +395,10 @@
 <p>这样来处理每一行的主要部分</p>
 <p>要是剩下还有点没求呢？</p>
 <p>那就直接暴力模拟，反正时间复杂度高不了多少</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;cctype&gt;
-using namespace std;
-
-long long int ans;
-
-struct Dice {
-    long long int top;
-    long long int front;
-    long long int bottom;
-    long long int behind;
-    long long int left;
-    long long int right;
-    Dice() {
-        top = 1;
-        front = 2;
-        bottom = 6;
-        behind = 5;
-        left = 4;
-        right = 3;
-    }
-    void toTheRight() {
-        long long int origTop = top;
-        top = left;
-        left = bottom;
-        bottom = right;
-        right = origTop;
-        ans += top;
-    }
-
-    void toTheLeft() {
-        long long int origTop = top;
-        top = right;
-        right = bottom;
-        bottom = left;
-        left = origTop;
-        ans += top;
-    }
-
-    void toTheDownLine() {
-        long long int origTop = top;
-        top = behind;
-        behind = bottom;
-        bottom = front;
-        front = origTop;
-        ans += top;
-    }
-} d;
-
-long long int n, m;
-
-inline int getint() {
-    int s = 0, x = 1;
-    char ch = getchar();
-    while (!isdigit(ch)) {
-        if (ch == &#39;-&#39;) x = -1;
-        ch = getchar();
-    }
-    while (isdigit(ch)) {
-        s = s * 10 + ch - &#39;0&#39;;
-        ch = getchar();
-    }
-    return s * x;
-}
-
-inline void putint(int x, bool returnValue) {
-    if (x &lt; 0) {
-        x = -x;
-        putchar(&#39;-&#39;);
-    }
-    if (x &gt;= 10) putint(x / 10, false);
-    putchar(x % 10 + &#39;0&#39;);
-    if (returnValue) putchar(&#39;\n&#39;);
-}
-
-int main(int argc, char *const argv[]) {
-    cin &gt;&gt; n &gt;&gt; m;
-    ans = 1;
-    for (int i = 1; i &lt;= n; ++i) {
-        ans += ((m - 1) / 4 ) * 14;
-        if (i &amp; 1) 
-            for (int j = 1; j &lt;= (m - 1) % 4; ++j) d.toTheRight();
-        else 
-            for (int j = 1; j &lt;= (m - 1) % 4; ++j) d.toTheLeft();
-        // 在 toTheRight 和 toTheLeft 和 toTheDownLine 中已经更新过答案
-        // 不必再更新 
-        if (i != n) d.toTheDownLine();
-    }
-    cout &lt;&lt; ans &lt;&lt; endl;
-    return 0;
-}
-
-
-</code></pre>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ans;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Dice</span> &#123;</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> top;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> front;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> bottom;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> behind;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> left;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> right;</span><br><span class="line">    Dice() &#123;</span><br><span class="line">        top = <span class="number">1</span>;</span><br><span class="line">        front = <span class="number">2</span>;</span><br><span class="line">        bottom = <span class="number">6</span>;</span><br><span class="line">        behind = <span class="number">5</span>;</span><br><span class="line">        left = <span class="number">4</span>;</span><br><span class="line">        right = <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">toTheRight</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> origTop = top;</span><br><span class="line">        top = left;</span><br><span class="line">        left = bottom;</span><br><span class="line">        bottom = right;</span><br><span class="line">        right = origTop;</span><br><span class="line">        ans += top;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">toTheLeft</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> origTop = top;</span><br><span class="line">        top = right;</span><br><span class="line">        right = bottom;</span><br><span class="line">        bottom = left;</span><br><span class="line">        left = origTop;</span><br><span class="line">        ans += top;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">toTheDownLine</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> origTop = top;</span><br><span class="line">        top = behind;</span><br><span class="line">        behind = bottom;</span><br><span class="line">        bottom = front;</span><br><span class="line">        front = origTop;</span><br><span class="line">        ans += top;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; d;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> n, m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">bool</span> returnValue)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        x = -x;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) putint(x / <span class="number">10</span>, <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    <span class="keyword">if</span> (returnValue) <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        ans += ((m - <span class="number">1</span>) / <span class="number">4</span> ) * <span class="number">14</span>;</span><br><span class="line">        <span class="keyword">if</span> (i &amp; <span class="number">1</span>) </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= (m - <span class="number">1</span>) % <span class="number">4</span>; ++j) d.toTheRight();</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= (m - <span class="number">1</span>) % <span class="number">4</span>; ++j) d.toTheLeft();</span><br><span class="line">        <span class="comment">// 在 toTheRight 和 toTheLeft 和 toTheDownLine 中已经更新过答案</span></span><br><span class="line">        <span class="comment">// 不必再更新 </span></span><br><span class="line">        <span class="keyword">if</span> (i != n) d.toTheDownLine();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="Day2-T1-meizi-cpp"><a href="#Day2-T1-meizi-cpp" class="headerlink" title="Day2 T1 meizi.cpp"></a>Day2 T1 <small><code>meizi.cpp</code></small></h1><h2 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h2><p>前言：</p>
-<pre><code>zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！
-</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！zzs人赢！</span><br></pre></td></tr></table></figure>
+<hr>
 <p>考虑一下暴力怎么写</p>
 <blockquote>
 <p>把区间<code>[l, r]</code>全部+1，最终取个max</p>
@@ -502,78 +407,7 @@ int main(int argc, char *const argv[]) {
 <p>我们首先对每个区间差分，再把差分的区间加起来</p>
 <p>最终做一遍前缀和，取一遍max</p>
 <p>注意要先进行离散化，因为 $1 \le l_i \le\ r_i \le 10^9$</p>
-<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;cctype&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-
-const int MAXN = 2 * 1e5 + 20;
-
-int n;
-
-int l[MAXN], r[MAXN];
-int tmp[MAXN * 2];
-// 离散化数组
-
-int s[MAXN * 2];
-// 前缀和数组
-// 开两倍是因为对于每一个妹子都需要记录l和r两个变量
-
-inline int getint() {
-    int s = 0, x = 1;
-    char ch = getchar();
-    while (!isdigit(ch)) {
-        if (ch == &#39;-&#39;) x = -1;
-        ch = getchar();
-    }
-    while (isdigit(ch)) {
-        s = s * 10 + ch - &#39;0&#39;;
-        ch = getchar();
-    }
-    return s * x;
-}
-
-inline void putint(int x, bool returnValue) {
-    if (x &lt; 0) {
-        x = -x;
-        putchar(&#39;-&#39;);
-    }
-    if (x &gt;= 10) putint(x / 10, false);
-    putchar(x % 10 + &#39;0&#39;);
-    if (returnValue) putchar(&#39;\n&#39;);
-}
-
-int main(int argc, char *const argv[]) {
-    n = getint();
-    for (int i = 1; i &lt;= n; ++i) {
-        l[i] = getint();
-        r[i] = getint();
-        // 记录离散化数组
-        tmp[2 * i - 1] = l[i];
-        tmp[2 * i] = r[i];
-    }
-    // 开始离散化
-    sort(tmp + 1, tmp + 1 + 2 * n);
-    for (int i = 1; i &lt;= n; ++i) {
-        l[i] = lower_bound(tmp + 1, tmp + 1 + 2 * n, l[i]) - tmp;
-        r[i] = lower_bound(tmp + 1, tmp + 1 + 2 * n, r[i]) - tmp;
-        // 在离散化中顺便记录前缀和数组
-        ++s[l[i]];
-        --s[r[i] + 1];
-    }
-    // 处理前缀和
-    for (int i = 1; i &lt;= 2 * n; ++i) {
-        s[i] += s[i-1];
-    }
-    int ans = 0;
-    for (int i = 1; i &lt;= 2 * n; ++i) ans = std::max(ans, s[i]);
-    putint(ans, true);
-    return 0;
-}
-
-</code></pre>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2</span> * <span class="number">1e5</span> + <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> l[MAXN], r[MAXN];</span><br><span class="line"><span class="keyword">int</span> tmp[MAXN * <span class="number">2</span>];</span><br><span class="line"><span class="comment">// 离散化数组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> s[MAXN * <span class="number">2</span>];</span><br><span class="line"><span class="comment">// 前缀和数组</span></span><br><span class="line"><span class="comment">// 开两倍是因为对于每一个妹子都需要记录l和r两个变量</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">bool</span> returnValue)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        x = -x;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) putint(x / <span class="number">10</span>, <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    <span class="keyword">if</span> (returnValue) <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    n = getint();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        l[i] = getint();</span><br><span class="line">        r[i] = getint();</span><br><span class="line">        <span class="comment">// 记录离散化数组</span></span><br><span class="line">        tmp[<span class="number">2</span> * i - <span class="number">1</span>] = l[i];</span><br><span class="line">        tmp[<span class="number">2</span> * i] = r[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 开始离散化</span></span><br><span class="line">    sort(tmp + <span class="number">1</span>, tmp + <span class="number">1</span> + <span class="number">2</span> * n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        l[i] = lower_bound(tmp + <span class="number">1</span>, tmp + <span class="number">1</span> + <span class="number">2</span> * n, l[i]) - tmp;</span><br><span class="line">        r[i] = lower_bound(tmp + <span class="number">1</span>, tmp + <span class="number">1</span> + <span class="number">2</span> * n, r[i]) - tmp;</span><br><span class="line">        <span class="comment">// 在离散化中顺便记录前缀和数组</span></span><br><span class="line">        ++s[l[i]];</span><br><span class="line">        --s[r[i] + <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 处理前缀和</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">2</span> * n; ++i) &#123;</span><br><span class="line">        s[i] += s[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">2</span> * n; ++i) ans = <span class="built_in">std</span>::max(ans, s[i]);</span><br><span class="line">    putint(ans, <span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -726,7 +560,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

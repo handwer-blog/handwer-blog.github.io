@@ -396,19 +396,9 @@
 <h1 id="Input-Output-格式-amp-样例"><a href="#Input-Output-格式-amp-样例" class="headerlink" title="Input/Output 格式 &amp; 样例"></a>Input/Output 格式 &amp; 样例</h1><p><strong>输入格式：</strong><br><br>第一行三个整数N，M, X；</p>
 <p>第二行到第M+1行：每行有三个整数Ai，Bi, Ti ,表示有一条从Ai农场到Bi农场的道路，长度为Ti。</p>
 <p><strong>输出格式：</strong><br><br>一个整数，表示最长的最短路得长度。</p>
-<p><strong>输入样例#1：</strong><br></p>
-<pre><code>4 8 2
-1 2 4
-1 3 2
-1 4 7
-2 1 1
-2 3 5
-3 1 2
-3 4 4
-4 2 3
-</code></pre><p><strong>输出样例#1：</strong><br></p>
-<pre><code>10
-</code></pre><h1 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h1><p><img src="https://cdn.luogu.org/upload/pic/667.png" alt=""><br><br><small>图片来自洛谷</small></p>
+<p><strong>输入样例#1：</strong><br><br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">4 </span><span class="number">8</span> <span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span> <span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">4</span> <span class="number">7</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">1</span> <span class="number">2</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">4</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">2</span> <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>输出样例#1：</strong><br><br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h1><p><img src="https://cdn.luogu.org/upload/pic/667.png" alt=""><br><br><small>图片来自洛谷</small></p>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>单源最短路我们都会做，一遍<code>SPFA</code>或<code>Dijkstra</code>就行了。</p>
 <p>单终点最短路呢？</p>
 <p>对于这道题，奶牛们从派对分别回家就是一个单源最短路问题，而奶牛们从家到派对就是一个单终点最短路问题。</p>
@@ -416,118 +406,7 @@
 <p>实在是想不出来的我翻了一波题解，发现他们都在输入的时候另建了一个图，<big><strong>反向存边</strong></big>，就完美地把一个单终点最短路转化为单源最短路<br><br>因为单源和单终点的区别仅仅是<big><strong>方向改变</strong></big>，很显然这么做是对的</p>
 <p>最后的答案是什么？<br><br>正向建图的距离+反向建图的距离的最大值</p>
 <h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><p>我们在数组后加上「Reversed」，表示它存的是反向的图</p>
-<p><a href="https://www.luogu.org/record/show?rid=8666784" target="_blank" rel="noopener">评测记录 AC</a></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;cctype&gt; 
-#include &lt;algorithm&gt;
-#include &lt;queue&gt; 
-using namespace std;
-
-const int MAXN = 1000 + 10;
-const int MAXM = 100000 + 10;
-
-struct Edge {
-    int prev;
-    int next;
-    int weight;
-} edge[MAXM], edgeReversed[MAXM];
-
-int n, m, x, cnt, maxWeight = -1;
-int dis[MAXN], head[MAXN], disReversed[MAXN], headReversed[MAXN];
-bool inQueue[MAXN], inQueueReversed[MAXN];
-
-inline int getint() {
-    int s = 0, x = 1;
-    char ch = getchar();
-    while (!isdigit(ch)) {
-        (ch == &#39;-&#39;) &amp;&amp; (x = -1);
-        ch = getchar();
-    }
-    while (isdigit(ch)) {
-        s = s * 10 + ch - &#39;0&#39;;
-        ch = getchar();
-    }
-    return s * x;
-}
-
-
-inline void addEdgeReversed(int prev, int next, int weight) {
-    edgeReversed[cnt].prev = prev;
-    edgeReversed[cnt].weight = weight;
-    edgeReversed[cnt].next = headReversed[next];
-    headReversed[next] = cnt;
-}
-
-inline void addEdge(int prev, int next, int weight) {
-    edge[++cnt].prev = prev;
-    edge[cnt].weight = weight;
-    edge[cnt].next = head[next];
-    head[next] = cnt;
-    addEdgeReversed(next, prev, weight);
-}
-
-inline void Dijkstra(int s, int n) {
-    memset(inQueue, 0, sizeof(inQueue));
-    for (int i = 0; i &lt;= n; ++i) dis[i] = 2147483647;
-    std::priority_queue&lt;std::pair&lt;int, int&gt;, std::vector&lt;std::pair&lt;int, int&gt; &gt;, std::greater&lt;std::pair&lt;int, int&gt; &gt; &gt; q;
-    inQueue[s] = true;
-    q.push(make_pair(s, 0));
-    dis[s] = 0;
-    while (!q.empty()) {
-        int prev = q.top().first;
-        int weight = q.top().second;
-        q.pop();
-        inQueue[prev] = false;
-        for (int e = head[prev]; e; e = edge[e].next) {
-            if (dis[edge[e].prev] &gt; edge[e].weight + weight) {
-                dis[edge[e].prev] = edge[e].weight + weight;
-                q.push(make_pair(edge[e].prev, dis[edge[e].prev])); 
-            }
-        }
-    }
-}
-
-inline void DijkstraReversed(int s, int n) {
-    memset(inQueueReversed, 0, sizeof(inQueueReversed));
-    for (int i = 0; i &lt;= n; ++i) disReversed[i] = 2147483647;
-    std::priority_queue&lt;std::pair&lt;int, int&gt;, std::vector&lt;std::pair&lt;int, int&gt; &gt;, std::greater&lt;std::pair&lt;int, int&gt; &gt; &gt; q;
-    inQueueReversed[s] = true;
-    q.push(make_pair(s, 0));
-    while (!q.empty()) {
-        int prev = q.top().first;
-        int weight = q.top().second;
-        q.pop();
-        inQueueReversed[prev] = false;
-        for (int e = headReversed[prev]; e; e = edgeReversed[e].next) {
-            if (disReversed[edgeReversed[e].prev] &gt; edgeReversed[e].weight + weight) {
-                disReversed[edgeReversed[e].prev] = edgeReversed[e].weight + weight;
-                q.push(make_pair(edgeReversed[e].prev, disReversed[edgeReversed[e].prev])); 
-            }
-        }
-    }
-}
-
-int main(int argc, char *const argv[]) {
-    n = getint(), m = getint(), x = getint();
-    int tm = m;
-    while (tm --&gt; 0) {
-        int prev = getint(), next = getint(), weight = getint();
-        addEdge(prev, next, weight);
-    }
-    int tn = n;
-    Dijkstra(x, n);
-    DijkstraReversed(x, n);
-    for (int i = 1; i &lt;= n; ++i) {
-        maxWeight = std::max(maxWeight, dis[i] + disReversed[i]);
-    } 
-    printf(&quot;%d\n&quot;, maxWeight);
-    return 0;
-}
-
-
-</code></pre>
+<p><a href="https://www.luogu.org/record/show?rid=8666784" target="_blank" rel="noopener">评测记录 AC</a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1000</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">100000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> prev;</span><br><span class="line">    <span class="keyword">int</span> next;</span><br><span class="line">    <span class="keyword">int</span> weight;</span><br><span class="line">&#125; edge[MAXM], edgeReversed[MAXM];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, x, cnt, maxWeight = <span class="number">-1</span>;</span><br><span class="line"><span class="keyword">int</span> dis[MAXN], head[MAXN], disReversed[MAXN], headReversed[MAXN];</span><br><span class="line"><span class="keyword">bool</span> inQueue[MAXN], inQueueReversed[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        (ch == <span class="string">'-'</span>) &amp;&amp; (x = <span class="number">-1</span>);</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addEdgeReversed</span><span class="params">(<span class="keyword">int</span> prev, <span class="keyword">int</span> next, <span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">    edgeReversed[cnt].prev = prev;</span><br><span class="line">    edgeReversed[cnt].weight = weight;</span><br><span class="line">    edgeReversed[cnt].next = headReversed[next];</span><br><span class="line">    headReversed[next] = cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> prev, <span class="keyword">int</span> next, <span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">    edge[++cnt].prev = prev;</span><br><span class="line">    edge[cnt].weight = weight;</span><br><span class="line">    edge[cnt].next = head[next];</span><br><span class="line">    head[next] = cnt;</span><br><span class="line">    addEdgeReversed(next, prev, weight);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Dijkstra</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(inQueue, <span class="number">0</span>, <span class="keyword">sizeof</span>(inQueue));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) dis[i] = <span class="number">2147483647</span>;</span><br><span class="line">    <span class="built_in">std</span>::priority_queue&lt;<span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt;, <span class="built_in">std</span>::greater&lt;<span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt; &gt; q;</span><br><span class="line">    inQueue[s] = <span class="literal">true</span>;</span><br><span class="line">    q.push(make_pair(s, <span class="number">0</span>));</span><br><span class="line">    dis[s] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">        <span class="keyword">int</span> prev = q.top().first;</span><br><span class="line">        <span class="keyword">int</span> weight = q.top().second;</span><br><span class="line">        q.pop();</span><br><span class="line">        inQueue[prev] = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> e = head[prev]; e; e = edge[e].next) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dis[edge[e].prev] &gt; edge[e].weight + weight) &#123;</span><br><span class="line">                dis[edge[e].prev] = edge[e].weight + weight;</span><br><span class="line">                q.push(make_pair(edge[e].prev, dis[edge[e].prev])); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">DijkstraReversed</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(inQueueReversed, <span class="number">0</span>, <span class="keyword">sizeof</span>(inQueueReversed));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) disReversed[i] = <span class="number">2147483647</span>;</span><br><span class="line">    <span class="built_in">std</span>::priority_queue&lt;<span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt;, <span class="built_in">std</span>::greater&lt;<span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt; &gt; q;</span><br><span class="line">    inQueueReversed[s] = <span class="literal">true</span>;</span><br><span class="line">    q.push(make_pair(s, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">        <span class="keyword">int</span> prev = q.top().first;</span><br><span class="line">        <span class="keyword">int</span> weight = q.top().second;</span><br><span class="line">        q.pop();</span><br><span class="line">        inQueueReversed[prev] = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> e = headReversed[prev]; e; e = edgeReversed[e].next) &#123;</span><br><span class="line">            <span class="keyword">if</span> (disReversed[edgeReversed[e].prev] &gt; edgeReversed[e].weight + weight) &#123;</span><br><span class="line">                disReversed[edgeReversed[e].prev] = edgeReversed[e].weight + weight;</span><br><span class="line">                q.push(make_pair(edgeReversed[e].prev, disReversed[edgeReversed[e].prev])); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    n = getint(), m = getint(), x = getint();</span><br><span class="line">    <span class="keyword">int</span> tm = m;</span><br><span class="line">    <span class="keyword">while</span> (tm --&gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> prev = getint(), next = getint(), weight = getint();</span><br><span class="line">        addEdge(prev, next, weight);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> tn = n;</span><br><span class="line">    Dijkstra(x, n);</span><br><span class="line">    DijkstraReversed(x, n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        maxWeight = <span class="built_in">std</span>::max(maxWeight, dis[i] + disReversed[i]);</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, maxWeight);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -678,7 +557,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

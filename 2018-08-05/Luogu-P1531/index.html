@@ -398,200 +398,18 @@
 <p>当C为’U’的时候，表示这是一条更新操作，如果当前A学生的成绩低于B，则把ID为A的学生的成绩更改为B，否则不改动。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>对于每一次询问操作，在一行里面输出最高成绩</p>
 <h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入样例：</p>
-<pre><code>5 6
-1 2 3 4 5
-Q 1 5
-U 3 6
-Q 3 4
-Q 4 5
-U 2 9
-Q 1 5
-</code></pre><p> 输出样例：</p>
-<pre><code>5
-6
-5
-9
-</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>单点修改，区间查询 ……</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> <span class="number">6</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line">Q <span class="number">1</span> <span class="number">5</span></span><br><span class="line">U <span class="number">3</span> <span class="number">6</span></span><br><span class="line">Q <span class="number">3</span> <span class="number">4</span></span><br><span class="line">Q <span class="number">4</span> <span class="number">5</span></span><br><span class="line">U <span class="number">2</span> <span class="number">9</span></span><br><span class="line">Q <span class="number">1</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p> 输出样例：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>单点修改，区间查询 ……</p>
 <p><del>线段树</del> 树状数组！</p>
 <p>对了，注意处理输入，含读入<code>char</code>的题目最好不要用快读 ……</p>
 <p><del>别问我怎么知道的</del></p>
 <h2 id="线段树解法"><a href="#线段树解法" class="headerlink" title="线段树解法"></a>线段树解法</h2><p>可以说是很裸的一道题了</p>
 <p>只需要单点修改，<code>lazyTag</code>什么的不需要的</p>
 <p>就简单把<code>区间和查询</code>改成<code>区间最值查询</code>就行了</p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><h2 id="线段树解法-1"><a href="#线段树解法-1" class="headerlink" title="线段树解法"></a>线段树解法</h2><pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;cctype&gt;
-using namespace std;
-
-const int MAXN = 200000 + 10;
-
-int a[MAXN], segt[MAXN * 4];
-int n, m;
-
-inline int leftChild(int x) {
-    return x &lt;&lt; 1;
-}
-
-inline int rightChild(int x) {
-    return x &lt;&lt; 1 | 1;
-}
-
-inline void pushUp(int root) {
-    segt[root] = std::max(segt[leftChild(root)], segt[rightChild(root)]);
-    // 更新最大值
-}
-
-inline void buildTree(int l, int r, int root) {
-    if (l == r) {
-        segt[root] = a[l];
-        return;
-    }
-    int mid = (l + r) &gt;&gt; 1;
-    buildTree(l, mid, leftChild(root));
-    buildTree(mid + 1, r, rightChild(root));
-    pushUp(root);
-}
-
-inline int query(int l, int r, int ql, int qr, int root) {
-    int res = -2147483640;
-    if (ql &lt;= l &amp;&amp; r &lt;= qr) return segt[root];
-    int mid = (l + r) &gt;&gt; 1;
-    if (ql &lt;= mid) res = std::max(res, query(l, mid, ql, qr, leftChild(root)));
-    if (mid &lt; qr) res = std::max(res, query(mid + 1, r, ql, qr, rightChild(root)));
-    // 查询最大值
-    return res;
-}
-
-inline void Modify(int l, int r, int dest, int root, int k) {
-    if (l == r) {
-        segt[root] = std::max(segt[root], k);
-        return;
-    }
-    int mid = (l + r) &gt;&gt; 1;
-    if (dest &lt;= mid) Modify(l, mid, dest, leftChild(root), k);
-    if (mid &lt; dest) Modify(mid + 1, r, dest, rightChild(root), k);
-    pushUp(root);
-}
-
-inline int getint() {
-    int s = 0, x = 1;
-    char ch = getchar();
-    while (!isdigit(ch)) {
-        if (ch == &#39;-&#39;) x = -1;
-        ch = getchar();
-    }
-    while (isdigit(ch)) {
-        s = s * 10 + ch - &#39;0&#39;;
-        ch = getchar();
-    }
-    return s * x;
-}
-
-inline void putint(int x, bool returnValue) {
-    if (x &lt; 0) {
-        x = -x;
-        putchar(&#39;-&#39;);
-    }
-    if (x &gt;= 10) putint(x / 10, false);
-    putchar(x % 10 + &#39;0&#39;);
-    if (returnValue) putchar(&#39;\n&#39;);
-}
-
-int main(int argc, char *const argv[]) {
-    cin &gt;&gt; n &gt;&gt; m;
-    for (int i = 1; i &lt;= n; ++i) cin &gt;&gt; a[i];
-    buildTree(1, n, 1);
-    for (int i = 1; i &lt;= m; ++i) {
-        char op;
-        int a, b;
-        cin &gt;&gt; op &gt;&gt; a &gt;&gt; b;
-        // 推荐使用std::cin！
-        switch(op) {
-            case &#39;Q&#39;: {
-                putint(query(1, n, a, b, 1), true);
-                break;
-            }
-            case &#39;U&#39;: {
-                Modify(1, n, a, 1, b);
-                break;
-            }
-        }
-    }
-    return 0;
-}
-
-</code></pre>
-<h2 id="暴力代码"><a href="#暴力代码" class="headerlink" title="暴力代码"></a>暴力代码</h2><pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;cctype&gt;
-using namespace std;
-
-const int MAXN = 200000 + 10;
-
-int segt[MAXN]; 
-int n, m;
-
-inline int getint() {
-    int s = 0, x = 1;
-    char ch = getchar();
-    while (!isdigit(ch)) {
-        if (ch == &#39;-&#39;) x = -1;
-        ch = getchar();
-    }
-    while (isdigit(ch)) {
-        s = s * 10 + ch - &#39;0&#39;;
-        ch = getchar();
-    }
-    return s * x;
-}
-
-inline void putint(int x, bool returnValue) {
-    if (x &lt; 0) {
-        x = -x;
-        putchar(&#39;-&#39;);
-    }
-    if (x &gt;= 10) putint(x / 10, false);
-    putchar(x % 10 + &#39;0&#39;);
-    if (returnValue) putchar(&#39;\n&#39;);
-}
-
-inline int query(int l, int r) {
-    int res = -2147483640;
-    for (int i = l; i &lt;= r; ++i) res = std::max(res, segt[i]);
-    return res;
-}
-
-inline void Modify(int r, int k) {
-    segt[r] = std::max(segt[r], k);
-}
-
-int main(int argc, char *const argv[]) {
-    cin &gt;&gt; n &gt;&gt; m;
-    for (int i = 1; i &lt;= n; ++i) cin &gt;&gt; segt[i];
-    for (int i = 1; i &lt;= n; ++i) cout &lt;&lt; segt[i] &lt;&lt; &#39; &#39;;
-    cout &lt;&lt; endl;
-    for (int i = 1; i &lt;= m; ++i) {
-        char op;
-        int a, b;
-        cin &gt;&gt; op &gt;&gt; a &gt;&gt; b;
-        switch(op) {
-            case &#39;Q&#39;: {
-                cout &lt;&lt; query(a, b) &lt;&lt; endl;
-                break;
-            }
-            case &#39;U&#39;: {
-                Modify(a, b);
-                break;
-            }
-        }
-    }
-    return 0;
-}
-
-
-</code></pre>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><h2 id="线段树解法-1"><a href="#线段树解法-1" class="headerlink" title="线段树解法"></a>线段树解法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">200000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[MAXN], segt[MAXN * <span class="number">4</span>];</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">leftChild</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &lt;&lt; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">rightChild</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &lt;&lt; <span class="number">1</span> | <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushUp</span><span class="params">(<span class="keyword">int</span> root)</span> </span>&#123;</span><br><span class="line">    segt[root] = <span class="built_in">std</span>::max(segt[leftChild(root)], segt[rightChild(root)]);</span><br><span class="line">    <span class="comment">// 更新最大值</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">        segt[root] = a[l];</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    buildTree(l, mid, leftChild(root));</span><br><span class="line">    buildTree(mid + <span class="number">1</span>, r, rightChild(root));</span><br><span class="line">    pushUp(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> ql, <span class="keyword">int</span> qr, <span class="keyword">int</span> root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">-2147483640</span>;</span><br><span class="line">    <span class="keyword">if</span> (ql &lt;= l &amp;&amp; r &lt;= qr) <span class="keyword">return</span> segt[root];</span><br><span class="line">    <span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (ql &lt;= mid) res = <span class="built_in">std</span>::max(res, query(l, mid, ql, qr, leftChild(root)));</span><br><span class="line">    <span class="keyword">if</span> (mid &lt; qr) res = <span class="built_in">std</span>::max(res, query(mid + <span class="number">1</span>, r, ql, qr, rightChild(root)));</span><br><span class="line">    <span class="comment">// 查询最大值</span></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> dest, <span class="keyword">int</span> root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">        segt[root] = <span class="built_in">std</span>::max(segt[root], k);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (dest &lt;= mid) Modify(l, mid, dest, leftChild(root), k);</span><br><span class="line">    <span class="keyword">if</span> (mid &lt; dest) Modify(mid + <span class="number">1</span>, r, dest, rightChild(root), k);</span><br><span class="line">    pushUp(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">bool</span> returnValue)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        x = -x;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) putint(x / <span class="number">10</span>, <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    <span class="keyword">if</span> (returnValue) <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">    buildTree(<span class="number">1</span>, n, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="keyword">char</span> op;</span><br><span class="line">        <span class="keyword">int</span> a, b;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; op &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        <span class="comment">// 推荐使用std::cin！</span></span><br><span class="line">        <span class="keyword">switch</span>(op) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'Q'</span>: &#123;</span><br><span class="line">                putint(query(<span class="number">1</span>, n, a, b, <span class="number">1</span>), <span class="literal">true</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'U'</span>: &#123;</span><br><span class="line">                Modify(<span class="number">1</span>, n, a, <span class="number">1</span>, b);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="暴力代码"><a href="#暴力代码" class="headerlink" title="暴力代码"></a>暴力代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">200000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> segt[MAXN]; </span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">char</span> ch = getchar();</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">		<span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">		ch = getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">		s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">		ch = getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">bool</span> returnValue)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		x = -x;</span><br><span class="line">		<span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (x &gt;= <span class="number">10</span>) putint(x / <span class="number">10</span>, <span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">	<span class="keyword">if</span> (returnValue) <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">-2147483640</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = l; i &lt;= r; ++i) res = <span class="built_in">std</span>::max(res, segt[i]);</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> r, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	segt[r] = <span class="built_in">std</span>::max(segt[r], k);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">cin</span> &gt;&gt; segt[i];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">cout</span> &lt;&lt; segt[i] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">		<span class="keyword">char</span> op;</span><br><span class="line">		<span class="keyword">int</span> a, b;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; op &gt;&gt; a &gt;&gt; b;</span><br><span class="line">		<span class="keyword">switch</span>(op) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'Q'</span>: &#123;</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; query(a, b) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'U'</span>: &#123;</span><br><span class="line">				Modify(a, b);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -742,7 +560,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

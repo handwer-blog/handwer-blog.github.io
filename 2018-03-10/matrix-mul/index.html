@@ -395,82 +395,10 @@
 <p>现要求写一个程序，可以实现矩阵相乘。</p>
 <h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行三个正整数 $n$、$p$、$m$，表示矩阵的长宽。<br>之后的$n$ 行，每行 $p$ 个整数，表示矩阵 $A$。<br>之后的 $p$ 行，每行 $m$ 个整数，表示矩阵 $B$。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出 $n$ 行，每行 $m$ 个整数，表示矩阵 $A×B$ ，每个数模 $10 ^ 9 + 7$ 输出。</p>
-<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><pre><code>3 4 5
--2 -8 -9 8
--10 0 6 -8
--10 -6 6 9
-4 -7 5 -5 9
-10 -2 -10 5 5
--3 -7 -3 8 -2
--6 7 7 3 -2
-</code></pre><p><strong>良心数据</strong></p>
-<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><pre><code>999999898 149 153 999999929 999999951
-999999997 999999979 999999883 74 999999921                                                 
-999999835 103 55 95 999999857
-</code></pre><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre><code class="cpp">#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-
-typedef long long LL;
-
-const int maxn = 505;
-const int INF  = 0x3f3f3f3f;
-const int MOD  = 1e9+7;
-
-struct Matrix{
-    LL arr[maxn][maxn];
-    int n,m;
-    Matrix operator * (const Matrix &amp;b)const{
-        // 重载运算符
-          Matrix res;
-        memset(res.arr,0,sizeof(res.arr));
-        for(int i = 0;i &lt; n;i++)
-            for(int j = 0;j &lt; b.m;j++)
-                for(int k = 0;k &lt; m;k++){
-                    (res.arr[i][j] += arr[i][k] * b.arr[k][j] % MOD) %= MOD;
-                }
-        res.n = n;res.m = b.m;
-        return res;
-    }
-}a,b,ans;
-// 用结构体来储存矩阵
-
-int main(){
-
-    int n,p,m;
-
-    scanf(&quot;%d %d %d&quot;,&amp;n,&amp;p,&amp;m);
-
-    a.n = n;a.m = p;
-
-    for(int i = 0;i &lt; n;i++)
-        for(int j = 0;j &lt; p;j++){
-            scanf(&quot;%lld&quot;,&amp;a.arr[i][j]);
-        }
-    // 输入矩阵
-    b.n = p;b.m = m;
-
-    for(int i = 0;i &lt; p;i++)
-        for(int j = 0;j &lt; m;j++){
-            scanf(&quot;%lld&quot;,&amp;b.arr[i][j]);
-        }
-
-    ans = a * b;
-
-    for(int i = 0;i &lt; n;i++){
-        for(int j = 0;j &lt; m - 1;j++){
-            (ans.arr[i][j] += MOD) %= MOD;
-            printf(&quot;%lld &quot;,ans.arr[i][j]);
-        }
-        (ans.arr[i][m - 1] += MOD) %= MOD;
-        printf(&quot;%lld\n&quot;,ans.arr[i][m - 1]);
-    }
-    // 输出矩阵
-    return 0;
-}
-</code></pre>
+<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line"><span class="number">-2</span> <span class="number">-8</span> <span class="number">-9</span> <span class="number">8</span></span><br><span class="line"><span class="number">-10</span> <span class="number">0</span> <span class="number">6</span> <span class="number">-8</span></span><br><span class="line"><span class="number">-10</span> <span class="number">-6</span> <span class="number">6</span> <span class="number">9</span></span><br><span class="line"><span class="number">4</span> <span class="number">-7</span> <span class="number">5</span> <span class="number">-5</span> <span class="number">9</span></span><br><span class="line"><span class="number">10</span> <span class="number">-2</span> <span class="number">-10</span> <span class="number">5</span> <span class="number">5</span></span><br><span class="line"><span class="number">-3</span> <span class="number">-7</span> <span class="number">-3</span> <span class="number">8</span> <span class="number">-2</span></span><br><span class="line"><span class="number">-6</span> <span class="number">7</span> <span class="number">7</span> <span class="number">3</span> <span class="number">-2</span></span><br></pre></td></tr></table></figure>
+<p><strong>良心数据</strong></p>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">999999898 </span><span class="number">149</span> <span class="number">153</span> <span class="number">999999929</span> <span class="number">999999951</span></span><br><span class="line"><span class="symbol">999999997 </span><span class="number">999999979</span> <span class="number">999999883</span> <span class="number">74</span> <span class="number">999999921</span>                                                 </span><br><span class="line"><span class="symbol">999999835 </span><span class="number">103</span> <span class="number">55</span> <span class="number">95</span> <span class="number">999999857</span></span><br></pre></td></tr></table></figure>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">505</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF  = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MOD  = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span>&#123;</span></span><br><span class="line">	LL arr[maxn][maxn];</span><br><span class="line">	<span class="keyword">int</span> n,m;</span><br><span class="line">	Matrix <span class="keyword">operator</span> * (<span class="keyword">const</span> Matrix &amp;b)<span class="keyword">const</span>&#123;</span><br><span class="line">		<span class="comment">// 重载运算符</span></span><br><span class="line">      	Matrix res;</span><br><span class="line">		<span class="built_in">memset</span>(res.arr,<span class="number">0</span>,<span class="keyword">sizeof</span>(res.arr));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;i++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; b.m;j++)</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>;k &lt; m;k++)&#123;</span><br><span class="line">					(res.arr[i][j] += arr[i][k] * b.arr[k][j] % MOD) %= MOD;</span><br><span class="line">				&#125;</span><br><span class="line">		res.n = n;res.m = b.m;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;a,b,ans;</span><br><span class="line"><span class="comment">// 用结构体来储存矩阵</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n,p,m;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>,&amp;n,&amp;p,&amp;m);</span><br><span class="line">	</span><br><span class="line">	a.n = n;a.m = p;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; p;j++)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;a.arr[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="comment">// 输入矩阵</span></span><br><span class="line">	b.n = p;b.m = m;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; p;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; m;j++)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;b.arr[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	ans = a * b;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; m - <span class="number">1</span>;j++)&#123;</span><br><span class="line">		    (ans.arr[i][j] += MOD) %= MOD;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%lld "</span>,ans.arr[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">		(ans.arr[i][m - <span class="number">1</span>] += MOD) %= MOD;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans.arr[i][m - <span class="number">1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 输出矩阵</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <center><small>图片 by <a href="https://simimg.com/" target="_blank" rel="noopener">simimg.com</a> </small></center>
 
 
@@ -617,7 +545,7 @@ int main(){
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

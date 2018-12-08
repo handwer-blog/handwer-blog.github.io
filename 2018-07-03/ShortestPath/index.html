@@ -401,161 +401,11 @@
 <h2 id="SPFA"><a href="#SPFA" class="headerlink" title="SPFA"></a>SPFA</h2><p>SPFA 可以处理图含有负边权的情况，同时又因为它效率较低，所以它更适合处理稀疏图</p>
 <p>这里给出数组版代码</p>
 <p>代码实现：</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;queue&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-
-const int MAXINT = 2147483647;
-const int MAXN = 2500 + 5;
-const int MAXM = 6200 + 5;
-
-struct Edge {
-  int v, next, w;
-}edge[MAXM * 2];
-
-int head[MAXN];
-int cnt;
-int dis[MAXN];
-bool inQueue[MAXN];
-
-inline void addEdge(int u, int v, int w) {
-  edge[++cnt].v = v;
-  edge[cnt].w = w;
-  edge[cnt].next = head[u];
-  head[u] = cnt;
-}
-
-inline int SPFA(int s, int t, int n) {
-  for (int i = 1; i &lt;= n; ++i) dis[i] = MAXINT;
-  dis[s] = 0;
-  inQueue[s] = true;
-  std::queue&lt;int&gt; q;
-  q.push(s);
-  while (!q.empty()) {
-    int v = q.front();
-    q.pop();
-    inQueue[v] = false;
-    for (int e = head[v]; e; e = edge[e].next) {
-      if (dis[edge[e].v] &gt; edge[e].w + dis[v]) {
-        dis[edge[e].v] = edge[e].w + dis[v];
-        if (!inQueue[edge[e].v]) {
-            q.push(edge[e].v);
-            inQueue[edge[e].v] = true;
-        }
-      }
-    }
-  }
-  return dis[t];
-}
-
-int main(int argc, char const *argv[]) {
-  int n, m, s, t;
-  /*
-    n for the nodes&#39; count
-    m for the edges&#39; count
-    s for the start node
-    t for the end node
-  */
-  scanf(&quot;%d %d %d %d\n&quot;, &amp;n, &amp;m, &amp;s, &amp;t);
-  for (int i = 0; i &lt; m; ++i) {
-    int u, v, w;
-    scanf(&quot;%d %d %d\n&quot;, &amp;u, &amp;v, &amp;w);
-    addEdge(u, v, w);
-    addEdge(v, u, w);
-  }
-  printf(&quot;%d\n&quot;, SPFA(s, t, n));
-  return 0;
-}
-
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXINT = <span class="number">2147483647</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2500</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">6200</span> + <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">  <span class="keyword">int</span> v, next, w;</span><br><span class="line">&#125;edge[MAXM * <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> head[MAXN];</span><br><span class="line"><span class="keyword">int</span> cnt;</span><br><span class="line"><span class="keyword">int</span> dis[MAXN];</span><br><span class="line"><span class="keyword">bool</span> inQueue[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">  edge[++cnt].v = v;</span><br><span class="line">  edge[cnt].w = w;</span><br><span class="line">  edge[cnt].next = head[u];</span><br><span class="line">  head[u] = cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">SPFA</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) dis[i] = MAXINT;</span><br><span class="line">  dis[s] = <span class="number">0</span>;</span><br><span class="line">  inQueue[s] = <span class="literal">true</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">  q.push(s);</span><br><span class="line">  <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">    <span class="keyword">int</span> v = q.front();</span><br><span class="line">    q.pop();</span><br><span class="line">    inQueue[v] = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> e = head[v]; e; e = edge[e].next) &#123;</span><br><span class="line">      <span class="keyword">if</span> (dis[edge[e].v] &gt; edge[e].w + dis[v]) &#123;</span><br><span class="line">        dis[edge[e].v] = edge[e].w + dis[v];</span><br><span class="line">        <span class="keyword">if</span> (!inQueue[edge[e].v]) &#123;</span><br><span class="line">            q.push(edge[e].v);</span><br><span class="line">            inQueue[edge[e].v] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> dis[t];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> n, m, s, t;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">    n for the nodes' count</span></span><br><span class="line"><span class="comment">    m for the edges' count</span></span><br><span class="line"><span class="comment">    s for the start node</span></span><br><span class="line"><span class="comment">    t for the end node</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d %d %d %d\n"</span>, &amp;n, &amp;m, &amp;s, &amp;t);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">    <span class="keyword">int</span> u, v, w;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d %d\n"</span>, &amp;u, &amp;v, &amp;w);</span><br><span class="line">    addEdge(u, v, w);</span><br><span class="line">    addEdge(v, u, w);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, SPFA(s, t, n));</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h2><p>Dijkstra 不能解决图中有负边权的情况，算法效率较高，适合在不含负边权的稠密/稀疏图中使用</p>
 <p>这里还是给出数组写法</p>
 <p>代码实现：</p>
-<pre><code class="cpp">
-#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#include &lt;queue&gt;
-#include &lt;cmath&gt;
-#define mp std::make_pair
-using namespace std;
-
-const int MAXN = 1000 + 7;
-const int MAXM = 1000000 + 7;
-const int INF = 0x7fffffff;
-
-typedef long long int ll;
-typedef std::pair&lt;int, int&gt; Pair;
-
-int n, m;
-
-inline int getint() {
-  int s = 0, x = 1;
-  char ch = getchar();
-  while (ch &gt; &#39;9&#39; || ch &lt; &#39;0&#39;) {
-    if (ch == &#39;-&#39;) x = -x;
-    ch = getchar();
-  }
-  while (ch &gt;= &#39;0&#39; &amp;&amp; ch &lt;= &#39;9&#39;) {
-    s = s * 10 + ch - &#39;0&#39;;
-    ch = getchar();
-  }
-  return s * x;
-}
-
-struct Node {
-  int v, next, w;
-}edge[MAXM];
-
-int num = 0, head[MAXN];
-
-bool inQueue[MAXN];
-
-ll dis[MAXN]; // dis[i] --&gt; the distance from i to n
-
-inline void addEdge(int u, int v, int w) {
-  edge[++num].v = v;
-  edge[num].w = w;
-  edge[num].next = head[u];
-  head[u] = num;
-}
-
-inline int dijkstra(int s, int t, int n) { // s for start, t for end, n for the count of the nodes
-  for (int i = 1; i &lt;= n; ++i) dis[i] = INF;
-  std::priority_queue&lt;std::pair&lt;int, int&gt;, std::vector&lt;std::pair&lt;int, int&gt; &gt;, std::greater&lt;std::pair&lt;int, int&gt; &gt; &gt; q;
-  inQueue[s] = true;
-  dis[1] = 0;
-  q.push(mp(s,0)); 
-  while (!q.empty()) {
-    int v = q.top().first;
-    int value = q.top().second;
-    q.pop();
-    for (int e = head[v]; e; e = edge[e].next) {
-      if (dis[edge[e].v] &gt; value + edge[e].w) {
-        dis[edge[e].v] = (value + edge[e].w) ; 
-        q.push(mp(edge[e].v, dis[edge[e].v]));
-      }
-    }
-  }
-  return dis[t];
-}
-
-int main(int argc, char const *argv[]) {
-  n = getint(), m = getint();
-  for (int i = 0; i &lt; m; ++i) {
-    int x, y, z;
-    x = getint(), y = getint(), z = getint();
-    addEdge(x, y, z);
-  }
-  printf(&quot;%d\n&quot;, dijkstra(1, n, n)); 
-  return 0;
-}
-
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp std::make_pair</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1000</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">1000000</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x7fffffff</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; Pair;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">char</span> ch = getchar();</span><br><span class="line">  <span class="keyword">while</span> (ch &gt; <span class="string">'9'</span> || ch &lt; <span class="string">'0'</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = -x;</span><br><span class="line">    ch = getchar();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (ch &gt;= <span class="string">'0'</span> &amp;&amp; ch &lt;= <span class="string">'9'</span>) &#123;</span><br><span class="line">    s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">    ch = getchar();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">  <span class="keyword">int</span> v, next, w;</span><br><span class="line">&#125;edge[MAXM];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> num = <span class="number">0</span>, head[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> inQueue[MAXN];</span><br><span class="line"></span><br><span class="line">ll dis[MAXN]; <span class="comment">// dis[i] --&gt; the distance from i to n</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">  edge[++num].v = v;</span><br><span class="line">  edge[num].w = w;</span><br><span class="line">  edge[num].next = head[u];</span><br><span class="line">  head[u] = num;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t, <span class="keyword">int</span> n)</span> </span>&#123; <span class="comment">// s for start, t for end, n for the count of the nodes</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) dis[i] = INF;</span><br><span class="line">  <span class="built_in">std</span>::priority_queue&lt;<span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt;, <span class="built_in">std</span>::greater&lt;<span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt; &gt; q;</span><br><span class="line">  inQueue[s] = <span class="literal">true</span>;</span><br><span class="line">  dis[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">  q.push(mp(s,<span class="number">0</span>)); </span><br><span class="line">  <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">    <span class="keyword">int</span> v = q.top().first;</span><br><span class="line">    <span class="keyword">int</span> value = q.top().second;</span><br><span class="line">    q.pop();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> e = head[v]; e; e = edge[e].next) &#123;</span><br><span class="line">      <span class="keyword">if</span> (dis[edge[e].v] &gt; value + edge[e].w) &#123;</span><br><span class="line">        dis[edge[e].v] = (value + edge[e].w) ; </span><br><span class="line">        q.push(mp(edge[e].v, dis[edge[e].v]));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> dis[t];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span> </span>&#123;</span><br><span class="line">  n = getint(), m = getint();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">    <span class="keyword">int</span> x, y, z;</span><br><span class="line">    x = getint(), y = getint(), z = getint();</span><br><span class="line">    addEdge(x, y, z);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, dijkstra(<span class="number">1</span>, n, n)); </span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -702,7 +552,7 @@ int main(int argc, char const *argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

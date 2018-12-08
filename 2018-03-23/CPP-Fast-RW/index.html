@@ -388,31 +388,9 @@
 <p>比某记者还快！</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="C-快速读入、输出"><a href="#C-快速读入、输出" class="headerlink" title="C++ 快速读入、输出"></a>C++ 快速读入、输出</h2><h4 id="在-C-上实现快速读入模板，这里是一个读取int-的示例。"><a href="#在-C-上实现快速读入模板，这里是一个读取int-的示例。" class="headerlink" title="在 C++ 上实现快速读入模板，这里是一个读取int 的示例。"></a>在 C++ 上实现快速读入模板，这里是一个读取int 的示例。</h4><pre><code class="cpp">inline int Quick_Read(){
-    int s = 0,w = 1;
-    char ch = getchar();
-    while (ch &lt;= &#39;0&#39; || ch &gt; &#39;9&#39;){
-        if (ch == &#39;-&#39;) w = -1;
-        ch = getchar();
-    }
-    while (ch &gt;= &#39;0&#39; &amp;&amp; ch &lt;= &#39;9&#39;) s = s * 10 + ch - &#39;0&#39; , ch = getchar();
-    return s * w;
-}
-// 本代码来自 wyh&#39;s Blog
-// 地址: aor.sd.cn
-</code></pre>
+<h2 id="C-快速读入、输出"><a href="#C-快速读入、输出" class="headerlink" title="C++ 快速读入、输出"></a>C++ 快速读入、输出</h2><h4 id="在-C-上实现快速读入模板，这里是一个读取int-的示例。"><a href="#在-C-上实现快速读入模板，这里是一个读取int-的示例。" class="headerlink" title="在 C++ 上实现快速读入模板，这里是一个读取int 的示例。"></a>在 C++ 上实现快速读入模板，这里是一个读取int 的示例。</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Quick_Read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>,w = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (ch &lt;= <span class="string">'0'</span> || ch &gt; <span class="string">'9'</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>) w = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (ch &gt;= <span class="string">'0'</span> &amp;&amp; ch &lt;= <span class="string">'9'</span>) s = s * <span class="number">10</span> + ch - <span class="string">'0'</span> , ch = getchar();</span><br><span class="line">    <span class="keyword">return</span> s * w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 本代码来自 wyh's Blog</span></span><br><span class="line"><span class="comment">// 地址: aor.sd.cn</span></span><br></pre></td></tr></table></figure>
 <hr>
-<h4 id="在-C-上实现快速输出模板，这里是一个输出int-的示例。"><a href="#在-C-上实现快速输出模板，这里是一个输出int-的示例。" class="headerlink" title="在 C++ 上实现快速输出模板，这里是一个输出int 的示例。"></a>在 C++ 上实现快速输出模板，这里是一个输出int 的示例。</h4><pre><code class="cpp">inline void Quick_Write(int x){
-  if (x &lt; 0){
-    putchar(&#39;-&#39;);
-    re = -re;
-  }
-  // 判断负数
-  if (x &gt; 9) Quick_Write(x/10);
-  // 判断是否大于10
-  putchar(x%10 + &#39;0&#39;);
-}
-</code></pre>
+<h4 id="在-C-上实现快速输出模板，这里是一个输出int-的示例。"><a href="#在-C-上实现快速输出模板，这里是一个输出int-的示例。" class="headerlink" title="在 C++ 上实现快速输出模板，这里是一个输出int 的示例。"></a>在 C++ 上实现快速输出模板，这里是一个输出int 的示例。</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Quick_Write</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (x &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">    re = -re;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 判断负数</span></span><br><span class="line">  <span class="keyword">if</span> (x &gt; <span class="number">9</span>) Quick_Write(x/<span class="number">10</span>);</span><br><span class="line">  <span class="comment">// 判断是否大于10</span></span><br><span class="line">  <span class="built_in">putchar</span>(x%<span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -557,7 +535,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

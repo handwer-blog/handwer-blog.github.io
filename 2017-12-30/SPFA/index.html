@@ -389,80 +389,7 @@
 </blockquote>
 <a id="more"></a>
 <h1 id="算法实现："><a href="#算法实现：" class="headerlink" title="算法实现："></a>算法实现：</h1><p>我们用数组d记录每个结点的最短路径估计值，而且用邻接表来存储图G。运用动态逼近法：设立一个先进先出的队列用来保存待优化的结点，优化时每次取出队首结点u，并且用u点当前的最短路径估计值对离开u点所指向的结点v进行松弛操作，如果v点的最短路径估计值有所调整，且v点不在当前的队列中，就将v点放入队尾。这样不断从队列中取出结点来进行操作，直至队列空为止。</p>
-<h1 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h1><pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstdlib&gt;
-#include &lt;cstring&gt;
-#include &lt;queue&gt;
-using namespace std;
-
-#define MAXN 2500 + 5
-#define DEBUG(x) cerr &lt;&lt; #x &lt;&lt; &#39;=&#39; &lt;&lt; x
-
-const int Inf = 2e31-1;
-
-struct Node;
-struct Edge;
-struct Node{
-    Edge *firstEdge;
-    int dist;
-    bool inQueue;
-} node[MAXN];
-
-struct Edge{
-    Node *s,*t;
-    int w;
-    Edge *next;
-
-    Edge(Node *s,Node *t,int w) : s(s),t(t),w(w),next(s-&gt;firstEdge){}
-};
-
-inline void add(const int &amp;s,const int &amp;t,const int &amp;w){
-  node[s].firstEdge = new Edge(&amp;node[s],&amp;node[t],w);
-  node[t].firstEdge = new Edge(&amp;node[t],&amp;node[s],w);
-}
-
-inline int spfa(const int &amp;s,const int &amp;t,const int &amp;n){
-  for (int i = 1;i &lt;= n;i++){
-    node[i].dist = Inf;
-    node[i].inQueue = false; //将所有节点的在队列的情况设为false
-  }
-  queue&lt;Node *&gt; q;
-  q.push(&amp;node[s]);
-  node[s].dist = 0;
-  node[s].inQueue = true;
-  while (!q.empty()){
-    Node *u = q.front();
-    q.pop();
-        u-&gt;inQueue = false;
-
-        for (Edge *e = u-&gt;firstEdge;e;e = e-&gt;next){
-            Node *v = e-&gt;t;
-            if (v-&gt;dist &gt; u-&gt;dist + e-&gt;w){
-                v-&gt;dist = u-&gt;dist + e-&gt;w;
-                if (!v-&gt;inQueue){
-                    q.push(v);
-                    v-&gt;inQueue = true;
-                }
-            }
-        }
-    }
-    return node[t].dist;
-}
-
-int main(int argc, char const *argv[]) {
-  int n,m,s,t;
-    scanf(&quot;%d %d %d %d&quot;,&amp;n,&amp;m,&amp;s,&amp;t);
-    for (int i = 1;i &lt;= m;i++){
-        int u,v,w;
-        scanf(&quot;%d %d %d&quot;,&amp;u,&amp;v,&amp;w);
-        add(u,v,w);
-    }
-    printf(&quot;%d&quot;,spfa(s,t,n));
-  return 0;
-}
-
-</code></pre>
+<h1 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 2500 + 5</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG(x) cerr &lt;&lt; #x &lt;&lt; <span class="meta-string">'='</span> &lt;&lt; x</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> Inf = <span class="number">2e31</span><span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	Edge *firstEdge;</span><br><span class="line">	<span class="keyword">int</span> dist;</span><br><span class="line">	<span class="keyword">bool</span> inQueue;</span><br><span class="line">&#125; node[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">	Node *s,*t;</span><br><span class="line">	<span class="keyword">int</span> w;</span><br><span class="line">	Edge *next;</span><br><span class="line"></span><br><span class="line">	Edge(Node *s,Node *t,<span class="keyword">int</span> w) : s(s),t(t),w(w),next(s-&gt;firstEdge)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;s,<span class="keyword">const</span> <span class="keyword">int</span> &amp;t,<span class="keyword">const</span> <span class="keyword">int</span> &amp;w)</span></span>&#123;</span><br><span class="line">  node[s].firstEdge = <span class="keyword">new</span> Edge(&amp;node[s],&amp;node[t],w);</span><br><span class="line">  node[t].firstEdge = <span class="keyword">new</span> Edge(&amp;node[t],&amp;node[s],w);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">spfa</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;s,<span class="keyword">const</span> <span class="keyword">int</span> &amp;t,<span class="keyword">const</span> <span class="keyword">int</span> &amp;n)</span></span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">    node[i].dist = Inf;</span><br><span class="line">    node[i].inQueue = <span class="literal">false</span>; <span class="comment">//将所有节点的在队列的情况设为false</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">queue</span>&lt;Node *&gt; q;</span><br><span class="line">  q.push(&amp;node[s]);</span><br><span class="line">  node[s].dist = <span class="number">0</span>;</span><br><span class="line">  node[s].inQueue = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">while</span> (!q.empty())&#123;</span><br><span class="line">    Node *u = q.front();</span><br><span class="line">    q.pop();</span><br><span class="line">		u-&gt;inQueue = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (Edge *e = u-&gt;firstEdge;e;e = e-&gt;next)&#123;</span><br><span class="line">			Node *v = e-&gt;t;</span><br><span class="line">			<span class="keyword">if</span> (v-&gt;dist &gt; u-&gt;dist + e-&gt;w)&#123;</span><br><span class="line">				v-&gt;dist = u-&gt;dist + e-&gt;w;</span><br><span class="line">				<span class="keyword">if</span> (!v-&gt;inQueue)&#123;</span><br><span class="line">					q.push(v);</span><br><span class="line">					v-&gt;inQueue = <span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> node[t].dist;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> n,m,s,t;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %d %d %d"</span>,&amp;n,&amp;m,&amp;s,&amp;t);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= m;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> u,v,w;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>,&amp;u,&amp;v,&amp;w);</span><br><span class="line">		add(u,v,w);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,spfa(s,t,n));</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -607,7 +534,7 @@ int main(int argc, char const *argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

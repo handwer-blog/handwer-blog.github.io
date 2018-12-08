@@ -397,100 +397,16 @@
 <p>接下来m行是对每条道路的描述，u, v, c表示交叉路口u和v之间有道路相连，分值为c。(1≤n≤300，1≤c≤10000，1≤m≤50000)</p>
 <p><strong>输出格式</strong>：</p>
 <p>两个整数s, max，表示你选出了几条道路，分值最大的那条道路的分值是多少。</p>
-<p>输入样例#1：</p>
-<pre><code>4 5
-1 2 3
-1 4 5
-2 4 7
-2 3 6
-3 4 8
-</code></pre><p>输出样例#1：</p>
-<pre><code>3 6
-</code></pre><h2 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h2><p>前面已经提到过，</p>
+<p>输入样例#1：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">4 </span><span class="number">5</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">4</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">4</span> <span class="number">7</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span> <span class="number">6</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">4</span> <span class="number">8</span></span><br></pre></td></tr></table></figure></p>
+<p>输出样例#1：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">3 </span><span class="number">6</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h2><p>前面已经提到过，</p>
 <p>$1 \le n \le 300, 1 \le c \le 10000, 1 \le m \le 50000$</p>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>「1．改造的那些道路能够把所有的交叉路口直接或间接的连通起来。」</p>
 <p>显然这是一道<strong>最小生成树</strong>的题目</p>
 <p>但是题目中并没有要求输出最小的总权值，而是要输出最长边边权</p>
 <p>所以它和裸的最小生成树还是有一些区别的</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p><a href="https://www.luogu.org/record/show?rid=8135156" target="_blank" rel="noopener">评测记录 AC</a></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;queue&gt;
-#include &lt;algorithm&gt;
-#include &lt;cctype&gt;
-using namespace std;
-
-const int MAXN = 300 + 10;
-const int MAXM = 50000 + 10;
-
-int U[MAXN];
-
-int cnt;
-int cntTree;
-
-int n, m;
-
-struct Edge {
-    int prev, next, w;
-} edge[MAXM * 2];
-
-inline int getint() {
-    int s = 0, x = 1;
-    char ch = getchar();
-    while (!isdigit(ch)) {
-        if (ch == &#39;-&#39;) x = -1;
-        ch = getchar();
-    }
-    while (isdigit(ch)) {
-        s = s * 10 + ch - &#39;0&#39;;
-        ch = getchar();
-    }
-    return s * x;
-}
-
-bool sortCmp(Edge x, Edge y) {
-    return x.w &lt; y.w;
-}
-
-inline int Find(int x) {
-    if (U[x] == x) return x;
-    return U[x] = Find(U[x]);
-}
-
-int Kruskal() {
-    int ret = -1;
-    int treeAns = 0;
-    sort(edge + 1, edge + 1 + m, sortCmp);
-    for (int i = 1; i &lt;= MAXN; ++i) U[i] = i;
-    for (int i = 1; i &lt;= m; ++i) {
-        int eprev = Find(edge[i].prev);
-        int enext = Find(edge[i].next);
-        if (eprev == enext) continue;
-        treeAns += edge[i].w;
-        U[eprev] = enext;
-        ret = max(ret, edge[i].w); // 更新权值
-        ++cntTree;
-        if (cntTree == n - 1) break;
-    }
-    return ret;
-}
-
-int main(int argc, char *const argv[]) {
-    n = getint(), m = getint();
-    for (int i = 1; i &lt;= m; ++i) {
-        int v = getint(), next = getint(), w = getint();
-        edge[i].prev = v;
-        edge[i].next = next;
-        edge[i].w = w;
-    }
-    int ans = Kruskal();
-    printf(&quot;%d %d&quot;, n - 1, ans);
-    // 显而易见，生成的树肯定有 n - 1 条边，所以直接输出 n - 1 就好
-    return 0;
-}
-
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">300</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">50000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> U[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> cnt;</span><br><span class="line"><span class="keyword">int</span> cntTree;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> prev, next, w;</span><br><span class="line">&#125; edge[MAXM * <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">sortCmp</span><span class="params">(Edge x, Edge y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x.w &lt; y.w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (U[x] == x) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">return</span> U[x] = Find(U[x]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Kruskal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> treeAns = <span class="number">0</span>;</span><br><span class="line">    sort(edge + <span class="number">1</span>, edge + <span class="number">1</span> + m, sortCmp);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= MAXN; ++i) U[i] = i;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> eprev = Find(edge[i].prev);</span><br><span class="line">        <span class="keyword">int</span> enext = Find(edge[i].next);</span><br><span class="line">        <span class="keyword">if</span> (eprev == enext) <span class="keyword">continue</span>;</span><br><span class="line">        treeAns += edge[i].w;</span><br><span class="line">        U[eprev] = enext;</span><br><span class="line">        ret = max(ret, edge[i].w); <span class="comment">// 更新权值</span></span><br><span class="line">        ++cntTree;</span><br><span class="line">        <span class="keyword">if</span> (cntTree == n - <span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    n = getint(), m = getint();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = getint(), next = getint(), w = getint();</span><br><span class="line">        edge[i].prev = v;</span><br><span class="line">        edge[i].next = next;</span><br><span class="line">        edge[i].w = w;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> ans = Kruskal();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %d"</span>, n - <span class="number">1</span>, ans);</span><br><span class="line">    <span class="comment">// 显而易见，生成的树肯定有 n - 1 条边，所以直接输出 n - 1 就好</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -643,7 +559,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

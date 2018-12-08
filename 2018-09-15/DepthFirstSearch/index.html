@@ -391,123 +391,21 @@
 <h2 id="洛谷P1605-迷宫"><a href="#洛谷P1605-迷宫" class="headerlink" title="洛谷P1605 迷宫"></a>洛谷P1605 迷宫</h2><p><a href="https://www.luogu.org/problemnew/show/P1605" target="_blank" rel="noopener">题目地址</a></p>
 <p>DFS 入门题</p>
 <p>用一个数组<code>mp</code>存图，<code>vis</code>记录是否经过了这个点</p>
-<pre><code>mp[i][j] = 0 表示有障碍
-mp[i][j] = 1 表示没有障碍
-</code></pre><p>用一个函数<code>dfs(x, y)</code>来搜索</p>
-<pre><code>当坐标为终点时，直接return，方案数++
-
-如果这个点没被访问过，而且这个点没有障碍，就把这个点设为访问过，然后dfs这个点
-</code></pre><p>要注意的是起始点是访问过的</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mp[<span class="string">i</span>][<span class="symbol">j</span>] = 0 表示有障碍</span><br><span class="line">mp[<span class="string">i</span>][<span class="symbol">j</span>] = 1 表示没有障碍</span><br></pre></td></tr></table></figure>
+<p>用一个函数<code>dfs(x, y)</code>来搜索</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当坐标为终点时，直接<span class="keyword">return</span>，方案数++</span><br><span class="line"></span><br><span class="line">如果这个点没被访问过，而且这个点没有障碍，就把这个点设为访问过，然后dfs这个点</span><br></pre></td></tr></table></figure>
+<p>要注意的是起始点是访问过的</p>
 <p><strong>代码实现：</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-using namespace std;
-
-bool vis[6 + 2][6 + 2];
-int mp[6 + 2][6 + 2];
-
-const int dx[4] = {0, 0, 1, -1};
-const int dy[4] = {-1, 1, 0, 0};
-
-int tot, endx, endy, stx, sty, n, m, t;
-
-void dfs(int x, int y) {
-    if (x == endx &amp;&amp; y == endy) {
-        ++tot;
-        return;
-    }
-    for (int i = 0; i &lt; 4; ++i) {
-        int nowx = x + dx[i];
-        int nowy = y + dy[i];
-        if (!vis[nowx][nowy] &amp;&amp; mp[nowx][nowy]) {
-            vis[nowx][nowy] = true;
-            dfs(nowx, nowy);
-            vis[nowx][nowy] = false;
-        }
-    }
-}
-
-int main(int argc, char *const argv[]) {
-    cin &gt;&gt; n &gt;&gt; m &gt;&gt; t;
-    for (int i = 1; i &lt;= n; ++i) {
-        for (int j = 1; j &lt;= m; ++j) {
-            mp[i][j] = (int) true;
-        }
-    }
-    cin &gt;&gt; stx &gt;&gt; sty;
-    cin &gt;&gt; endx &gt;&gt; endy;
-    for (int i = 1; i &lt;= t; ++i) {
-        int l, r;
-        cin &gt;&gt; l &gt;&gt; r;
-        mp[l][r] = false;
-    }
-    vis[stx][sty] = true;
-    dfs(stx, sty);
-    cout &lt;&lt; tot &lt;&lt; endl;
-    return 0;
-}
-
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">6</span> + <span class="number">2</span>][<span class="number">6</span> + <span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> mp[<span class="number">6</span> + <span class="number">2</span>][<span class="number">6</span> + <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dx[<span class="number">4</span>] = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">-1</span>&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dy[<span class="number">4</span>] = &#123;<span class="number">-1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> tot, endx, endy, stx, sty, n, m, t;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == endx &amp;&amp; y == endy) &#123;</span><br><span class="line">        ++tot;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> nowx = x + dx[i];</span><br><span class="line">        <span class="keyword">int</span> nowy = y + dy[i];</span><br><span class="line">        <span class="keyword">if</span> (!vis[nowx][nowy] &amp;&amp; mp[nowx][nowy]) &#123;</span><br><span class="line">            vis[nowx][nowy] = <span class="literal">true</span>;</span><br><span class="line">            dfs(nowx, nowy);</span><br><span class="line">            vis[nowx][nowy] = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m &gt;&gt; t;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">            mp[i][j] = (<span class="keyword">int</span>) <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; stx &gt;&gt; sty;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; endx &gt;&gt; endy;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= t; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> l, r;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; l &gt;&gt; r;</span><br><span class="line">        mp[l][r] = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    vis[stx][sty] = <span class="literal">true</span>;</span><br><span class="line">    dfs(stx, sty);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; tot &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="洛谷P1162-填涂颜色"><a href="#洛谷P1162-填涂颜色" class="headerlink" title="洛谷P1162 填涂颜色"></a>洛谷P1162 填涂颜色</h2><p><a href="https://www.luogu.org/problemnew/show/P1162" target="_blank" rel="noopener">题目地址</a></p>
 <p>本来这是一道 BFS 的题</p>
 <p>但是有一种<del>玄学的</del>做法可以用 DFS</p>
 <p>首先开两个<code>mp</code>存图，输入1时在第一个<code>mp</code>里存1，在第二个<code>mp</code>里存-1</p>
 <p>具体就是搜索边界（每一行的第一个和第n个，每一列的第一个和第n个），在搜索的同时更新第一个<code>mp</code>为1</p>
 <p>搜索完了就进行判断输出</p>
-<pre><code class="wei">当第二个mp[i][j]为-1时输出1
-否则当第一个mp[i][j]为1时就输出2（被更新过了）
-否则输出0
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当第二个mp[i][j]为-1时输出1</span><br><span class="line">否则当第一个mp[i][j]为1时就输出2（被更新过了）</span><br><span class="line">否则输出0</span><br></pre></td></tr></table></figure>
 <p><strong>代码实现：</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-using namespace std;
-
-const int MAXN = 30 + 5;
-
-int mp[MAXN][MAXN];
-int orz[MAXN][MAXN];
-int n;
-
-void dfs(int x, int y) {
-    if (x &gt; n || x &lt; 1 || y &gt; n || y &lt; 1 || mp[x][y] != 0) return;
-    mp[x][y] = true;
-    dfs(x+1, y);
-    dfs(x-1, y);
-    dfs(x, y+1);
-    dfs(x, y-1);
-}
-
-int main(int argc, char *const argv[]) {
-    cin &gt;&gt; n;
-    for (int i = 1; i &lt;= n; ++i) {
-        for (int j = 1; j &lt;= n; ++j) {
-            cin &gt;&gt; mp[i][j];
-            if (mp[i][j] == 1) orz[i][j] = -1;
-        }
-    }
-    for (int i = 1; i &lt;= n; ++i) {
-        if (mp[i][1] != 1) dfs(i, 1);
-        if (mp[i][n] != 1) dfs(i, n);
-    }
-    for (int i = 1; i &lt;= n; ++i) {
-        if (mp[1][i] != 1) dfs(1, i);
-        if (mp[n][i] != 1) dfs(n, i);
-    }
-    for (int i = 1; i &lt;= n; ++i) {
-        for (int j = 1; j &lt;= n; ++j) {
-            if (orz[i][j] == -1) cout &lt;&lt; 1 &lt;&lt; &#39; &#39;;
-            else if (mp[i][j] == 0) cout &lt;&lt; 2 &lt;&lt; &#39; &#39;;
-            else cout &lt;&lt; 0 &lt;&lt; &#39; &#39;;
-        }
-        puts(&quot;&quot;);
-    }
-    return 0;
-}
-
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">30</span> + <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> mp[MAXN][MAXN];</span><br><span class="line"><span class="keyword">int</span> orz[MAXN][MAXN];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &gt; n || x &lt; <span class="number">1</span> || y &gt; n || y &lt; <span class="number">1</span> || mp[x][y] != <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">    mp[x][y] = <span class="literal">true</span>;</span><br><span class="line">    dfs(x+<span class="number">1</span>, y);</span><br><span class="line">    dfs(x<span class="number">-1</span>, y);</span><br><span class="line">    dfs(x, y+<span class="number">1</span>);</span><br><span class="line">    dfs(x, y<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) &#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; mp[i][j];</span><br><span class="line">            <span class="keyword">if</span> (mp[i][j] == <span class="number">1</span>) orz[i][j] = <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mp[i][<span class="number">1</span>] != <span class="number">1</span>) dfs(i, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (mp[i][n] != <span class="number">1</span>) dfs(i, n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mp[<span class="number">1</span>][i] != <span class="number">1</span>) dfs(<span class="number">1</span>, i);</span><br><span class="line">        <span class="keyword">if</span> (mp[n][i] != <span class="number">1</span>) dfs(n, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (orz[i][j] == <span class="number">-1</span>) <span class="built_in">cout</span> &lt;&lt; <span class="number">1</span> &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (mp[i][j] == <span class="number">0</span>) <span class="built_in">cout</span> &lt;&lt; <span class="number">2</span> &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="number">0</span> &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -658,7 +556,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

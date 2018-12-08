@@ -395,19 +395,13 @@
 <p>The third line contains n n integers $b_1, b_2, \dots, b_n~(1 \le b_i \le n)$ denoting the steps Vasya is going to perform.</p>
 <p>All numbers $a_1 \dots a_n$ are distinct, the same goes for $b_1 \dots b_n$ .</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>Print $n$ integers. The $i$ -th of them should be equal to the number of books Vasya moves to his backpack during the $i$ -th step.</p>
-<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="1"><a href="#1" class="headerlink" title="#1"></a>#1</h2><pre><code>3
-1 2 3
-2 1 3
-</code></pre><pre><code>2 0 1 
-</code></pre><h2 id="2"><a href="#2" class="headerlink" title="#2"></a>#2</h2><pre><code>5
-3 1 4 2 5
-4 5 1 3 2
-</code></pre><pre><code>3 2 0 0 0 
-</code></pre><h2 id="3"><a href="#3" class="headerlink" title="#3"></a>#3</h2><pre><code>6
-6 5 4 3 2 1
-6 5 3 4 2 1
-</code></pre><pre><code>1 1 2 0 1 1 
-</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>本文同步发布于<a href="https://www.luogu.org/blog/handwer-blog/solution-cf1073b" target="_blank" rel="noopener">洛谷博客</a></p>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="1"><a href="#1" class="headerlink" title="#1"></a>#1</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">1</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">2 </span><span class="number">0</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h2 id="2"><a href="#2" class="headerlink" title="#2"></a>#2</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">1</span> <span class="number">4</span> <span class="number">2</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">5</span> <span class="number">1</span> <span class="number">3</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">3 </span><span class="number">2</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h2 id="3"><a href="#3" class="headerlink" title="#3"></a>#3</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">6</span></span><br><span class="line"><span class="symbol">6 </span><span class="number">5</span> <span class="number">4</span> <span class="number">3</span> <span class="number">2</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">6 </span><span class="number">5</span> <span class="number">3</span> <span class="number">4</span> <span class="number">2</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span><span class="number">1</span> <span class="number">2</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>本文同步发布于<a href="https://www.luogu.org/blog/handwer-blog/solution-cf1073b" target="_blank" rel="noopener">洛谷博客</a></p>
 <p>粗略看了一下 貌似没人和我的解法相同</p>
 <p>那就来写一发题解吧</p>
 <p>在读入的时候 我们用另一个数组<code>lead[i]</code>来存编号为<code>i</code>的书在<strong>读入的数组<code>book[]</code></strong>的下标</p>
@@ -423,52 +417,7 @@
 <p>最后<code>orin - now</code>即为答案</p>
 <hr>
 <p>代码实现：</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-#include &lt;cstdio&gt;
-#include &lt;string&gt;
-#include &lt;stack&gt;
-
-using std::cin;
-using std::cout;
-using std::endl;
-using std::string;
-
-const int MAXN = 2e5 + 10;
-
-int n;
-int book[MAXN];
-int lead[MAXN];
-bool vis[MAXN];
-
-int now = 0;
-
-int main() {
-    scanf(&quot;%d&quot;, &amp;n);
-    for (int i = 1; i &lt;= n; ++i) {
-        scanf(&quot;%d&quot;, book + i);
-        lead[book[i]] = i;
-        // 让lead[]作为book[]的索引，查找的时候快一些
-    }
-    for (int i = 1; i &lt;= n; ++i) {
-        int o;
-        scanf(&quot;%d&quot;, &amp;o);
-        if (vis[lead[o]]) printf(&quot;0 &quot;);
-        // 被弹过了，输出0
-        else {
-            int orin = now;
-            while (book[++now] != o) {
-                vis[now] = true;
-                // 循环更新vis（弹出书本）
-            }
-            vis[now] = true;
-            printf(&quot;%d &quot;, now - orin);
-        }
-    }
-    return 0;
-}
-
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> book[MAXN];</span><br><span class="line"><span class="keyword">int</span> lead[MAXN];</span><br><span class="line"><span class="keyword">bool</span> vis[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> now = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, book + i);</span><br><span class="line">        lead[book[i]] = i;</span><br><span class="line">        <span class="comment">// 让lead[]作为book[]的索引，查找的时候快一些</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> o;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;o);</span><br><span class="line">        <span class="keyword">if</span> (vis[lead[o]]) <span class="built_in">printf</span>(<span class="string">"0 "</span>);</span><br><span class="line">        <span class="comment">// 被弹过了，输出0</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> orin = now;</span><br><span class="line">            <span class="keyword">while</span> (book[++now] != o) &#123;</span><br><span class="line">                vis[now] = <span class="literal">true</span>;</span><br><span class="line">                <span class="comment">// 循环更新vis（弹出书本）</span></span><br><span class="line">            &#125;</span><br><span class="line">            vis[now] = <span class="literal">true</span>;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d "</span>, now - orin);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><del>总感觉自己的代码能被 Hack</del></p>
 
       
@@ -534,8 +483,8 @@ int main() {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019-10-31/BulletinBoard/" rel="prev" title="公告栏">
-                公告栏 <i class="fa fa-chevron-right"></i>
+              <a href="/2018-12-08/UVA10004-Bipartite-Graph-Coloring/" rel="prev" title="二分图染色学习笔记">
+                二分图染色学习笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -620,7 +569,7 @@ int main() {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -402,43 +402,15 @@
 <h1 id="输入描述-amp-样例"><a href="#输入描述-amp-样例" class="headerlink" title="输入描述&amp;样例"></a>输入描述&amp;样例</h1><p>无输入</p>
 <h1 id="输出描述-amp-样例"><a href="#输出描述-amp-样例" class="headerlink" title="输出描述&amp;样例"></a>输出描述&amp;样例</h1><p>输出$π$，要求保留<strong>至少</strong>4000位小数。</p>
 <p>样例：</p>
-<pre><code>3141592653589793......
-</code></pre><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>时限为5000ms</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3141592653589793<span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span></span><br></pre></td></tr></table></figure>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>时限为5000ms</p>
 <h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>我们需要找到一个合适、可靠且快速的圆周率计算公式</p>
 <p>我选择了基于级数的快速收敛公式</p>
 <p>这是一个很快、精度也很高的算法</p>
 <p>公式为：</p>
 <p><img src="https://s1.ax2x.com/2018/04/01/tlkra.png" alt="tlkra.png"></p>
 <p>（懒得写MathJax码了</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;string&gt;
-using namespace std;
-
-long long n = 16366;
-long long d[16366 + 2];
-
-int main() {
-    ios::sync_with_stdio(false);
-    double cost;
-    long long  i = 0;
-    while (n - i) d[++i] = 2000;
-    for (;n;n -= 14) {
-        long long p;
-        for (p = 0,i = n;i;i--) {
-            p = p * i + d[i] * 10000;
-            d[i] = p % (2 * i - 1);
-            p /= 2 * i - 1;
-        }
-        printf(&quot;%.4d&quot;,d[0] + p / 10000);
-        d[0] = p % 10000;
-    }
-    return 0;
-}
-
-
-</code></pre>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n = <span class="number">16366</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> d[<span class="number">16366</span> + <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="keyword">double</span> cost;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span>  i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (n - i) d[++i] = <span class="number">2000</span>;</span><br><span class="line">	<span class="keyword">for</span> (;n;n -= <span class="number">14</span>) &#123;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> p;</span><br><span class="line">		<span class="keyword">for</span> (p = <span class="number">0</span>,i = n;i;i--) &#123;</span><br><span class="line">			p = p * i + d[i] * <span class="number">10000</span>;</span><br><span class="line">			d[i] = p % (<span class="number">2</span> * i - <span class="number">1</span>);</span><br><span class="line">			p /= <span class="number">2</span> * i - <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%.4d"</span>,d[<span class="number">0</span>] + p / <span class="number">10000</span>);</span><br><span class="line">		d[<span class="number">0</span>] = p % <span class="number">10000</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -585,7 +557,7 @@ int main() {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

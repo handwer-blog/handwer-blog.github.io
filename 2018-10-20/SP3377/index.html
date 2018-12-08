@@ -394,97 +394,19 @@
 <p>他为每一只虫子都标上了序号。</p>
 <p>通过这个奇怪的ke学家的研究，找出了在这些虫子中的所有关系的虫子，题目询问在这么多有关系的虫子中是否存在“同性恋”。</p>
 <h1 id="输入格式-amp-样例"><a href="#输入格式-amp-样例" class="headerlink" title="输入格式 &amp; 样例"></a>输入格式 &amp; 样例</h1><p>第一行， 输入一个数，表示有t组数据<br>对于每组数据，第一行输入n,m，表示有n只虫子，有m个关系<br>接下来行每行两个数x,y，表示x,y有关系</p>
-<pre><code>2
-3 3
-1 2
-2 3
-1 3
-4 2
-1 2
-3 4    
-</code></pre><h1 id="输出格式-amp-样例"><a href="#输出格式-amp-样例" class="headerlink" title="输出格式 &amp; 样例"></a>输出格式 &amp; 样例</h1><p>对于每一组数据： <br><br>先输出：”Scenario #i” ，表示第i组数据 <br><br>然后如果有同性恋的输出”Suspicious bugs found!” <br><br>否则输出”No suspicious bugs found!” <br></p>
-<pre><code>Scenario #1:
-Suspicious bugs found!
-Scenario #2:
-No suspicious bugs found!
-</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>显然这是一个并查集，但并不是一个裸的并查集</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h1 id="输出格式-amp-样例"><a href="#输出格式-amp-样例" class="headerlink" title="输出格式 &amp; 样例"></a>输出格式 &amp; 样例</h1><p>对于每一组数据： <br><br>先输出：”Scenario #i” ，表示第i组数据 <br><br>然后如果有同性恋的输出”Suspicious bugs found!” <br><br>否则输出”No suspicious bugs found!” <br></p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Scenario </span><span class="comment">#1:</span></span><br><span class="line">Suspicious <span class="keyword">bugs </span>found!</span><br><span class="line"><span class="keyword">Scenario </span><span class="comment">#2:</span></span><br><span class="line">No suspicious <span class="keyword">bugs </span>found!</span><br></pre></td></tr></table></figure>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>显然这是一个并查集，但并不是一个裸的并查集</p>
 <p>我们要多维护一个数组<code>rel[]</code>，其中<code>rel[i]</code>表示<code>i</code>和它的祖先的关系（relative）。我们定义<code>rel[i]</code>表示两种性别，当根节点相同且<code>rel[]</code>相同时，它们就是同性恋</p>
 <p><code>rel[]</code>的更新方式：</p>
-<pre><code>(in Find(x))
-rel[x] = (rel[x] + rel[U[x]]) % 2;
-</code></pre><pre><code>(in Union(x, y))
-int fx = Find(x), fy = Find(y);
-...
-rel[fx] = (rel[x] + rel[y] + 1) % 2;
-</code></pre><p><code>rel[]</code>的判断方式：</p>
-<pre><code>(in Union(x, y))
-if (fx == fy) {
-    if (rel[x] == rel[y]) suspiciousFound = true;
-    return;
-}
-</code></pre><p>剩下的照常写就行</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(in <span class="symbol">Find</span>(x))</span><br><span class="line">rel[x] = (rel[x] + rel[<span class="symbol">U</span>[x]]) <span class="comment">% 2;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">in</span> Union(x, y))</span><br><span class="line">int fx = <span class="builtin-name">Find</span>(x), fy = <span class="builtin-name">Find</span>(y);</span><br><span class="line"><span class="built_in">..</span>.</span><br><span class="line">rel[fx] = (rel[x] + rel[y] + 1) % 2;</span><br></pre></td></tr></table></figure>
+<p><code>rel[]</code>的判断方式：<br><figure class="highlight flix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">in</span> Union(x, y))</span><br><span class="line"><span class="keyword">if</span> (fx == fy) &#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">rel</span>[x] == <span class="keyword">rel</span>[y]) suspiciousFound = <span class="literal">true</span>;</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>剩下的照常写就行</p>
 <p>注意路径压缩要分开写，先创建一个变量存它的祖先节点再更新 </p>
 <p><del>按秩合并没写过不知道</del></p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><p><del>你们最喜欢的</del>代码实现：</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-using namespace std;
-
-const int MAXM = 1000000 + 10;
-
-int n, m;
-int U[MAXM], rel[MAXM];
-
-bool flag;
-
-int Find(int x) {
-    if (x != U[x]) {
-        // 把路径压缩撑开写
-        int fux = Find(U[x]);
-        rel[x] = (rel[x] + rel[U[x]]) % 2; // 更新rel数组
-        // 1 1 -&gt; 0
-        // 1 0 / 0 1 -&gt; 1
-        // 0 0 -&gt; 0
-        // 其实是一个异或的过程
-        U[x] = fux； // qwq
-    }
-    return U[x];
-}
-
-void Union(int x, int y) {
-    int fx = Find(x), fy = Find(y);
-    if (fx == fy) {
-        if (rel[x] == rel[y]) flag = true; // 判断是否同性
-        return;
-    }
-    U[fx] = fy;
-    rel[fx] = (rel[x] + rel[y] + 1) % 2; // 更新rel数组
-}
-
-int main(int argc, char *const argv[]) {
-    int t;
-    scanf(&quot;%d&quot;, &amp;t);
-    int _t = 0;
-    while (t --&gt; 0) {
-        memset(U, 0, sizeof(U));
-        memset(rel, 0, sizeof(rel));
-        n = 0, m = 0, flag = false;
-        scanf(&quot;%d %d&quot;, &amp;n, &amp;m);
-        for (int i = 1; i &lt;= n; ++i) U[i] = i;
-        for (int i = 1; i &lt;= m; ++i) {
-            int x, y;
-            scanf(&quot;%d %d&quot;, &amp;x, &amp;y);
-            Union(x, y);
-        }
-        printf(&quot;Scenario #%d:\n&quot;, ++_t);
-        if (flag) printf(&quot;Suspicious bugs found!\n&quot;);
-        else printf(&quot;No suspicious bugs found!\n&quot;);
-    }
-    return 3; // qwq
-}
-
-</code></pre>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><p><del>你们最喜欢的</del>代码实现：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">1000000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> U[MAXM], rel[MAXM];</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> flag;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x != U[x]) &#123;</span><br><span class="line">    	<span class="comment">// 把路径压缩撑开写</span></span><br><span class="line">        <span class="keyword">int</span> fux = Find(U[x]);</span><br><span class="line">        rel[x] = (rel[x] + rel[U[x]]) % <span class="number">2</span>; <span class="comment">// 更新rel数组</span></span><br><span class="line">        <span class="comment">// 1 1 -&gt; 0</span></span><br><span class="line">        <span class="comment">// 1 0 / 0 1 -&gt; 1</span></span><br><span class="line">        <span class="comment">// 0 0 -&gt; 0</span></span><br><span class="line">        <span class="comment">// 其实是一个异或的过程</span></span><br><span class="line">        U[x] = fux； <span class="comment">// qwq</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> U[x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fx = Find(x), fy = Find(y);</span><br><span class="line">    <span class="keyword">if</span> (fx == fy) &#123;</span><br><span class="line">        <span class="keyword">if</span> (rel[x] == rel[y]) flag = <span class="literal">true</span>; <span class="comment">// 判断是否同性</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    U[fx] = fy;</span><br><span class="line">    rel[fx] = (rel[x] + rel[y] + <span class="number">1</span>) % <span class="number">2</span>; <span class="comment">// 更新rel数组</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;t);</span><br><span class="line">    <span class="keyword">int</span> <span class="keyword">_t</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (t --&gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">memset</span>(U, <span class="number">0</span>, <span class="keyword">sizeof</span>(U));</span><br><span class="line">        <span class="built_in">memset</span>(rel, <span class="number">0</span>, <span class="keyword">sizeof</span>(rel));</span><br><span class="line">        n = <span class="number">0</span>, m = <span class="number">0</span>, flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) U[i] = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> x, y;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;x, &amp;y);</span><br><span class="line">            Union(x, y);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Scenario #%d:\n"</span>, ++<span class="keyword">_t</span>);</span><br><span class="line">        <span class="keyword">if</span> (flag) <span class="built_in">printf</span>(<span class="string">"Suspicious bugs found!\n"</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"No suspicious bugs found!\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span>; <span class="comment">// qwq</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -633,7 +555,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

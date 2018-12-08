@@ -415,140 +415,22 @@
 <center><small><small><small>图源cnblogs</small></small></small></center>
 
 <p>对于上面这一棵更复杂的树，我们考虑17和18的LCA</p>
-<pre><code>17 -&gt;(跳4) 3
-18 -&gt;(跳4) 5 -&gt;(跳1) -&gt; 3
-</code></pre><p>是不是快多了，跳的次数大大减小</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">17 </span>-&gt;(跳<span class="number">4</span>) <span class="number">3</span></span><br><span class="line"><span class="symbol">18 </span>-&gt;(跳<span class="number">4</span>) <span class="number">5</span> -&gt;(跳<span class="number">1</span>) -&gt; <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p>是不是快多了，跳的次数大大减小</p>
 <p>时间复杂度$O(nlogn)$</p>
 <h1 id="LCA-的代码-amp-实现流程"><a href="#LCA-的代码-amp-实现流程" class="headerlink" title="LCA 的代码 &amp; 实现流程"></a>LCA 的代码 &amp; 实现流程</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><p>首先我们要记录各个点的深度$depth[\ ]$和它们$2^i$级的祖先$father[\ ][\ ]$</p>
 <p>用$depth[i]$表示$i$点的深度，$father[i][j]$表示$i$点的$2^i$级的祖先</p>
-<pre><code class="cpp">// 预处理
-void dfsInit(int root, int fa) {
-    depth[root] = depth[fa] + 1;
-    father[root][0] = fa;
-    for (int i = 1; (1 &lt;&lt; i) &lt;= depth[root]; ++i) {
-        father[root][i] = father[father[root][i-1]][i-1];
-    }
-    for (int e = head[root]; e; e = edge[e].next) {
-        if (edge[e].prev != fa) dfsInit(edge[e].prev, root);
-    }
-}
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 预处理</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfsInit</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    depth[root] = depth[fa] + <span class="number">1</span>;</span><br><span class="line">    father[root][<span class="number">0</span>] = fa;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; (<span class="number">1</span> &lt;&lt; i) &lt;= depth[root]; ++i) &#123;</span><br><span class="line">        father[root][i] = father[father[root][i<span class="number">-1</span>]][i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> e = head[root]; e; e = edge[e].next) &#123;</span><br><span class="line">        <span class="keyword">if</span> (edge[e].prev != fa) dfsInit(edge[e].prev, root);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>接着我们就可以找LCA辣</p>
 <p>对了，我们可以让它跑得更快</p>
-<pre><code class="cpp">// 提前预处理出log2i + 1的值
-for (int i = 1; i &lt;= n; ++i) {
-    lg[i] = lg[i-1] + (1 &lt;&lt; lg[i-1] == i);
-}
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 提前预处理出log2i + 1的值</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">    lg[i] = lg[i<span class="number">-1</span>] + (<span class="number">1</span> &lt;&lt; lg[i<span class="number">-1</span>] == i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在求 LCA 之前，我们先让两个节点蹦到同一层</p>
 <hr>
 <p>但是跳的时候不能直接跳到 LCA 上，要跳到 LCA - 1 上，再输出 当前的父节点 就行了</p>
 <p>因为直接蹦到 LCA 上可能会出现「误判」，比如上图中$4$和$8$，若不判断，则在跳的时候会输出1，但是答案是3</p>
 <p>所以我们就可以让它们跳到$2$和$5$，然后输出父节点</p>
-<pre><code class="cpp">int LCA(int x, int y) {
-    // 我们设x的深度大于y的深度
-    if (depth[x] &lt; depth[y]) swap(x, y);
-    while (depth[x] &gt; depth[y]) 
-        x = father[x][lg[depth[x] - depth[y]] - 1];
-    if (x == y) return x; // x 是 y 的祖先
-    for (int i = lg[depth[x]]; i &gt;= 0; --i) {
-        if (father[x][i] != father[y][i]) x = father[x][i], y = father[y][i];
-        // 不相等就往上跳
-    }
-    return father[x][0];
-}
-</code></pre>
-<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;cctype&gt;
-using namespace std;
-
-const int MAXN = 500000 + 10;
-const int MAXM = 500000 + 10;
-
-struct Edge {
-    int prev, next;
-} edge[MAXM * 2];
-
-int head[MAXN], father[MAXN][22], lg[MAXN], depth[MAXN];
-int cnt, n, m, s;
-
-inline int getint() {
-    int s = 0, x = 1;
-    char ch = getchar();
-    while (!isdigit(ch)) {
-        if (ch == &#39;-&#39;) x = -1;
-        ch = getchar();
-    }
-    while (isdigit(ch)) {
-        s = s * 10 + ch - &#39;0&#39;;
-        ch = getchar();
-    }
-    return s * x;
-}
-
-inline void putint(int x, bool returnValue) {
-    if (x &lt; 0) {
-        x = -x;
-        putchar(&#39;-&#39;);
-    }
-    if (x &gt;= 10) putint(x / 10, false);
-    putchar(x % 10 + &#39;0&#39;);
-    if (returnValue) putchar(&#39;\n&#39;);
-}
-
-inline void addEdge(int prev, int next) {
-    edge[++cnt].prev = prev;
-    edge[cnt].next = head[next];
-    head[next] = cnt; 
-} 
-
-// 预处理
-void dfsInit(int root, int fa) {
-    depth[root] = depth[fa] + 1;
-    father[root][0] = fa;
-    for (int i = 1; (1 &lt;&lt; i) &lt;= depth[root]; ++i) {
-        father[root][i] = father[father[root][i-1]][i-1];
-    }
-    for (int e = head[root]; e; e = edge[e].next) {
-        if (edge[e].prev != fa) dfsInit(edge[e].prev, root);
-    }
-}
-
-int LCA(int x, int y) {
-    // 我们设x的深度大于y的深度
-    if (depth[x] &lt; depth[y]) swap(x, y);
-    while (depth[x] &gt; depth[y]) 
-        x = father[x][lg[depth[x] - depth[y]] - 1];
-    if (x == y) return x; // x 是 y 的祖先
-    for (int i = lg[depth[x]]; i &gt;= 0; --i) {
-        if (father[x][i] != father[y][i]) x = father[x][i], y = father[y][i];
-        // 不相等就往上跳
-    }
-    return father[x][0];
-}
-
-int main(int argc, char *const argv[]) {
-    n = getint(), m = getint(), s = getint();
-    for (int i = 1; i &lt; n; ++i) {
-        int prev = getint(), next = getint();
-        addEdge(prev, next);
-        addEdge(next, prev);
-    } 
-    dfsInit(s, 0);
-    for (int i = 1; i &lt;= n; ++i) {
-        lg[i] = lg[i-1] + (1 &lt;&lt; lg[i-1] == i);
-    }
-    for (int i = 1; i &lt;= m; ++i) {
-        int x = getint(), y = getint();
-        putint(LCA(x, y), true);
-    }
-    return 0;
-}
-
-
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LCA</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 我们设x的深度大于y的深度</span></span><br><span class="line">    <span class="keyword">if</span> (depth[x] &lt; depth[y]) swap(x, y);</span><br><span class="line">    <span class="keyword">while</span> (depth[x] &gt; depth[y]) </span><br><span class="line">        x = father[x][lg[depth[x] - depth[y]] - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (x == y) <span class="keyword">return</span> x; <span class="comment">// x 是 y 的祖先</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = lg[depth[x]]; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (father[x][i] != father[y][i]) x = father[x][i], y = father[y][i];</span><br><span class="line">        <span class="comment">// 不相等就往上跳</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> father[x][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">500000</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">500000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> prev, next;</span><br><span class="line">&#125; edge[MAXM * <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> head[MAXN], father[MAXN][<span class="number">22</span>], lg[MAXN], depth[MAXN];</span><br><span class="line"><span class="keyword">int</span> cnt, n, m, s;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">bool</span> returnValue)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        x = -x;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) putint(x / <span class="number">10</span>, <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    <span class="keyword">if</span> (returnValue) <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> prev, <span class="keyword">int</span> next)</span> </span>&#123;</span><br><span class="line">    edge[++cnt].prev = prev;</span><br><span class="line">    edge[cnt].next = head[next];</span><br><span class="line">    head[next] = cnt; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 预处理</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfsInit</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    depth[root] = depth[fa] + <span class="number">1</span>;</span><br><span class="line">    father[root][<span class="number">0</span>] = fa;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; (<span class="number">1</span> &lt;&lt; i) &lt;= depth[root]; ++i) &#123;</span><br><span class="line">        father[root][i] = father[father[root][i<span class="number">-1</span>]][i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> e = head[root]; e; e = edge[e].next) &#123;</span><br><span class="line">        <span class="keyword">if</span> (edge[e].prev != fa) dfsInit(edge[e].prev, root);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LCA</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 我们设x的深度大于y的深度</span></span><br><span class="line">    <span class="keyword">if</span> (depth[x] &lt; depth[y]) swap(x, y);</span><br><span class="line">    <span class="keyword">while</span> (depth[x] &gt; depth[y]) </span><br><span class="line">        x = father[x][lg[depth[x] - depth[y]] - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (x == y) <span class="keyword">return</span> x; <span class="comment">// x 是 y 的祖先</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = lg[depth[x]]; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (father[x][i] != father[y][i]) x = father[x][i], y = father[y][i];</span><br><span class="line">        <span class="comment">// 不相等就往上跳</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> father[x][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    n = getint(), m = getint(), s = getint();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> prev = getint(), next = getint();</span><br><span class="line">        addEdge(prev, next);</span><br><span class="line">        addEdge(next, prev);</span><br><span class="line">    &#125; </span><br><span class="line">    dfsInit(s, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">    	lg[i] = lg[i<span class="number">-1</span>] + (<span class="number">1</span> &lt;&lt; lg[i<span class="number">-1</span>] == i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> x = getint(), y = getint();</span><br><span class="line">        putint(LCA(x, y), <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -701,7 +583,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

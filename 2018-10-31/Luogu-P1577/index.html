@@ -392,57 +392,14 @@
 <h1 id="题面描述"><a href="#题面描述" class="headerlink" title="题面描述"></a>题面描述</h1><p>有N条绳子，它们的长度分别为Li。如果从它们中切割出K条长度相同的绳子，这K条绳子每条最长能有多长？答案保留到小数点后2位。</p>
 <h1 id="Input-Output-格式-amp-样例"><a href="#Input-Output-格式-amp-样例" class="headerlink" title="Input / Output 格式 &amp; 样例"></a>Input / Output 格式 &amp; 样例</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行两个整数N和K，接下来N行，描述了每条绳子的长度Li。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>切割后每条绳子的最大长度。</p>
-<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><pre><code>4 11
-8.02
-7.43
-4.57
-5.39
-</code></pre><h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><pre><code>2.00
-</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>首先这题涉及到了<code>int</code>和<code>double</code>之间的精度转换 <br><br>所以我们可以把输入的<code>double</code>都乘100转为<code>int</code>（题目要求保留两位小数）</p>
+<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">4 </span><span class="number">11</span></span><br><span class="line"><span class="number">8.02</span></span><br><span class="line"><span class="number">7.43</span></span><br><span class="line"><span class="number">4.57</span></span><br><span class="line"><span class="number">5.39</span></span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2<span class="selector-class">.00</span></span><br></pre></td></tr></table></figure>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>首先这题涉及到了<code>int</code>和<code>double</code>之间的精度转换 <br><br>所以我们可以把输入的<code>double</code>都乘100转为<code>int</code>（题目要求保留两位小数）</p>
 <p>不难看出来这题可以枚举答案 但是显然会炸 <br><br>于是我们要想点优化——二分答案！</p>
 <p>我们选择二分绳子的最大长度 <br><br>这题的单调性是显然的，我就不证了（</p>
 <p><code>Check(int mid)</code>怎么写？ <br><br>我们扫一遍绳子长度<code>L[]</code>，令$ ans=\sum_{i=1}^{n}\lfloor\frac{L[i]}{mid}\rfloor $ <br><br>即最终绳子被分成的段数 <br><br>如果$ans \geq k$（题目中的$\text{k}$）则把左边界赋值为<code>mid + 1</code>，否则把右边界赋值为<code>mid - 1</code> <br><br>这里要注意的是如果<code>mid == 0</code>就直接退出循环</p>
 <p>最后<code>cout &lt;&lt; fixed &lt;&lt; setprecision(2) &lt;&lt; (double) r / 100.0 &lt;&lt; endl;</code></p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;iomanip&gt;
-using namespace std;
-
-const int MAXN = 10000 + 10;
-const double MAXL = 100000.00;
-
-int n, k;
-int L[MAXN];
-
-bool Check(int x) {
-    int ans = 0;
-    for (int i = 1; i &lt;= n; ++i) ans += L[i] / x;
-    return ans &gt;= k;
-}
-
-int main(int argc, char *const argv[]) {
-    ios::sync_with_stdio(false);
-    cin &gt;&gt; n &gt;&gt; k;
-    for (int i = 1; i &lt;= n; ++i) {
-        double P;
-        cin &gt;&gt; P;
-        L[i] = (int) (P * 100.0);
-    }
-    int l = 0, r = 19260817 + 1;
-    while (l &lt;= r) {
-        int mid = (l + r) &gt;&gt; 1;
-        if (mid == 0) break;
-        if (Check(mid)) l = mid + 1;
-        else r = mid - 1;
-    }
-    cout &lt;&lt; fixed &lt;&lt; setprecision(2) &lt;&lt; (double) r / 100.0 &lt;&lt; endl;
-    return 0;
-}
-
-
-</code></pre>
-
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">10000</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> MAXL = <span class="number">100000.00</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, k;</span><br><span class="line"><span class="keyword">int</span> L[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Check</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) ans += L[i] / x;</span><br><span class="line">    <span class="keyword">return</span> ans &gt;= k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">double</span> P;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; P;</span><br><span class="line">        L[i] = (<span class="keyword">int</span>) (P * <span class="number">100.0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">19260817</span> + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (mid == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">if</span> (Check(mid)) l = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; fixed &lt;&lt; setprecision(<span class="number">2</span>) &lt;&lt; (<span class="keyword">double</span>) r / <span class="number">100.0</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -590,7 +547,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

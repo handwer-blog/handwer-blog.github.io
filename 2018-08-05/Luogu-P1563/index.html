@@ -410,136 +410,21 @@
 <p>接下来 m 行，其中第 i 行包含两个整数 $ a_i,s_i$  ，表示第 i 条指令。若 $a_i=0$，表示向左数 $s_i$ 个人；若 $a_i=1$，表示向右数 $s_i$ 个人。 保证 $a_i$ 不会出现其他的数， $1 \le s_i &lt; n$ 。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出一个字符串，表示从第一个读入的小人开始，依次数完 m 条指令后到达的小人的职业。</p>
 <h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入样例：</p>
-<pre><code>7 3
-0 singer
-0 reader
-0 mengbier 
-1 thinker
-1 archer
-0 writer
-1 mogician 
-0 3
-1 1
-0 2
-</code></pre><p>输出样例：</p>
-<pre><code>writer
-</code></pre><p>输入样例2：</p>
-<pre><code>10 10
-1 C
-0 r
-0 P
-1 d
-1 e
-1 m
-1 t
-1 y
-1 u
-0 V
-1 7
-1 1
-1 4
-0 5
-0 3
-0 1
-1 6
-1 2
-0 8
-0 4
-</code></pre><p>输出样例2：</p>
-<pre><code>y
-</code></pre><h1 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h1><p>$1 \le n,m \le 100000$</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">7 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">0 </span>singer</span><br><span class="line"><span class="symbol">0 </span>reader</span><br><span class="line"><span class="symbol">0 </span>mengbier </span><br><span class="line"><span class="symbol">1 </span>thinker</span><br><span class="line"><span class="symbol">1 </span>archer</span><br><span class="line"><span class="symbol">0 </span>writer</span><br><span class="line"><span class="symbol">1 </span>mogician </span><br><span class="line"><span class="symbol">0 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">1</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>输出样例：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">writer</span></span><br></pre></td></tr></table></figure>
+<p>输入样例2：</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">10 </span><span class="number">10</span></span><br><span class="line"><span class="symbol">1 </span>C</span><br><span class="line"><span class="symbol">0 </span>r</span><br><span class="line"><span class="symbol">0 </span>P</span><br><span class="line"><span class="symbol">1 </span>d</span><br><span class="line"><span class="symbol">1 </span>e</span><br><span class="line"><span class="symbol">1 </span>m</span><br><span class="line"><span class="symbol">1 </span>t</span><br><span class="line"><span class="symbol">1 </span>y</span><br><span class="line"><span class="symbol">1 </span>u</span><br><span class="line"><span class="symbol">0 </span>V</span><br><span class="line"><span class="symbol">1 </span><span class="number">7</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">1</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">4</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">5</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">1</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">6</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">8</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<p>输出样例2：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">y</span></span><br></pre></td></tr></table></figure>
+<h1 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h1><p>$1 \le n,m \le 100000$</p>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>一看就是<big><big><big>大</big></big></big> 模拟</p>
 <p>用一个结构体来存每个玩具的名字和朝向</p>
-<pre><code class="cpp">struct Toy {
-    string name;
-    bool faceTo; // 朝向
-}
-
-Toy t[MAXN];
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Toy</span> &#123;</span></span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line">    <span class="keyword">bool</span> faceTo; <span class="comment">// 朝向</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Toy t[MAXN];</span><br></pre></td></tr></table></figure>
 <p>约定true表示朝向圈外，false表示朝向圈内</p>
 <p>在读入操作时，用一个变量now记录当前转到了哪个玩具</p>
 <p>最后输出<code>t[now].name</code>即可</p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><pre><code class="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;string&gt;
-#include &lt;cctype&gt;
-#include &lt;map&gt;
-using namespace std;
-
-const int MAXN = 100000 + 10;
-
-struct Toy {
-    string name;
-    bool faceTo;
-    // true 表示朝向圈外 
-    // false 表示朝向圈内 
-};
-
-Toy t[MAXN];
-
-int n, m;
-
-inline int getint() {
-    int s = 0, x = 1;
-    char ch = getchar();
-    while (!isdigit(ch)) {
-        if (ch == &#39;-&#39;) x = -1;
-        ch = getchar();
-    }
-    while (isdigit(ch)) {
-        s = s * 10 + ch - &#39;0&#39;;
-        ch = getchar();
-    }
-    return s * x;
-}
-
-inline void putint(int x, bool returnValue) {
-    if (x &lt; 0) {
-        x = -x;
-        putchar(&#39;-&#39;);
-    }
-    if (x &gt;= 10) putint(x / 10, false);
-    putchar(x % 10 + &#39;0&#39;);
-    if (returnValue) putchar(&#39;\n&#39;);
-}
-
-int main(int argc, char *const argv[]) {
-    n = getint(), m = getint();
-    for (int i = 1; i &lt;= n; ++i) {
-        int to;
-        cin &gt;&gt; to;
-        string name;
-        cin &gt;&gt; name;
-        t[i].faceTo = (to == 1 ? true : false);
-        t[i].name = name; 
-    }
-    int now = 1;
-    for (int i = 1; i &lt;= m; ++i) {
-        int tA = getint();
-        bool right = tA == 1 ? true : false;
-        // true 表示在右边
-        // false 表示在左边
-        int s = getint();
-        if (right) {
-            if (t[now].faceTo == true) now -= s;
-            else now += s;
-        } else {
-            if (t[now].faceTo == true) now += s;
-            else now -= s;
-        }
-        if (now &gt; n) now -= n;
-        if (now &lt; 1) {
-            int moved = 1 - now;
-            now = n + 1 - moved;
-        }
-    }
-    cout &lt;&lt; t[now].name &lt;&lt; endl;
-    return 0;
-}
-
-</code></pre>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">100000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Toy</span> &#123;</span></span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line">    <span class="keyword">bool</span> faceTo;</span><br><span class="line">    <span class="comment">// true 表示朝向圈外 </span></span><br><span class="line">    <span class="comment">// false 表示朝向圈内 </span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Toy t[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">        s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">bool</span> returnValue)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        x = -x;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= <span class="number">10</span>) putint(x / <span class="number">10</span>, <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">    <span class="keyword">if</span> (returnValue) <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">    n = getint(), m = getint();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> to;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; to;</span><br><span class="line">        <span class="built_in">string</span> name;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line">        t[i].faceTo = (to == <span class="number">1</span> ? <span class="literal">true</span> : <span class="literal">false</span>);</span><br><span class="line">        t[i].name = name; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> now = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> tA = getint();</span><br><span class="line">        <span class="keyword">bool</span> right = tA == <span class="number">1</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">// true 表示在右边</span></span><br><span class="line">        <span class="comment">// false 表示在左边</span></span><br><span class="line">        <span class="keyword">int</span> s = getint();</span><br><span class="line">        <span class="keyword">if</span> (right) &#123;</span><br><span class="line">            <span class="keyword">if</span> (t[now].faceTo == <span class="literal">true</span>) now -= s;</span><br><span class="line">            <span class="keyword">else</span> now += s;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (t[now].faceTo == <span class="literal">true</span>) now += s;</span><br><span class="line">            <span class="keyword">else</span> now -= s;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (now &gt; n) now -= n;</span><br><span class="line">        <span class="keyword">if</span> (now &lt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> moved = <span class="number">1</span> - now;</span><br><span class="line">            now = n + <span class="number">1</span> - moved;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; t[now].name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最后：</p>
 <p><img src="https://s1.ax2x.com/2018/08/05/55Yun6.png" alt="55Yun6.png"></p>
 
@@ -692,7 +577,7 @@ int main(int argc, char *const argv[]) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
