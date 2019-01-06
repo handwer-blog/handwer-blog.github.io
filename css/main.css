@@ -1833,7 +1833,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffa2b3;
+  background: #363677;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2914,4 +2914,41 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+.header {
+  box-shadow: 0px 2px 10px 0 rgba(0,0,0,0.15);
+}
+.footer {
+  box-shadow: 0px -2px 10px 0 rgba(0,0,0,0.15);
+}
+.site-author-image {
+  box-shadow: 0px 5px 10px 0 rgba(10,10,10,0.15);
+  border: 2px solid #6495ed;
+}
+.sidebar {
+  background: #f5f5f5;
+  box-shadow: 0px -2px 10px 0 rgba(0,0,0,0.15);
+}
+.feed-link a {
+  box-shadow: 0px 0px 1px 0.5px;
+}
+.links-of-author a:hover {
+  color: #fc6423;
+}
+.site-state-item a:hover {
+  color: #fc6423;
+}
+.sidebar-toggle {
+  border-radius: 3px;
+  background: #1e90ff;
+}
+.back-to-top {
+  background: #1e90ff;
+  border-radius: 3px;
+}
+.local-search-popup .local-search-header {
+  box-shadow: 0px 2px 10px 0.5px rgba(1,1,1,0.25);
+}
+.local-search-popup {
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.25);
 }
