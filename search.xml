@@ -6,6 +6,20 @@
     <content type="text"><![CDATA[这里可能会挂些什么东西。 There may be something here.]]></content>
   </entry>
   <entry>
+    <title><![CDATA[洛谷P5019「NOIP 2013 / 2018」《铺设道路》]]></title>
+    <url>%2F2019-01-23%2FLuogu-P5019%2F</url>
+    <content type="text"><![CDATA[CCF：我&nbsp;抄&nbsp;我&nbsp;自&nbsp;己 本题与洛谷P1969重复代码通用题解传送门]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Luogu-P5020]]></title>
+    <url>%2F2019-01-23%2FLuogu-P5020%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[洛谷P1330《封锁阳光大学》]]></title>
     <url>%2F2019-01-23%2FLuogu-P1330%2F</url>
     <content type="text"><![CDATA[对子连通图的染色 题目描述曹是一只爱刷街的老曹，暑假期间，他每天都欢快地在阳光大学的校园里刷街。河蟹看到欢快的曹，感到不爽。河蟹决定封锁阳光大学，不让曹刷街。 阳光大学的校园是一张由N个点构成的无向图，N个点之间由M条道路连接。每只河蟹可以对一个点进行封锁，当某个点被封锁后，与这个点相连的道路就被封锁了，曹就无法在与这些道路上刷街了。非常悲剧的一点是，河蟹是一种不和谐的生物，当两只河蟹封锁了相邻的两个点时，他们会发生冲突。 询问：最少需要多少只河蟹，可以封锁所有道路并且不发生冲突。 输入输出格式输入格式第一行：两个整数N，M 接下来M行：每行两个整数A，B，表示点A到点B之间有道路相连。 输出格式仅一行：如果河蟹无法封锁所有道路，则输出“Impossible”，否则输出一个整数，表示最少需要多少只河蟹。 输入输出样例输入样例#112343 31 21 32 3 输出样例#11Impossible 输入样例#21233 21 22 3 输出样例#211 说明【数据规模】 1&lt;=N&lt;=10000，1&lt;=M&lt;=100000，任意两点之间最多有一条道路。 解题思路本题的图可能不为连通图（注意这个坑） 阅读题目，我们得到了这样几条信息：「当某个点被封锁后，与这个点相连的道路就被封锁了」「当两只河蟹封锁了相邻的两个点时，他们会发生冲突」「封锁所有道路并且不发生冲突」 总结一下就是：「要求每一条边有且仅有一个点被选择，求最少能选择多少点」 然后我们就可以考虑用染色的方法做这一题 我们枚举每一个点，以当前枚举到的起点为根对这个子连通图进行 DFS 染色（因为图可能不联通），答案累加每次染色的最小数量（黑色点数量和白色点数量中最小的） 代码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135/* -- Basic Headers -- */#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#include &lt;algorithm&gt;/* -- STL Iterators -- */#include &lt;vector&gt;#include &lt;string&gt;#include &lt;stack&gt;#include &lt;queue&gt;/* -- External Headers -- */#include &lt;map&gt;#include &lt;cmath&gt;/* -- Defined Functions -- */#define For(a,x,y) for (int a = x; a &lt;= y; ++a)#define Forw(a,x,y) for (int a = x; a &lt; y; ++a)#define Bak(a,y,x) for (int a = y; a &gt;= x; --a)#define head(a) Head[a].id#define nowcolor(a) Head[a].color#define visited(a) Head[a].used// 这样 define 有助于简化代码namespace FastIO &#123; inline int getint() &#123; int s = 0, x = 1; char ch = getchar(); while (!isdigit(ch)) &#123; if (ch == '-') x = -1; ch = getchar(); &#125; while (isdigit(ch)) &#123; s = s * 10 + ch - '0'; ch = getchar(); &#125; return s * x; &#125; inline void __basic_putint(int x) &#123; if (x &lt; 0) &#123; x = -x; putchar('-'); &#125; if (x &gt;= 10) __basic_putint(x / 10); putchar(x % 10 + '0'); &#125; inline void putint(int x, char external) &#123; __basic_putint(x); putchar(external); &#125;&#125;namespace Solution &#123; int n, m, ans; int sum0, sum1; struct Graph &#123; static const int MAXN = 10000 + 10; static const int MAXM = 100000 + 10; struct Node &#123; int color, used, id; // 在一个数组中存储三个数量 Node() &#123; color = used = id = 0; &#125; &#125; Head[MAXN]; struct Edge &#123; int now, next; &#125; edge[MAXM * 2]; int cnt; inline void addEdge(int prev, int next, bool isR = true) &#123; if (isR) &#123; addEdge(next, prev, false); &#125; edge[++cnt].now = next; edge[cnt].next = head(prev); head(prev) = cnt; &#125; inline bool Color(int __id, int nowColor) &#123; // 返回 true 为成功染色， false 反之 if (visited(__id)) &#123; return nowcolor(__id) == nowColor; // 如果当前被染过不同的颜色，就失败 &#125; visited(__id) = true; nowcolor(__id) = nowColor; if (nowColor) ++sum1; else ++sum0; bool __ans = true; for (int e = head(__id); e &amp;&amp; __ans; e = edge[e].next) &#123; int now = edge[e].now; __ans = __ans &amp; Color(now, nowColor ^ 1); // 遍历与当前点相连的每一条边并 DFS &#125; return __ans; &#125; &#125; g1; void __EXIT() &#123; puts("Impossible"); exit(0); &#125;&#125;signed main() &#123;#define HANDWER_FILE#ifndef HANDWER_FILE freopen("testdata.in", "r", stdin); freopen("testdata.out", "w", stdout);#endif using namespace Solution; using FastIO::getint; n = getint(); m = getint(); For (i, 1, m) &#123; int prev = getint(); int next = getint(); g1.addEdge(prev, next); &#125; for (int i = 1; i &lt;= n; ++i) &#123; if (g1.visited(i)) continue; sum0 = sum1 = 0; if (!g1.Color(i, 0)) __EXIT(); ans += std::min(sum0, sum1); &#125; FastIO::putint(ans, '\n'); return 0;&#125;]]></content>
@@ -185,8 +199,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>省选</tag>
         <tag>图论</tag>
+        <tag>省选</tag>
         <tag>最短路</tag>
         <tag>分层图</tag>
       </tags>
@@ -236,9 +250,9 @@
         <tag>自测</tag>
         <tag>比赛</tag>
         <tag>枚举</tag>
-        <tag>自测题</tag>
-        <tag>暴力</tag>
         <tag>动态规划，DP</tag>
+        <tag>暴力</tag>
+        <tag>自测题</tag>
       </tags>
   </entry>
   <entry>
@@ -378,8 +392,8 @@
       <tags>
         <tag>编程</tag>
         <tag>清北学堂</tag>
-        <tag>贪心</tag>
         <tag>模拟</tag>
+        <tag>贪心</tag>
         <tag>字符串</tag>
       </tags>
   </entry>
@@ -422,9 +436,9 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
+        <tag>USACO</tag>
         <tag>最短路</tag>
         <tag>图论算法</tag>
-        <tag>USACO</tag>
       </tags>
   </entry>
   <entry>
@@ -697,8 +711,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>图论算法</tag>
         <tag>最小生成树</tag>
+        <tag>图论算法</tag>
         <tag>并查集</tag>
       </tags>
   </entry>
