@@ -6,6 +6,23 @@
     <content type="text"><![CDATA[这里可能会挂些什么东西。 There may be something here.]]></content>
   </entry>
   <entry>
+    <title><![CDATA[洛谷P1434《[SHOI2010]滑雪》]]></title>
+    <url>%2F2019-01-27%2FLuogu-P1434%2F</url>
+    <content type="text"><![CDATA[记忆化搜索好题 题目描述Michael喜欢滑雪。这并不奇怪，因为滑雪的确很刺激。可是为了获得速度，滑的区域必须向下倾斜，而且当你滑到坡底，你不得不再次走上坡或者等待升降机来载你。Michael想知道在一个区域中最长的滑坡。区域由一个二维数组给出。数组的每个数字代表点的高度。下面是一个例子： 123451 2 3 4 516 17 18 19 615 24 25 20 714 23 22 21 813 12 11 10 9 一个人可以从某个点滑向上下左右相邻四个点之一，当且仅当高度减小。在上面的例子中，一条可行的滑坡为24－17－16－1（从24开始，在1结束）。当然25－24－23－…－3－2－1更长。事实上，这是最长的一条。 输入输出格式输入格式输入的第一行为表示区域的二维数组的行数R和列数C（1≤R，C≤100）。下面是R行，每行有C个数，代表高度(两个数字之间用1个空格间隔)。 输出格式输出区域中最长滑坡的长度。 输入输出样例输入样例1234565 51 2 3 4 516 17 18 19 615 24 25 20 714 23 22 21 813 12 11 10 9 输出样例125 解题思路一眼就能看出这是搜索题 方法很显然，枚举所有的点，从当前点开始 DFS，每次往四个方向搜索，直到不能搜为止，这时候答案就出来了一个，更新一下。 考虑一下优化。在每次搜索的过程中，我们有很多点是重复走过的，那么就可以把暴搜升级为记忆化搜索。用 $ \text{mem}(x,y) $ 表示从点 $ (x,y) $ 出发的最长路径，在每一次搜索完成之后更新一下当前的答案，记录到 $ \text{mem}(x,y) $ 中即可。等到下一次搜到这个点（记为 $ (x’,y’) $ ），如果 $ \text{mem}(x’,y’) \geq 0 $ （也就是被更新过了），直接返回 $ \text{mem}(x’,y’) $ 就行。 我们也可以把记忆化搜索升级为 DP 不过据说比记忆化搜索还慢DP 做法题解已提上日程。 代码实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152#include &lt;iostream&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int dx[] = &#123; 0, 0, -1, 1 &#125;;const int dy[] = &#123; 1, -1, 0, 0 &#125;;const int MAXRC = 100 + 10;int snow[MAXRC][MAXRC];int r, c, ans;int mem[MAXRC][MAXRC];int Search(int x, int y) &#123; int t = 1; if (mem[x][y]) t = mem[x][y]; else &#123; for (int i = 0; i &lt; 4; ++i) &#123; int nx = x + dx[i]; int ny = y + dy[i]; if (nx &gt; 0 &amp;&amp; ny &gt; 0 &amp;&amp; nx &lt;= r &amp;&amp; ny &lt;= c &amp;&amp; snow[x][y] &lt; snow[nx][ny]) &#123; t = std::max(t, Search(nx, ny) + 1); &#125; &#125; &#125; mem[x][y] = t; return t;&#125;int main() &#123; IMPROVE_IO(); cin &gt;&gt; r &gt;&gt; c; for (int i = 1; i &lt;= r; ++i) &#123; for (int j = 1; j &lt;= c; ++j) &#123; cin &gt;&gt; snow[i][j]; &#125; &#125; for (int i = 1; i &lt;= r; ++i) &#123; for (int j = 1; j &lt;= c; ++j) &#123; int now = Search(i, j); mem[i][j] = now; ans = std::max(ans, mem[i][j]); &#125; &#125; cout &lt;&lt; ans &lt;&lt; endl; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>省选</tag>
+        <tag>DFS</tag>
+        <tag>记忆化搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Luogu-P2320]]></title>
+    <url>%2F2019-01-27%2FLuogu-P2320%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[洛谷P1541「NOIP2010」《乌龟棋》]]></title>
     <url>%2F2019-01-26%2FLuogu-P1541%2F</url>
     <content type="text"><![CDATA[ProjectDP - 3 枚举转移 题目背景小明过生日的时候，爸爸送给他一副乌龟棋当作礼物。 题目描述乌龟棋的棋盘是一行$N$个格子，每个格子上一个分数（非负整数）。棋盘第1格是唯一的起点，第$N$格是终点，游戏要求玩家控制一个乌龟棋子从起点出发走到终点。 乌龟棋中$M$张爬行卡片，分成4种不同的类型（$M$张卡片中不一定包含所有4种类型的卡片，见样例），每种类型的卡片上分别标有$1,2,3,4$四个数字之一，表示使用这种卡片后，乌龟棋子将向前爬行相应的格子数。游戏中，玩家每次需要从所有的爬行卡片中选择一张之前没有使用过的爬行卡片，控制乌龟棋子前进相应的格子数，每张卡片只能使用一次。 游戏中，乌龟棋子自动获得起点格子的分数，并且在后续的爬行中每到达一个格子，就得到该格子相应的分数。玩家最终游戏得分就是乌龟棋子从起点到终点过程中到过的所有格子的分数总和。 很明显，用不同的爬行卡片使用顺序会使得最终游戏的得分不同，小明想要找到一种卡片使用顺序使得最终游戏得分最多。 现在，告诉你棋盘上每个格子的分数和所有的爬行卡片，你能告诉小明，他最多能得到多少分吗？ 输入输出格式输入格式每行中两个数之间用一个空格隔开。 第1行2个正整数$N,M$，分别表示棋盘格子数和爬行卡片数。 第2行$N$个非负整数，$a_1,a_2,…,a_N$，其中$a_i$表示棋盘第$i$个格子上的分数。 第3行$M$个整数，$b_1,b_2,…,b_M$，表示M张爬行卡片上的数字。 输入数据保证到达终点时刚好用光$M$张爬行卡片。 输出格式11个整数，表示小明最多能得到的分数。 输入输出样例输入样例1239 56 10 14 2 8 8 18 5 171 3 1 2 1 输出样例173 解题思路先来想想五维的 DP 我们设 $ f(i,j,k,l,m) $ 表示当前用了 $i$ 个卡片1， $j$ 个卡片2， $k$ 个卡片3， $l$ 个卡片4，走了 $m$ 步时的最大得分 分别对四种卡片进行转移 $$ Max = f[i-1][j][k][l][m - 1] (i \geq 1) $$ $$ Max = max(Max,f[i][j-1][k][l][m - 2]) (j \geq 1, m \geq 3) $$ $$ Max = max(Max,f[i][j][k-1][l][m - 3]) (k \geq 1, m \geq 4) $$ $$ Max = max(Max,f[i][j][k][l-1][m - 4]) (l \geq 1, m \geq 5) $$ $$ f[i][j][k][l][m] = Max + Score[m] $$ 考虑一下优化。显然 $m$ 是可以通过计算得出的，$ m = i + 2j + 3k + 4l + 1 $ （注意后面的+1，因为是从第一个格开始的），那么就能省去一维 转移方程就变为了 $$ m = i + 2j + 3k + 4l + 1 $$ $$ Max = f[i-1][j][k][l] (i \geq 1) $$ $$ Max = max(Max,f[i][j-1][k][l]) (j \geq 1) $$ $$ Max = max(Max,f[i][j][k-1][l]) (k \geq 1) $$ $$ Max = max(Max,f[i][j][k][l-1]) (l \geq 1) $$ $$ f[i][j][k][l] = Max + Score[m] $$ 最终答案留做习题见代码 代码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081//// 3.cpp// ProjectDP//// Created by HandwerSTD on 2019/1/25.// Copyright © 2019 Handwer STD. All rights reserved.//#include &lt;iostream&gt;#include &lt;cstdio&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;using std::max;/* * * CARD1 means the card that can make the turtle go 1 block. * CARD2, CARD3 and CARD4 too. * dp[i][j][k][l] records the max score when there are i CARD1(s), j CARD2(s), k CARD3(s) and l CARD4(s) have been used. * * Formula: * Step = i * 1 + j * 2 + k * 3 + l * 4 + 1 * Max = dp[i][j][k][k] * Max = max(Max, dp[i-1][j][k][l]) (i &gt;= 1) * Max = max(Max, dp[i][j-1][k][l]) (j &gt;= 1) * Max = max(Max, dp[i][j][k-1][l]) (k &gt;= 1) * Max = max(Max, dp[i][j][k][l-1]) (l &gt;= 1) * dp[i][j][k][l] = Max + score[Step] * * Answer: * dp[a][b][c][d], * a -&gt; the amount of CARD1, b, c, and d too. * */const int MAXN = 350 + 10;const int MAXM = 120 + 10;const int MAXCARD = 40 + 10;int n, m, sc[MAXN], cds[MAXM];int a, b, c, d;int dp[MAXCARD][MAXCARD][MAXCARD][MAXCARD];int main() &#123; IMPROVE_IO(); cin &gt;&gt; n &gt;&gt; m; for (int i = 1; i &lt;= n; ++i) &#123; cin &gt;&gt; sc[i]; &#125; for (int i = 1; i &lt;= m; ++i) &#123; cin &gt;&gt; cds[i]; if (cds[i] == 1) ++a; if (cds[i] == 2) ++b; if (cds[i] == 3) ++c; if (cds[i] == 4) ++d; &#125; for (int i = 0; i &lt;= a; ++i) &#123; for (int j = 0; j &lt;= b; ++j) &#123; for (int k = 0; k &lt;= c; ++k) &#123; for (int l = 0; l &lt;= d; ++l) &#123; int walked = 1 + i * 1 + j * 2 + k * 3 + l * 4; if (walked &gt; n) break; int Max = dp[i][j][k][l]; if (i - 1 &gt;= 0) Max = max(Max, dp[i-1][j][k][l]); if (j - 1 &gt;= 0) Max = max(Max, dp[i][j-1][k][l]); if (k - 1 &gt;= 0) Max = max(Max, dp[i][j][k-1][l]); if (l - 1 &gt;= 0) Max = max(Max, dp[i][j][k][l-1]); dp[i][j][k][l] = Max + sc[walked]; &#125; &#125; &#125; &#125; cout &lt;&lt; dp[a][b][c][d] &lt;&lt; endl; return 0;&#125;]]></content>
@@ -255,8 +272,8 @@
       <tags>
         <tag>只有经历过的人才知道的世界</tag>
         <tag>使用指南</tag>
-        <tag>毒瘤</tag>
         <tag>优化</tag>
+        <tag>毒瘤</tag>
         <tag>加密</tag>
       </tags>
   </entry>
@@ -446,8 +463,8 @@
     <content type="text"><![CDATA[运行效率++; &nbsp; 可读性--; 下面是我在写程序时常用的快读/写模板（虽然它不仅仅只是快读/写）不仅提高了运行效率，还让编写时的体验更加舒适。 假如布局安排合理的话，可读性不但不会减少，反而会进一步上升。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071/* -- Basic Headers -- */#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#include &lt;algorithm&gt;/* -- STL Iterators -- */#include &lt;vector&gt;#include &lt;string&gt;#include &lt;stack&gt;#include &lt;queue&gt;/* -- External Headers -- *//* -- Defined Functions -- */#define For(a,x,y) for (int a = x; a &lt;= y; ++a)#define Forw(a,x,y) for (int a = x; a &lt; y; ++a)#define Bak(a,y,x) for (int a = y; a &gt;= x; --a)/* -- Defined Words -- */using namespace std;namespace FastIO &#123; void DEBUG(char comment[], int x) &#123; cerr &lt;&lt; comment &lt;&lt; x &lt;&lt; endl; &#125; inline int getint() &#123; int s = 0, x = 1; char ch = getchar(); while (!isdigit(ch)) &#123; if (ch == '-') x = -1; ch = getchar(); &#125; while (isdigit(ch)) &#123; s = s * 10 + ch - '0'; ch = getchar(); &#125; return s * x; &#125; inline void __basic_putint(int x) &#123; if (x &lt; 0) &#123; x = -x; putchar('-'); &#125; if (x &gt;= 10) __basic_putint(x / 10); putchar(x % 10 + '0'); &#125; inline void putint(int x, char external) &#123; __basic_putint(x); putchar(external); &#125;&#125;namespace Solution &#123;&#125;int main(int argc, char *const argv[]) &#123; #ifndef HANDWER_FILE freopen("testdata.in", "r", stdin); freopen("testdata.out", "w", stdout); #endif using namespace Solution; using namespace FastIO; return 0;&#125;]]></content>
       <tags>
         <tag>编程</tag>
-        <tag>毒瘤</tag>
         <tag>优化</tag>
+        <tag>毒瘤</tag>
       </tags>
   </entry>
   <entry>
