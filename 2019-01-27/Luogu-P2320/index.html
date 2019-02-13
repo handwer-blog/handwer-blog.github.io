@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="编程,题解,贪心,进制,各省省选," />
 
 
 
@@ -88,14 +88,18 @@
 
 
 
+<meta name="description" content="不断拆分">
+<meta name="keywords" content="编程,题解,贪心,进制,各省省选">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Luogu-P2320">
+<meta property="og:title" content="洛谷P2320《[HNOI2006]鬼谷子的钱袋》">
 <meta property="og:url" content="https://blog.handwer-std.top/2019-01-27/Luogu-P2320/index.html">
 <meta property="og:site_name" content="Handwer&#39;s Blog">
+<meta property="og:description" content="不断拆分">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-26T23:35:48.232Z">
+<meta property="og:updated_time" content="2019-02-04T01:28:42.498Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Luogu-P2320">
+<meta name="twitter:title" content="洛谷P2320《[HNOI2006]鬼谷子的钱袋》">
+<meta name="twitter:description" content="不断拆分">
 
 
 
@@ -131,7 +135,7 @@
 
 
 
-  <title>Luogu-P2320 | Handwer's Blog</title>
+  <title>洛谷P2320《[HNOI2006]鬼谷子的钱袋》 | Handwer's Blog</title>
   
 
 
@@ -319,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Luogu-P2320</h1>
+          <h1 class="post-title" itemprop="name headline">洛谷P2320《[HNOI2006]鬼谷子的钱袋》</h1>
         
 
         <div class="post-meta">
@@ -380,7 +384,35 @@
       
 
       
-        
+        <blockquote>
+<p>不断拆分</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>鬼谷子非常聪明，正因为这样，他非常繁忙，经常有各诸侯车的特派员前来向他咨询时政。</p>
+<p>有一天，他在咸阳游历的时候，朋友告诉他在咸阳最大的拍卖行（聚宝商行）将要举行一场拍卖会，其中有一件宝物引起了他极大的兴趣，那就是无字天书。</p>
+<p>但是，他的行程安排得很满，他已经买好了去邯郸的长途马车票，不巧的是出发时间是在拍卖会快要结束的时候。于是，他决定事先做好准备，将自己的金币数好并用一个个的小钱袋装好，以便在他现有金币的支付能力下，任何数目的金币他都能用这些封闭好的小钱的组合来付账。</p>
+<p>鬼谷子也是一个非常节俭的人，他想方设法使自己在满足上述要求的前提下，所用的钱袋数最少，并且不有两个钱袋装有相同的大于1的金币数。假设他有m个金币，你能猜到他会用多少个钱袋，并且每个钱袋装多少个金币吗？</p>
+<h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>包含一个整数，表示鬼谷子现有的总的金币数目m。其中，1 ≤ m ≤ 1000000000。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>两行，第一行一个整数h，表示所用钱袋个数</p>
+<p>第二行表示每个钱袋所装的金币个数，由小到大输出，空格隔开</p>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>本文已发布于<a href="https://www.luogu.org/blog/handwer-blog/solution-p2320" target="_blank" rel="noopener">Handwer’s 洛谷博客</a></p>
+<p>本蒟蒻怒写一发题解</p>
+<p>收到本校神犇<a href="https://www.luogu.org/space/show?uid=148343" target="_blank" rel="noopener">@Herself32</a> 的邀请，过来做这道题</p>
+<p><del>结果被题怒切</del></p>
+<p>不扯了</p>
+<hr>
+<p>首先考虑一个弱化版的题目，只输出最小袋子数<br>稍微找一下规律就知道是总钱数的二进制位数</p>
+<p>好 那么数据范围就出来了</p>
+<hr>
+<p>本题我们还是手动模拟一下</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span>-&gt; <span class="number">1</span></span><br><span class="line"><span class="symbol">2 </span>-&gt; <span class="number">1</span>, <span class="number">1</span></span><br><span class="line"><span class="symbol">3 </span>-&gt; <span class="number">1</span>, <span class="number">2</span></span><br><span class="line"><span class="symbol">4 </span>-&gt; <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span></span><br><span class="line"><span class="symbol">5 </span>-&gt; <span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span></span><br><span class="line"><span class="symbol">6 </span>-&gt; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span></span><br><span class="line"><span class="symbol">7 </span>-&gt; <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span></span><br><span class="line"><span class="symbol">8 </span>-&gt; <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<p>我们再把7和8的过程单独拿出来看</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">7 </span>-&gt; <span class="number">3</span>, <span class="number">4</span> -&gt; <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span></span><br><span class="line"><span class="symbol">8 </span>-&gt; <span class="number">4</span>, <span class="number">4</span> -&gt; <span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span> -&gt; <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<p>我们能发现什么？<br>对于一个数 $n$，我们可以把它用 $ \lceil \frac{n}{2} \rceil + \lfloor \frac{n}{2} \rfloor $ 表示，同时依照题意，$ \lfloor \frac{n}{2} \rfloor $ 也是可以用 $ \lceil \frac{\lfloor \frac{n}{2} \rfloor}{2} \rceil + \lfloor \frac{\lfloor \frac{n}{2} \rfloor}{2} \rfloor $ 进行表示的，这么一直递归下去，直到两个式中至少有一个为 1 ，此时反向（即从小到大）输出答案即可</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="meta-string">"r"</span>, stdin)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="meta-string">"w"</span>, stdout)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXANS = <span class="number">30</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> m;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> ans[MAXANS], cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Search</span><span class="params">(<span class="keyword">int</span> now)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (now == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = now / <span class="number">2</span>, mid2 = now / <span class="number">2</span> + (now % <span class="number">2</span>);</span><br><span class="line">    ans[++cnt] = mid2;</span><br><span class="line">    Search(mid);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;m);</span><br><span class="line">    Search(m);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, cnt);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = cnt; i &gt;= <span class="number">1</span>; --i) <span class="built_in">printf</span>(<span class="string">"%d "</span>, ans[i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -400,7 +432,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.handwer-std.top/2019-01-27/Luogu-P2320/" title="Luogu-P2320">https://blog.handwer-std.top/2019-01-27/Luogu-P2320/</a>
+    <a href="https://blog.handwer-std.top/2019-01-27/Luogu-P2320/" title="洛谷P2320《[HNOI2006]鬼谷子的钱袋》">https://blog.handwer-std.top/2019-01-27/Luogu-P2320/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -412,6 +444,20 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/题解/" rel="tag"># 题解</a>
+          
+            <a href="/tags/贪心/" rel="tag"># 贪心</a>
+          
+            <a href="/tags/进制/" rel="tag"># 进制</a>
+          
+            <a href="/tags/各省省选/" rel="tag"># 各省省选</a>
+          
+        </div>
       
 
       
@@ -489,8 +535,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -509,7 +564,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -522,7 +577,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -580,6 +635,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入输出格式"><span class="nav-number">2.</span> <span class="nav-text">输入输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">2.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">2.2.</span> <span class="nav-text">输出格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入输出样例"><span class="nav-number">3.</span> <span class="nav-text">输入输出样例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入样例"><span class="nav-number">3.1.</span> <span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出样例"><span class="nav-number">3.2.</span> <span class="nav-text">输出样例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number">4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">5.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -6,6 +6,135 @@
     <content type="text"><![CDATA[这里可能会挂些什么东西。 There may be something here.]]></content>
   </entry>
   <entry>
+    <title><![CDATA[关于新开的「Handwer's Problems」]]></title>
+    <url>%2F2019-02-13%2FMathProblems-NewSite%2F</url>
+    <content type="text"><![CDATA[「Handwer’s Problems」主要转载一些经过挑选的文化课题目。 每一道题都会在不久之后更新题解，同时会更新下一道题。 现在主要上数学题，预计不久之后会更新物理以及英语题目。 面向任何人开放，如无特殊情况（包括但不限于考试）不会设置密码。 链接：Handwer’s Problems]]></content>
+      <tags>
+        <tag>文化课</tag>
+        <tag>简介</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P2704《[NOI2001]炮兵阵地》]]></title>
+    <url>%2F2019-02-04%2FLuogu-P2704%2F</url>
+    <content type="text"><![CDATA[ProjectDP - 29 需要维护两行状态的状压DP 题目描述司令部的将军们打算在N*M的网格地图上部署他们的炮兵部队。一个N*M的地图由N行M列组成，地图的每一格可能是山地（用“H” 表示），也可能是平原（用“P”表示），如下图。在每一格平原地形上最多可以布置一支炮兵部队（山地上不能够部署炮兵部队）；一支炮兵部队在地图上的攻击范围如图中黑色区域所示： 如果在地图中的灰色所标识的平原上部署一支炮兵部队，则图中的黑色的网格表示它能够攻击到的区域：沿横向左右各两格，沿纵向上下各两格。图上其它白色网格均攻击不到。从图上可见炮兵的攻击范围不受地形的影响。 现在，将军们规划如何部署炮兵部队，在防止误伤的前提下（保证任何两支炮兵部队之间不能互相攻击，即任何一支炮兵部队都不在其他支炮兵部队的攻击范围内），在整个地图区域内最多能够摆放多少我军的炮兵部队。 输入输出格式输入格式第一行包含两个由空格分割开的正整数，分别表示N和M； 接下来的N行，每一行含有连续的M个字符（‘P’或者‘H’），中间没有空格。按顺序表示地图中每一行的数据。N≤100；M≤10。 输出格式仅一行，包含一个整数K，表示最多能摆放的炮兵部队的数量。 输入输出样例输入样例1234565 4PHPPPPHHPPPPPHPPPHHP 输出样例16 解题思路看到这个玄学的数据范围，第一反应就是状压DP 我们设 $ dp[i][j][k] $ 表示当前正在摆放第 $i$ 行，当前行的状态编号为 $j$，上一行的状态编号为 $k$ 时的最大数量 我们先把所有的可能状态预处理出来，记为 stats[] 初始状态时所有的dp[1][i][1] = Popcount(stats[i])，其中 Popcount(x)表示x的二进制1的个数 转移方程显然，$ dp[i][j][k] = max(dp[i][j][k], dp[i-1][k][l] + $ Popcount(stats[j]) $ ) $，其中 $j$ 表示当前行的状态编号，$k$ 表示上一行的，$l$ 表示再上一行的 注意判一下地形是否符合，方法参见洛谷P1879 我要开滚动数组 代码实现1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283//// 29.cpp// ProjectDP//// Created by HandwerSTD on 2019/1/29.// Copyright © 2019 Handwer STD. All rights reserved.//#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdio&gt;#include &lt;vector&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXN = 100 + 10;const int MAXM = 10 + 5;const int MAX = (1 &lt;&lt; 10) - 1 + 10;int status[MAX], dp[2][MAX][MAX], can[MAXN];int cnt, n, m;char str[MAXM];inline int pop(int x) &#123; int ret = 0; while(x) &#123; if(x &amp; 1) ret++; x &gt;&gt;= 1; &#125; return ret;&#125;inline int Check(int a, int b) &#123; return a &amp; b;&#125;inline int Check3(int a, int b, int c) &#123; return Check(a,b) || Check(a,c) || Check(b,c);&#125;int main() &#123; scanf("%d %d", &amp;n, &amp;m); for(int i = 1; i &lt;= n; ++i) &#123; scanf("%s",str + 1); for(int j = 1; j &lt;= m; ++j) if(str[j] == 'H')can[i] = (can[i] &lt;&lt; 1) | 1; else can[i] = can[i] &lt;&lt; 1; &#125; for(int i = 0; i &lt;= (1 &lt;&lt; m) - 1; ++i) &#123; if((!(i &amp; (i &lt;&lt; 2))) &amp;&amp; (!(i &amp; (i &lt;&lt; 1)))) status[++cnt] = i; &#125; for(int i = 1; i &lt;= cnt; ++i) dp[1 % 2][i][1] = pop(status[i]); for (int i = 2; i &lt;= n; ++i) &#123; for (int j = 1; j &lt;= cnt; ++j) &#123; if (!(status[j] &amp; can[i])) &#123; for (int k = 1; k &lt;= cnt; ++k) &#123; if ((!(status[k] &amp; can[i - 1])) &amp;&amp; (!Check(status[j],status[k]))) &#123; for (int l = 1; l &lt;= cnt; ++l)&#123; if ((!(status[l] &amp; can[i - 2])) &amp;&amp; (!Check3(status[j], status[k], status[l]))) dp[i % 2][j][k] = std::max(dp[i % 2][j][k], dp[(i - 1) % 2][k][l] + pop(status[j])); &#125; &#125; &#125; &#125; &#125; &#125; int ans = 0; for(int i = 1; i &lt;= cnt; ++i) for(int j = 1; j &lt;= cnt; ++j) ans = std::max(ans, dp[n % 2][i][j]); printf("%d\n", ans); return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>ProjectDP</tag>
+        <tag>动态规划，DP</tag>
+        <tag>NOI</tag>
+        <tag>状压DP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P3183《[HAOI2016]食物链》]]></title>
+    <url>%2F2019-02-04%2FLuogu-P3183%2F</url>
+    <content type="text"><![CDATA[本题与洛谷P4017 重复 代码通用 题解传送门]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>拓扑序</tag>
+        <tag>图论</tag>
+        <tag>各省省选</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P4017《最大食物链计数》]]></title>
+    <url>%2F2019-02-04%2FLuogu-P4017%2F</url>
+    <content type="text"><![CDATA[七年级上册生物题目 题目背景你知道食物链吗？Delia生物考试的时候，数食物链条数的题目全都错了，因为她总是重复数了几条或漏掉了几条。于是她来就来求助你，然而你也不会啊！写一个程序来帮帮她吧。 题目描述给你一个食物网，你要求出这个食物网中最大食物链的数量。 （这里的“最大食物链”，指的是生物学意义上的食物链，即最左端是不会捕食其他生物的生产者，最右端是不会被其他生物捕食的消费者。） Delia非常急，所以你只有1秒的时间。 由于这个结果可能过大，你只需要输出总数模上80112002的结果。 输入输出格式输入格式第一行，两个正整数n、m，表示生物种类n和吃与被吃的关系数m。 接下来m行，每行两个正整数，表示被吃的生物A和吃A的生物B。 输出格式一行一个整数，为最大食物链数量模上80112002的结果。 输入输出样例输入样例#1123456785 71 21 32 33 52 54 53 4 输出样例#115 说明各测试点满足以下约定： 【补充说明】 数据中不会出现环，满足生物学的要求。（感谢@AKEE ） 解题思路有向无环？拓扑序啊！仔细想一下发现思路可能是对的 正向建一个图，反向建一个图 先把正向图的拓扑序跑出来，放到一个vector&lt;int&gt;里再按照拓扑序来枚举点，这样就保证了枚举的顺序 我们设 dp[node] 表示以编号 node 为结尾的食物链个数那么对于节点 Node， 如果它没有出边，那么dp[node] = 1 如果它有出边，那么枚举每一条出边的邻接点nv，dp[node] += dp[nv] 最后答案是$\sum$dp[所有没有出边的点] 代码实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;cstdio&gt;#include &lt;queue&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)#define ADD(__x) if (__x &gt;= HA) __x -= HA#define DEBUG(__Args,...) printf(__Args,##__VA_ARGS__)using std::cin;using std::cout;using std::endl;using std::max;const int MAXN = 5000 + 10;const int HA = 80112002;std::vector&lt;int&gt; head[MAXN];std::vector&lt;int&gt; reallink[MAXN];std::vector&lt;int&gt; top;int id[MAXN]; // id -&gt; in degreeint n, m, ans; int dp[MAXN]; // dp[i][j] -&gt; the amount of links that the end-node = ivoid Topsort() &#123; std::queue&lt;int&gt; q; for (int i = 1; i &lt;= n; ++i) &#123; if (!id[i]) &#123; q.push(i); top.push_back(i); &#125; &#125; while (!q.empty()) &#123; int u = q.front(); q.pop(); int amt = head[u].size(); for (int i = 0; i &lt; amt; ++i) &#123; int v = head[u][i]; --id[v]; if (!id[v]) &#123; top.push_back(v); q.push(v); &#125; &#125; &#125;&#125;int main() &#123; IMPROVE_IO(); cin &gt;&gt; n &gt;&gt; m; for (int i = 1; i &lt;= m; ++i) &#123; int A = 0, B = 0; cin &gt;&gt; A &gt;&gt; B; head[A].push_back(B); reallink[B].push_back(A); ++id[B]; &#125; Topsort(); for (int i = 1; i &lt;= n; ++i) &#123; // enumerate Topsorted-Nodes int nnode = top[i - 1]; if (reallink[nnode].size() == 0) dp[nnode] = 1; // no out-edges connected for (int j = 0; j &lt; reallink[nnode].size(); ++j) &#123; int nenode = reallink[nnode][j]; dp[nnode] += dp[nenode]; ADD(dp[nnode]); &#125; if (!head[nnode].size()) ans += dp[nnode]; ADD(ans); &#125; cout &lt;&lt; ans &lt;&lt; endl; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>图论</tag>
+        <tag>拓扑排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[BZOJ3060《Tour de Byteotia》]]></title>
+    <url>%2F2019-02-04%2FBZOJ3060%2F</url>
+    <content type="text"><![CDATA[并查集板子题（雾 题面权限题，题面请自行寻找用小刀刮开涂层来获取题目地址访问 DarkBZOJ 来获取题面 解题思路用并查集维护一下连通性 下文我们称「编号小于等于k的点」为「奇特点」 显然和奇特点没有关系的边删不删都无所谓，不影响答案，所以我们可以放心地把这些边加入并查集。 然后我们枚举所有的与奇特点相连的边，尝试将这条边加入并查集。如果这条边的两个点不连通，就可以放心地将这条边加入并查集，否则++ans 最后输出ans即可 代码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include &lt;algorithm&gt;#include &lt;iostream&gt;#include &lt;cstring&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXN = 1000000 + 10;const int MAXM = 2000000 + 10;struct UnionFind &#123; int seq[MAXN]; UnionFind() &#123; memset(seq, 0, sizeof seq); &#125; int Find(int x) &#123; if (seq[x] == 0) return x; return seq[x] = Find(seq[x]); &#125; bool Union(int x, int y) &#123; x = Find(x); y = Find(y); if (x == y) return false; seq[x] = y; return true; &#125;&#125; U;struct Edge &#123; int f, t; // from to Edge() &#123; f = t = 0; &#125;&#125; edge[MAXM &lt;&lt; 1];int n, m, k, cnt;inline void addEdge(int u, int v) &#123; edge[++cnt].f = u; edge[cnt].t = v;&#125;int main() &#123; IMPROVE_IO(); cin &gt;&gt; n &gt;&gt; m &gt;&gt; k; int ans = 0; for (int i = 1; i &lt;= m; ++i) &#123; int prev = 0, next = 0; cin &gt;&gt; prev &gt;&gt; next; addEdge(prev, next); &#125; for (int e = 1; e &lt;= m; ++e) &#123; if (!(edge[e].f &lt;= k || edge[e].t &lt;= k)) &#123; U.Union(edge[e].f, edge[e].t); &#125; &#125; for (int e = 1; e &lt;= m; ++e) &#123; if (edge[e].f &lt;= k || edge[e].t &lt;= k) &#123; if (!U.Union(edge[e].f, edge[e].t)) ++ans; &#125; &#125; cout &lt;&lt; ans &lt;&lt; endl; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>图论</tag>
+        <tag>并查集</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P2619《[国家集训队2]Tree I》]]></title>
+    <url>%2F2019-02-04%2FLuogu-P2619%2F</url>
+    <content type="text"><![CDATA[年轻人的第一道国家集训队二分答案 + 最小生成树 题目描述给你一个无向带权连通图，每条边是黑色或白色。让你求一棵最小权的恰好有need条白色边的生成树。 题目保证有解。 输入输出格式输入格式第一行V,E,need分别表示点数，边数和需要的白色边数。 接下来E行 每行s,t,c,col表示这边的端点(点从0开始标号)，边权，颜色(0白色1黑色)。 输出格式一行表示所求生成树的边权和。 输入输出样例输入样例1232 2 10 1 1 10 1 2 0 输出样例12 说明0:V&lt;=10 1,2,3:V&lt;=15 0,..,19:V&lt;=50000,E&lt;=100000 所有数据边权为[1,100]中的正整数。 By WJMZBMR 解题思路年轻人的第一道国家集训队题目 如果我们不做任何处理，直接跑MST（Minimum Spanning Tree，最小生成树），结果会有三种： 正好跑出 $\text{Need}$ 条白边 白边多了 白边少了 第一种情况自然是最好的 剩下两种情况如何解决？ 引起白边少的原因：黑边的边权相对较小，程序贪心地选择了更多的黑边 引起白边多的原因：白边的边权相对较小，程序贪心地选择了更多的白边 那么如果我们给白边相应地减去/加上一些边权，不就可以达成目标了？ 考虑二分答案。 我们二分一个 $add$ 表示我们当前要给白边加上 $add$ 来达成目标 边界分别是边权最小值（-100）和边权最大值（100） 由于题面保证有答案，所以直接输出 $ ans - add \times \text{Need} $ 即可，其中 $ans$ 为（加上边权后）最小生成树的权值和 Check(mid) 怎么写？ 我们将所有白边的边权加上$add$（即$mid$），跑一遍最小生成树，判断一下拿到的白色边数量是否大于等于要求的数量，如果是就更新一下左边界并记当前的$mid$为$tans$，否则就更新一下右边界 注意不要忘了把边权减回来 （不要在意 $tans$ 是什么意思） 刚才我们不是记录了一下$tans$吗，这个$tans$就相当于是一个正确的、能选出正好 $\text{Need}$ 条白边的 $add$ 值，再将所有白边的边权都加上这个 $tans$，跑一遍最小生成树即可 答案不要忘了减去加上的边权（也就是 $ \text{Need} \times tans $） 那么最后的答案就是 $ \text{Kruskal()} - \text{Need} \times tans $ 代码实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697#include &lt;algorithm&gt;#include &lt;iostream&gt;#include &lt;cstdio&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)#define WHITE 0#define BLACK 1using std::cin;using std::cout;using std::endl;using std::max;const int MAXV = 50000 + 10;const int MAXE = 100000 + 10;const int MAXW = 100;struct Edge &#123; int prev, next, weight, add; bool color; // 1 -&gt; black, 0 -&gt; white Edge() &#123; prev = next = weight = color = add = 0; &#125; bool operator &lt; (const Edge &amp;that) const &#123; if (weight == that.weight) return color &lt; that.color; return weight &lt; that.weight; &#125;&#125; edge[MAXE &lt;&lt; 1];int V, E, Need, cnt, ans;int U[MAXV &lt;&lt; 1];int Find(int x) &#123; if (U[x] == x) return U[x]; return U[x] = Find(U[x]);&#125;bool Union(int x, int y) &#123; x = Find(x), y = Find(y); if (x == y) return false; U[x] = y; return true;&#125;int Kruskal() &#123; int whiteEdge = 0; for (int i = 1; i &lt;= V; ++i) U[i] = i; std::sort(edge + 1, edge + 1 + E); int tot = 0; ans = 0; for (int i = 1; i &lt;= E; ++i) &#123; if (Union(edge[i].prev, edge[i].next)) ans += edge[i].weight, ++tot, whiteEdge += (edge[i].color == WHITE); if (tot == V - 1) break; &#125; return whiteEdge;&#125;bool Check(int add) &#123; for (int i = 1; i &lt;= E; ++i) &#123; if (edge[i].color == WHITE) edge[i].weight += add; &#125; bool Ans = (Kruskal() &gt;= Need); for (int i = 1; i &lt;= E; ++i) &#123; if (edge[i].color == WHITE) edge[i].weight -= add; &#125; return Ans;&#125;int main() &#123; IMPROVE_IO(); cin &gt;&gt; V &gt;&gt; E &gt;&gt; Need; for (int i = 1; i &lt;= E; ++i) &#123; cin &gt;&gt; edge[i].prev &gt;&gt; edge[i].next &gt;&gt; edge[i].weight &gt;&gt; edge[i].color; ++edge[i].prev; ++edge[i].next; &#125; int l = -MAXW, r = MAXW; int Run = 0; while (l &lt;= r) &#123; int mid = ((l + r) &gt;&gt; 1); if (Check(mid)) &#123; l = mid + 1; Run = mid; &#125; else &#123; r = mid - 1; &#125; &#125; Check(Run); cout &lt;&lt; ans - Need * Run &lt;&lt; endl; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>图论</tag>
+        <tag>生成树</tag>
+        <tag>二分答案</tag>
+        <tag>国家集训队</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P1621《集合》]]></title>
+    <url>%2F2019-02-04%2FLuogu-P1621%2F</url>
+    <content type="text"><![CDATA[素数筛 + 并查集 题目背景John的农场缺水了！！！ 题目描述Farmer John has decided to bring water to his N (1 &lt;= N &lt;= 300) pastures which are conveniently numbered 1..N. He may bring water to a pasture either by building a well in that pasture or connecting the pasture via a pipe to another pasture which already has water. Digging a well in pasture i costs W_i (1 &lt;= W_i &lt;= 100,000). Connecting pastures i and j with a pipe costs P_ij (1 &lt;= P_ij &lt;= 100,000; P_ij = P_ji; P_ii=0). Determine the minimum amount Farmer John will have to pay to water all of his pastures. POINTS: 400 农民John 决定将水引入到他的n(1&lt;=n&lt;=300)个牧场。他准备通过挖若 干井，并在各块田中修筑水道来连通各块田地以供水。在第i 号田中挖一口井需要花费W_i(1&lt;=W_i&lt;=100,000)元。连接i 号田与j 号田需要P_ij (1 &lt;= P_ij &lt;= 100,000 , P_ji=P_ij)元。 请求出农民John 需要为使所有农场都与有水的农场相连或拥有水井所需要的钱数。 输入输出格式输入格式第1 行为一个整数n。 第2 到n+1 行每行一个整数，从上到下分别为W_1 到W_n。 第n+2 到2n+1 行为一个矩阵，表示需要的经费（P_ij）。 输出格式只有一行，为一个整数，表示所需要的钱数。 输入输出样例输入样例123456789454430 2 2 22 0 3 32 3 0 42 3 4 0 输出样例19 说明John等着用水，你只有1s时间！！！ 解题思路题目中“质数”两个字很是显眼啊 还等啥啊 筛啊 素数筛很好写吧 筛完了，然后呢？ 题目让我们找两个公共质因数 $ \geq P $ 的，不在一个集合里的数，并合并它们。我们不这样找 枚举每一个质数primes[i]，计算出第一个 大于A的primes[i]的倍数（题目要求的）记为$t$，然后从$t+\text{primes[i]}$一直枚举到$B$（每次增长一个$\text{primes[i]}$，毕竟要求必须有$\text{primes[i]}$这个数作为质因数），每次用并查集合并$t$和当前枚举到的这个数 代码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;iostream&gt;#include &lt;cstdio&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;using std::max;const int MAXB = 100000 + 10;int A, B, P;int primes[MAXB], cnt, ans;bool npm[MAXB]; // n(ot a )p(ri)m(e) -&gt; not a primeint U[MAXB];int Find(int x) &#123; if (U[x] == x) return x; return U[x] = Find(U[x]);&#125;inline void Union(int x, int y) &#123; x = Find(x), y = Find(y); if (x == y) return; --ans; // 两个集合变成了一个，答案减一 U[x] = y;&#125;int main() &#123; IMPROVE_IO(); cin &gt;&gt; A &gt;&gt; B &gt;&gt; P; for (int i = 1; i &lt;= B; ++i) U[i] = i; // 并查集初始化 // 筛一波素数 for (int i = 2; i &lt;= B; ++i) &#123; if (!npm[i]) primes[++cnt] = i; for (int j = 1; j &lt;= cnt &amp;&amp; primes[j] * i &lt;= B; ++j) &#123; npm[primes[j] * i] = true; if (i % primes[j] == 0) break; &#125; &#125; ans = B - A + 1; // r - l + 1 // 原来的答案总数是（右边界 - 左边界 + 1） //（即 B - A + 1），每次合并集合的时候两个集合变成了一个，--ans for (int i = 1; i &lt;= cnt; ++i) &#123; if (primes[i] &lt; P) continue; // 质因数要求大于等于P int np = (A + primes[i] - 1) / primes[i] * primes[i]; // np -&gt; The smallest multiple of primes[i] larger than A // np -&gt; 最小的 比A大的 primes[i]的倍数 for (int j = np + primes[i]; j &lt;= B; j += primes[i]) &#123; Union(np, j); &#125; &#125; cout &lt;&lt; ans &lt;&lt; endl; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>图论</tag>
+        <tag>并查集</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P1879《[USACO06NOV]玉米田Corn Fields》]]></title>
+    <url>%2F2019-01-29%2FLuogu-P1879%2F</url>
+    <content type="text"><![CDATA[ProjectDP - 28 状压DP入门题 题目描述Farmer John has purchased a lush new rectangular pasture composed of M by N (1 ≤ M ≤ 12; 1 ≤ N ≤ 12) square parcels. He wants to grow some yummy corn for the cows on a number of squares. Regrettably, some of the squares are infertile and can’t be planted. Canny FJ knows that the cows dislike eating close to each other, so when choosing which squares to plant, he avoids choosing squares that are adjacent; no two chosen squares share an edge. He has not yet made the final choice as to which squares to plant. Being a very open-minded man, Farmer John wants to consider all possible options for how to choose the squares for planting. He is so open-minded that he considers choosing no squares as a valid option! Please help Farmer John determine the number of ways he can choose the squares to plant. 农场主John新买了一块长方形的新牧场，这块牧场被划分成M行N列(1 ≤ M ≤ 12; 1 ≤ N ≤ 12)，每一格都是一块正方形的土地。John打算在牧场上的某几格里种上美味的草，供他的奶牛们享用。 遗憾的是，有些土地相当贫瘠，不能用来种草。并且，奶牛们喜欢独占一块草地的感觉，于是John不会选择两块相邻的土地，也就是说，没有哪两块草地有公共边。 John想知道，如果不考虑草地的总块数，那么，一共有多少种种植方案可供他选择？（当然，把新牧场完全荒废也是一种方案） 输入输出格式输入格式第一行：两个整数M和N，用空格隔开。 第2到第M+1行：每行包含N个用空格隔开的整数，描述了每块土地的状态。第i+1行描述了第i行的土地，所有整数均为0或1，是1的话，表示这块土地足够肥沃，0则表示这块土地不适合种草。 输出格式一个整数，即牧场分配总方案数除以100,000,000的余数。 输入输出样例输入样例1232 31 1 10 1 0 输出样例19 解题思路一道状压DP入门题 首先我们发现对于每一行，有 N 个状态那么就意味着这是一个N + 1维DP…… 但是我们发现从第二维到第N维都只需要0（不种玉米）和1（种玉米）两个值那么……二进制！比如 1010 就表示第1、3个格种玉米，第2、4个格不种玉米 设 $ f[i][\text{status}] $ 表示第 $i$ 行种玉米的状态是 $\text{status}$转移方程很显然吧 $$ f[i][\text{status}] = f[i][\text{status}] + f[i - 1][\text{pre_status}] $$ 如何判断 $ \text{status} $ 和 $ \text{pre_status} $ 是不是互相合法？ 我们先来看看如何判断两行互相合法。 「合法」指两行种玉米的地方不相邻，也就是两个1不相邻。我们来想想位运算 $and$ 的性质 1234567891011运算法则：1 &amp; 1 = 11 &amp; 0 = 00 &amp; 0 = 0and (aka &amp;) 是按位运算的例如： 10101101 10100100&amp; 10110100 &amp; 01010001---------- ---------- 10100100 00000000 我们发现，第二个例子放在题目中是合法的，它们进行 $and$ 运算的值为 $0$那么方法不就出来了吗！ 123bool Check(int stat1, int stat2) &#123; return (stat1 &amp; stat2) == 0;&#125; 单行的状态也可能不合法，如何对敌怎么解决？ 12345678910stat1 = 01001101 就是一个不合法的状态我们把 stat1 左移一位（ stat1 = stat1 &lt;&lt; 1 ）得到了 stat2 = 10011010我们把他们 and 一下 01001101&amp; 10011010---------- 00001000 &gt; 0 那么方法就出来了 123bool CheckSingleLine(int stat) &#123; return Check(stat, stat &lt;&lt; 1);&#125; 之后处理一下土地的状态 我们将一行土地的利用情况记为二进制0表示荒地，1表示耕地 我们判断一下当前状态与利用情况 and 起来是否还等于当前状况即可正确性证明留作习题 那么我们枚举所有的可能状态，挨个判断即可。注意边界条件 $ f[0][0] = 1 $ 代码实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667//// 28.cpp// ProjectDP//// Created by HandwerSTD on 2019/1/29.// Copyright © 2019 Handwer STD. All rights reserved.//#include &lt;iostream&gt;#include &lt;vector&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)#define Stat(__x) FIXED_STATUS[__x]using std::cin;using std::cout;using std::endl;const int MAXSTATUS = (1 &lt;&lt; 12) - 1 + 10;const int MAXMN = 12 + 5;const int HA = 100000000;int m, n;int farm[MAXMN][MAXMN];int dp[MAXMN][MAXSTATUS], FIXED_STATUS[MAXSTATUS];/* * * dp[i][stat]: line = i, status = stat (binary) * */int main() &#123; IMPROVE_IO(); cin &gt;&gt; m &gt;&gt; n; for (int i = 1; i &lt;= m; ++i) &#123; for (int j = 1; j &lt;= n; ++j) &#123; cin &gt;&gt; farm[i][j]; Stat(i) = (Stat(i) &lt;&lt; 1) + farm[i][j]; // 预处理一下土地的状态 &#125; &#125; dp[0][0] = 1; for (int i = 1; i &lt;= m; ++i) &#123; for (int status = 0; status &lt;= (1 &lt;&lt; n) - 1; ++status) &#123; if ((status &amp; (status &lt;&lt; 1)) != 0) continue; // some grass are close to each other if ((status &amp; Stat(i)) != status) continue; // at least one grass planted on a barren place for (int pre_stat = 0; pre_stat &lt;= (1 &lt;&lt; n) - 1; ++pre_stat) &#123; if ((status &amp; pre_stat) == 0) &#123; dp[i][status] += dp[i - 1][pre_stat]; dp[i][status] %= HA; &#125; &#125; &#125; &#125; int ans = 0; for (int i = 0; i &lt;= (1 &lt;&lt; n) - 1; ++i) &#123; ans += dp[m][i]; ans %= HA; &#125; cout &lt;&lt; ans &lt;&lt; endl; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>ProjectDP</tag>
+        <tag>动态规划，DP</tag>
+        <tag>状压DP</tag>
+        <tag>进制</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P1352《没有上司的舞会》]]></title>
+    <url>%2F2019-01-28%2FLuogu-P1352%2F</url>
+    <content type="text"><![CDATA[ProjectDP - 8 树形DP入门题 题目描述某大学有N个职员，编号为1~N。他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数Ri，但是呢，如果某个职员的上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。 输入输出格式输入格式第一行一个整数N。(1&lt;=N&lt;=6000) 接下来N行，第i+1行表示i号职员的快乐指数Ri。(-128&lt;=Ri&lt;=127) 接下来N-1行，每行输入一对整数L,K。表示K是L的直接上司。 最后一行输入0 0 输出格式输出最大的快乐指数。 输入输出样例输入样例123456789101112131415711111111 32 36 47 44 53 50 0 输出样例15 解题思路这是一道树形DP板子题。 设 $ f[u][0] $ 表示不选择 $u$ 这个结点时的最大价值，$ f[u][1] $ 表示选择 $u$ 这个结点时的最大价值令 $v$ 为 $u$ 除父节点以外的邻接点，那么我们就能写出这样的伪代码 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯$ \text{Algorithm 1: DFS(u)} $⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯$ 1: f[u][0] = 0 $$ 2: f[u][1] = value[u] $$ 3: \text{while u}$ 有未被遍历的出边 $ (u,v) \text{ do} $$ 4: $ &nbsp;&nbsp;&nbsp;&nbsp; $ \text{DFS}(v) $$ 5: $ &nbsp;&nbsp;&nbsp;&nbsp; $ f[u][0] = f[u][0] + \text{max}(f[v][0], f[v][1]) $$ 6: $ &nbsp;&nbsp;&nbsp;&nbsp; $ f[u][1] = f[u][1] + f[v][0] $$ 7: \text{end while}$⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ 最后答案即为 $ \text{max}(f[root][0], f[root][1]) $ 代码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566//// 8.cpp// ProjectDP//// Created by HandwerSTD on 2019/1/28.// Copyright © 2019 Handwer STD. All rights reserved.//#include &lt;iostream&gt;#include &lt;vector&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXN = 6000 + 10;/* * * dp[u][true]: Choose Node[u] * dp[u][false]: Don't choose Node[u] * */int val[MAXN], n;int dp[MAXN][2], inDegree[MAXN];std::vector&lt;int&gt; head[MAXN];void DFS(int u) &#123; dp[u][0] = 0; dp[u][1] = val[u]; int siz = (int) head[u].size(); for (int i = 0; i &lt; siz; ++i) &#123; int v = head[u][i]; DFS(v); dp[u][1] += dp[v][0]; dp[u][0] += std::max(dp[v][0], dp[v][1]); &#125;&#125;int main() &#123; IMPROVE_IO(); cin &gt;&gt; n; for (int i = 1; i &lt;= n; ++i) cin &gt;&gt; val[i]; int maxNode = -1, minNode = MAXN + 1000; for (int i = 1; i &lt;= n - 1; ++i) &#123; int father = 0, child = 0; cin &gt;&gt; child &gt;&gt; father; head[father].push_back(child); ++inDegree[child]; maxNode = std::max(maxNode, std::max(father, child)); minNode = std::min(minNode, std::min(father, child)); &#125; int root = 0; for (int i = minNode; i &lt;= maxNode; ++i) &#123; if (inDegree[i] == false) root = i; if (root != 0) break; &#125; DFS(root); cout &lt;&lt; std::max(dp[root][0], dp[root][1]) &lt;&lt; endl; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>ProjectDP</tag>
+        <tag>动态规划，DP</tag>
+        <tag>树形DP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HDU2089《不要62》]]></title>
+    <url>%2F2019-01-28%2FHDU2089%2F</url>
+    <content type="text"><![CDATA[ProjectDP - 26 数位DP板子题 Problem Description杭州人称那些傻乎乎粘嗒嗒的人为62（音：laoer）。杭州交通管理局经常会扩充一些的士车牌照，新近出来一个好消息，以后上牌照，不再含有不吉利的数字了，这样一来，就可以消除个别的士司机和乘客的心理障碍，更安全地服务大众。不吉利的数字为所有含有4或62的号码。例如：62315 73418 88914都属于不吉利号码。但是，61152虽然含有6和2，但不是62连号，所以不属于不吉利数字之列。你的任务是，对于每次给出的一个牌照区间号，推断出交管局今次又要实际上给多少辆新的士车上牌照了。 Input输入的都是整数对n、m（0&lt;n≤m&lt;1000000），如果遇到都是0的整数对，则输入结束。 Output对于每个整数对，输出一个不含有不吉利数字的统计个数，该数值占一行位置。 Sample Input121 1000 0 Sample Output180 Authorqianneng 解题思路 不会讲啊QAQ 代码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475//// 26.cpp// ProjectDP//// Created by HandwerSTD on 2019/1/28.// Copyright © 2019 Handwer STD. All rights reserved.//#include &lt;iostream&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXLENGTH = 8 + 4;/* * * dp[i][j]: length = i, the start number = j * */int dp[MAXLENGTH][MAXLENGTH];int n, m;void Init() &#123; dp[0][0] = 1; for (int i = 1; i &lt;= 9; ++i) &#123; // enumeration length for (int j = 0; j &lt;= 9; ++j) &#123; if (j == 4) dp[i][j] = 0; else &#123; for (int k = 0; k &lt;= 9; ++k) &#123; dp[i][j] += dp[i - 1][k]; &#125; if (j == 6) dp[i][j] -= dp[i - 1][2]; &#125; &#125; &#125;&#125;int Solve(int x) &#123; // returns the amount in [0, x) int ans = 0; int num[MAXLENGTH] = &#123;0&#125;; // num[0] &lt;=&gt; cnt while (x) &#123; num[++num[0]] = x % 10; x /= 10; &#125; for (int i = num[0]; i &gt;= 1; --i) &#123; for (int j = 0; j &lt; num[i]; ++j) &#123; if (j == 4 || (num[i + 1] == 6 &amp;&amp; j == 2)) continue; ans += dp[i][j]; &#125; if (num[i] == 4) break; if (num[i + 1] == 6 &amp;&amp; num[i] == 2) break; &#125; return ans;&#125;int main() &#123; IMPROVE_IO(); Init(); while (true) &#123; cin &gt;&gt; n &gt;&gt; m; if (n == 0 &amp;&amp; m == 0) break; cout &lt;&lt; Solve((m) + 1) - Solve((n - 1) + 1) &lt;&lt; endl; &#125; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>ProjectDP</tag>
+        <tag>动态规划，DP</tag>
+        <tag>数位DP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P1006《传纸条》]]></title>
+    <url>%2F2019-01-28%2FLuogu-P1006%2F</url>
+    <content type="text"><![CDATA[ProjectDP - 4 从下往上传 $ \iff $ 从上往下传]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>ProjectDP</tag>
+        <tag>DP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[洛谷P1434《[SHOI2010]滑雪》]]></title>
     <url>%2F2019-01-27%2FLuogu-P1434%2F</url>
     <content type="text"><![CDATA[记忆化搜索好题 题目描述Michael喜欢滑雪。这并不奇怪，因为滑雪的确很刺激。可是为了获得速度，滑的区域必须向下倾斜，而且当你滑到坡底，你不得不再次走上坡或者等待升降机来载你。Michael想知道在一个区域中最长的滑坡。区域由一个二维数组给出。数组的每个数字代表点的高度。下面是一个例子： 123451 2 3 4 516 17 18 19 615 24 25 20 714 23 22 21 813 12 11 10 9 一个人可以从某个点滑向上下左右相邻四个点之一，当且仅当高度减小。在上面的例子中，一条可行的滑坡为24－17－16－1（从24开始，在1结束）。当然25－24－23－…－3－2－1更长。事实上，这是最长的一条。 输入输出格式输入格式输入的第一行为表示区域的二维数组的行数R和列数C（1≤R，C≤100）。下面是R行，每行有C个数，代表高度(两个数字之间用1个空格间隔)。 输出格式输出区域中最长滑坡的长度。 输入输出样例输入样例1234565 51 2 3 4 516 17 18 19 615 24 25 20 714 23 22 21 813 12 11 10 9 输出样例125 解题思路一眼就能看出这是搜索题 方法很显然，枚举所有的点，从当前点开始 DFS，每次往四个方向搜索，直到不能搜为止，这时候答案就出来了一个，更新一下。 考虑一下优化。在每次搜索的过程中，我们有很多点是重复走过的，那么就可以把暴搜升级为记忆化搜索。用 $ \text{mem}(x,y) $ 表示从点 $ (x,y) $ 出发的最长路径，在每一次搜索完成之后更新一下当前的答案，记录到 $ \text{mem}(x,y) $ 中即可。等到下一次搜到这个点（记为 $ (x’,y’) $ ），如果 $ \text{mem}(x’,y’) \geq 0 $ （也就是被更新过了），直接返回 $ \text{mem}(x’,y’) $ 就行。 我们也可以把记忆化搜索升级为 DP 不过据说比记忆化搜索还慢DP 做法题解已提上日程。 代码实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152#include &lt;iostream&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int dx[] = &#123; 0, 0, -1, 1 &#125;;const int dy[] = &#123; 1, -1, 0, 0 &#125;;const int MAXRC = 100 + 10;int snow[MAXRC][MAXRC];int r, c, ans;int mem[MAXRC][MAXRC];int Search(int x, int y) &#123; int t = 1; if (mem[x][y]) t = mem[x][y]; else &#123; for (int i = 0; i &lt; 4; ++i) &#123; int nx = x + dx[i]; int ny = y + dy[i]; if (nx &gt; 0 &amp;&amp; ny &gt; 0 &amp;&amp; nx &lt;= r &amp;&amp; ny &lt;= c &amp;&amp; snow[x][y] &lt; snow[nx][ny]) &#123; t = std::max(t, Search(nx, ny) + 1); &#125; &#125; &#125; mem[x][y] = t; return t;&#125;int main() &#123; IMPROVE_IO(); cin &gt;&gt; r &gt;&gt; c; for (int i = 1; i &lt;= r; ++i) &#123; for (int j = 1; j &lt;= c; ++j) &#123; cin &gt;&gt; snow[i][j]; &#125; &#125; for (int i = 1; i &lt;= r; ++i) &#123; for (int j = 1; j &lt;= c; ++j) &#123; int now = Search(i, j); mem[i][j] = now; ans = std::max(ans, mem[i][j]); &#125; &#125; cout &lt;&lt; ans &lt;&lt; endl; return 0;&#125;]]></content>
@@ -18,9 +147,16 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Luogu-P2320]]></title>
+    <title><![CDATA[洛谷P2320《[HNOI2006]鬼谷子的钱袋》]]></title>
     <url>%2F2019-01-27%2FLuogu-P2320%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[不断拆分 题目描述鬼谷子非常聪明，正因为这样，他非常繁忙，经常有各诸侯车的特派员前来向他咨询时政。 有一天，他在咸阳游历的时候，朋友告诉他在咸阳最大的拍卖行（聚宝商行）将要举行一场拍卖会，其中有一件宝物引起了他极大的兴趣，那就是无字天书。 但是，他的行程安排得很满，他已经买好了去邯郸的长途马车票，不巧的是出发时间是在拍卖会快要结束的时候。于是，他决定事先做好准备，将自己的金币数好并用一个个的小钱袋装好，以便在他现有金币的支付能力下，任何数目的金币他都能用这些封闭好的小钱的组合来付账。 鬼谷子也是一个非常节俭的人，他想方设法使自己在满足上述要求的前提下，所用的钱袋数最少，并且不有两个钱袋装有相同的大于1的金币数。假设他有m个金币，你能猜到他会用多少个钱袋，并且每个钱袋装多少个金币吗？ 输入输出格式输入格式包含一个整数，表示鬼谷子现有的总的金币数目m。其中，1 ≤ m ≤ 1000000000。 输出格式两行，第一行一个整数h，表示所用钱袋个数 第二行表示每个钱袋所装的金币个数，由小到大输出，空格隔开 输入输出样例输入样例13 输出样例1221 2 解题思路本文已发布于Handwer’s 洛谷博客 本蒟蒻怒写一发题解 收到本校神犇@Herself32 的邀请，过来做这道题 结果被题怒切 不扯了 首先考虑一个弱化版的题目，只输出最小袋子数稍微找一下规律就知道是总钱数的二进制位数 好 那么数据范围就出来了 本题我们还是手动模拟一下 123456781 -&gt; 12 -&gt; 1, 13 -&gt; 1, 24 -&gt; 1, 1, 25 -&gt; 1, 1, 36 -&gt; 1, 2, 37 -&gt; 1, 2, 48 -&gt; 1, 1, 2, 4 我们再把7和8的过程单独拿出来看 127 -&gt; 3, 4 -&gt; 1, 2, 48 -&gt; 4, 4 -&gt; 2, 2, 4 -&gt; 1, 1, 2, 4 我们能发现什么？对于一个数 $n$，我们可以把它用 $ \lceil \frac{n}{2} \rceil + \lfloor \frac{n}{2} \rfloor $ 表示，同时依照题意，$ \lfloor \frac{n}{2} \rfloor $ 也是可以用 $ \lceil \frac{\lfloor \frac{n}{2} \rfloor}{2} \rceil + \lfloor \frac{\lfloor \frac{n}{2} \rfloor}{2} \rfloor $ 进行表示的，这么一直递归下去，直到两个式中至少有一个为 1 ，此时反向（即从小到大）输出答案即可 代码实现1234567891011121314151617181920212223242526272829303132#include &lt;iostream&gt;#include &lt;cstdio&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXANS = 30 + 10;int m;int ans[MAXANS], cnt = 0;void Search(int now) &#123; if (now == 0) return; int mid = now / 2, mid2 = now / 2 + (now % 2); ans[++cnt] = mid2; Search(mid);&#125;int main() &#123; scanf("%d", &amp;m); Search(m); printf("%d\n", cnt); for (int i = cnt; i &gt;= 1; --i) printf("%d ", ans[i]); printf("\n"); return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>贪心</tag>
+        <tag>进制</tag>
+        <tag>各省省选</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[洛谷P1541「NOIP2010」《乌龟棋》]]></title>
@@ -29,8 +165,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>DP</tag>
         <tag>ProjectDP</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -39,8 +175,8 @@
     <content type="text"><![CDATA[DP计划 为提高自己的DP水平，我创建了一个名为「DP计划」的工程，用它来记录自己的题目完成情况，同时编程、调试、代码储存也使用此工程。 项目地址：View ProjectDP on GitHub]]></content>
       <tags>
         <tag>编程</tag>
-        <tag>DP</tag>
         <tag>ProjectDP</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -154,10 +290,10 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
+        <tag>图论</tag>
         <tag>BZOJ</tag>
         <tag>USACO</tag>
-        <tag>图论</tag>
-        <tag>最小生成树</tag>
+        <tag>生成树</tag>
       </tags>
   </entry>
   <entry>
@@ -272,8 +408,8 @@
       <tags>
         <tag>只有经历过的人才知道的世界</tag>
         <tag>使用指南</tag>
-        <tag>优化</tag>
         <tag>毒瘤</tag>
+        <tag>优化</tag>
         <tag>加密</tag>
       </tags>
   </entry>
@@ -400,8 +536,8 @@
         <tag>编程</tag>
         <tag>题解</tag>
         <tag>图论</tag>
-        <tag>NOIP</tag>
         <tag>并查集</tag>
+        <tag>NOIP</tag>
       </tags>
   </entry>
   <entry>
@@ -463,8 +599,8 @@
     <content type="text"><![CDATA[运行效率++; &nbsp; 可读性--; 下面是我在写程序时常用的快读/写模板（虽然它不仅仅只是快读/写）不仅提高了运行效率，还让编写时的体验更加舒适。 假如布局安排合理的话，可读性不但不会减少，反而会进一步上升。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071/* -- Basic Headers -- */#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#include &lt;algorithm&gt;/* -- STL Iterators -- */#include &lt;vector&gt;#include &lt;string&gt;#include &lt;stack&gt;#include &lt;queue&gt;/* -- External Headers -- *//* -- Defined Functions -- */#define For(a,x,y) for (int a = x; a &lt;= y; ++a)#define Forw(a,x,y) for (int a = x; a &lt; y; ++a)#define Bak(a,y,x) for (int a = y; a &gt;= x; --a)/* -- Defined Words -- */using namespace std;namespace FastIO &#123; void DEBUG(char comment[], int x) &#123; cerr &lt;&lt; comment &lt;&lt; x &lt;&lt; endl; &#125; inline int getint() &#123; int s = 0, x = 1; char ch = getchar(); while (!isdigit(ch)) &#123; if (ch == '-') x = -1; ch = getchar(); &#125; while (isdigit(ch)) &#123; s = s * 10 + ch - '0'; ch = getchar(); &#125; return s * x; &#125; inline void __basic_putint(int x) &#123; if (x &lt; 0) &#123; x = -x; putchar('-'); &#125; if (x &gt;= 10) __basic_putint(x / 10); putchar(x % 10 + '0'); &#125; inline void putint(int x, char external) &#123; __basic_putint(x); putchar(external); &#125;&#125;namespace Solution &#123;&#125;int main(int argc, char *const argv[]) &#123; #ifndef HANDWER_FILE freopen("testdata.in", "r", stdin); freopen("testdata.out", "w", stdout); #endif using namespace Solution; using namespace FastIO; return 0;&#125;]]></content>
       <tags>
         <tag>编程</tag>
-        <tag>优化</tag>
         <tag>毒瘤</tag>
+        <tag>优化</tag>
       </tags>
   </entry>
   <entry>
@@ -496,8 +632,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>USACO</tag>
         <tag>最短路</tag>
+        <tag>USACO</tag>
         <tag>图论算法</tag>
       </tags>
   </entry>
@@ -707,8 +843,8 @@
     <content type="text"><![CDATA[DP 是啥？能吃吗？ 本文内容难度：从普及-到普及+/提高 数字三角形问题给你一个数字三角形，计算出从三角形的顶至底的一条路径，使该路径经过的数字总和最大， 规定每一步只能从一个数走到下一层上和它最近的左边的数或者右边的数 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;using namespace std;const int MAXN = 100;/* * * 设f[i][j]表示从第i行第j列走到底部的最优答案 * 转移方程：f[i][j] = a[i][j] + max(f[i+1][j], f[i+1][j+1]) * 注意边界 * */int f[MAXN][MAXN];int a[MAXN][MAXN];int main(int argc, char *const argv[]) &#123; int n; cin &gt;&gt; n; int ans = -23333333; for (int i = 1; i &lt;= n; ++i) &#123; for (int j = 1; j &lt;= i; ++j) &#123; cin &gt;&gt; a[i][j]; &#125; &#125; for (int i = 1; i &lt;= n; ++i) &#123; for (int j = 1; j &lt;= i; ++j) &#123; f[i][j] = a[i][j] + std::max(f[i-1][j], f[i-1][j-1]); ans = std::max(ans, f[i][j]); &#125; &#125; cout &lt;&lt; ans &lt;&lt; endl;&#125; 一维线性动态规划最长上升子序列1234567891011121314151617181920212223242526272829303132333435#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;using namespace std;const int MAXN = 10000 + 10;/* * * 注意子序列可以不连续 * * 设f[i]表示目前选第i个数时的最长上升子序列的长度 * 也就是以第i个数结尾的最长上升子序列的长度 * f[i] = std::max(1, f[j] + 1) * 其中1 &lt;= j &lt; i, a[j] &lt; a[i] * * 时间复杂度O(n^2) * */int f[MAXN], a[MAXN];int main(int argc, char *const argv[]) &#123; int n; cin &gt;&gt; n; for (int i = 1; i &lt;= n; ++i) &#123; cin &gt;&gt; a[i]; &#125; for (int i = 1; i &lt;= n; ++i) &#123; for (int j = 0; j &lt; i; ++j) &#123; if (a[j] &lt; a[i]) f[i] = std::max(1, f[j] + 1); &#125; &#125; cout &lt;&lt; f[n];&#125; 「NOIP2004」合唱队形1234567891011121314151617181920212223242526272829303132333435363738394041#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#define DEBUG(x) std::cerr &lt;&lt; #x &lt;&lt; '=' &lt;&lt; x &lt;&lt; std::endl;using namespace std;const int MAXN = 10000 + 10;/* * * 正着求一遍最长上升子序列，反着求一遍最长上升子序列 * （也就是接着求一遍最长下降子序列） * 用f数组存最长上升子序列长度 * 用g数组存最长下降子序列长度 * 答案是n - max(f[i] + g[i] - 1) * */int f[MAXN], g[MAXN], a[MAXN];int main(int argc, char *const argv[]) &#123; int n; cin &gt;&gt; n; for (int i = 1; i &lt;= n; ++i) cin &gt;&gt; a[i]; for (int i = 1; i &lt;= n; ++i) &#123; for (int j = 0; j &lt; i; ++j) &#123; if (a[j] &lt; a[i]) f[i] = std::max(f[i], f[j] + 1); &#125; &#125; for (int i = n; i &gt;= 1; --i) &#123; for (int j = n+1; j &gt; i; --j) &#123; if (a[j] &lt; a[i]) g[i] = std::max(g[i], g[j] + 1); &#125; &#125; int ans = -23333333; for (int i = 1; i &lt;= n; ++i) &#123; ans = std::max(ans, f[i] + g[i] - 1); &#125; cout &lt;&lt; n - ans &lt;&lt; endl; return 0;&#125; 线段覆盖12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849/* -- DP 做法 -- */#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;const int MAXN = 1000000 + 10;/* * * 先对线段排序 * 再设f[i]表示前i条线段中不重叠的最大数量 * f[i] = max(f[i - 1], f[j] + 1) * 其中1 &lt;= j &lt; i, 第j条线段的右端点 &lt;= 第i条线段的左端点 * *//* 这个时间复杂度洛谷会RE（实为TLE） */struct Line &#123; int left, right;&#125; line[MAXN];int f[MAXN];bool stlCmp(Line x, Line y) &#123; return x.right &lt; y.right;&#125;int main(int argc, char *const argv[]) &#123; ios::sync_with_stdio(false); int n; cin &gt;&gt; n; for (int i = 1; i &lt;= n; ++i) &#123; cin &gt;&gt; line[i].left &gt;&gt; line[i].right; if (line[i].left &gt; line[i].right) swap(line[i].left, line[i].right); &#125; sort(line + 1, line + 1 + n, stlCmp); for (int i = 1; i &lt;= n; ++i) &#123; for (int j = 1; j &lt;= i; ++j) &#123; if (line[j].right &lt;= line[i].left) f[i] = std::max(f[i], f[j] + 1); &#125; &#125; int ans = -23333333; for (int i = 1; i &lt;= n; ++i) ans = std::max(ans, f[i]); cout &lt;&lt; ans + 1 &lt;&lt; endl; return 0;&#125; 1234567891011121314151617181920212223242526272829/* -- 贪心做法 -- */#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;const int MAXN = 1000000 + 10;struct Line &#123; int left, right;&#125; line[MAXN];bool stlCmp(Line x, Line y) &#123; return x.right &lt; y.right; &#125;int main(int argc, char *const argv[]) &#123; int n; cin &gt;&gt; n; for (int i = 1; i &lt;= n; ++i) cin &gt;&gt; line[i].left &gt;&gt; line[i].right; sort(line + 1, line + 1 + n, stlCmp); int maxRight = -23333333, lines = 0; for (int i = 1; i &lt;= n; ++i) &#123; if (maxRight &lt;= line[i].left) ++lines, maxRight = line[i].right; &#125; cout &lt;&lt; lines &lt;&lt; endl; return 0;&#125; 多维动态规划「NOIP2008」传纸条12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;using namespace std;const int MAX = 50 + 5;/*/ * * 设dp[i][j][x][y] 表示第一张纸条传到了(i, j)，第二张纸条传到了(x, y)时 * 的最大答案 * dp[i][j][k][l] = std::max( * std::max( * dp[i-1][j][k-1][l], * dp[i][j-1][k-1][l] * ), * std::max( * dp[i-1][j][k][l-1], * dp[i][j-1][k][l-1] * ) * ) * + a[i][j] * + a[k][l] * * 其中 j+1 &lt;= l &lt;= n * 最终答案是dp[m][n-1][m-1][n] */*/int dp[MAX][MAX][MAX][MAX];int n, m, a[MAX][MAX];inline int getint() &#123; int s = 0, x = 1; char ch = getchar(); while (!isdigit(ch)) &#123; if (ch == '-') x = -1; ch = getchar(); &#125; while (isdigit(ch)) &#123; s = s * 10 + ch - '0'; ch = getchar(); &#125; return s * x;&#125;inline void putint(int x, bool returnValue) &#123; if (x &lt; 0) &#123; x = -x; putchar('-'); &#125; if (x &gt;= 10) putint(x / 10, false); putchar(x % 10 + '0'); if (returnValue) putchar('\n');&#125;int main(int argc, char *const argv[]) &#123; m = getint(), n = getint(); for (int i = 1; i &lt;= m; ++i) &#123; for (int j = 1; j &lt;= n; ++j) &#123; a[i][j] = getint(); &#125; &#125; for (int i = 1; i &lt;= m; ++i) &#123; for (int j = 1; j &lt;= n; ++j) &#123; for (int k = 1; k &lt;= m; ++k) &#123; for (int l = j + 1; l &lt;= n; ++l) &#123; dp[i][j][k][l] = std::max(std::max(dp[i-1][j][k-1][l], dp[i-1][j][k][l-1]), std::max(dp[i][j-1][k-1][l], dp[i][j-1][k][l-1])) + a[i][j] + a[k][l]; &#125; &#125; &#125; &#125; putint(dp[m][n-1][m-1][n], true); return 0;&#125; 「NOIP2008 普及」 传球游戏1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;using namespace std;const int MAXN = 30 + 2;const int MAXM = 30 + 2;/*/ * * 设dp[i][j]表示球传到第i次，传到第j个小朋友手中时的方案数 * dp[i][j] = dp[i-1][j-1] + dp[i-1][j+1] * 其中dp[0][1] = 1，ans = dp[m][1] /*/int n, m;int dp[MAXM][MAXN];inline int getint() &#123; int s = 0, x = 1; char ch = getchar(); while (!isdigit(ch)) &#123; if (ch == '-') x = -1; ch = getchar(); &#125; while (isdigit(ch)) &#123; s = s * 10 + ch - '0'; ch = getchar(); &#125; return s * x;&#125;inline void putint(int x, bool returnValue) &#123; if (x &lt; 0) &#123; x = -x; putchar('-'); &#125; if (x &gt;= 10) putint(x / 10, false); putchar(x % 10 + '0'); if (returnValue) putchar('\n');&#125;int main(int argc, char *const argv[]) &#123; n = getint(), m = getint(); dp[0][1] = 1; for (int i = 1; i &lt;= m; ++i) &#123; dp[i][1] = dp[i-1][2] + dp[i-1][n]; dp[i][n] = dp[i-1][1] + dp[i-1][n-1]; for (int j = 2; j &lt; n; ++j) &#123; dp[i][j] = dp[i-1][j-1] + dp[i-1][j+1]; &#125; &#125; putint(dp[m][1], true); return 0;&#125; 背包问题NASA 的食物计划普及-，很水 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;using namespace std;const int MAXN = 50 + 5;const int MAXVolume = 400 + 10;const int MAXWeight = 400;int maxVolume, maxWeight, n;int f[MAXVolume][MAXWeight];struct Food &#123; int Volume; int Weight; int Calories;&#125; food[MAXN];inline int getint() &#123; int s = 0, x = 1; char ch = getchar(); while (!isdigit(ch)) &#123; if (ch == '-') x = -1; ch = getchar(); &#125; while (isdigit(ch)) &#123; s = s * 10 + ch - '0'; ch = getchar(); &#125; return s * x;&#125;inline void putint(int x, bool newLine) &#123; if (x &lt; 0) x = -x; if (x &gt;= 10) putint(x / 10, false); putchar(x % 10 + '0'); if (newLine) putchar('\n');&#125;int main(int argc, char *const argv[]) &#123; maxVolume = getint(); maxWeight = getint(); n = getint(); for (int i = 1; i &lt;= n; ++i) &#123; food[i].Volume = getint(); food[i].Weight = getint(); food[i].Calories = getint(); &#125; for (int i = 1; i &lt;= n; ++i) &#123; for (int j = maxVolume; j &gt;= food[i].Volume; --j) &#123; for (int k = maxWeight; k &gt;= food[i].Weight; --k) &#123; f[j][k] = std::max(f[j][k], f[j - food[i].Volume][k - food[i].Weight] + food[i].Calories); &#125; &#125; &#125; printf("%d\n", f[maxVolume][maxWeight]); return 0;&#125; 装箱问题真 · 背包问题模板题 123456789101112131415161718192021222324252627#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;using namespace std;const int MAXN = 30 + 5;const int MAXV = 20000; int item[MAXN];int f[MAXN][MAXV];int main(int argc, char *const argv[]) &#123; int n, v; cin &gt;&gt; v; cin &gt;&gt; n; for (int i = 1; i &lt;= n; ++i) &#123; cin &gt;&gt; item[i]; &#125; for (int i = 1; i &lt;= n; ++i) &#123; for (int j = 1; j &lt;= v; ++j) &#123; if (j &gt;= item[i]) f[i][j] = std::max(f[i-1][j], f[i-1][j-item[i]] + item[i]); else f[i][j] = f[i-1][j]; &#125; &#125; cout &lt;&lt; v - f[n][v] &lt;&lt; endl; return 0;&#125; 榨取kkksc03实在想不通这题为啥是普及/提高-，不应该是普及-吗 所以这就是你评普及/提高-的理由？ 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;using namespace std;const bool __RETURN = true;const bool __NO_RETURN = false;const int MAXN = 100 + 10;const int MAXM = 200 + 10;const int MAXT = 200 + 10;int n, m ,T; struct Dream &#123; int time; int cost;&#125; d[MAXN];int dp[MAXN][MAXM][MAXT];/* * * 设dp[i][j][k]表示当选择第i个愿望， * 时间不超过j，金钱不超过k时的最大数量 * dp[i][j][k] = max(dp[i-1][j][k], dp[i-1][j-d[i].time][k-d[i].cost] + 1) * 其中 j &gt;= d[i].time, k &gt;= d[i].cost * */inline int getint() &#123; int s = 0, x = 1; char ch = getchar(); while (!isdigit(ch)) &#123; if (ch == '-') x = -1; ch = getchar(); &#125; while (isdigit(ch)) &#123; s = s * 10 + ch - '0'; ch = getchar(); &#125; return s * x;&#125;inline void putint(int x, bool returnValue) &#123; if (x &lt; 0) &#123; x = -x; putchar('-'); &#125; if (x &gt;= 10) putint(x / 10, false); putchar(x % 10 + '0'); if (returnValue) putchar('\n');&#125;int main(int argc, char *const argv[]) &#123; n = getint(), m = getint(), T = getint(); for (int i = 1; i &lt;= n; ++i) &#123; d[i].time = getint(); d[i].cost = getint(); &#125; for (int i = 1; i &lt;= n; ++i) &#123; for (int j = 1; j &lt;= m; ++j) &#123; for (int k = 1; k &lt;= T; ++k) &#123; if (j &gt;= d[i].time &amp;&amp; k &gt;= d[i].cost) &#123; dp[i][j][k] = std::max(dp[i-1][j][k], dp[i-1][j - d[i].time][k - d[i].cost] + 1); &#125; else &#123; dp[i][j][k] = dp[i-1][j][k]; &#125; &#125; &#125; &#125; putint(dp[n][m][T], __RETURN); return 0;&#125;]]></content>
       <tags>
         <tag>编程</tag>
-        <tag>NOIP</tag>
         <tag>动态规划，DP</tag>
+        <tag>NOIP</tag>
       </tags>
   </entry>
   <entry>
@@ -760,9 +896,9 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>最小生成树</tag>
-        <tag>图论算法</tag>
         <tag>并查集</tag>
+        <tag>图论算法</tag>
+        <tag>最小生成树</tag>
       </tags>
   </entry>
   <entry>
