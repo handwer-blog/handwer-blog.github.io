@@ -39,6 +39,67 @@
   </entry>
   
   <entry>
+    <title>洛谷P1108《低价购买》</title>
+    <link href="https://blog.handwer-std.top/2019-02-14/Luogu-P1108/"/>
+    <id>https://blog.handwer-std.top/2019-02-14/Luogu-P1108/</id>
+    <published>2019-02-14T12:35:07.000Z</published>
+    <updated>2019-02-14T13:31:54.425Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>最长下降子序列套一个玄学计数</p></blockquote><a id="more"></a><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>“低价购买”这条建议是在奶牛股票市场取得成功的一半规则。要想被认为是伟大的投资者，你必须遵循以下的问题建议:“低价购买；再低价购买”。每次你购买一支股票,你必须用低于你上次购买它的价格购买它。买的次数越多越好!你的目标是在遵循以上建议的前提下，求你最多能购买股票的次数。你将被给出一段时间内一支股票每天的出售价($2^{16}$范围内的正整数)，你可以选择在哪些天购买这支股票。每次购买都必须遵循“低价购买；再低价购买”的原则。写一个程序计算最大购买次数。</p><p>这里是某支股票的价格清单：</p><p>日期 1,2,3,4,5,6,7,8,9,10,11,12<br>价格 68,69,54,64,68,64,70,67,78,62,98,87<br>最优秀的投资者可以购买最多44次股票，可行方案中的一种是：</p><p>日期 2,5,6,10<br>价格 69,68,64,62</p><h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第1行: N(1≤N≤5000)，股票发行天数</p><p>第2行: N个数，是每天的股票价格。</p><h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>两个数:<br>最大购买次数和拥有最大购买次数的方案数( $\le 2^{31}$ )当二种方案“看起来一样”时（就是说它们构成的价格队列一样的时候）,这22种方案被认为是相同的。</p><h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">12</span></span><br><span class="line"><span class="number">68</span> <span class="number">69</span> <span class="number">54</span> <span class="number">64</span> <span class="number">68</span> <span class="number">64</span> <span class="number">70</span> <span class="number">67</span> <span class="number">78</span> <span class="number">62</span> <span class="number">98</span> <span class="number">87</span></span><br></pre></td></tr></table></figure><h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">4 </span><span class="number">2</span></span><br></pre></td></tr></table></figure><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>首先第一问肯定谁都会求<br>跑一遍最长下降子序列算完</p><p>关键是第二问</p><hr><p>令 $ dp[i] $ 表示以 $i$ 结尾的最长下降子序列的长度，$cdp[i]$ 表示以 $i$ 结尾的最长下降子序列的个数<br>规定 $s[\ ]$ 为「原序列」</p><p>那么就有</p><ul><li>当 $dp[i] = dp[j]$ 且 $s[i] = s[j]$ 时，就直接把 $cdp[j]$ 记为 $0$，防止重复计数</li><li>当 $dp[i] = dp[j] + 1$ 且 $s[i] &lt; s[j]$ 时，说明数列能接上了，$cdp[i] = cdp[i] + cdp[j]$</li></ul><p>最后答案输出 </p><p>$$ \sum_{i = 1}^{n} cdp[i] \ (dp[i] = \text{The max value of array } dp[i] ) $$ </p><p>即可</p><h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="meta-string">"r"</span>, stdin)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="meta-string">"w"</span>, stdout)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">5000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, a[MAXN], dp[MAXN], cdp[MAXN], maxLen;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i] &lt; a[j]) dp[i] = <span class="built_in">std</span>::max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (dp[i] == <span class="number">0</span>) dp[i] = <span class="number">1</span>;</span><br><span class="line">        maxLen = <span class="built_in">std</span>::max(maxLen, dp[i]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dp[i] == dp[j] &amp;&amp; a[i] == a[j]) cdp[j] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (dp[i] == dp[j] + <span class="number">1</span> &amp;&amp; a[i] &lt; a[j]) cdp[i] += cdp[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cdp[i] == <span class="number">0</span>) cdp[i] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (dp[i] == maxLen) ans += cdp[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; maxLen &lt;&lt; <span class="string">' '</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;最长下降子序列套一个玄学计数&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="https://blog.handwer-std.top/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="题解" scheme="https://blog.handwer-std.top/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+      <category term="动态规划，DP" scheme="https://blog.handwer-std.top/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%8CDP/"/>
+    
+      <category term="「序列」DP" scheme="https://blog.handwer-std.top/tags/%E3%80%8C%E5%BA%8F%E5%88%97%E3%80%8DDP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>洛谷P1896《[SCOI2005]互不侵犯》</title>
+    <link href="https://blog.handwer-std.top/2019-02-14/Luogu-P1896/"/>
+    <id>https://blog.handwer-std.top/2019-02-14/Luogu-P1896/</id>
+    <published>2019-02-14T11:45:17.000Z</published>
+    <updated>2019-02-14T12:25:56.529Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>ProjectDP - 27</p></blockquote><blockquote><p>最基础的状压DP</p></blockquote><a id="more"></a><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>在N×N的棋盘里面放K个国王，使他们互不攻击，共有多少种摆放方案。国王能攻击到它上下左右，以及左上左下右上右下八个方向上附近的各一个格子，共8个格子。</p><p>注：数据有加强（2018/4/25）</p><h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>只有一行，包含两个数N，K （ 1 &lt;=N &lt;=9, 0 &lt;= K &lt;= N * N）</p><h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>所得的方案数</p><h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">3 </span><span class="number">2</span></span><br></pre></td></tr></table></figure><h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">16</span></span><br></pre></td></tr></table></figure><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>考虑状压DP</p><p>我们设 $ dp[i][j][k] $ 表示第 $i$ 行的状态的编号为 $j$，放了 $k$ 个国王</p><p>转移方程显然<br>$$ dp[i][j][pct(stat[j]) + l] = dp[i][j][pct(stat[j]) + l] +  dp[i-1][k][l]$$<br>其中 $pct(x)$ 表示 $x$ 的二进制1的个数</p><p>边界条件：<br>$$ dp[1][nowStat][pct(nowStat)] = 1 $$<br>其中 $nowStat$ 表示当前枚举到的<strong>合法的</strong>状态</p><p>剩下的……就没啥好说的了（</p><h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IMPIO() std::ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_IN(__file) freopen(__file, <span class="meta-string">'r'</span>, stdin);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_OUT(__file) freopen(__file, <span class="meta-string">'w'</span>, stdout);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">9</span> + <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXK = MAXN * MAXN;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, k;</span><br><span class="line"><span class="keyword">int</span> stats[(<span class="number">1</span> &lt;&lt; MAXN) - <span class="number">1</span> + <span class="number">10</span>], popc[(<span class="number">1</span> &lt;&lt; MAXN) - <span class="number">1</span> + <span class="number">10</span>], cnt;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> dp[MAXN][(<span class="number">1</span> &lt;&lt; MAXN) - <span class="number">1</span> + <span class="number">10</span>][MAXK];</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * dp[i][stat][k]: line i, status stat, k kings</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Popcount</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (x) &#123;</span><br><span class="line"><span class="keyword">if</span> (x &amp; <span class="number">1</span>) ++ret;</span><br><span class="line">x &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">CheckFailed</span><span class="params">(<span class="keyword">int</span> stat1, <span class="keyword">int</span> stat2)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> ((stat1 &amp; stat2) != <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">if</span> ((stat1 &amp; (stat2 &lt;&lt; <span class="number">1</span>)) != <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">if</span> (((stat1 &lt;&lt; <span class="number">1</span>) &amp; stat2) != <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">IMPIO();</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; n &gt;&gt; k;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= (<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span>; ++i) &#123;</span><br><span class="line"><span class="keyword">if</span> ((i &amp; (i &lt;&lt; <span class="number">1</span>)) != <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">stats[++cnt] = i;</span><br><span class="line">dp[<span class="number">1</span>][cnt][Popcount(i)] = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> idj = <span class="number">1</span>; idj &lt;= cnt; ++idj) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> idk = <span class="number">1</span>; idk &lt;= cnt; ++idk) &#123;</span><br><span class="line"><span class="keyword">if</span> (CheckFailed(stats[idj], stats[idk])) <span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= k; ++l) &#123;</span><br><span class="line">   dp[i][idj][Popcount(stats[idj]) + l]</span><br><span class="line">+= dp[i - <span class="number">1</span>][idk][l];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= cnt; ++i) &#123;</span><br><span class="line">ans += dp[n][i][k];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;ProjectDP - 27&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;最基础的状压DP&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="https://blog.handwer-std.top/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="题解" scheme="https://blog.handwer-std.top/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+      <category term="ProjectDP" scheme="https://blog.handwer-std.top/tags/ProjectDP/"/>
+    
+      <category term="动态规划，DP" scheme="https://blog.handwer-std.top/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%8CDP/"/>
+    
+      <category term="状压DP" scheme="https://blog.handwer-std.top/tags/%E7%8A%B6%E5%8E%8BDP/"/>
+    
+  </entry>
+  
+  <entry>
     <title>关于新开的「Handwer&#39;s Problems」</title>
     <link href="https://blog.handwer-std.top/2019-02-13/MathProblems-NewSite/"/>
     <id>https://blog.handwer-std.top/2019-02-13/MathProblems-NewSite/</id>
@@ -97,9 +158,9 @@
     
       <category term="动态规划，DP" scheme="https://blog.handwer-std.top/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%8CDP/"/>
     
-      <category term="NOI" scheme="https://blog.handwer-std.top/tags/NOI/"/>
-    
       <category term="状压DP" scheme="https://blog.handwer-std.top/tags/%E7%8A%B6%E5%8E%8BDP/"/>
+    
+      <category term="NOI" scheme="https://blog.handwer-std.top/tags/NOI/"/>
     
   </entry>
   
@@ -563,44 +624,6 @@
       <category term="BFS" scheme="https://blog.handwer-std.top/tags/BFS/"/>
     
       <category term="二分图" scheme="https://blog.handwer-std.top/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>洛谷P5019「NOIP 2013 / 2018」《铺设道路》</title>
-    <link href="https://blog.handwer-std.top/2019-01-23/Luogu-P5019/"/>
-    <id>https://blog.handwer-std.top/2019-01-23/Luogu-P5019/</id>
-    <published>2019-01-23T05:05:49.000Z</published>
-    <updated>2019-01-23T05:44:47.138Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>CCF：<strong>我&nbsp;抄&nbsp;我&nbsp;自&nbsp;己</strong></p></blockquote><a id="more"></a><center>本题与<a href="https://www.luogu.org/problemnew/show/P1969" target="_blank" rel="noopener">洛谷P1969</a>重复</center><br><center>代码通用</center><br><center>题解<a href="/2019-01-22/Luogu-P1969">传送门</a></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;CCF：&lt;strong&gt;我&amp;nbsp;抄&amp;nbsp;我&amp;nbsp;自&amp;nbsp;己&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="编程" scheme="https://blog.handwer-std.top/tags/%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="题解" scheme="https://blog.handwer-std.top/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Luogu-P5020</title>
-    <link href="https://blog.handwer-std.top/2019-01-23/Luogu-P5020/"/>
-    <id>https://blog.handwer-std.top/2019-01-23/Luogu-P5020/</id>
-    <published>2019-01-23T05:05:40.000Z</published>
-    <updated>2019-01-23T05:05:40.553Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
     
   </entry>
   

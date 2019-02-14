@@ -6,6 +6,29 @@
     <content type="text"><![CDATA[这里可能会挂些什么东西。 There may be something here.]]></content>
   </entry>
   <entry>
+    <title><![CDATA[洛谷P1108《低价购买》]]></title>
+    <url>%2F2019-02-14%2FLuogu-P1108%2F</url>
+    <content type="text"><![CDATA[最长下降子序列套一个玄学计数 题目描述“低价购买”这条建议是在奶牛股票市场取得成功的一半规则。要想被认为是伟大的投资者，你必须遵循以下的问题建议:“低价购买；再低价购买”。每次你购买一支股票,你必须用低于你上次购买它的价格购买它。买的次数越多越好!你的目标是在遵循以上建议的前提下，求你最多能购买股票的次数。你将被给出一段时间内一支股票每天的出售价($2^{16}$范围内的正整数)，你可以选择在哪些天购买这支股票。每次购买都必须遵循“低价购买；再低价购买”的原则。写一个程序计算最大购买次数。 这里是某支股票的价格清单： 日期 1,2,3,4,5,6,7,8,9,10,11,12价格 68,69,54,64,68,64,70,67,78,62,98,87最优秀的投资者可以购买最多44次股票，可行方案中的一种是： 日期 2,5,6,10价格 69,68,64,62 输入输出格式输入格式第1行: N(1≤N≤5000)，股票发行天数 第2行: N个数，是每天的股票价格。 输出格式两个数:最大购买次数和拥有最大购买次数的方案数( $\le 2^{31}$ )当二种方案“看起来一样”时（就是说它们构成的价格队列一样的时候）,这22种方案被认为是相同的。 输入输出样例输入样例121268 69 54 64 68 64 70 67 78 62 98 87 输出样例14 2 解题思路首先第一问肯定谁都会求跑一遍最长下降子序列算完 关键是第二问 令 $ dp[i] $ 表示以 $i$ 结尾的最长下降子序列的长度，$cdp[i]$ 表示以 $i$ 结尾的最长下降子序列的个数规定 $s[\ ]$ 为「原序列」 那么就有 当 $dp[i] = dp[j]$ 且 $s[i] = s[j]$ 时，就直接把 $cdp[j]$ 记为 $0$，防止重复计数 当 $dp[i] = dp[j] + 1$ 且 $s[i] &lt; s[j]$ 时，说明数列能接上了，$cdp[i] = cdp[i] + cdp[j]$ 最后答案输出 $$ \sum_{i = 1}^{n} cdp[i] \ (dp[i] = \text{The max value of array } dp[i] ) $$ 即可 代码实现123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXN = 5000 + 10;int n, a[MAXN], dp[MAXN], cdp[MAXN], maxLen;int main() &#123; cin &gt;&gt; n; for (int i = 1; i &lt;= n; ++i) cin &gt;&gt; a[i]; for (int i = 1; i &lt;= n; ++i) &#123; for (int j = 1; j &lt; i; ++j) &#123; if (a[i] &lt; a[j]) dp[i] = std::max(dp[i], dp[j] + 1); &#125; if (dp[i] == 0) dp[i] = 1; maxLen = std::max(maxLen, dp[i]); for (int j = 1; j &lt; i; ++j) &#123; if (dp[i] == dp[j] &amp;&amp; a[i] == a[j]) cdp[j] = 0; else if (dp[i] == dp[j] + 1 &amp;&amp; a[i] &lt; a[j]) cdp[i] += cdp[j]; &#125; if (cdp[i] == 0) cdp[i] = 1; &#125; int ans = 0; for (int i = 1; i &lt;= n; ++i) &#123; if (dp[i] == maxLen) ans += cdp[i]; &#125; cout &lt;&lt; maxLen &lt;&lt; ' ' &lt;&lt; ans &lt;&lt; endl; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>动态规划，DP</tag>
+        <tag>「序列」DP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P1896《[SCOI2005]互不侵犯》]]></title>
+    <url>%2F2019-02-14%2FLuogu-P1896%2F</url>
+    <content type="text"><![CDATA[ProjectDP - 27 最基础的状压DP 题目描述在N×N的棋盘里面放K个国王，使他们互不攻击，共有多少种摆放方案。国王能攻击到它上下左右，以及左上左下右上右下八个方向上附近的各一个格子，共8个格子。 注：数据有加强（2018/4/25） 输入输出格式输入格式只有一行，包含两个数N，K （ 1 &lt;=N &lt;=9, 0 &lt;= K &lt;= N * N） 输出格式所得的方案数 输入输出样例输入样例13 2 输出样例116 解题思路考虑状压DP 我们设 $ dp[i][j][k] $ 表示第 $i$ 行的状态的编号为 $j$，放了 $k$ 个国王 转移方程显然$$ dp[i][j][pct(stat[j]) + l] = dp[i][j][pct(stat[j]) + l] + dp[i-1][k][l]$$其中 $pct(x)$ 表示 $x$ 的二进制1的个数 边界条件：$$ dp[1][nowStat][pct(nowStat)] = 1 $$其中 $nowStat$ 表示当前枚举到的合法的状态 剩下的……就没啥好说的了（ 代码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#define IMPIO() std::ios::sync_with_stdio(false);#define FILE_IN(__file) freopen(__file, 'r', stdin);#define FILE_OUT(__file) freopen(__file, 'w', stdout);using std::cin;using std::cout;using std::endl;const int MAXN = 9 + 2;const int MAXK = MAXN * MAXN;int n, k;int stats[(1 &lt;&lt; MAXN) - 1 + 10], popc[(1 &lt;&lt; MAXN) - 1 + 10], cnt;long long int dp[MAXN][(1 &lt;&lt; MAXN) - 1 + 10][MAXK];/* * * dp[i][stat][k]: line i, status stat, k kings * */int Popcount(int x) &#123; int ret = 0; while (x) &#123; if (x &amp; 1) ++ret; x &gt;&gt;= 1; &#125; return ret;&#125;bool CheckFailed(int stat1, int stat2) &#123; if ((stat1 &amp; stat2) != 0) return true; if ((stat1 &amp; (stat2 &lt;&lt; 1)) != 0) return true; if (((stat1 &lt;&lt; 1) &amp; stat2) != 0) return true; return false;&#125;int main() &#123; IMPIO(); cin &gt;&gt; n &gt;&gt; k; for (int i = 0; i &lt;= (1 &lt;&lt; n) - 1; ++i) &#123; if ((i &amp; (i &lt;&lt; 1)) != 0) continue; stats[++cnt] = i; dp[1][cnt][Popcount(i)] = 1; &#125; for (int i = 2; i &lt;= n; ++i) &#123; for (int idj = 1; idj &lt;= cnt; ++idj) &#123; for (int idk = 1; idk &lt;= cnt; ++idk) &#123; if (CheckFailed(stats[idj], stats[idk])) continue; for (int l = 0; l &lt;= k; ++l) &#123; dp[i][idj][Popcount(stats[idj]) + l] += dp[i - 1][idk][l]; &#125; &#125; &#125; &#125; long long int ans = 0; for (int i = 1; i &lt;= cnt; ++i) &#123; ans += dp[n][i][k]; &#125; cout &lt;&lt; ans &lt;&lt; endl; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>ProjectDP</tag>
+        <tag>动态规划，DP</tag>
+        <tag>状压DP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于新开的「Handwer's Problems」]]></title>
     <url>%2F2019-02-13%2FMathProblems-NewSite%2F</url>
     <content type="text"><![CDATA[「Handwer’s Problems」主要转载一些经过挑选的文化课题目。 每一道题都会在不久之后更新题解，同时会更新下一道题。 现在主要上数学题，预计不久之后会更新物理以及英语题目。 面向任何人开放，如无特殊情况（包括但不限于考试）不会设置密码。 链接：Handwer’s Problems]]></content>
@@ -24,8 +47,8 @@
         <tag>题解</tag>
         <tag>ProjectDP</tag>
         <tag>动态规划，DP</tag>
-        <tag>NOI</tag>
         <tag>状压DP</tag>
+        <tag>NOI</tag>
       </tags>
   </entry>
   <entry>
@@ -588,8 +611,8 @@
       <tags>
         <tag>编程</tag>
         <tag>清北学堂</tag>
-        <tag>贪心</tag>
         <tag>模拟</tag>
+        <tag>贪心</tag>
         <tag>字符串</tag>
       </tags>
   </entry>
@@ -896,8 +919,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>并查集</tag>
         <tag>图论算法</tag>
+        <tag>并查集</tag>
         <tag>最小生成树</tag>
       </tags>
   </entry>
