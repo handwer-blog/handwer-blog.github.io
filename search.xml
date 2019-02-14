@@ -6,6 +6,49 @@
     <content type="text"><![CDATA[这里可能会挂些什么东西。 There may be something here.]]></content>
   </entry>
   <entry>
+    <title><![CDATA[Handwer's Blog 突破100篇文章]]></title>
+    <url>%2F2019-02-14%2F100-articles%2F</url>
+    <content type="text"><![CDATA[2019年2月14日22点，在键盘的敲击声中，Handwer’s Blog的第100篇博客诞生了。 第一个里程碑已经达成，下一个里程碑：200篇 2019也要加油啊]]></content>
+      <tags>
+        <tag>博客相关</tag>
+        <tag>只有经历过的人才知道的世界</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P2504《[HAOI2006]聪明的猴子》]]></title>
+    <url>%2F2019-02-14%2FLuogu-P2504%2F</url>
+    <content type="text"><![CDATA[最小生成树板子题 题目描述在一个热带雨林中生存着一群猴子，它们以树上的果子为生。昨天下了一场大雨，现在雨过天晴，但整个雨林的地表还是被大水淹没着，部分植物的树冠露在水面上。猴子不会游泳，但跳跃能力比较强，它们仍然可以在露出水面的不同树冠上来回穿梭，以找到喜欢吃的果实。 现在，在这个地区露出水面的有N棵树，假设每棵树本身的直径都很小，可以忽略不计。我们在这块区域上建立直角坐标系，则每一棵树的位置由其所对应的坐标表示(任意两棵树的坐标都不相同)。 在这个地区住着的猴子有M个，下雨时，它们都躲到了茂密高大的树冠中，没有被大水冲走。由于各个猴子的年龄不同、身体素质不同，它们跳跃的能力不同。有的猴子跳跃的距离比较远(当然也可以跳到较近的树上)，而有些猴子跳跃的距离就比较近。这些猴子非常聪明，它们通过目测就可以准确地判断出自己能否跳到对面的树上。 【问题】现已知猴子的数量及每一个猴子的最大跳跃距离，还知道露出水面的每一棵树的坐标，你的任务是统计有多少个猴子可以在这个地区露出水面的所有树冠上觅食。 输入输出格式输入格式输入文件monkey.in包括： 第1行为一个整数，表示猴子的个数M(2&lt;=M&lt;=500)； 第2行为M个整数，依次表示猴子的最大跳跃距离（每个整数值在1–1000之间）； 第3行为一个整数表示树的总棵数N(2&lt;=N&lt;=1000)； 第4行至第N+3行为N棵树的坐标（横纵坐标均为整数，范围为：-1000–1000）。 （同一行的整数间用空格分开） 输出格式输出文件monkey.out包括一个整数，表示可以在这个地区的所有树冠上觅食的猴子数。 输入输出样例输入样例#11234567894 1 2 3 460 01 01 2-1 -1-2 02 2 输出样例#113 说明【数据规模】 对于40%的数据，保证有2&lt;=N &lt;=100，1&lt;=M&lt;=100 对于全部的数据，保证有2&lt;=N &lt;= 1000，1&lt;=M=500 感谢@charlie003 修正数据 解题思路先构造完全图（边数为初二数学内容），再跑一遍最小生成树 之后枚举每一个猴子，判断它的跳跃距离是否大于等于生成树的最大边权即可 代码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293#include &lt;algorithm&gt;#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXN = 1000 + 10;const int MAXM = 500 + 10;const int MAXE = (MAXN - 1) * MAXN / 2 + 10;struct Node &#123; int x, y; Node() &#123; x = y = 0; &#125;&#125; node[MAXN];struct Edge &#123; int previd, nextid; double weight; Edge() &#123; previd = nextid = 0; weight = 0; &#125; bool operator &lt; (const Edge &amp;that) const &#123; return weight &lt; that.weight; &#125;&#125; edge[MAXE];struct UnionFind &#123; int seq[MAXN]; UnionFind() &#123; memset(seq, 0, sizeof seq); &#125; int Find(int x) &#123; return !seq[x] ? x : (seq[x] = Find(seq[x])); &#125; bool Union(int x, int y) &#123; x = Find(x); y = Find(y); if (x == y) return false; seq[x] = y; return true; &#125;&#125; U;double GetDist(int idx, int idy) &#123; double ret = 0; int absx = std::abs(node[idx].x - node[idy].x); int absy = std::abs(node[idx].y - node[idy].y); ret = sqrt(absx * absx + absy * absy); return ret;&#125;int n, m, cnt;int monkey[MAXM];double Kruskal() &#123; std::sort(edge + 1, edge + 1 + cnt); int tot = 0; double maxWeight = 0; for (int i = 1; i &lt;= cnt; ++i) &#123; if (U.Union(edge[i].previd, edge[i].nextid)) &#123; ++tot; maxWeight = std::max(maxWeight, edge[i].weight); &#125; if (tot == n - 1) break; &#125; return maxWeight;&#125;int main() &#123; IMPROVE_IO(); cin &gt;&gt; m; for (int i = 1; i &lt;= m; ++i) cin &gt;&gt; monkey[i]; cin &gt;&gt; n; for (int i = 1; i &lt;= n; ++i) cin &gt;&gt; node[i].x &gt;&gt; node[i].y; // initialize edges for (int i = 1; i &lt;= n; ++i) &#123; for (int j = 1; j &lt; i; ++j) &#123; edge[++cnt].previd = i; edge[cnt].nextid = j; edge[cnt].weight = GetDist(i, j); &#125; &#125; double maxW = Kruskal(); int ans = 0; for (int i = 1; i &lt;= m; ++i) &#123; if (monkey[i] &gt;= maxW) ++ans; &#125; cout &lt;&lt; ans &lt;&lt; endl; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>图论</tag>
+        <tag>生成树</tag>
+        <tag>最小生成树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P3243《[HNOI2015]菜肴制作》]]></title>
+    <url>%2F2019-02-14%2FLuogu-P3243%2F</url>
+    <content type="text"><![CDATA[反向建图 + 反向输出 题目描述知名美食家小 A被邀请至ATM 大酒店，为其品评菜肴。 ATM 酒店为小 A 准备了 N 道菜肴，酒店按照为菜肴预估的质量从高到低给予1到N的顺序编号，预估质量最高的菜肴编号为1。 由于菜肴之间口味搭配的问题，某些菜肴必须在另一些菜肴之前制作，具体的，一共有 M 条形如”i 号菜肴’必须’先于 j 号菜肴制作“的限制，我们将这样的限制简写为&lt;i,j&gt;。 现在，酒店希望能求出一个最优的菜肴的制作顺序，使得小 A能尽量先吃到质量高的菜肴： 也就是说， (1)在满足所有限制的前提下，1 号菜肴”尽量“优先制作； (2)在满足所有限制，1号菜肴”尽量“优先制作的前提下，2号菜肴”尽量“优先制作； (3)在满足所有限制，1号和2号菜肴”尽量“优先的前提下，3号菜肴”尽量“优先制作 ；(4)在满足所有限制，1 号和 2 号和 3 号菜肴”尽量“优先的前提下，4 号菜肴”尽量“优先制作； (5)以此类推。 例1：共4 道菜肴，两条限制&lt;3,1&gt;、&lt;4,1&gt;，那么制作顺序是 3,4,1,2。 例2：共5道菜肴，两条限制&lt;5,2&gt;、 &lt;4,3&gt;，那么制作顺序是 1,5,2,4,3。 例1里，首先考虑 1，因为有限制&lt;3,1&gt;和&lt;4,1&gt;，所以只有制作完 3 和 4 后才能制作 1，而根据(3)，3 号又应”尽量“比 4 号优先，所以当前可确定前三道菜的制作顺序是 3,4,1；接下来考虑2，确定最终的制作顺序是 3,4,1,2。 例 2里，首先制作 1是不违背限制的；接下来考虑 2 时有&lt;5,2&gt;的限制，所以接下来先制作 5 再制作 2；接下来考虑 3 时有&lt;4,3&gt;的限制，所以接下来先制作 4再制作 3，从而最终的顺序是 1,5,2,4,3。 现在你需要求出这个最优的菜肴制作顺序。无解输出”Impossible!“ （不含引号，首字母大写，其余字母小写） 输入输出格式输入格式第一行是一个正整数D，表示数据组数。 接下来是D组数据。 对于每组数据： 第一行两个用空格分开的正整数N和M，分别表示菜肴数目和制作顺序限制的条目数。 接下来M行，每行两个正整数x,y，表示”x号菜肴必须先于y号菜肴制作“的限制。（注意：M条限制中可能存在完全相同的限制） 输出格式输出文件仅包含 D 行，每行 N 个整数，表示最优的菜肴制作顺序，或者“Impossible!“表示无解（不含引号）。 输入输出样例输入样例#11234567891011121335 45 45 34 23 23 31 22 33 15 25 24 3 输出样例#11231 5 3 4 2 Impossible! 1 5 2 4 3 说明【样例解释】 第二组数据同时要求菜肴1先于菜肴2制作，菜肴2先于菜肴3制作，菜肴3先于 菜肴1制作，而这是无论如何也不可能满足的，从而导致无解。 100%的数据满足N,M&lt;=100000,D&lt;=3。 解题思路题目要求「“尽量”优先」那么跑字典序最小拓扑肯定是不行的 那么……考虑反向建图。反向建图跑字典序最大拓扑，这时的拓扑序是「一直选择大的，不行再选择小的」，那么反向输出即可 代码实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdio&gt;#include &lt;vector&gt;#include &lt;queue&gt;#include &lt;stack&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXNM = 100000 + 10;std::stack&lt;int&gt; rtop;std::vector&lt;int&gt; rhead[MAXNM];int id[MAXNM], n, m;void Topsort() &#123; std::priority_queue&lt;int&gt; q; for (int i = 1; i &lt;= n; ++i) &#123; if (!id[i]) &#123; q.push(i); &#125; &#125; while (!q.empty()) &#123; int u = q.top(); q.pop(); rtop.push(u); int siz = (int) rhead[u].size(); for (int i = 0; i &lt; siz; ++i) &#123; int v = rhead[u][i]; --id[v]; if (id[v]) continue; q.push(v); &#125; &#125;&#125;void Solve() &#123; memset(id, 0, sizeof id); cin &gt;&gt; n &gt;&gt; m; for (int i = 1; i &lt;= m; ++i) &#123; int prev = 0, next = 0; cin &gt;&gt; next &gt;&gt; prev; // reverse rhead[prev].push_back(next); ++id[next]; &#125; Topsort(); for (int i = 1; i &lt;= n; ++i) &#123; rhead[i].clear(); &#125; if (rtop.size() &lt; n) &#123; cout &lt;&lt; "Impossible!" &lt;&lt; endl; while (!rtop.empty()) rtop.pop(); return; &#125; while (!rtop.empty()) &#123; cout &lt;&lt; rtop.top() &lt;&lt; ' '; rtop.pop(); &#125; cout &lt;&lt; endl;&#125;int main() &#123; IMPROVE_IO(); int T = 0; cin &gt;&gt; T; while (T --&gt; 0) &#123; Solve(); &#125; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>拓扑序</tag>
+        <tag>图论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P4047《[JSOI2010]部落划分》]]></title>
+    <url>%2F2019-02-14%2FLuogu-P4047%2F</url>
+    <content type="text"><![CDATA[最小生成树后删边 题目描述聪聪研究发现，荒岛野人总是过着群居的生活，但是，并不是整个荒岛上的所有野人都属于同一个部落，野人们总是拉帮结派形成属于自己的部落，不同的部落之间则经常发生争斗。只是，这一切都成为谜团了——聪聪根本就不知道部落究竟是如何分布的。 不过好消息是，聪聪得到了一份荒岛的地图。地图上标注了N个野人居住的地点（可以看作是平面上的坐标）。我们知道，同一个部落的野人总是生活在附近。我们把两个部落的距离，定义为部落中距离最近的那两个居住点的距离。聪聪还获得了一个有意义的信息——这些野人总共被分为了K个部落！这真是个好消息。聪聪希望从这些信息里挖掘出所有部落的详细信息。他正在尝试这样一种算法： 对于任意一种部落划分的方法，都能够求出两个部落之间的距离，聪聪希望求出一种部落划分的方法，使靠得最近的两个部落尽可能远离。 例如，下面的左图表示了一个好的划分，而右图则不是。请你编程帮助聪聪解决这个难题。 输入输出格式输入格式输入文件第一行包含两个整数N和K(1&lt;=N&lt;=1000,1&lt;K&lt;=N)，分别代表了野人居住点的数量和部落的数量。 接下来N行，每行包含两个正整数x,y，描述了一个居住点的坐标(0&lt;=x, y&lt;=10000)。 输出格式输出一行，为最优划分时，最近的两个部落的距离，精确到小数点后两位。 输入输出样例输入样例#1123454 20 00 11 11 0 输出样例#111.00 输入样例#2123456789109 32 22 33 23 33 53 64 66 26 3 输出样例#212.00 解题思路我们首先对这几个点构建一个完全图 边数的计算属于初中数学内容（$\frac{n(n-1)}{2}$） 然后对这个图跑一遍最小生成树 删去生成树中最大的 $k-1$ 条边，这时候整个图就变成了 $k$ 个联通块，即为题目要求的部落 输出删去边的最小边权即可 代码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293#include &lt;algorithm&gt;#include &lt;iostream&gt;#include &lt;iomanip&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXN = 1000 + 10;const int MAXM = (MAXN * (MAXN - 1)) / 2 + 10;struct Node &#123; int x, y; Node() &#123; x = y = 0; &#125;&#125; node[MAXN];struct Edge &#123; int prev; int next; double weight; Edge() &#123; prev = next = 0; weight = 0; &#125; bool operator &lt; (const Edge &amp;that) const &#123; return weight &lt; that.weight; &#125;&#125; edge[MAXM];struct UnionFind &#123; int seq[MAXN]; UnionFind() &#123; memset(seq, 0, sizeof seq); &#125; int Find(int x) &#123; return !seq[x] ? x : (seq[x] = Find(seq[x])); &#125; bool Union(int x, int y) &#123; x = Find(x); y = Find(y); if (x == y) return false; seq[x] = y; return true; &#125;&#125; U;int n, k, cnt;double GetPath(Node x, Node y) &#123; double ret = 0; int X = std::abs(x.x - y.x); int Y = std::abs(x.y - y.y); ret = sqrt(X * X + Y * Y); // 勾股定理，初中数学 return ret;&#125;void Solve() &#123; std::sort(edge + 1, edge + 1 + cnt); int tot = 0; for (int i = 1; i &lt;= cnt; ++i) &#123; bool routput = false; if (tot == n - k) routput = true; // 这里用了一个小技巧，加到 (n - k + 1) 条边的时候就可以输出， // 而不用到最后删边，因为边权是经过排序的 if (U.Union(edge[i].prev, edge[i].next)) &#123; ++tot; if (routput) &#123; cout &lt;&lt; std::fixed &lt;&lt; std::setprecision(2) &lt;&lt; edge[i].weight &lt;&lt; endl; return; &#125; &#125; &#125;&#125;int main() &#123; IMPROVE_IO(); cin &gt;&gt; n &gt;&gt; k; for (int i = 1; i &lt;= n; ++i) &#123; cin &gt;&gt; node[i].x &gt;&gt; node[i].y; &#125; // 构造完全图 for (int i = 1; i &lt;= n; ++i) &#123; for (int j = 1; j &lt; i; ++j) &#123; edge[++cnt].prev = i; edge[cnt].next = j; edge[cnt].weight = GetPath(node[i], node[j]); &#125; &#125; Solve(); return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>图论</tag>
+        <tag>最小生成树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[洛谷P1108《低价购买》]]></title>
     <url>%2F2019-02-14%2FLuogu-P1108%2F</url>
     <content type="text"><![CDATA[最长下降子序列套一个玄学计数 题目描述“低价购买”这条建议是在奶牛股票市场取得成功的一半规则。要想被认为是伟大的投资者，你必须遵循以下的问题建议:“低价购买；再低价购买”。每次你购买一支股票,你必须用低于你上次购买它的价格购买它。买的次数越多越好!你的目标是在遵循以上建议的前提下，求你最多能购买股票的次数。你将被给出一段时间内一支股票每天的出售价($2^{16}$范围内的正整数)，你可以选择在哪些天购买这支股票。每次购买都必须遵循“低价购买；再低价购买”的原则。写一个程序计算最大购买次数。 这里是某支股票的价格清单： 日期 1,2,3,4,5,6,7,8,9,10,11,12价格 68,69,54,64,68,64,70,67,78,62,98,87最优秀的投资者可以购买最多44次股票，可行方案中的一种是： 日期 2,5,6,10价格 69,68,64,62 输入输出格式输入格式第1行: N(1≤N≤5000)，股票发行天数 第2行: N个数，是每天的股票价格。 输出格式两个数:最大购买次数和拥有最大购买次数的方案数( $\le 2^{31}$ )当二种方案“看起来一样”时（就是说它们构成的价格队列一样的时候）,这22种方案被认为是相同的。 输入输出样例输入样例121268 69 54 64 68 64 70 67 78 62 98 87 输出样例14 2 解题思路首先第一问肯定谁都会求跑一遍最长下降子序列算完 关键是第二问 令 $ dp[i] $ 表示以 $i$ 结尾的最长下降子序列的长度，$cdp[i]$ 表示以 $i$ 结尾的最长下降子序列的个数规定 $s[\ ]$ 为「原序列」 那么就有 当 $dp[i] = dp[j]$ 且 $s[i] = s[j]$ 时，就直接把 $cdp[j]$ 记为 $0$，防止重复计数 当 $dp[i] = dp[j] + 1$ 且 $s[i] &lt; s[j]$ 时，说明数列能接上了，$cdp[i] = cdp[i] + cdp[j]$ 最后答案输出 $$ \sum_{i = 1}^{n} cdp[i] \ (dp[i] = \text{The max value of array } dp[i] ) $$ 即可 代码实现123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXN = 5000 + 10;int n, a[MAXN], dp[MAXN], cdp[MAXN], maxLen;int main() &#123; cin &gt;&gt; n; for (int i = 1; i &lt;= n; ++i) cin &gt;&gt; a[i]; for (int i = 1; i &lt;= n; ++i) &#123; for (int j = 1; j &lt; i; ++j) &#123; if (a[i] &lt; a[j]) dp[i] = std::max(dp[i], dp[j] + 1); &#125; if (dp[i] == 0) dp[i] = 1; maxLen = std::max(maxLen, dp[i]); for (int j = 1; j &lt; i; ++j) &#123; if (dp[i] == dp[j] &amp;&amp; a[i] == a[j]) cdp[j] = 0; else if (dp[i] == dp[j] + 1 &amp;&amp; a[i] &lt; a[j]) cdp[i] += cdp[j]; &#125; if (cdp[i] == 0) cdp[i] = 1; &#125; int ans = 0; for (int i = 1; i &lt;= n; ++i) &#123; if (dp[i] == maxLen) ans += cdp[i]; &#125; cout &lt;&lt; maxLen &lt;&lt; ' ' &lt;&lt; ans &lt;&lt; endl; return 0;&#125;]]></content>
@@ -47,8 +90,8 @@
         <tag>题解</tag>
         <tag>ProjectDP</tag>
         <tag>动态规划，DP</tag>
-        <tag>状压DP</tag>
         <tag>NOI</tag>
+        <tag>状压DP</tag>
       </tags>
   </entry>
   <entry>
@@ -256,8 +299,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>模拟</tag>
         <tag>NOIP</tag>
+        <tag>模拟</tag>
       </tags>
   </entry>
   <entry>
@@ -302,8 +345,8 @@
         <tag>编程</tag>
         <tag>图论</tag>
         <tag>图论算法</tag>
-        <tag>DFS</tag>
         <tag>欧拉图</tag>
+        <tag>DFS</tag>
       </tags>
   </entry>
   <entry>
@@ -349,8 +392,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>搜索</tag>
         <tag>DFS</tag>
+        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -532,8 +575,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>搜索</tag>
         <tag>字符串</tag>
+        <tag>搜索</tag>
         <tag>BFS</tag>
         <tag>NOIP</tag>
       </tags>
@@ -545,9 +588,9 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
+        <tag>NOIP</tag>
         <tag>模拟</tag>
         <tag>栈</tag>
-        <tag>NOIP</tag>
         <tag>毒瘤</tag>
       </tags>
   </entry>
@@ -591,8 +634,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>栈</tag>
         <tag>NOIP</tag>
+        <tag>栈</tag>
       </tags>
   </entry>
   <entry>
@@ -611,9 +654,9 @@
       <tags>
         <tag>编程</tag>
         <tag>清北学堂</tag>
-        <tag>模拟</tag>
         <tag>贪心</tag>
         <tag>字符串</tag>
+        <tag>模拟</tag>
       </tags>
   </entry>
   <entry>
@@ -655,8 +698,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>最短路</tag>
         <tag>USACO</tag>
+        <tag>最短路</tag>
         <tag>图论算法</tag>
       </tags>
   </entry>
@@ -689,8 +732,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>搜索</tag>
         <tag>DFS</tag>
+        <tag>搜索</tag>
         <tag>NOIP</tag>
       </tags>
   </entry>
@@ -701,8 +744,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>搜索</tag>
         <tag>DFS</tag>
+        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -787,8 +830,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>搜索</tag>
         <tag>DFS</tag>
+        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -798,9 +841,9 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
+        <tag>只有经历过的人才知道的世界</tag>
         <tag>自测</tag>
         <tag>五校联考</tag>
-        <tag>只有经历过的人才知道的世界</tag>
       </tags>
   </entry>
   <entry>
@@ -833,8 +876,8 @@
     <content type="text"><![CDATA[暴力能过的线段树板子题 题目背景很多学校流行一种比较的习惯。老师们很喜欢询问，从某某到某某当中，分数最高的是多少。这让很多学生很反感。 题目描述不管你喜不喜欢，现在需要你做的是，就是按照老师的要求，写一个程序，模拟老师的询问。当然，老师有时候需要更新某位同学的成绩 Input / Output 格式 &amp; 样例输入格式第一行，有两个正整数 N 和 M ( 0&lt;N&lt;=200000,0&lt;M&lt;5000 )，分别代表学生的数目和操作的数目。 学生ID编号分别从1编到N。 第二行包含N个整数，代表这N个学生的初始成绩，其中第i个数代表ID为i的学生的成绩。 接下来有M行。每一行有一个字符 C (只取’Q’或’U’) ，和两个正整数A，B。 当C为’Q’的时候，表示这是一条询问操作，它询问ID从A到B(包括A,B)的学生当中，成绩最高的是多少。 当C为’U’的时候，表示这是一条更新操作，如果当前A学生的成绩低于B，则把ID为A的学生的成绩更改为B，否则不改动。 输出格式对于每一次询问操作，在一行里面输出最高成绩 输入输出样例输入样例： 123456785 61 2 3 4 5Q 1 5U 3 6Q 3 4Q 4 5U 2 9Q 1 5 输出样例： 12345659 解题思路单点修改，区间查询 …… 线段树 树状数组！ 对了，注意处理输入，含读入char的题目最好不要用快读 …… 别问我怎么知道的 线段树解法可以说是很裸的一道题了 只需要单点修改，lazyTag什么的不需要的 就简单把区间和查询改成区间最值查询就行了 代码实现线段树解法123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;using namespace std;const int MAXN = 200000 + 10;int a[MAXN], segt[MAXN * 4];int n, m;inline int leftChild(int x) &#123; return x &lt;&lt; 1;&#125;inline int rightChild(int x) &#123; return x &lt;&lt; 1 | 1;&#125;inline void pushUp(int root) &#123; segt[root] = std::max(segt[leftChild(root)], segt[rightChild(root)]); // 更新最大值&#125;inline void buildTree(int l, int r, int root) &#123; if (l == r) &#123; segt[root] = a[l]; return; &#125; int mid = (l + r) &gt;&gt; 1; buildTree(l, mid, leftChild(root)); buildTree(mid + 1, r, rightChild(root)); pushUp(root);&#125;inline int query(int l, int r, int ql, int qr, int root) &#123; int res = -2147483640; if (ql &lt;= l &amp;&amp; r &lt;= qr) return segt[root]; int mid = (l + r) &gt;&gt; 1; if (ql &lt;= mid) res = std::max(res, query(l, mid, ql, qr, leftChild(root))); if (mid &lt; qr) res = std::max(res, query(mid + 1, r, ql, qr, rightChild(root))); // 查询最大值 return res;&#125;inline void Modify(int l, int r, int dest, int root, int k) &#123; if (l == r) &#123; segt[root] = std::max(segt[root], k); return; &#125; int mid = (l + r) &gt;&gt; 1; if (dest &lt;= mid) Modify(l, mid, dest, leftChild(root), k); if (mid &lt; dest) Modify(mid + 1, r, dest, rightChild(root), k); pushUp(root);&#125;inline int getint() &#123; int s = 0, x = 1; char ch = getchar(); while (!isdigit(ch)) &#123; if (ch == '-') x = -1; ch = getchar(); &#125; while (isdigit(ch)) &#123; s = s * 10 + ch - '0'; ch = getchar(); &#125; return s * x;&#125;inline void putint(int x, bool returnValue) &#123; if (x &lt; 0) &#123; x = -x; putchar('-'); &#125; if (x &gt;= 10) putint(x / 10, false); putchar(x % 10 + '0'); if (returnValue) putchar('\n');&#125;int main(int argc, char *const argv[]) &#123; cin &gt;&gt; n &gt;&gt; m; for (int i = 1; i &lt;= n; ++i) cin &gt;&gt; a[i]; buildTree(1, n, 1); for (int i = 1; i &lt;= m; ++i) &#123; char op; int a, b; cin &gt;&gt; op &gt;&gt; a &gt;&gt; b; // 推荐使用std::cin！ switch(op) &#123; case 'Q': &#123; putint(query(1, n, a, b, 1), true); break; &#125; case 'U': &#123; Modify(1, n, a, 1, b); break; &#125; &#125; &#125; return 0;&#125; 暴力代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;using namespace std;const int MAXN = 200000 + 10;int segt[MAXN]; int n, m;inline int getint() &#123; int s = 0, x = 1; char ch = getchar(); while (!isdigit(ch)) &#123; if (ch == '-') x = -1; ch = getchar(); &#125; while (isdigit(ch)) &#123; s = s * 10 + ch - '0'; ch = getchar(); &#125; return s * x;&#125;inline void putint(int x, bool returnValue) &#123; if (x &lt; 0) &#123; x = -x; putchar('-'); &#125; if (x &gt;= 10) putint(x / 10, false); putchar(x % 10 + '0'); if (returnValue) putchar('\n');&#125;inline int query(int l, int r) &#123; int res = -2147483640; for (int i = l; i &lt;= r; ++i) res = std::max(res, segt[i]); return res;&#125;inline void Modify(int r, int k) &#123; segt[r] = std::max(segt[r], k);&#125;int main(int argc, char *const argv[]) &#123; cin &gt;&gt; n &gt;&gt; m; for (int i = 1; i &lt;= n; ++i) cin &gt;&gt; segt[i]; for (int i = 1; i &lt;= n; ++i) cout &lt;&lt; segt[i] &lt;&lt; ' '; cout &lt;&lt; endl; for (int i = 1; i &lt;= m; ++i) &#123; char op; int a, b; cin &gt;&gt; op &gt;&gt; a &gt;&gt; b; switch(op) &#123; case 'Q': &#123; cout &lt;&lt; query(a, b) &lt;&lt; endl; break; &#125; case 'U': &#123; Modify(a, b); break; &#125; &#125; &#125; return 0;&#125;]]></content>
       <tags>
         <tag>编程</tag>
-        <tag>模拟</tag>
         <tag>线段树</tag>
+        <tag>模拟</tag>
         <tag>暴力</tag>
       </tags>
   </entry>
@@ -845,8 +888,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>模拟</tag>
         <tag>NOIP</tag>
+        <tag>模拟</tag>
       </tags>
   </entry>
   <entry>
@@ -919,8 +962,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>图论算法</tag>
         <tag>并查集</tag>
+        <tag>图论算法</tag>
         <tag>最小生成树</tag>
       </tags>
   </entry>
