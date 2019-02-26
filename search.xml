@@ -35,10 +35,10 @@
     <content type="text"><![CDATA[$O(1)$查询区间最值 算法简介RMQ (Range Minimum/Maximum Query)问题是指：对于长度为n的数列A，回答若干询问RMQ(A,i,j)(i,j&lt;=n)，返回数列A中下标在i,j里的最小(大）值，也就是说，RMQ问题是指求区间最值的问题。 ——百度百科 ST（Sparse Table，稀疏表）算法是求解RMQ问题的经典在线算法，以O(nlogn)时间预处理，然后在O(1)时间内回答每个查询。 算法流程ST算法实际上采用了DP的思想 初始化定义 $F(i,j)$ 表示区间 $[i, i + 2^j - 1]$ 内的最小值，$P[i]$ 为原序列 那么显然$$ F(i,0) = P[i] $$ 状态转移方程？ 首先，任意一个区间的最小值等于 $min($这个区间前一半的最小值$,$ 这个区间后一半点最小值$)$这个很好理解吧把$F(\ )$结合进去，就是 $$ F(i,j) = min(F(i,j-1),F(i + 2^{j-1}, j - 1)) $$ 还有什么细节？上面的式子看的你很想递归是吧（反正我是）如果你不想递归的话，你八成会： 123for (int i = 1; ...) for (int j = 1; ...) F[i][j] = ... 其实……这样都是错的，这样会导致有几个状态被过早地枚举 我们要把枚举 $j$ 的循环放在外层，至于为什么……你模拟一下就行了 查询此处的内容可能有点难以理解，请消化不了的同学多看几遍 上面说了查询是 $O(1)$ 的听起来就好简单啊 实现确实是很简单，但是原理就……也是很简单 首先给你一个定理：对于任意 $x \in \mathbb{N^*}$ ，都有 $ 2^{\lfloor log_2(x) \rfloor} &gt; \lfloor \frac{x}{2} \rfloor $ 然后令查询区间$[l,r]$的长度 $\text{len} = r - (l - 1),\ \text{ll} = log_2(\text{len})$那么根据上边可得 $ 2^{\text{ll}} &gt; \lfloor \frac{len}{2} \rfloor $这意味着什么？这意味着查询的区间有重叠！不过这并不能意味啥，重叠又怎么样，只是查询的区间变了 1234567891011原来我们查询区间，都是查询这个区间的一半比如更新[l,r]之间的最小值就是f[l][r] = std::min(f[l][mid], f[mid + 1][r]);但是这次不一样，这次的mid超过了区间的一半那就可以这么写：int Query(int l, int r) &#123; int k = std::log(r - (l - 1)) / std::log(2); return std::min(f[l][k], f[r - ((1 &lt;&lt; k) -1)][k]);&#125; 是 $O(1)$ 的吧 它查询的区间相当于是这样的：（画的不准确，仅供参考） 12345_ _ _ _ _ _ _ _ _ -------==== f[l][k] ====------ f[r - ((1 &lt;&lt; k) - 1)][k] 等号就是两个查询区间的并集 这也就是它为什么不能查询区间和的原因前缀和足够了 伪代码⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯$ \text{Algorithm 1: Sparse Table} $⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯$ \text{Init(The Sparse Table } f, \text{The original sequence } a, \text{no return value})$&nbsp;&nbsp;$ 1. \text{For } i \text{ from 1 to n do}$&nbsp;&nbsp;$ 2. \ \ \ \ f[i][0] = a[i] $&nbsp;&nbsp;$ 3. \text{End For} $&nbsp;&nbsp;$ 4. \ j \leftarrow 1, i \leftarrow 1$&nbsp;&nbsp;$ 5. \text{While } 2^j \leq n \text{ do} $&nbsp;&nbsp;$ 6. \ \ \ \ \text{While } i + 2^j - 1 \leq n \text{ do} $&nbsp;&nbsp;$ 7. \ \ \ \ \ \ \ \ f[i][j] = min(f[i][j-1], f[i + 2^{j-1}][j-1]) $&nbsp;&nbsp;$ 8. \ \ \ \ \ \ \ \ i \leftarrow i + 1 $&nbsp;&nbsp;$ 9. \ \ \ \ \text{End While}$$ 10. \ \ \ \ j \leftarrow j + 1 $$ 11. \text{End While} $ $ \text{Query(}l,r\text{,return a value x}) $$ 1. k \leftarrow log_2(r - l + 1)$$ 2. \text{return } x = min(f[l][k], f[r - (2^k - 1)][k]$⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ 代码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445// luogu-judger-enable-o2#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdio&gt;#include &lt;cmath&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXN = (100000 + 10) * 2;const int MAXLOG = 17 + 10; // floor(log2(100000 + 10))int n, q;int Table[MAXN][MAXLOG];void BuildTable() &#123; for (int j = 1; (1 &lt;&lt; j) &lt;= n; ++j) &#123; for (int i = 1; i + (1 &lt;&lt; j) - 1 &lt;= n; ++i) &#123; Table[i][j] = std::max(Table[i][j-1], Table[i + (1 &lt;&lt; (j - 1))][j - 1]); &#125; &#125;&#125;int Query(int l, int r) &#123; int k = std::log(r - (l - 1)) / std::log(2); return std::max(Table[l][k], Table[r - ((1 &lt;&lt; k) - 1)][k]);&#125;int main() &#123; scanf("%d %d", &amp;n, &amp;q); for (int i = 1; i &lt;= n; ++i) scanf("%d", &amp;Table[i][0]); // 这里可以省去seq[i]，对Table[i][0]进行直接写入 BuildTable(); for (int i = 1; i &lt;= q; ++i) &#123; int l = 0, r = 0; scanf("%d %d", &amp;l, &amp;r); printf("%d\n", Query(l, r)); &#125; return 0;&#125; 例题洛谷P3865【模板】ST表]]></content>
       <tags>
         <tag>编程</tag>
-        <tag>模板</tag>
         <tag>算法</tag>
         <tag>ST表</tag>
         <tag>RMQ问题</tag>
+        <tag>模板</tag>
       </tags>
   </entry>
   <entry>
@@ -46,8 +46,8 @@
     <url>%2F2019-02-14%2F100-articles%2F</url>
     <content type="text"><![CDATA[2019年2月14日22点，在键盘的敲击声中，Handwer’s Blog的第100篇博客诞生了。 第一个里程碑已经达成，下一个里程碑：200篇 2019也要加油啊]]></content>
       <tags>
-        <tag>只有经历过的人才知道的世界</tag>
         <tag>博客相关</tag>
+        <tag>只有经历过的人才知道的世界</tag>
       </tags>
   </entry>
   <entry>
@@ -69,8 +69,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>拓扑序</tag>
         <tag>图论</tag>
+        <tag>拓扑序</tag>
       </tags>
   </entry>
   <entry>
@@ -126,8 +126,8 @@
         <tag>题解</tag>
         <tag>ProjectDP</tag>
         <tag>动态规划，DP</tag>
-        <tag>状压DP</tag>
         <tag>NOI</tag>
+        <tag>状压DP</tag>
       </tags>
   </entry>
   <entry>
@@ -137,9 +137,9 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>拓扑序</tag>
         <tag>图论</tag>
         <tag>各省省选</tag>
+        <tag>拓扑序</tag>
       </tags>
   </entry>
   <entry>
@@ -475,8 +475,8 @@
         <tag>图论</tag>
         <tag>图论算法</tag>
         <tag>BFS</tag>
-        <tag>二分图</tag>
         <tag>模板</tag>
+        <tag>二分图</tag>
       </tags>
   </entry>
   <entry>
@@ -497,8 +497,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>图论</tag>
         <tag>省选</tag>
+        <tag>图论</tag>
         <tag>最短路</tag>
         <tag>分层图</tag>
       </tags>
@@ -877,9 +877,9 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
+        <tag>只有经历过的人才知道的世界</tag>
         <tag>自测</tag>
         <tag>五校联考</tag>
-        <tag>只有经历过的人才知道的世界</tag>
       </tags>
   </entry>
   <entry>
