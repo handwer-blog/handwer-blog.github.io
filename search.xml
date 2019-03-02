@@ -6,6 +6,18 @@
     <content type="text"><![CDATA[这里可能会挂些什么东西。 There may be something here. 博客累计已突破 100 篇文章 New！《「文章」百名学生参训 礼堂“变身”教室》]]></content>
   </entry>
   <entry>
+    <title><![CDATA[Trie 树学习笔记]]></title>
+    <url>%2F2019-03-02%2FTrie%2F</url>
+    <content type="text"><![CDATA[很简单的树形字符串结构 简介在计算机科学中，Trie，又称字典树、单词查找树或键树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计，排序和保存大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计。它的优点是：利用字符串的公共前缀来减少查询时间，最大限度地减少无谓的字符串比较，查询效率比哈希树高。 ——百度百科 简单地说，Trie 树就是以字符串的字母为结构建立起来的一棵多根树画出来大概是这样的 其中，这棵树有这些字符串 1234567AAKAKNAKOAKIACACE 操作都很简单。 插入操作给你一个字符串，要求把这个字符串插入到树中 首先指定树根为0，当前位置为树根枚举字符串的每个字符，看一下当前字符在当前深度有没有，有的话就直接把「当前位置」切换为这个字符所处的位置，没有的话就往里插入这个字符再切换 建议配合代码理解 查询操作这里以查询是否被查询过为例 对于每一个字符，记一下以它为结尾的字符串是否被查询过还是像插入一样切换当前位置，如果中间某一字符在那个深度没有，就直接返回字符串不存在切换到字符串最后一个字符之后，看一下刚才记的那个变量是否为真即可 也还是建议配合代码理解 例题这里以洛谷 P2580 于是他错误的点名开始了为例 题目大意就是给你一堆字符串和一堆询问对于每个询问，输出是否存在这个字符串如果存在，输出它有没有被询问过 解题思路本来这是一道std::map的模板题但是我们是来学 Trie 的那么当然要用 Trie 做啊（逃 代码实现也是上面那一题的代码实现 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;string&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXN = 10000 + 10;struct Trie&#123; // 日常封装 struct Node &#123; int size; int linkson[26 + 1]; // 直接用它来记子节点的位置，类似于链表 bool rep; Node() &#123; size = 0; rep = false; memset(linkson, 0, sizeof linkson); &#125; &#125; tree[MAXN]; int cnt; Trie() &#123; cnt = 0; &#125; void Insert(const char *s, int length) &#123; // 插入 int pos = 0; // pos = root for (int i = 0; i &lt; length; ++i) &#123; int ins = s[i] - 'a'; if (tree[pos].linkson[ins] == 0) &#123; // insert tree[pos].linkson[ins] = ++cnt; ++tree[pos].size; &#125; pos = tree[pos].linkson[ins]; // 前面提到的切换位置 &#125; &#125; // 返回值就0, 1, 2，用不着 int short Find(const char *s, int length) &#123; int pos = 0; // pos = root for (int i = 0; i &lt; length; ++i) &#123; int que = s[i] - 'a'; if (tree[pos].linkson[que] == 0) return 2; // 没找到这个名字 pos = tree[pos].linkson[que]; // 这里也是和上边插入一模一样 &#125; if (tree[pos].rep) return 1; // 重复点名 tree[pos].rep = true; return 0; // 炉石传说真好玩（逃 &#125;&#125; T;int n, m;int main() &#123; IMPROVE_IO(); cin &gt;&gt; n; for (int i = 1; i &lt;= n; ++i) &#123; std::string s; cin &gt;&gt; s; T.Insert(s.c_str(), (int) s.size()); &#125; cin &gt;&gt; m; for (int i = 1; i &lt;= m; ++i) &#123; std::string s; cin &gt;&gt; s; switch(T.Find(s.c_str(), (int) s.size())) &#123; case 0: &#123; printf("OK\n"); break; &#125; case 1: &#123; printf("REPEAT\n"); break; &#125; case 2: &#123; printf("WRONG\n"); &#125; &#125; &#125; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>字符串</tag>
+        <tag>模板</tag>
+        <tag>Trie</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[洛谷P3067《[USACO12OPEN]平衡的奶牛群Balanced Cow Subsets》]]></title>
     <url>%2F2019-03-02%2FLuogu-P3067%2F</url>
     <content type="text"><![CDATA[Meet in the middle + 状态压缩 题目描述Farmer John’s owns N cows (2 &lt;= N &lt;= 20), where cow i produces M(i) units of milk each day (1 &lt;= M(i) &lt;= 100,000,000). FJ wants to streamline the process of milking his cows every day, so he installs a brand new milking machine in his barn. Unfortunately, the machine turns out to be far too sensitive: it only works properly if the cows on the left side of the barn have the exact same total milk output as the cows on the right side of the barn! Let us call a subset of cows “balanced” if it can be partitioned into two groups having equal milk output. Since only a balanced subset of cows can make the milking machine work, FJ wonders how many subsets of his N cows are balanced. Please help him compute this quantity. 给n个数，从中任意选出一些数，使这些数能分成和相等的两组。 求有多少种选数的方案。 输入输出格式输入格式： Line 1: The integer N. Lines 2..1+N: Line i+1 contains M(i). 输出格式： Line 1: The number of balanced subsets of cows. 输入输出样例输入样例#1123454 1 2 3 4 输出样例#113 说明There are 4 cows, with milk outputs 1, 2, 3, and 4. There are three balanced subsets: the subset {1,2,3}, which can be partitioned into {1,2} and {3}, the subset {1,3,4}, which can be partitioned into {1,3} and {4}, and the subset {1,2,3,4} which can be partitioned into {1,4} and {2,3}. 解题思路先看一眼数据范围 对于每一个数，有三种状态： 放在左边的集合里 放在右边的集合里 不选 好，一个 $O(3^n)$ 的算法就出来了但是过不去 考虑优化可用 Meet in the middle 进行优化 对两个区间 $[1, \frac{n}{2}]$ 和 $[\frac{n}{2} + 1, n]$ 分别搜索，时间复杂度降为 $O(3^{\frac{n}{2}})$ ，或者说 $O(\sqrt{(3^n)})$ 合并答案这部分我在学的时候也不大理解 代码实现1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374#include &lt;algorithm&gt;#include &lt;iostream&gt;#include &lt;map&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)#define _DEBUG(x) std::cerr &lt;&lt; #x &lt;&lt; " = " &lt;&lt; x &lt;&lt; std::endl;using std::cin;using std::cout;using std::endl;const int MAXN = 20 + 10;const int FIXED_N = 20 + 1;struct S &#123; int sum; int status; S() &#123; sum = status = 0; &#125;&#125; cca[(1 &lt;&lt; FIXED_N)], ccb[(1 &lt;&lt; FIXED_N)];int n, a[MAXN], cnta, cntb, ans;bool uniq[(1 &lt;&lt; FIXED_N)];void Read() &#123; cin &gt;&gt; n; for (int i = 1; i &lt;= n; ++i) cin &gt;&gt; a[i];&#125;void Search(int l, int r, int sum, int stat, S cc[], int &amp;cnt) &#123; if (l &gt; r) &#123; cc[++cnt].sum = sum; cc[cnt].status = stat; return; &#125; Search(l + 1, r, sum, stat, cc, cnt); // don't choose Search(l + 1, r, sum - a[l], stat + (1 &lt;&lt; (l - 1)), cc, cnt); // put the cow to set1 Search(l + 1, r, sum + a[l], stat + (1 &lt;&lt; (l - 1)), cc, cnt); // put the cow to set2&#125;void mergeAnswer() &#123; // double-pointer int p1 = 1, p2 = 1; while (p1 &lt;= cnta &amp;&amp; p2 &lt;= cntb) &#123; while (-cca[p1].sum &lt; ccb[p2].sum &amp;&amp; p2 &lt;= cntb) ++p2; int originalp2 = p2; while (p2 &lt;= cntb &amp;&amp; -cca[p1].sum == ccb[p2].sum) &#123; if (uniq[cca[p1].status | ccb[p2].status] == false) &#123; uniq[cca[p1].status | ccb[p2].status] = true; ++ans; &#125; ++p2; &#125; if (p1 + 1 &lt;= cnta &amp;&amp; -cca[p1].sum == -cca[p1 + 1].sum) p2 = originalp2; ++p1; &#125;&#125;bool cmpa(S x, S y) &#123; return x.sum &lt; y.sum; &#125;bool cmpb(S x, S y) &#123; return x.sum &gt; y.sum; &#125;int main() &#123; IMPROVE_IO(); Read(); Search(1, n / 2, 0, 0, cca, cnta); Search(n / 2 + 1, n , 0, 0, ccb, cntb); std::sort(cca + 1, cca + 1 + cnta, cmpa); std::sort(ccb + 1, ccb + 1 + cntb, cmpb); mergeAnswer(); cout &lt;&lt; ans - 1 &lt;&lt; endl; return 0;&#125;]]></content>
@@ -33,8 +45,8 @@
     <url>%2F2019-02-16%2FSDWC-Article%2F</url>
     <content type="text"><![CDATA[本文纯属胡扯请勿当真 正月初八，年味儿正浓。但是，不少全国各地的中学生却来到了泰安。他们不是利用假期前来观光旅游的，而是进城参加竞赛培训。记者暗访发现，某未经教育部批准的机构培训机构打着“竞赛培训”“自主招生”的旗号，开设冬令营，面向全国各地中学招生。这个机构组织学生进行竞赛辅导、模拟考试。七天的培训，学费竟然高达3000元左右。 记者了解到，不少高一、高二甚至初中学生参加这样的冬令营，目的是希望能够获得各类学科竞赛的奖项，从而在高校自主招生、保送生选拔录取中占得先机。为此，记者向多所“双一流”高校招生负责人求证，得到的一致答复是，获得自主招生认定与是否参加过竞赛培训没有任何关系，学生申请自主招生可以通过各种材料证明自己的特长，竞赛获奖证书只是其中很小一部分，并且自主招生最终认定结果，必须经由申请高校考核后确定。 四名学生一个宿舍教学、食宿均安排在学校之内 正月初八，一辆又一辆大巴车开进泰安一中。一批批满脸稚气的中学生，拉着行李走进学校。工作人员协助学生们办理报到、入住、领取餐券等手续。不少学生家长陪同前来，但是，办完手续后，家长被告知“可以离开了”。工作人员的解释是，这里是封闭式管理，谢绝家长陪住。 此时，这所学校已经摇身变成一家培训教育机构寒假冬令营的营区。工作人员介绍，营区主要开设普通班、高级班两个班级，其中，普通班有学生200人，高级班有学生240人左右。这意味着来自全国各地的百余名学生参加这家机构的培训。 据介绍，营区的教学、食宿均安排在学校之内。每名学生的学费为2400元，另外不需缴纳食宿费。“四名学生一个宿舍。”工作人员说。 学校工作人员告诉记者，培训机构几乎包下了所有的宿舍房间。 从早八点半学到晚九点后排学生只能看“现场直播” 培训课程已开课几天。营区占用一间大礼堂作为教室，学生们被分成了多个座位区，对应一个投影幕布。因为“教室”里的学生太多，在最后一排已经几乎看不见老师，只能通过听声音、看课件来听老师讲题。到下午4点，后方座位区已经有学生难以专注听课，趴到了桌子上。 记者探访营区，感受到了学生们高强度的学习节奏。现场公布的一份营地作息时间表显示，学生们每天的起床时间为6点至7点，之后有40分钟的早餐时间。8点开始上课，一直到11点半。中午学生有两小时左右的中餐和午休时间，之后又是3个半小时的课程。 入夜后，学生们也不能歇着。记者在营区看到，晚上6点刚过，吃过晚餐的学生陆陆续续回到机房开始自习。工作人员透露，晚上6点到9点是学生的答疑、考试和讲评时间。晚上10点查寝，11点熄灯。 拼竞赛争取进名校任课教师多是竞赛金牌选手 小王是华北地区一所中学的初二学生。这次，他是由学校老师带队，与同学们一起参加竞赛的培训。小王很明确地告诉记者，上辅导班就是为了拼竞赛，获得进名校的“敲门砖”。“如果能在省赛区拿到一等奖，那么，申请211、985院校自主招生的通过概率就很大。全国学科竞赛夺金牌进国家集训队，就可以直接保送了。” 小王坦言，在老家学校里，大家主要的任务都在应对高考。老师讲课、考试都是围绕高考进行，竞赛生“吃不饱”。因为没有专门的竞赛指导老师，训练主要是靠从网上找习题。“来这里学，确实收获很大，这边老师讲的好几个知识点，一下子打通了我之前一年的困惑。” 培训机构市场部的一位工作人员告诉记者，如果只凭高中课堂学习的知识积累，去拼名校的自主招生，没有多大意义。因此，必须走一轮竞赛，材料才过硬。他透露，竞赛培训的主讲老师大部分是当年竞赛的金牌选手，培训中会有竞赛例题的讲解，还有模拟竞赛考试，学生可以充分熟悉考试的流程。 多所高校招办答复自招认定与竞赛培训无关 今年1月，教育部印发了《关于做好2019年高校自主招生工作的通知》，从招生政策、招生程序、加强监管等方面提出规范高校自主招生的“十严格”要求。“十严格”中明确高校不得简单以论文、专利、中介机构举办的竞赛活动等作为报考条件和初审通过依据。此外，要严格审核申请材料，高校成立专门自主招生审核专家组，采用多名专家“背靠背”分别独立审核、复核等方式，对考生提交的证明材料进行全覆盖核查。 昨晚，本市多所“双一流”高校的招办负责人向记者表示，绝大多数考生最终能否获得自主招生的认定，与是否参加过竞赛、拿过奖没有必然联系，与竞赛培训更是无关。“我们严格遵守教育部相关规定，学生申请自主招生可以根据自己的兴趣和特长提交相关材料，竞赛成绩只是其中很小一部分。此外学生通过材料初审后，也必须要参加学校组织的自主招生初试和复试，通过并完成公示后才能获得认定。这些流程都与校外培训机构无关，希望学生能展现真实的才华。”一所“双一流”大学招办主任说道。 来源：泰安Fa♂︎报供图：abc1763613206]]></content>
       <tags>
-        <tag>毒瘤</tag>
         <tag>记录</tag>
+        <tag>毒瘤</tag>
         <tag>OI相关</tag>
         <tag>文章</tag>
       </tags>
@@ -92,8 +104,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>拓扑序</tag>
         <tag>图论</tag>
+        <tag>拓扑序</tag>
       </tags>
   </entry>
   <entry>
@@ -160,9 +172,9 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>拓扑序</tag>
         <tag>图论</tag>
         <tag>各省省选</tag>
+        <tag>拓扑序</tag>
       </tags>
   </entry>
   <entry>
@@ -520,8 +532,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>图论</tag>
         <tag>省选</tag>
+        <tag>图论</tag>
         <tag>最短路</tag>
         <tag>分层图</tag>
       </tags>
@@ -531,9 +543,9 @@
     <url>%2F2018-11-24%2FSecureYourPC%2F</url>
     <content type="text"><![CDATA[Password: 🔑 前言今天（2018.11.24）中午时分我被 Logey 绑住胳膊眼睁睁地看着 RainAir 机惨我RainAir 删除了我的用户密码Shq 修改了我的博客文件折腾了一个中午才恢复过来因为这样 我决定写下这篇文章 简介关于加密┌────────────┐│加密，是以某种特殊的算法││改变原有的信息数据，使得││未授权的用户即使获得了已││加密的信息，但因不知解密││的方法，仍然无法了解信息││的内容。 ——百度百科&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│└────────────┘ 为什么要加密先不谈什么数据泄露、隐私恶意利用等诸如此类的事，我们来看机惨 一次机惨，轻则「I AK ***」，重则rm -rf / --no-preserve-root 所以锁好自己的电脑是非常重要的 Windows &amp; macOS 通用解决方案当然是设好自己的密码。尽量设复杂且好记的密码，并且保证自己打这个密码的速度足够快，不会让人记住。有生物识别系统的可以考虑安全性高的生物识别系统，像目前已经成熟的「指纹识别」和「Windows Hello」。 macOS 独占解决方案固件密码在开机时按住「⌘+R」，进入恢复模式；点击菜单栏中的「实用工具」，点击「启动安全性实用工具」；输入自己的密码并记牢；最后直接重启即可生效。 用途？设定固件密码之后，进入恢复模式就需要密码了。同样是在恢复模式下，用命令resetpassword可以更改密码！ FileVaultFileVault 会自动直接地对主目录的内容进行加密和解密。真正的安全感来自知道在没有获得允许的时候，没有人可以翻看你的文件。FileVault 使用最新的政府安全标准来保护你的辛勤劳动成果。它保护你主文件夹上的所有信息不被窥测，因此你的商业机密、假期购物单、以及个人财政记录仍然是秘密。FileVault 使用128位高级加密标准 Advanced Encryption Standard 对你主目录下的所有内容进行加密。这个高性能的算法会自动实时加密和解密，因此你甚至不知道它的发生。 ——百度百科 打开方式：「系统偏好设置」→「安全性与隐私」→「文件保险箱」 Time MachineTime Machine 是自动备份功能的一大突破，它内建於 Mac OS X，能为 Mac 上的一切建立最新拷贝，包括数位相片、音乐、家庭影片与文件。现在，只要您有需要，就能轻易回到过去恢复任何资料。 ——百度百科这种方法主要是用来预防被机惨后发生的所有特殊情况，例如博客文件被覆盖，重要文件丢失等等。打开方式：「系统偏好设置」→「时间机器」 加密映像如果有什么东西你想要用密码保护，那加密的映像确实是最好的工具。 方法：「Spotlight Search」Disk Utility.app【文件】【新建映像】【来自文件夹的映像】注意：映像默认只读，如果想让映像可读写，就必须要在「映像格式」里将「压缩」改成「读/写」 Windows 独占解决方案这里其实上面说的东西，Windows 都有替代品。固件密码有 BIOS 里的 Secure Lock，加密映像可以用 UltraISO，磁盘加密可以用 BitLocker ……]]></content>
       <tags>
-        <tag>毒瘤</tag>
         <tag>只有经历过的人才知道的世界</tag>
         <tag>使用指南</tag>
+        <tag>毒瘤</tag>
         <tag>优化</tag>
         <tag>加密</tag>
       </tags>
@@ -647,10 +659,10 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>毒瘤</tag>
         <tag>模拟</tag>
         <tag>栈</tag>
         <tag>NOIP</tag>
+        <tag>毒瘤</tag>
       </tags>
   </entry>
   <entry>
