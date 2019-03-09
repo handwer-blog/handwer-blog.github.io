@@ -6,14 +6,26 @@
     <content type="text"><![CDATA[这里可能会挂些什么东西。 There may be something here. 博客累计已突破 100 篇文章 New！《「文章」百名学生参训 礼堂“变身”教室》]]></content>
   </entry>
   <entry>
+    <title><![CDATA[洛谷P2292《[HNOI2004]L语言》]]></title>
+    <url>%2F2019-03-09%2FLuogu-P2292%2F</url>
+    <content type="text"><![CDATA[Trie 的经典应用 题目描述标点符号的出现晚于文字的出现，所以以前的语言都是没有标点的。现在你要处理的就是一段没有标点的文章。 一段文章T是由若干小写字母构成。一个单词W也是由若干小写字母构成。一个字典D是若干个单词的集合。我们称一段文章T在某个字典D下是可以被理解的，是指如果文章T可以被分成若干部分，且每一个部分都是字典D中的单词。 例如字典D中包括单词{‘is’, ‘name’, ‘what’, ‘your’}，则文章‘whatisyourname’是在字典D下可以被理解的，因为它可以分成4个单词：‘what’, ‘is’, ‘your’, ‘name’，且每个单词都属于字典D，而文章‘whatisyouname’在字典D下不能被理解，但可以在字典D’=D+{‘you’}下被理解。这段文章的一个前缀‘whatis’，也可以在字典D下被理解，而且是在字典D下能够被理解的最长的前缀。 给定一个字典D，你的程序需要判断若干段文章在字典D下是否能够被理解。并给出其在字典D下能够被理解的最长前缀的位置。 输入输出格式输入格式输入文件第一行是两个正整数n和m，表示字典D中有n个单词，且有m段文章需要被处理。之后的n行每行描述一个单词，再之后的m行每行描述一段文章。 其中1&lt;=n, m&lt;=20，每个单词长度不超过10，每段文章长度不超过1M。 输出格式对于输入的每一段文章，你需要输出这段文章在字典D可以被理解的最长前缀的位置。 输入输出样例输入样例#1123456784 3 isnamewhatyourwhatisyournamewhatisyounamewhaisyourname 输出样例#112314 （整段文章’whatisyourname’都能被理解）6 （前缀’whatis’能够被理解）0 （没有任何前缀能够被理解） 解题思路这里选用 Trie 来做 首先把所有的单词扔进树里，记一下最长单词的长度 枚举字符串的右端点 $r \in [0, \text{The string’s length} - 1]$字符串的左端点 $l \in [max(r - \text{Max Length}, -1), r]$ 判断一下这个子串$s[l + 1, r]$在 Trie 里是不是一个完整的单词，是的话就把答案更新为 $r + 1$ 并退出枚举左端点的循环 判断单词是否完整只要对每个单词的结尾字母打个标记就行 代码实现1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;string&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)#define TREE_ROOT 0using std::cin;using std::cout;using std::endl;const int MAXCHAR = 1024 * 1024 + 10;int maxlength;struct Trie&#123; // 日常封装 struct Node &#123; int size; int linkson[26 + 1]; // 直接用它来记子节点的位置，类似于链表 bool last; Node() &#123; size = 0; last = false; memset(linkson, 0, sizeof linkson); &#125; &#125; tree[MAXCHAR]; int cnt; Trie() &#123; cnt = 0; &#125; void Insert(const char *s, int length) &#123; // 插入 int pos = 0; // pos = root maxlength = std::max(maxlength, length); for (int i = 0; i &lt; length; ++i) &#123; int ins = s[i] - 'a'; if (tree[pos].linkson[ins] == 0) &#123; // insert tree[pos].linkson[ins] = ++cnt; ++tree[pos].size; &#125; pos = tree[pos].linkson[ins]; &#125; tree[pos].last = true; &#125; short Find(const char *s, int l, int r) &#123; int pos = 0; // pos = root for (int i = l; i &lt;= r; ++i) &#123; int que = s[i] - 'a'; if (tree[pos].linkson[que] == 0) return 0; pos = tree[pos].linkson[que]; // 这里也是和上边插入一模一样 &#125; return tree[pos].last; &#125;&#125; T;int n, m;bool dp[MAXCHAR];int main() &#123; IMPROVE_IO(); cin &gt;&gt; n &gt;&gt; m; std::string s; for (int i = 1; i &lt;= n; ++i) &#123; cin &gt;&gt; s; T.Insert(s.c_str(), (int) s.size()); &#125; for (int i = 1; i &lt;= m; ++i) &#123; cin &gt;&gt; s; memset(dp, 0, sizeof dp); int ans = 0; int len = (int) s.size(); for (int r = 0; r &lt; len; ++r) &#123; // 枚举右端点 for (int l = std::max(r - maxlength, -1); l &lt;= r; ++l) &#123; // 枚举左端点 if ((l == -1 || dp[l]) &amp;&amp; T.Find(s.c_str(), l + 1, r)) &#123; dp[r] = true; ans = r + 1; break; &#125; &#125; &#125; cout &lt;&lt; ans &lt;&lt; endl; &#125; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>省选</tag>
+        <tag>字符串</tag>
+        <tag>Trie</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Trie 树学习笔记]]></title>
     <url>%2F2019-03-02%2FTrie%2F</url>
     <content type="text"><![CDATA[很简单的树形字符串结构 简介在计算机科学中，Trie，又称字典树、单词查找树或键树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计，排序和保存大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计。它的优点是：利用字符串的公共前缀来减少查询时间，最大限度地减少无谓的字符串比较，查询效率比哈希树高。 ——百度百科 简单地说，Trie 树就是以字符串的字母为结构建立起来的一棵多根树画出来大概是这样的 其中，这棵树有这些字符串 1234567AAKAKNAKOAKIACACE 操作都很简单。 插入操作给你一个字符串，要求把这个字符串插入到树中 首先指定树根为0，当前位置为树根枚举字符串的每个字符，看一下当前字符在当前深度有没有，有的话就直接把「当前位置」切换为这个字符所处的位置，没有的话就往里插入这个字符再切换 建议配合代码理解 查询操作这里以查询是否被查询过为例 对于每一个字符，记一下以它为结尾的字符串是否被查询过还是像插入一样切换当前位置，如果中间某一字符在那个深度没有，就直接返回字符串不存在切换到字符串最后一个字符之后，看一下刚才记的那个变量是否为真即可 也还是建议配合代码理解 例题这里以洛谷 P2580 于是他错误的点名开始了为例 题目大意就是给你一堆字符串和一堆询问对于每个询问，输出是否存在这个字符串如果存在，输出它有没有被询问过 解题思路本来这是一道std::map的模板题但是我们是来学 Trie 的那么当然要用 Trie 做啊（逃 代码实现也是上面那一题的代码实现 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;string&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXN = 10000 + 10;struct Trie&#123; // 日常封装 struct Node &#123; int size; int linkson[26 + 1]; // 直接用它来记子节点的位置，类似于链表 bool rep; Node() &#123; size = 0; rep = false; memset(linkson, 0, sizeof linkson); &#125; &#125; tree[MAXN]; int cnt; Trie() &#123; cnt = 0; &#125; void Insert(const char *s, int length) &#123; // 插入 int pos = 0; // pos = root for (int i = 0; i &lt; length; ++i) &#123; int ins = s[i] - 'a'; if (tree[pos].linkson[ins] == 0) &#123; // insert tree[pos].linkson[ins] = ++cnt; ++tree[pos].size; &#125; pos = tree[pos].linkson[ins]; // 前面提到的切换位置 &#125; &#125; // 返回值就0, 1, 2，用不着 int short Find(const char *s, int length) &#123; int pos = 0; // pos = root for (int i = 0; i &lt; length; ++i) &#123; int que = s[i] - 'a'; if (tree[pos].linkson[que] == 0) return 2; // 没找到这个名字 pos = tree[pos].linkson[que]; // 这里也是和上边插入一模一样 &#125; if (tree[pos].rep) return 1; // 重复点名 tree[pos].rep = true; return 0; // 炉石传说真好玩（逃 &#125;&#125; T;int n, m;int main() &#123; IMPROVE_IO(); cin &gt;&gt; n; for (int i = 1; i &lt;= n; ++i) &#123; std::string s; cin &gt;&gt; s; T.Insert(s.c_str(), (int) s.size()); &#125; cin &gt;&gt; m; for (int i = 1; i &lt;= m; ++i) &#123; std::string s; cin &gt;&gt; s; switch(T.Find(s.c_str(), (int) s.size())) &#123; case 0: &#123; printf("OK\n"); break; &#125; case 1: &#123; printf("REPEAT\n"); break; &#125; case 2: &#123; printf("WRONG\n"); &#125; &#125; &#125; return 0;&#125;]]></content>
       <tags>
         <tag>编程</tag>
         <tag>字符串</tag>
-        <tag>模板</tag>
         <tag>Trie</tag>
+        <tag>模板</tag>
         <tag>数据结构</tag>
       </tags>
   </entry>
@@ -70,10 +82,10 @@
     <content type="text"><![CDATA[$O(1)$查询区间最值 算法简介RMQ (Range Minimum/Maximum Query)问题是指：对于长度为n的数列A，回答若干询问RMQ(A,i,j)(i,j&lt;=n)，返回数列A中下标在i,j里的最小(大）值，也就是说，RMQ问题是指求区间最值的问题。 ——百度百科 ST（Sparse Table，稀疏表）算法是求解RMQ问题的经典在线算法，以O(nlogn)时间预处理，然后在O(1)时间内回答每个查询。 算法流程ST算法实际上采用了DP的思想 初始化定义 $F(i,j)$ 表示区间 $[i, i + 2^j - 1]$ 内的最小值，$P[i]$ 为原序列 那么显然$$ F(i,0) = P[i] $$ 状态转移方程？ 首先，任意一个区间的最小值等于 $min($这个区间前一半的最小值$,$ 这个区间后一半点最小值$)$这个很好理解吧把$F(\ )$结合进去，就是 $$ F(i,j) = min(F(i,j-1),F(i + 2^{j-1}, j - 1)) $$ 还有什么细节？上面的式子看的你很想递归是吧（反正我是）如果你不想递归的话，你八成会： 123for (int i = 1; ...) for (int j = 1; ...) F[i][j] = ... 其实……这样都是错的，这样会导致有几个状态被过早地枚举 我们要把枚举 $j$ 的循环放在外层，至于为什么……你模拟一下就行了 查询此处的内容可能有点难以理解，请消化不了的同学多看几遍 上面说了查询是 $O(1)$ 的听起来就好简单啊 实现确实是很简单，但是原理就……也是很简单 首先给你一个定理：对于任意 $x \in \mathbb{N^*}$ ，都有 $ 2^{\lfloor log_2(x) \rfloor} &gt; \lfloor \frac{x}{2} \rfloor $ 然后令查询区间$[l,r]$的长度 $\text{len} = r - (l - 1),\ \text{ll} = log_2(\text{len})$那么根据上边可得 $ 2^{\text{ll}} &gt; \lfloor \frac{len}{2} \rfloor $这意味着什么？这意味着查询的区间有重叠！不过这并不能意味啥，重叠又怎么样，只是查询的区间变了 1234567891011原来我们查询区间，都是查询这个区间的一半比如更新[l,r]之间的最小值就是f[l][r] = std::min(f[l][mid], f[mid + 1][r]);但是这次不一样，这次的mid超过了区间的一半那就可以这么写：int Query(int l, int r) &#123; int k = std::log(r - (l - 1)) / std::log(2); return std::min(f[l][k], f[r - ((1 &lt;&lt; k) -1)][k]);&#125; 是 $O(1)$ 的吧 它查询的区间相当于是这样的：（画的不准确，仅供参考） 12345_ _ _ _ _ _ _ _ _ -------==== f[l][k] ====------ f[r - ((1 &lt;&lt; k) - 1)][k] 等号就是两个查询区间的并集 这也就是它为什么不能查询区间和的原因前缀和足够了 伪代码⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯$ \text{Algorithm 1: Sparse Table} $⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯$ \text{Init(The Sparse Table } f, \text{The original sequence } a, \text{no return value})$&nbsp;&nbsp;$ 1. \text{For } i \text{ from 1 to n do}$&nbsp;&nbsp;$ 2. \ \ \ \ f[i][0] = a[i] $&nbsp;&nbsp;$ 3. \text{End For} $&nbsp;&nbsp;$ 4. \ j \leftarrow 1, i \leftarrow 1$&nbsp;&nbsp;$ 5. \text{While } 2^j \leq n \text{ do} $&nbsp;&nbsp;$ 6. \ \ \ \ \text{While } i + 2^j - 1 \leq n \text{ do} $&nbsp;&nbsp;$ 7. \ \ \ \ \ \ \ \ f[i][j] = min(f[i][j-1], f[i + 2^{j-1}][j-1]) $&nbsp;&nbsp;$ 8. \ \ \ \ \ \ \ \ i \leftarrow i + 1 $&nbsp;&nbsp;$ 9. \ \ \ \ \text{End While}$$ 10. \ \ \ \ j \leftarrow j + 1 $$ 11. \text{End While} $ $ \text{Query(}l,r\text{,return a value x}) $$ 1. k \leftarrow log_2(r - l + 1)$$ 2. \text{return } x = min(f[l][k], f[r - (2^k - 1)][k]$⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ 代码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445// luogu-judger-enable-o2#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdio&gt;#include &lt;cmath&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXN = (100000 + 10) * 2;const int MAXLOG = 17 + 10; // floor(log2(100000 + 10))int n, q;int Table[MAXN][MAXLOG];void BuildTable() &#123; for (int j = 1; (1 &lt;&lt; j) &lt;= n; ++j) &#123; for (int i = 1; i + (1 &lt;&lt; j) - 1 &lt;= n; ++i) &#123; Table[i][j] = std::max(Table[i][j-1], Table[i + (1 &lt;&lt; (j - 1))][j - 1]); &#125; &#125;&#125;int Query(int l, int r) &#123; int k = std::log(r - (l - 1)) / std::log(2); return std::max(Table[l][k], Table[r - ((1 &lt;&lt; k) - 1)][k]);&#125;int main() &#123; scanf("%d %d", &amp;n, &amp;q); for (int i = 1; i &lt;= n; ++i) scanf("%d", &amp;Table[i][0]); // 这里可以省去seq[i]，对Table[i][0]进行直接写入 BuildTable(); for (int i = 1; i &lt;= q; ++i) &#123; int l = 0, r = 0; scanf("%d %d", &amp;l, &amp;r); printf("%d\n", Query(l, r)); &#125; return 0;&#125; 例题洛谷P3865【模板】ST表]]></content>
       <tags>
         <tag>编程</tag>
+        <tag>模板</tag>
         <tag>算法</tag>
         <tag>ST表</tag>
         <tag>RMQ问题</tag>
-        <tag>模板</tag>
       </tags>
   </entry>
   <entry>
@@ -510,8 +522,8 @@
         <tag>图论</tag>
         <tag>图论算法</tag>
         <tag>BFS</tag>
-        <tag>模板</tag>
         <tag>二分图</tag>
+        <tag>模板</tag>
       </tags>
   </entry>
   <entry>
@@ -769,8 +781,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>最短路</tag>
         <tag>USACO</tag>
+        <tag>最短路</tag>
         <tag>图论算法</tag>
       </tags>
   </entry>
