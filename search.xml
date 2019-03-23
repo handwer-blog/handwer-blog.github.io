@@ -6,6 +6,42 @@
     <content type="text"><![CDATA[这里可能会挂些什么东西。 There may be something here. 博客累计已突破 100 篇文章 New！《「文章」百名学生参训 礼堂“变身”教室》]]></content>
   </entry>
   <entry>
+    <title><![CDATA[Codeforces 735D《Taxes》]]></title>
+    <url>%2F2019-03-23%2FCF735D%2F</url>
+    <content type="text"><![CDATA[这™什么破题 题面大概就是规定一个数的花费为它的最大真因子（除了本身以外的最大因数，如果这个数是质数，花费为1） 现在给你一个数 $n$，要求把它拆成几个数相加的形式（也可以不拆），使得拆完后每一个数的花费的和最小 输出这个最小的和 输入输出样例输入样例#114 输出样例#112 输入样例#2127 输出样例#213 解题思路别告诉我你脑子里装的都是暴力 我现在来说几个有趣的性质 说完这道题就做完了 哥德巴赫猜想（即任意大于2的偶数都可以被拆成两个质数的和） 对于任意大于5的非质奇数（即不是质数的奇数），都可以被拆成3和两个质数的和（哥德巴赫猜想的一个推论） 好 现在假设哥德巴赫猜想成立 请读者自行证明第二条 依据这两个性质，我们可以对这道题进行如下的分类讨论 当给定的为质数时，花费为1 当给定的为偶数时，根据哥德巴赫猜想可以拆成两个质数，花费为2 当给定的数-2为质数时，这个数可以拆成2和给定的数-2两个质数，花费为2 否则这个数可以拆成3和给定的数-3，因为给定的数是奇数，显然给定的数-3是偶数，可以拆成两个质数，花费为3 代码实现1234567891011121314151617181920212223242526272829303132#include &lt;iostream&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;int n;bool isPrime(int x) &#123; if (x &lt;= 1) return false; if (x == 2 || x == 3) return true; for (int i = 2; i * i &lt;= x; ++i) if (x % i == 0) return false; return true;&#125;int main() &#123; // 这什么破题啊 IMPROVE_IO(); cin &gt;&gt; n; if (isPrime(n)) cout &lt;&lt; 1 &lt;&lt; endl; else if ((n &amp; 1) == 0) cout &lt;&lt; 2 &lt;&lt; endl; // 根据哥德巴赫猜想，一个偶数可以被拆成两个质数 else if (isPrime(n - 2)) cout &lt;&lt; 2 &lt;&lt; endl; // 这个数字可以被拆成 2 和另一个质数的和 else cout &lt;&lt; 3 &lt;&lt; endl; // 这个数字可以被拆成 3 和另一个偶数的和，这个偶数又可以被拆成两个质数 return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>毒瘤</tag>
+        <tag>Codeforces</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P2922《[USACO08DEC]秘密消息Secret Message》]]></title>
+    <url>%2F2019-03-23%2FLuogu-P2922%2F</url>
+    <content type="text"><![CDATA[在 Trie 中储存两个信息 题目描述Bessie is leading the cows in an attempt to escape! To do this, the cows are sending secret binary messages to each other. Ever the clever counterspy, Farmer John has intercepted the first b_i (1 &lt;= b_i &lt;= 10,000) bits of each of M (1 &lt;= M &lt;= 50,000) of these secret binary messages. He has compiled a list of N (1 &lt;= N &lt;= 50,000) partial codewords that he thinks the cows are using. Sadly, he only knows the first c_j (1 &lt;= c_j &lt;= 10,000) bits of codeword j. For each codeword j, he wants to know how many of the intercepted messages match that codeword (i.e., for codeword j, how many times does a message and the codeword have the same initial bits). Your job is to compute this number. The total number of bits in the input (i.e., the sum of the b_i and the c_j) will not exceed 500,000. Memory Limit: 32MB POINTS: 270 贝茜正在领导奶牛们逃跑．为了联络，奶牛们互相发送秘密信息． 信息是二进制的，共有M(1≤M≤50000)条．反间谍能力很强的约翰已经部分拦截了这些信息，知道了第i条二进制信息的前bi(l《bi≤10000)位．他同时知道，奶牛使用N(1≤N≤50000)条密码．但是，他仅仅了解第J条密码的前cj(1≤cj≤10000)位． 对于每条密码J，他想知道有多少截得的信息能够和它匹配．也就是说，有多少信息和这条密码有着相同的前缀．当然，这个前缀长度必须等于密码和那条信息长度的较小者． 在输入文件中，位的总数（即∑Bi+∑Ci）不会超过500000. 输入输出格式输入格式 Line 1: Two integers: M and N Lines 2..M+1: Line i+1 describes intercepted code i with an integer b_i followed by b_i space-separated 0’s and 1’s Lines M+2..M+N+1: Line M+j+1 describes codeword j with an integer c_j followed by c_j space-separated 0’s and 1’s 输出格式 Lines 1..M: Line j: The number of messages that the jth codeword could match. 输入输出样例输入样例#1123456789104 5 3 0 1 0 1 1 3 1 0 0 3 1 1 0 1 0 1 1 2 0 1 5 0 1 0 0 1 2 1 1 输出样例#1123451 3 1 1 2 说明Four messages; five codewords. The intercepted messages start with 010, 1, 100, and 110. The possible codewords start with 0, 1, 01, 01001, and 11. 0 matches only 010: 1 match 1 matches 1, 100, and 110: 3 matches 01 matches only 010: 1 match 01001 matches 010: 1 match 11 matches 1 and 110: 2 matches 解题思路查询前缀的题很容易想到 Trie 维护两个信息 pass 和 lastspass 表示当前节点有多少条信息经过， lasts 表示有多少以当前节点结尾的信息（不一定没有相同的串） 插入就不说了，说说查询 查询的时候，记一下路径上lasts的和（也就是拿原信息去匹配查询信息） 首先对于每一条查询信息，都分两种情况 这条信息被完美的查询完了 这条信息查到一半断开了 对于第二种情况，什么都不用管，输出统计的lasts的和就行对于第一种情况，则需要减去查询信息的最后一个节点的lasts值，加上pass值再输出 为什么呢？ 这里建议画图理解 首先，如果查到一半断开了，那么答案就是用原信息去匹配查询信息的匹配数，也就是lasts的和 12345678比如下面的例子查询信息：rain_air_txdy原始信息：rainrain_airrain_air_tql（这个也是没法匹配的，后几个字符不同）那么匹配数就是2，即为答案 如果查询完了，那么说明存在能匹配查询信息的原信息，所以「用原信息去匹配查询信息的匹配数」还不够，要再加上「用查询信息去匹配原信息的匹配数」，也就是lasts的总和 + pass 有这么一种情况，就是原信息与查询信息相同，那么它在当前节点的lasts里面算了一次，在当前节点的pass又算了一次！所以要减去当前节点的lasts 1234567891011比如下面的例子查询信息：rain_air_txdy原始信息：rain_air_txdy_tqlrain_air_txdy答案是啥？2注意到y这里的 pass 是2，把两条信息都算上了但同时y这里的 lasts 也是1啊！！！这不就重了吗，所以要减去 lasts 我觉得我说的已经够通俗易懂了吧 代码实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475#include &lt;iostream&gt;#include &lt;cstring&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXN = 500000 + 10;struct Trie &#123; struct Node &#123; int pass, lasts; int next[2 + 1]; Node() &#123; pass = lasts = 0; memset(next, 0, sizeof next); &#125; &#125; node[MAXN]; int cnt; Trie() &#123; cnt = 0; &#125; void SwitchTo(int &amp;now, bool data) &#123; if (node[now].next[data] == 0) &#123; node[now].next[data] = ++cnt; &#125; now = node[now].next[data]; &#125; bool switchTo(int &amp;now, bool data) &#123; if (node[now].next[data] == 0) return false; now = node[now].next[data]; return true; &#125;&#125; t;int m, n;int main() &#123; IMPROVE_IO(); cin &gt;&gt; m &gt;&gt; n; for (int i = 1; i &lt;= m; ++i) &#123; int f = 0, pos = 0; cin &gt;&gt; f; for (int j = 1; j &lt;= f; ++j) &#123; int nf = 0; cin &gt;&gt; nf; t.SwitchTo(pos, nf); ++t.node[pos].pass; &#125; ++t.node[pos].lasts; &#125; for (int i = 1; i &lt;= n; ++i) &#123; int f = 0, pos = 0, ans = 0; cin &gt;&gt; f; bool cont = true; for (int i = 1; i &lt;= f; ++i) &#123; int nf = 0; cin &gt;&gt; nf; if (cont &amp;&amp; t.switchTo(pos, nf)) &#123; ans += t.node[pos].lasts; &#125; else cont = false; &#125; if (cont) ans = ans - t.node[pos].lasts + t.node[pos].pass; cout &lt;&lt; ans &lt;&lt; endl; &#125; return 0;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>USACO</tag>
+        <tag>字符串</tag>
+        <tag>Trie</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVA1508《Equipment》]]></title>
+    <url>%2F2019-03-23%2FUVA1508%2F</url>
+    <content type="text"><![CDATA[ProjectDP - 33 状态压缩 + DFS 题面PDF 解题思路首先是这个玄学的数据范围（每个组只有5个元素）很容易让人想到状压 首先把 k &gt;= 5 的情况特判一下可以选择超过5个组那么显然选择最大的就行了 对于每一个组，枚举它的每一种状态对于这个状态，统计一下选择这个状态的总和（被选择了的数的和），与所有组里这个状态的总和取个 max 这样我们就获得了每一种状态总和的最大值对它进行一遍 DFS 这里说一个位运算技巧枚举子集 1for (int s0 = s; s0; s0 = s &amp; (s0 - 1)); s0 即为 s 的某一个子集 代码实现1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465//// 33.cpp// ProjectDP//// Created by HandwerSTD on 2019/3/9.// Copyright © 2019 Handwer STD. All rights reserved.//#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdio&gt;#define FILE_IN(__fname) freopen(__fname, "r", stdin)#define FILE_OUT(__fname) freopen(__fname, "w", stdout)#define IMPROVE_IO() std::ios::sync_with_stdio(false)using std::cin;using std::cout;using std::endl;const int MAXN = 10000 + 10 ;int qwq[5 + 5], grps[MAXN][5 + 5], dp[(1 &lt;&lt; 5) - 1 + 10] ;int n, k;int Search(int s, int sum) &#123; if (sum == 0) return 0; int tmp = 0 ; for (int s0 = s; s0; s0 = s &amp; (s0 - 1)) tmp = std::max(tmp, dp[s0] + Search ((s0 ^ s), sum - 1)); return tmp;&#125;int main() &#123; IMPROVE_IO(); int T = 0; cin &gt;&gt; T; while (T --&gt; 0) &#123; memset(qwq, 0, sizeof qwq); cin &gt;&gt; n &gt;&gt; k; for (int i = 1 ; i &lt;= n; ++i) for (int j = 0; j &lt; 5; ++j)&#123; cin &gt;&gt; grps[i][j]; qwq[j] = std::max(qwq[j], grps[i][j]) ; &#125; if (k &gt;= 5) &#123; int ans = 0; for (int i = 0 ; i &lt; 5 ; ++i) ans += qwq[i] ; cout &lt;&lt; ans &lt;&lt; endl; &#125; else &#123; memset(dp, 0, sizeof (dp)) ; for (int i = 1; i &lt;= n; ++i) &#123; for (int stat = 0; stat &lt;= (1 &lt;&lt; 5) - 1; ++stat) &#123; int tmp = 0; for (int sel = 0; sel &lt; 5; ++sel) &#123; if (stat &amp; (1 &lt;&lt; sel)) tmp += grps[i][sel]; &#125; dp[stat] = std::max(dp[stat], tmp); &#125; &#125; cout &lt;&lt; Search((1 &lt;&lt; 5) - 1, k) &lt;&lt; endl; &#125; &#125; return 0 ;&#125;]]></content>
+      <tags>
+        <tag>编程</tag>
+        <tag>题解</tag>
+        <tag>ProjectDP</tag>
+        <tag>动态规划，DP</tag>
+        <tag>状压DP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[使用 Android 自带的文件管理器打开文件]]></title>
     <url>%2F2019-03-19%2FAndroid-GetFilePathWithDocumentsProvider%2F</url>
     <content type="text"><![CDATA[Storage Access Framework 简介Android4.4中引入了Storage Access Framework存储访问框架，简称（SAF）。SAF为用户浏览手机中存储的内容提供了方便，这些内容不仅包括文档、图片，视频、音频、下载，而且还包括所有由特定ContentProvider（须具有约定的API）提供的内容。不管这些内容来自于哪里，不管是哪个应用调用浏览系统文件内容的命令，系统都会用一个统一的界面让你去浏览。 实现首先我们要传给它一个 Intent 1234Intent intent = new Intent(Intent.ACTION_GET_CONTENT);intent.setType("text/plain"); // 选择文件类型，我设置为了纯文本intent.addCategory(Intent.CATEGORY_OPENABLE);startActivityForResult(intent, 1); 然后回调 1234567@Overrideprotected void onActivityResult(int requestCode, int resultCode, Intent data) &#123; if (resultCode == RESULT_OK) &#123; Uri uri = data.getData(); String filePath = GetFilePath.getPath(this, uri); &#125;&#125; 这个时候的filePath存的就是文件的名称。可以尝试Log一下看看 这个时候看到了一个新的类GetFilePath，它是我复制手写的一个类，内部貌似是没有这个类的 看代码 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123import android.content.ContentUris;import android.content.Context;import android.database.Cursor;import android.net.Uri;import android.os.Build;import android.os.Environment;import android.provider.DocumentsContract;import android.provider.MediaStore;public class GetFilePath &#123; public static String getPath(final Context context, final Uri uri) &#123; final boolean isKitKat = Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT; // DocumentProvider if (isKitKat &amp;&amp; DocumentsContract.isDocumentUri(context, uri)) &#123; // ExternalStorageProvider if (isExternalStorageDocument(uri)) &#123; final String docId = DocumentsContract.getDocumentId(uri); final String[] split = docId.split(":"); final String type = split[0]; if ("primary".equalsIgnoreCase(type)) &#123; return Environment.getExternalStorageDirectory() + "/" + split[1]; &#125; &#125; // DownloadsProvider else if (isDownloadsDocument(uri)) &#123; final String id = DocumentsContract.getDocumentId(uri); final Uri contentUri = ContentUris.withAppendedId( Uri.parse("content://downloads/public_downloads"), Long.valueOf(id)); return getDataColumn(context, contentUri, null, null); &#125; // MediaProvider else if (isMediaDocument(uri)) &#123; final String docId = DocumentsContract.getDocumentId(uri); final String[] split = docId.split(":"); final String type = split[0]; Uri contentUri = null; if ("image".equals(type)) &#123; contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI; &#125; else if ("video".equals(type)) &#123; contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI; &#125; else if ("audio".equals(type)) &#123; contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI; &#125; final String selection = "_id=?"; final String[] selectionArgs = new String[]&#123;split[1]&#125;; return getDataColumn(context, contentUri, selection, selectionArgs); &#125; &#125; // MediaStore (and general) else if ("content".equalsIgnoreCase(uri.getScheme())) &#123; return getDataColumn(context, uri, null, null); &#125; // File else if ("file".equalsIgnoreCase(uri.getScheme())) &#123; return uri.getPath(); &#125; return null; &#125; /** * Get the value of the data column for this Uri. This is useful for * MediaStore Uris, and other file-based ContentProviders. * * @param context The context. * @param uri The Uri to query. * @param selection (Optional) Filter used in the query. * @param selectionArgs (Optional) Selection arguments used in the query. * @return The value of the _data column, which is typically a file path. */ public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) &#123; Cursor cursor = null; final String column = "_data"; final String[] projection = &#123;column&#125;; try &#123; cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null); if (cursor != null &amp;&amp; cursor.moveToFirst()) &#123; final int column_index = cursor.getColumnIndexOrThrow(column); return cursor.getString(column_index); &#125; &#125; finally &#123; if (cursor != null) cursor.close(); &#125; return null; &#125; /** * @param uri The Uri to check. * @return Whether the Uri authority is ExternalStorageProvider. */ public static boolean isExternalStorageDocument(Uri uri) &#123; return "com.android.externalstorage.documents".equals(uri.getAuthority()); &#125; /** * @param uri The Uri to check. * @return Whether the Uri authority is DownloadsProvider. */ public static boolean isDownloadsDocument(Uri uri) &#123; return "com.android.providers.downloads.documents".equals(uri.getAuthority()); &#125; /** * @param uri The Uri to check. * @return Whether the Uri authority is MediaProvider. */ public static boolean isMediaDocument(Uri uri) &#123; return "com.android.providers.media.documents".equals(uri.getAuthority()); &#125;&#125; 参考链接Android Uri和文件路径互相转换 (转)Android调用系统自带的文件管理器进行文件选择并获得路径 android: startActivityForResult用法详解]]></content>
@@ -180,9 +216,9 @@
     <url>%2F2019-02-13%2FMathProblems-NewSite%2F</url>
     <content type="text"><![CDATA[「Handwer’s Problems」主要转载一些经过挑选的文化课题目。 每一道题都会在不久之后更新题解，同时会更新下一道题。 现在主要上数学题，预计不久之后会更新物理以及英语题目。 面向任何人开放，如无特殊情况（包括但不限于考试）不会设置密码。 链接：Handwer’s Problems]]></content>
       <tags>
+        <tag>数学</tag>
         <tag>文化课</tag>
         <tag>简介</tag>
-        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -194,8 +230,8 @@
         <tag>题解</tag>
         <tag>ProjectDP</tag>
         <tag>动态规划，DP</tag>
-        <tag>状压DP</tag>
         <tag>NOI</tag>
+        <tag>状压DP</tag>
       </tags>
   </entry>
   <entry>
@@ -679,8 +715,8 @@
       <tags>
         <tag>编程</tag>
         <tag>题解</tag>
-        <tag>搜索</tag>
         <tag>字符串</tag>
+        <tag>搜索</tag>
         <tag>BFS</tag>
         <tag>NOIP</tag>
       </tags>
@@ -758,8 +794,8 @@
       <tags>
         <tag>编程</tag>
         <tag>清北学堂</tag>
-        <tag>模拟</tag>
         <tag>贪心</tag>
+        <tag>模拟</tag>
         <tag>字符串</tag>
       </tags>
   </entry>
