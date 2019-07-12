@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="编程,题解,ProjectDP,动态规划，DP,数位DP," />
+  <meta name="keywords" content="ProjectDP,动态规划，DP,数位DP," />
 
 
 
@@ -89,14 +89,14 @@
 
 
 <meta name="description" content="ProjectDP - 26   数位DP板子题">
-<meta name="keywords" content="编程,题解,ProjectDP,动态规划，DP,数位DP">
+<meta name="keywords" content="ProjectDP,动态规划，DP,数位DP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HDU2089《不要62》">
 <meta property="og:url" content="https://blog.handwer-std.top/2019-01-28/HDU2089/index.html">
 <meta property="og:site_name" content="Handwer&#39;s Blog">
 <meta property="og:description" content="ProjectDP - 26   数位DP板子题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-04T03:19:43.000Z">
+<meta property="og:updated_time" content="2019-07-12T13:34:54.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HDU2089《不要62》">
 <meta name="twitter:description" content="ProjectDP - 26   数位DP板子题">
@@ -397,7 +397,7 @@
 <h1 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h1><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span><span class="number">100</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">0</span></span><br></pre></td></tr></table></figure>
 <h1 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h1><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">80</span></span><br></pre></td></tr></table></figure>
 <h1 id="Author"><a href="#Author" class="headerlink" title="Author"></a>Author</h1><p>qianneng</p>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><!--
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><!--
 这是一道数位DP板子题
 
 我们令 $ A(x) $ 表示 $[0,x)$ 之间数字的答案数，那么答案就是 $ A(m) - A(n) $ 加上对 $n$ 的特判，这个很显然𝟠
@@ -447,10 +447,6 @@ $$ f[i][j] = f[i][j] + f[i - 1][k]\ (j \neq 4, k \neq 2 \text{ when } j = 6) $$
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/编程/" rel="tag"># 编程</a>
-          
-            <a href="/tags/题解/" rel="tag"># 题解</a>
           
             <a href="/tags/ProjectDP/" rel="tag"># ProjectDP</a>
           
@@ -565,7 +561,7 @@ $$ f[i][j] = f[i][j] + f[i - 1][k]\ (j \neq 4, k \neq 2 \text{ when } j = 6) $$
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-count">120</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -646,7 +642,7 @@ $$ f[i][j] = f[i][j] + f[i - 1][k]\ (j \neq 4, k \neq 2 \text{ when } j = 6) $$
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Problem-Description"><span class="nav-number">1.</span> <span class="nav-text">Problem Description</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Input"><span class="nav-number">2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Output"><span class="nav-number">3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sample-Input"><span class="nav-number">4.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sample-Output"><span class="nav-number">5.</span> <span class="nav-text">Sample Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Author"><span class="nav-number">6.</span> <span class="nav-text">Author</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number">7.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">8.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Problem-Description"><span class="nav-number">1.</span> <span class="nav-text">Problem Description</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Input"><span class="nav-number">2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Output"><span class="nav-number">3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sample-Input"><span class="nav-number">4.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sample-Output"><span class="nav-number">5.</span> <span class="nav-text">Sample Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Author"><span class="nav-number">6.</span> <span class="nav-text">Author</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解析"><span class="nav-number">7.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">8.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
             
 
           </div>

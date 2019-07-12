@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="Handwer&#39;s Blog">
 <meta property="og:description" content="数论中的重要内容">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-24T04:41:20.000Z">
+<meta property="og:updated_time" content="2019-07-12T13:38:34.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="乘法逆元求法">
 <meta name="twitter:description" content="数论中的重要内容">
@@ -389,17 +389,17 @@
 </blockquote>
 <a id="more"></a>
 <p>注意：本文只讨论模数为质数的情况，因为当模数为合数时，不一定所有数都有逆元</p>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>在$mod\ p$的意义下，我们把$x$的乘法逆元写作$x^{-1}$。乘法逆元有这样一条性质：</p>
-<p>$$x \times x^{-1} \equiv 1\ (mod\ p)$$</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>在$\bmod\ p$的意义下，我们把$x$的乘法逆元写作$x^{-1}$。乘法逆元有这样一条性质：</p>
+<p>$$x \times x^{-1} \equiv 1\ (\bmod\ p)$$</p>
 <p>乘法逆元有什么用呢？<br></p>
 <p>模意义下的<strong>除法运算</strong>！</p>
 <p>除法运算对于模运算来说并不是「封闭」的，所以我们可以把除法<strong>转化</strong>成乘法</p>
 <h2 id="费马小定理求法"><a href="#费马小定理求法" class="headerlink" title="费马小定理求法"></a>费马小定理求法</h2><p>前置知识：「快速幂」</p>
 <blockquote>
-<p> $a^{p-1} \equiv 1 (mod\ p)%$</p>
+<p> $a^{p-1} \equiv 1 (\bmod\ p)%$</p>
 </blockquote>
 <p>经过变形，可得</p>
-<p>$a \times a^{p-2} \equiv 1(mod\ p)$</p>
+<p>$a \times a^{p-2} \equiv 1(\bmod\ p)$</p>
 <p>由定义可得，$a$的乘法逆元就是$a^{p-2}$</p>
 <p>这就要用到「快速幂」</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">slowPower</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (b) &#123;</span><br><span class="line">        <span class="keyword">if</span> (b &amp; <span class="number">1</span>) ans = ans * a % p;</span><br><span class="line">        a = a * a % p;</span><br><span class="line">        b /= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">invMod</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> slowPower(x, p<span class="number">-1</span>, p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -553,7 +553,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-count">120</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

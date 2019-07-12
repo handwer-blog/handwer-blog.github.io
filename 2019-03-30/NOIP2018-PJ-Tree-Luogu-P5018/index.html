@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="编程,题解,模拟,DFS,NOIP,暴力," />
+  <meta name="keywords" content="模拟,DFS,NOIP,暴力," />
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="一个长得像暴力的正解">
-<meta name="keywords" content="编程,题解,模拟,DFS,NOIP,暴力">
+<meta name="keywords" content="模拟,DFS,NOIP,暴力">
 <meta property="og:type" content="article">
 <meta property="og:title" content="洛谷P5018「NOIP2018普及组」《对称二叉树》">
 <meta property="og:url" content="https://blog.handwer-std.top/2019-03-30/NOIP2018-PJ-Tree-Luogu-P5018/index.html">
@@ -98,7 +98,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://cdn.luogu.org/upload/pic/43192.png">
 <meta property="og:image" content="https://cdn.luogu.org/upload/pic/43189.png">
-<meta property="og:updated_time" content="2019-03-30T08:25:41.000Z">
+<meta property="og:updated_time" content="2019-07-12T13:40:45.548Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="洛谷P5018「NOIP2018普及组」《对称二叉树》">
 <meta name="twitter:description" content="一个长得像暴力的正解">
@@ -404,7 +404,8 @@
 <p>第二行 n 个正整数，用一个空格分隔，第 i 个正整数 $v_i$​ 代表节点 i 的权值。</p>
 <p>接下来 n 行，每行两个正整数 $l_i, r_i$，分别表示节点 i 的左右孩子的编号。如果不存在左 / 右孩子，则以 -1 表示。两个数之间用一个空格隔开。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出文件共一行，包含一个整数，表示给定的树的最大对称二叉子树的节点数。</p>
-<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例-1"><a href="#输入样例-1" class="headerlink" title="输入样例#1"></a>输入样例#1</h2><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> </span><br><span class="line"><span class="number">1</span> <span class="number">3</span> </span><br><span class="line"><span class="number">2</span> <span class="number">-1</span> </span><br><span class="line"><span class="number">-1</span> <span class="number">-1</span></span><br><span class="line">``` </span><br><span class="line">## 输出样例#<span class="number">1</span></span><br><span class="line">``` </span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例-1"><a href="#输入样例-1" class="headerlink" title="输入样例#1"></a>输入样例#1</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> </span><br><span class="line"><span class="number">1</span> <span class="number">3</span> </span><br><span class="line"><span class="number">2</span> <span class="number">-1</span> </span><br><span class="line"><span class="number">-1</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<h2 id="输出样例-1"><a href="#输出样例-1" class="headerlink" title="输出样例#1"></a>输出样例#1</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
 <h2 id="输入样例-2"><a href="#输入样例-2" class="headerlink" title="输入样例#2"></a>输入样例#2</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span> </span><br><span class="line"><span class="number">2</span> <span class="number">2</span> <span class="number">5</span> <span class="number">5</span> <span class="number">5</span> <span class="number">5</span> <span class="number">4</span> <span class="number">4</span> <span class="number">2</span> <span class="number">3</span> </span><br><span class="line"><span class="number">9</span> <span class="number">10</span> </span><br><span class="line"><span class="number">-1</span> <span class="number">-1</span> </span><br><span class="line"><span class="number">-1</span> <span class="number">-1</span> </span><br><span class="line"><span class="number">-1</span> <span class="number">-1</span> </span><br><span class="line"><span class="number">-1</span> <span class="number">-1</span> </span><br><span class="line"><span class="number">-1</span> <span class="number">2</span> </span><br><span class="line"><span class="number">3</span> <span class="number">4</span> </span><br><span class="line"><span class="number">5</span> <span class="number">6</span> </span><br><span class="line"><span class="number">-1</span> <span class="number">-1</span> </span><br><span class="line"><span class="number">7</span> <span class="number">8</span></span><br></pre></td></tr></table></figure>
 <h2 id="输出样例-2"><a href="#输出样例-2" class="headerlink" title="输出样例#2"></a>输出样例#2</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>【数据规模与约定】<br>共 25 个测试点。<br>$v_i ≤ 1000$。<br>测试点 $1 \sim 3, n ≤ 10$，保证根结点的左子树的所有节点都没有右孩子，根结点的右 子树的所有节点都没有左孩子。<br>测试点 $4 \sim 8, n ≤ 10$。<br>测试点 $9 \sim 12, n ≤ 10^5$ ，保证输入是一棵“满二叉树” 。<br>测试点 $13 \sim 16, n ≤ 10^5$，保证输入是一棵“完全二叉树”。<br>测试点 $17 \sim 20, n ≤ 10^5$，保证输入的树的点权均为 1。<br>测试点 $21 \sim 25, n ≤ 10^6$ 。</p>
@@ -413,7 +414,7 @@
 <p>树的深度：树中节点的最大层次称为树的深度。</p>
 <p>满二叉树：设二叉树的深度为 h，且二叉树有 $2h−1$ 个节点，这就是满二叉树。</p>
 <p>完全二叉树：设二叉树的深度为 h，除第 h 层外，其它各层的结点数都达到最大 个数，第 h 层所有的结点都连续集中在最左边，这就是完全二叉树。</p>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>场上没写这道题真是<big>血亏</big><br><del>被T3折磨得心态爆炸&nbsp;也没心情写这题了。。。</del></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>场上没写这道题真是<big>血亏</big><br><del>被T3折磨得心态爆炸&nbsp;也没心情写这题了。。。</del></p>
 <hr>
 <p>首先它求的是满足要求的最大子树的<strong>大小</strong><br>那就先 DFS 一遍求出所有子树的大小</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> root = <span class="number">1</span>)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// nodes[root].treeSize 已经被赋值为1了</span></span><br><span class="line">    <span class="keyword">if</span> (nodes[root].leftChild != <span class="number">-1</span>) &#123;</span><br><span class="line">        DFS(nodes[root].leftChild);</span><br><span class="line">        nodes[root].treeSize += nodes[LC(root)].treeSize;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (nodes[root].rightChild != <span class="number">-1</span>) &#123;</span><br><span class="line">        DFS(nodes[root].rightChild);</span><br><span class="line">        nodes[root].treeSize += nodes[RC(root)].treeSize;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -475,10 +476,6 @@
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/编程/" rel="tag"># 编程</a>
-          
-            <a href="/tags/题解/" rel="tag"># 题解</a>
           
             <a href="/tags/模拟/" rel="tag"># 模拟</a>
           
@@ -595,7 +592,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-count">120</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -676,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入输出格式"><span class="nav-number">2.</span> <span class="nav-text">输入输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">2.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">2.2.</span> <span class="nav-text">输出格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入输出样例"><span class="nav-number">3.</span> <span class="nav-text">输入输出样例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入样例-1"><span class="nav-number">3.1.</span> <span class="nav-text">输入样例#1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入样例-2"><span class="nav-number">3.2.</span> <span class="nav-text">输入样例#2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出样例-2"><span class="nav-number">3.3.</span> <span class="nav-text">输出样例#2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">4.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number">5.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">6.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入输出格式"><span class="nav-number">2.</span> <span class="nav-text">输入输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">2.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">2.2.</span> <span class="nav-text">输出格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入输出样例"><span class="nav-number">3.</span> <span class="nav-text">输入输出样例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入样例-1"><span class="nav-number">3.1.</span> <span class="nav-text">输入样例#1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出样例-1"><span class="nav-number">3.2.</span> <span class="nav-text">输出样例#1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入样例-2"><span class="nav-number">3.3.</span> <span class="nav-text">输入样例#2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出样例-2"><span class="nav-number">3.4.</span> <span class="nav-text">输出样例#2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">4.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解析"><span class="nav-number">5.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">6.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
             
 
           </div>

@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="编程,题解,搜索,DFS,NOIP," />
+  <meta name="keywords" content="搜索,DFS,NOIP," />
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="使用什么法？mo法？说清楚？！">
-<meta name="keywords" content="编程,题解,搜索,DFS,NOIP">
+<meta name="description" content="三种搜索剪枝">
+<meta name="keywords" content="搜索,DFS,NOIP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="洛谷P3956「NOIP2017普及组」《棋盘》">
 <meta property="og:url" content="https://blog.handwer-std.top/2018-10-02/NOIP2017-PJ-Chess-Luogu-P3958/index.html">
 <meta property="og:site_name" content="Handwer&#39;s Blog">
-<meta property="og:description" content="使用什么法？mo法？说清楚？！">
+<meta property="og:description" content="三种搜索剪枝">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-24T04:41:20.000Z">
+<meta property="og:updated_time" content="2019-07-12T13:40:24.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="洛谷P3956「NOIP2017普及组」《棋盘》">
-<meta name="twitter:description" content="使用什么法？mo法？说清楚？！">
+<meta name="twitter:description" content="三种搜索剪枝">
 
 
 
@@ -385,7 +385,7 @@
 
       
         <blockquote>
-<p>使用什么法？mo法？说清楚？！</p>
+<p>三种搜索剪枝</p>
 </blockquote>
 <a id="more"></a>
 <p><a href="https://www.luogu.org/problemnew/show/P3956" target="_blank" rel="noopener">题目链接</a></p>
@@ -409,7 +409,7 @@
 <h1 id="样例解释-amp-其他说明"><a href="#样例解释-amp-其他说明" class="headerlink" title="样例解释 &amp; 其他说明"></a>样例解释 &amp; 其他说明</h1><p>对于 $30\%$的数据, $1 ≤ m ≤ 5, 1 ≤ n ≤ 10$</p>
 <p>对于 $60\%$数据, $1 ≤ m ≤ 20, 1 ≤ n ≤ 200$</p>
 <p>对于 $100\%$的数据, $1 ≤ m ≤ 100, 1 ≤ n ≤ 1,000$</p>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>我们并不需要维护某一个点是否走过</p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>我们并不需要维护某一个点是否走过</p>
 <p>我们需要判断边界、白格子、最优性剪枝和走到终点四种情况</p>
 <p>用$mp$数组存图，规定0表示白色，1表示红色，2表示黄色</p>
 <p>用$f_{i,j}$表示$1,1$到$i,j$的最少花费</p>
@@ -461,10 +461,6 @@
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/编程/" rel="tag"># 编程</a>
-          
-            <a href="/tags/题解/" rel="tag"># 题解</a>
           
             <a href="/tags/搜索/" rel="tag"># 搜索</a>
           
@@ -579,7 +575,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-count">120</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -660,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Input-Output-格式-amp-样例"><span class="nav-number">2.</span> <span class="nav-text">Input / Output 格式 &amp; 样例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">2.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">2.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入样例"><span class="nav-number">2.3.</span> <span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出样例"><span class="nav-number">2.4.</span> <span class="nav-text">输出样例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例解释-amp-其他说明"><span class="nav-number">3.</span> <span class="nav-text">样例解释 &amp; 其他说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number">4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">5.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Input-Output-格式-amp-样例"><span class="nav-number">2.</span> <span class="nav-text">Input / Output 格式 &amp; 样例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">2.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">2.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入样例"><span class="nav-number">2.3.</span> <span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出样例"><span class="nav-number">2.4.</span> <span class="nav-text">输出样例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例解释-amp-其他说明"><span class="nav-number">3.</span> <span class="nav-text">样例解释 &amp; 其他说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解析"><span class="nav-number">4.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">5.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
             
 
           </div>

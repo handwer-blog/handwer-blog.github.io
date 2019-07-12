@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="题解,图论,并查集," />
+  <meta name="keywords" content="图论,并查集," />
 
 
 
@@ -89,14 +89,14 @@
 
 
 <meta name="description" content="谁闲的没事研究同性恋。。。">
-<meta name="keywords" content="题解,图论,并查集">
+<meta name="keywords" content="图论,并查集">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SP3377《A Bug&#39;s Life》">
 <meta property="og:url" content="https://blog.handwer-std.top/2018-10-20/SP3377/index.html">
 <meta property="og:site_name" content="Handwer&#39;s Blog">
 <meta property="og:description" content="谁闲的没事研究同性恋。。。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-24T04:41:20.000Z">
+<meta property="og:updated_time" content="2019-07-12T13:41:53.557Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SP3377《A Bug&#39;s Life》">
 <meta name="twitter:description" content="谁闲的没事研究同性恋。。。">
@@ -397,7 +397,7 @@
 <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">4</span></span><br></pre></td></tr></table></figure>
 <h1 id="输出格式-amp-样例"><a href="#输出格式-amp-样例" class="headerlink" title="输出格式 &amp; 样例"></a>输出格式 &amp; 样例</h1><p>对于每一组数据： <br><br>先输出：”Scenario #i” ，表示第i组数据 <br><br>然后如果有同性恋的输出”Suspicious bugs found!” <br><br>否则输出”No suspicious bugs found!” <br></p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Scenario </span><span class="comment">#1:</span></span><br><span class="line">Suspicious <span class="keyword">bugs </span>found!</span><br><span class="line"><span class="keyword">Scenario </span><span class="comment">#2:</span></span><br><span class="line">No suspicious <span class="keyword">bugs </span>found!</span><br></pre></td></tr></table></figure>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>显然这是一个并查集，但并不是一个裸的并查集</p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>显然这是一个并查集，但并不是一个裸的并查集</p>
 <p>我们要多维护一个数组<code>rel[]</code>，其中<code>rel[i]</code>表示<code>i</code>和它的祖先的关系（relative）。我们定义<code>rel[i]</code>表示两种性别，当根节点相同且<code>rel[]</code>相同时，它们就是同性恋</p>
 <p><code>rel[]</code>的更新方式：</p>
 <figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(in <span class="symbol">Find</span>(x))</span><br><span class="line">rel[x] = (rel[x] + rel[<span class="symbol">U</span>[x]]) <span class="comment">% 2;</span></span><br></pre></td></tr></table></figure>
@@ -441,8 +441,6 @@
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/题解/" rel="tag"># 题解</a>
           
             <a href="/tags/图论/" rel="tag"># 图论</a>
           
@@ -555,7 +553,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-count">120</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -636,7 +634,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目大意"><span class="nav-number">1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入格式-amp-样例"><span class="nav-number">2.</span> <span class="nav-text">输入格式 &amp; 样例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出格式-amp-样例"><span class="nav-number">3.</span> <span class="nav-text">输出格式 &amp; 样例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number">4.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">5.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目大意"><span class="nav-number">1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入格式-amp-样例"><span class="nav-number">2.</span> <span class="nav-text">输入格式 &amp; 样例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出格式-amp-样例"><span class="nav-number">3.</span> <span class="nav-text">输出格式 &amp; 样例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解析"><span class="nav-number">4.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">5.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
             
 
           </div>

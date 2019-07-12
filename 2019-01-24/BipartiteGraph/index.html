@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="编程,题解,图论,BFS,二分图," />
+  <meta name="keywords" content="图论,BFS,二分图," />
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="二分图真是个奇怪又好玩的东西  原创建时间：2018-07-06 21:36:45">
-<meta name="keywords" content="编程,题解,图论,BFS,二分图">
+<meta name="keywords" content="图论,BFS,二分图">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二分图匹配学习笔记 &amp; HDU2063 题解">
 <meta property="og:url" content="https://blog.handwer-std.top/2019-01-24/BipartiteGraph/index.html">
@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://s1.ax2x.com/2018/07/06/oQa4J.png">
 <meta property="og:image" content="https://s1.ax2x.com/2018/07/06/oW9gr.png">
 <meta property="og:image" content="https://s1.ax2x.com/2018/07/06/oWBQY.png">
-<meta property="og:updated_time" content="2019-01-24T03:27:08.000Z">
+<meta property="og:updated_time" content="2019-07-12T13:27:02.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二分图匹配学习笔记 &amp; HDU2063 题解">
 <meta name="twitter:description" content="二分图真是个奇怪又好玩的东西  原创建时间：2018-07-06 21:36:45">
@@ -457,7 +457,7 @@
 <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">6 </span><span class="number">3</span> <span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">1</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">1</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">1</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
 <p><strong>Sample Output</strong></p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>「每个女生必须找个个男生做partner和她同坐」</p>
+<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>「每个女生必须找个个男生做partner和她同坐」</p>
 <p>好了，可以看出这是匹配问题，问你如何匹配</p>
 <p>「Rabbit只愿意和XHD或PQK做partner，Grass只愿意和linle或LL做partner，PrincessSnow愿意和水域浪子或伪酷儿做partner」</p>
 <p>这句话告诉了我们如何建边：</p>
@@ -499,10 +499,6 @@
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/编程/" rel="tag"># 编程</a>
-          
-            <a href="/tags/题解/" rel="tag"># 题解</a>
           
             <a href="/tags/图论/" rel="tag"># 图论</a>
           
@@ -617,7 +613,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-count">120</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -698,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二分图"><span class="nav-number">1.</span> <span class="nav-text">二分图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判定"><span class="nav-number">1.2.</span> <span class="nav-text">判定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二分图匹配"><span class="nav-number">2.</span> <span class="nav-text">二分图匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大匹配-amp-完全匹配"><span class="nav-number">2.2.</span> <span class="nav-text">最大匹配 &amp; 完全匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增广路径"><span class="nav-number">2.3.</span> <span class="nav-text">增广路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寻找增广路"><span class="nav-number">2.3.2.</span> <span class="nav-text">寻找增广路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增广路径性质"><span class="nav-number">2.3.3.</span> <span class="nav-text">增广路径性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匈牙利算法"><span class="nav-number">2.4.</span> <span class="nav-text">匈牙利算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法步骤"><span class="nav-number">2.4.1.</span> <span class="nav-text">算法步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#找增广路径的算法"><span class="nav-number">2.4.2.</span> <span class="nav-text">找增广路径的算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伪代码"><span class="nav-number">2.4.3.</span> <span class="nav-text">伪代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">2.4.4.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#《HDU2063-过山车》题解"><span class="nav-number">3.</span> <span class="nav-text">《HDU2063 过山车》题解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">3.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input-Output-格式-amp-样例"><span class="nav-number">3.2.</span> <span class="nav-text">Input/Output 格式 &amp; 样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">3.3.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现-1"><span class="nav-number">3.4.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二分图"><span class="nav-number">1.</span> <span class="nav-text">二分图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判定"><span class="nav-number">1.2.</span> <span class="nav-text">判定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二分图匹配"><span class="nav-number">2.</span> <span class="nav-text">二分图匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大匹配-amp-完全匹配"><span class="nav-number">2.2.</span> <span class="nav-text">最大匹配 &amp; 完全匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增广路径"><span class="nav-number">2.3.</span> <span class="nav-text">增广路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寻找增广路"><span class="nav-number">2.3.2.</span> <span class="nav-text">寻找增广路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增广路径性质"><span class="nav-number">2.3.3.</span> <span class="nav-text">增广路径性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匈牙利算法"><span class="nav-number">2.4.</span> <span class="nav-text">匈牙利算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法步骤"><span class="nav-number">2.4.1.</span> <span class="nav-text">算法步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#找增广路径的算法"><span class="nav-number">2.4.2.</span> <span class="nav-text">找增广路径的算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伪代码"><span class="nav-number">2.4.3.</span> <span class="nav-text">伪代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">2.4.4.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#《HDU2063-过山车》题解"><span class="nav-number">3.</span> <span class="nav-text">《HDU2063 过山车》题解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">3.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input-Output-格式-amp-样例"><span class="nav-number">3.2.</span> <span class="nav-text">Input/Output 格式 &amp; 样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析"><span class="nav-number">3.3.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现-1"><span class="nav-number">3.4.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
             
 
           </div>
