@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="图论,生成树,DFS,LCA,NOIP," />
 
 
 
@@ -88,14 +88,18 @@
 
 
 
+<meta name="description" content="题目描述A国有n座城市，编号从  1到n，城市之间有  m  条双向道路。每一条道路对车辆都有重量限制，简称限重。现在有  q 辆货车在运输货物， 司机们想知道每辆车在不超过车辆限重的情况下，最多能运多重的货物。">
+<meta name="keywords" content="图论,生成树,DFS,LCA,NOIP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Luogu-P1967">
+<meta property="og:title" content="洛谷P1967「NOIP2013」《货车运输》">
 <meta property="og:url" content="https://blog.handwer-std.top/2019-03-30/Luogu-P1967/index.html">
 <meta property="og:site_name" content="Handwer&#39;s Blog">
+<meta property="og:description" content="题目描述A国有n座城市，编号从  1到n，城市之间有  m  条双向道路。每一条道路对车辆都有重量限制，简称限重。现在有  q 辆货车在运输货物， 司机们想知道每辆车在不超过车辆限重的情况下，最多能运多重的货物。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-30T13:46:53.000Z">
+<meta property="og:updated_time" content="2019-07-30T12:40:02.543Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Luogu-P1967">
+<meta name="twitter:title" content="洛谷P1967「NOIP2013」《货车运输》">
+<meta name="twitter:description" content="题目描述A国有n座城市，编号从  1到n，城市之间有  m  条双向道路。每一条道路对车辆都有重量限制，简称限重。现在有  q 辆货车在运输货物， 司机们想知道每辆车在不超过车辆限重的情况下，最多能运多重的货物。">
 
 
 
@@ -131,7 +135,7 @@
 
 
 
-  <title>Luogu-P1967 | Handwer's Blog</title>
+  <title>洛谷P1967「NOIP2013」《货车运输》 | Handwer's Blog</title>
   
 
 
@@ -319,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Luogu-P1967</h1>
+          <h1 class="post-title" itemprop="name headline">洛谷P1967「NOIP2013」《货车运输》</h1>
         
 
         <div class="post-meta">
@@ -380,7 +384,158 @@
       
 
       
-        
+        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>A国有n座城市，编号从  1到n，城市之间有  m  条双向道路。每一条道路对车辆都有重量限制，简称限重。现在有  q 辆货车在运输货物， 司机们想知道每辆车在不超过车辆限重的情况下，最多能运多重的货物。</p>
+<a id="more"></a>
+<h1 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h1><p>第一行有两个用一个空格隔开的整数n,m，表示  A  国有n  座城市和  m  条道路。</p>
+<p>接下来  m行每行3个整数  x, y, z，每两个整数之间用一个空格隔开，表示从  x号城市到y号城市有一条限重为  z  的道路。注意： <strong>  x  不等于  y，两座城市之间可能有多条道路 </strong> 。</p>
+<p>接下来一行有一个整数 q，表示有 q 辆货车需要运货。</p>
+<p>接下来 q 行，每行两个整数 x、y，之间用一个空格隔开，表示一辆货车需要从 x 城市运输货物到 y 城市，注意： <strong> x 不等于 y </strong> 。</p>
+<h1 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h1><p>共有  q  行，每行一个整数，表示对于每一辆货车，它的最大载重是多少。如果货车不能到达目的地，输出−1。</p>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><p><strong>输入 #1</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">4 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span> <span class="number">3</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">4</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出 #1</strong></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">-1</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>题目让我们求对于每个司机，最多能运多少货物，也就是在给定的两点间必经路线中求最大边权，显然我们要最大化这个边权，才能使答案更优。</p>
+<p>注意到一些边是无论如何都不会被经过的，这些边通常较小，经过它们会劣化答案。那么一个很显然的贪心就是，排个序，依次选择最大的边加入新图，尽量不选较小的边，直到新图联通且无环，两点间有唯一的不重复经过同一条边的路径</p>
+<p>等等……这个是最大生成树？<strong>是的。</strong></p>
+<hr>
+<p>想一想答案怎么求。<br>既然新图有一个性质「两点间有唯一的不重复经过同一条边的路径」，那么走一遍这条路径不就求出答案了吗！</p>
+<p>为什么不再往上走一走？能运载的最大货物量是由这条路径决定的，往上走只可能有两种结果：上面边权比最小值大，上面边权比最小值小。第一种情况对答案没有什么贡献（因为最大值影响不了最小值），第二种情况则会<strong>劣化答案</strong>！</p>
+<p>显然这条路径被这两个点的 LCA 分成两段，从一个点向上到 LCA 再向下到另一个点，那么在求 LCA 往上蹦的过程中求一下最小值就行了。可以倍增。</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><p>#include <algorithm></algorithm></p>
+<p>#include <iostream></iostream></p>
+<p>#include <cstring></cstring></p>
+<p>#include <cstdio></cstdio></p>
+<p>#define FILE_IN(<strong>fname) freopen(</strong>fname, “r”, stdin)</p>
+<p>#define FILE_OUT(<strong>fname) freopen(</strong>fname, “w”, stdout)</p>
+<p>#define IMPROVE_IO() std::ios::sync_with_stdio(false)</p>
+<p>using std::cin;<br>using std::cout;<br>using std::endl;</p>
+<p>const int MAXN = 100000 + 10;<br>const int MAXM = MAXN * 5;<br>const int LOG = 21;</p>
+<p>int n, m, q;</p>
+<p>namespace Graph{<br>    struct RawEdge {<br>        int prev, next, weight;</p>
+<pre><code>    bool operator &lt; (const RawEdge &amp;that) const {
+        return weight &gt; that.weight;
+    }
+} redge[MAXM];
+
+struct Edge {
+    int now, next, weight;
+} edge[MAXM];
+
+int head[MAXN], cnt;
+
+bool vis[MAXN];
+
+void addEdge(int prev, int next, int weight) {
+    edge[++cnt].now = next;
+    edge[cnt].weight = weight;
+    edge[cnt].next = head[prev];
+    head[prev] = cnt;
+}
+
+struct UnionFind{
+    int seq[MAXN];
+
+    UnionFind() { memset(seq, 0, sizeof seq); }
+
+    int Find(int x) {
+        if (seq[x] == 0) return x;
+        return seq[x] = Find(seq[x]);
+    }
+
+    bool Union(int x, int y) {
+        x = Find(x); y = Find(y);
+        if (x == y) return false;
+        seq[x] = y;
+        return true;
+    }
+} U;
+
+void Kruskal() {
+    std::sort(redge + 1, redge + 1 + m);
+    for(int i = 1; i &lt;= m; ++i) {
+        if (U.Union(redge[i].prev, redge[i].next)) {
+            addEdge(redge[i].prev, redge[i].next, redge[i].weight);
+            addEdge(redge[i].next, redge[i].prev, redge[i].weight);
+        }
+    }
+}
+</code></pre><p>}</p>
+<p>namespace LCAs {<br>    using namespace Graph;<br>    int depth[MAXN], fa[MAXN][LOG], w[MAXN][LOG];</p>
+<pre><code>void Search(int root) {
+    vis[root] = true;
+    for(int e = head[root]; e; e = edge[e].next) {
+        int now = edge[e].now;
+        if (vis[now]) continue;
+        depth[now] = depth[root] + 1;
+        fa[now][0] = root;
+        w[now][0] = edge[e].weight;
+        Search(now);
+    }
+}
+
+int GetAnswer(int x, int y) {
+    if (U.Find(x) != U.Find(y)) return -1;
+    int ans = 0x7f7f7f7f;
+    if (depth[x] &gt; depth[y]) std::swap(x,y);
+
+    for (int i = LOG - 1; i &gt;= 0; --i) {
+        if (depth[fa[y][i]] &gt;= depth[x]) {
+            ans = std::min(ans, w[y][i]);
+            y = fa[y][i];
+        }
+    }
+
+    if (x == y) return ans;
+
+    for (int i = LOG - 1; i &gt;= 0; --i) {
+        if (fa[x][i] != fa[y][i]) {
+            ans = std::min(ans, std::min(w[x][i], w[y][i]));
+            x = fa[x][i];
+            y = fa[y][i];
+        }
+    }
+
+    ans = std::min(ans, std::min(w[x][0], w[y][0]));
+    return ans;
+}
+</code></pre><p>}</p>
+<p>int main() {<br>    using namespace LCAs;<br>    using namespace Graph;</p>
+<pre><code>scanf(&quot;%d %d&quot;, &amp;n, &amp;m);
+for (int i = 1; i &lt;= m; ++i) {
+    int x, y, z;
+    scanf(&quot;%d %d %d&quot;, &amp;x, &amp;y, &amp;z);
+    redge[i].prev = x;
+    redge[i].next = y;
+    redge[i].weight = z;
+}
+
+Kruskal();
+
+for (int i = 1; i &lt;= n; ++i){
+    if (!vis[i]) {
+        depth[i] = 1;
+        Search(i);
+        fa[i][0] = i;
+        w[i][0] = 0x7f7f7f7f;
+    }
+}
+for (int i = 1; i &lt;= LOG - 1; ++i) {
+    for (int j = 1; j &lt;= n; ++j) {
+        fa[j][i] = fa[fa[j][i-1]][i-1];
+        w[j][i] = std::min(w[j][i-1], w[fa[j][i-1]][i-1]);
+    }
+}
+
+scanf(&quot;%d&quot;, &amp;q);
+for (int i = 1; i &lt;= q; ++i) {
+    int prev, next;
+    cin &gt;&gt; prev &gt;&gt; next;
+    printf(&quot;%d\n&quot;, GetAnswer(prev, next));
+}
+return 0;
+</code></pre><p>}</p>
+
       
     </div>
     
@@ -400,7 +555,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.handwer-std.top/2019-03-30/Luogu-P1967/" title="Luogu-P1967">https://blog.handwer-std.top/2019-03-30/Luogu-P1967/</a>
+    <a href="https://blog.handwer-std.top/2019-03-30/Luogu-P1967/" title="洛谷P1967「NOIP2013」《货车运输》">https://blog.handwer-std.top/2019-03-30/Luogu-P1967/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -412,6 +567,20 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图论/" rel="tag"># 图论</a>
+          
+            <a href="/tags/生成树/" rel="tag"># 生成树</a>
+          
+            <a href="/tags/DFS/" rel="tag"># DFS</a>
+          
+            <a href="/tags/LCA/" rel="tag"># LCA</a>
+          
+            <a href="/tags/NOIP/" rel="tag"># NOIP</a>
+          
+        </div>
       
 
       
@@ -489,8 +658,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -509,7 +687,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -522,7 +700,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">92</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -580,6 +758,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入格式"><span class="nav-number">2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出格式"><span class="nav-number">3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入输出样例"><span class="nav-number">4.</span> <span class="nav-text">输入输出样例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解析"><span class="nav-number">5.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">6.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
