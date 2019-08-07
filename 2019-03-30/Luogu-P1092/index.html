@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -389,19 +408,19 @@
 </blockquote>
 <a id="more"></a>
 <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>所谓虫食算，就是原先的算式中有一部分被虫子啃掉了，需要我们根据剩下的数字来判定被啃掉的字母。来看一个简单的例子：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">43</span>#<span class="number">9865</span>#<span class="number">045</span></span><br><span class="line">+  <span class="number">8468</span>#<span class="number">6633</span></span><br><span class="line"> <span class="number">44445509678</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> 43#9865#045</span><br><span class="line">+  8468#6633</span><br><span class="line"> 44445509678</span><br></pre></td></tr></table></figure>
 <p>其中$#$号代表被虫子啃掉的数字。根据算式，我们很容易判断：第一行的两个数字分别是5和3，第二行的数字是5。</p>
 <p>现在，我们对问题做两个限制：</p>
 <p>首先，我们只考虑加法的虫食算。这里的加法是N进制加法，算式中三个数都有N位，允许有前导的0。</p>
 <p>其次，虫子把所有的数都啃光了，我们只知道哪些数字是相同的，我们将相同的数字用相同的字母表示，不同的数字用不同的字母表示。如果这个算式是N进制的，我们就取英文字母表午的前N个大写字母来表示这个算式中的0到N-1这N个不同的数字：但是这N个字母并不一定顺序地代表0到N−1。输入数据保证N个字母分别至少出现一次。</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">BADC</span></span><br><span class="line"><span class="keyword">+CBDA</span></span><br><span class="line"><span class="keyword"> </span>DCCC</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> BADC</span><br><span class="line">+CBDA</span><br><span class="line"> DCCC</span><br></pre></td></tr></table></figure>
 <p>上面的算式是一个4进制的算式。很显然，我们只要让ABCD分别代表0123，便可以让这个式子成立了。你的任务是，对于给定的N进制加法算式，求出N个不同的字母分别代表的数字，使得该加法算式成立。输入数据保证有且仅有一组解。</p>
 <h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>包含四行。<br>第一行有一个正整数$N(N \le 26)$。</p>
 <p>后面的三行，每行有一个由大写字母组成的字符串，分别代表两个加数以及和。这3个字符串左右两端都没有空格，从高位到低位，并且恰好有NN位。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>一行，即唯一的那组解。</p>
 <p>解是这样表示的：输出N个数字，分别表示A,B,C,…所代表的数字，相邻的两个数字用一个空格隔开，不能有多余的空格。</p>
-<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br><span class="line"><span class="symbol">ABCED</span></span><br><span class="line"><span class="keyword">BDACE</span></span><br><span class="line"><span class="keyword">EBBAA</span></span><br></pre></td></tr></table></figure>
-<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span><span class="number">0</span> <span class="number">3</span> <span class="number">4</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">ABCED</span><br><span class="line">BDACE</span><br><span class="line">EBBAA</span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 0 3 4 2</span><br></pre></td></tr></table></figure>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>对于30％的数据，保证有$N \le 10$；</p>
 <p>对于50％的数据，保证有$N \le 15$；</p>
 <p>对于全部的数据，保证有$N \le 26$。</p>
@@ -412,7 +431,7 @@
 <p>考虑枚举算式中的每一个数</p>
 <p>用时大大减小</p>
 <p>但是可能会填出</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="code"> 1111</span></span><br><span class="line">+1221</span><br><span class="line">-----</span><br><span class="line"><span class="code"> 2333</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 1111</span><br><span class="line">+1221</span><br><span class="line">-----</span><br><span class="line"> 2333</span><br></pre></td></tr></table></figure>
 <p>这样的情况</p>
 <p>显然这样的情况是无用的</p>
 <p>就需要一个判断</p>
@@ -571,7 +590,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

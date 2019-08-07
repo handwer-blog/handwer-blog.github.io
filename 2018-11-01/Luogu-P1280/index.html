@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -395,8 +414,8 @@
 <h1 id="Input-Output-格式-amp-样例"><a href="#Input-Output-格式-amp-样例" class="headerlink" title="Input / Output 格式 &amp; 样例"></a>Input / Output 格式 &amp; 样例</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>输入数据第一行含两个用空格隔开的整数$N$和$K(1≤N≤10000，1≤K≤10000)$，$N$表示尼克的工作时间，单位为分钟，$K$表示任务总数。</p>
 <p>接下来共有$K$行，每一行有两个用空格隔开的整数$P$和$T$，表示该任务从第$P$分钟开始，持续时间为$T$分钟，其中$1≤P≤N$，$1≤P+T-1≤N$。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出文件仅一行，包含一个整数，表示尼克可能获得的最大空暇时间。</p>
-<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">15 </span><span class="number">6</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">6</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">11</span></span><br><span class="line"><span class="symbol">8 </span><span class="number">5</span></span><br><span class="line"><span class="symbol">8 </span><span class="number">1</span></span><br><span class="line"><span class="symbol">11 </span><span class="number">5</span></span><br></pre></td></tr></table></figure>
-<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">15 6</span><br><span class="line">1 2</span><br><span class="line">1 6</span><br><span class="line">4 11</span><br><span class="line">8 5</span><br><span class="line">8 1</span><br><span class="line">11 5</span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>DP</p>
 <p>我们设<code>f[i]</code>表示在前<code>i</code>分钟内的最大空闲时间<br>但是发现第<code>i</code>分钟的空闲时间是由后面的任务决定的<br>所以我们考虑倒着扫一遍</p>
 <hr>
@@ -551,7 +570,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

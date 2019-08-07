@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -399,13 +418,13 @@
 <p>棋盘上其余的格子都是无色。保证棋盘的左上角，也就是 $(1,1)$ 一定是有颜色的。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>一个整数，表示花费的金币的最小值，如果无法到达，输出-1。</p>
 <h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><p>Case #1:</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">5 </span><span class="number">7</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">1</span> <span class="number">0</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">0</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">2</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">3</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">4</span> <span class="number">0</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">4</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">5</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">5 7</span><br><span class="line">1 1 0</span><br><span class="line">1 2 0</span><br><span class="line">2 2 1</span><br><span class="line">3 3 1</span><br><span class="line">3 4 0</span><br><span class="line">4 4 1</span><br><span class="line">5 5 0</span><br></pre></td></tr></table></figure>
 <p>Case #2:</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">5 </span><span class="number">5</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">1</span> <span class="number">0</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">0</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">2</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">3</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">5</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">5 5</span><br><span class="line">1 1 0</span><br><span class="line">1 2 0</span><br><span class="line">2 2 1</span><br><span class="line">3 3 1</span><br><span class="line">5 5 0</span><br></pre></td></tr></table></figure>
 <h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><p>Case #1:</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8</span><br></pre></td></tr></table></figure>
 <p>Case #2:</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1</span><br></pre></td></tr></table></figure>
 <h1 id="样例解释-amp-其他说明"><a href="#样例解释-amp-其他说明" class="headerlink" title="样例解释 &amp; 其他说明"></a>样例解释 &amp; 其他说明</h1><p>对于 $30\%$的数据, $1 ≤ m ≤ 5, 1 ≤ n ≤ 10$</p>
 <p>对于 $60\%$数据, $1 ≤ m ≤ 20, 1 ≤ n ≤ 200$</p>
 <p>对于 $100\%$的数据, $1 ≤ m ≤ 100, 1 ≤ n ≤ 1,000$</p>
@@ -575,7 +594,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

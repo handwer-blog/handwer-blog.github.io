@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -399,8 +418,8 @@
 <h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行：两个整数M和N，用空格隔开。</p>
 <p>第2到第M+1行：每行包含N个用空格隔开的整数，描述了每块土地的状态。第i+1行描述了第i行的土地，所有整数均为0或1，是1的话，表示这块土地足够肥沃，0则表示这块土地不适合种草。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>一个整数，即牧场分配总方案数除以100,000,000的余数。</p>
-<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">2 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">1</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2 3</span><br><span class="line">1 1 1</span><br><span class="line">0 1 0</span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">9</span><br></pre></td></tr></table></figure>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>一道状压DP入门题</p>
 <p>首先我们发现对于每一行，有 N 个状态<br>那么就意味着这是一个N + 1维DP……</p>
 <p>但是我们发现从第二维到第N维都只需要0（不种玉米）和1（种玉米）两个值<br>那么……二进制！<br>比如 1010 就表示第1、3个格种玉米，第2、4个格不种玉米</p>
@@ -411,11 +430,11 @@
 <hr>
 <p>我们先来看看如何判断两行互相合法。</p>
 <p>「合法」指两行种玉米的地方不相邻，也就是两个1不相邻。<br>我们来想想位运算 $and$ 的性质</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">运算法则：</span><br><span class="line"><span class="number">1</span> &amp; <span class="number">1</span> = <span class="number">1</span></span><br><span class="line"><span class="number">1</span> &amp; <span class="number">0</span> = <span class="number">0</span></span><br><span class="line"><span class="number">0</span> &amp; <span class="number">0</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">and (aka &amp;) 是按位运算的</span><br><span class="line">例如：</span><br><span class="line">  <span class="number">10101101</span>   <span class="number">10100100</span></span><br><span class="line">&amp; <span class="number">10110100</span> &amp; <span class="number">01010001</span></span><br><span class="line">---------- ----------</span><br><span class="line">  <span class="number">10100100</span>   <span class="number">00000000</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">运算法则：</span><br><span class="line">1 &amp; 1 = 1</span><br><span class="line">1 &amp; 0 = 0</span><br><span class="line">0 &amp; 0 = 0</span><br><span class="line"></span><br><span class="line">and (aka &amp;) 是按位运算的</span><br><span class="line">例如：</span><br><span class="line">  10101101   10100100</span><br><span class="line">&amp; 10110100 &amp; 01010001</span><br><span class="line">---------- ----------</span><br><span class="line">  10100100   00000000</span><br></pre></td></tr></table></figure>
 <p>我们发现，第二个例子放在题目中是合法的，它们进行 $and$ 运算的值为 $0$<br>那么方法不就出来了吗！</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Check</span><span class="params">(<span class="keyword">int</span> stat1, <span class="keyword">int</span> stat2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (stat1 &amp; stat2) == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>单行的状态也可能不合法，<del>如何对敌</del>怎么解决？</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">stat1 = 01001101 就是一个不合法的状态</span><br><span class="line">我们把 stat1 左移一位（ stat1 = stat1 &lt;&lt; 1 ）</span><br><span class="line">得到了 stat2 = 10011010</span><br><span class="line"></span><br><span class="line">我们把他们 and 一下</span><br><span class="line"></span><br><span class="line"><span class="code">  01001101</span></span><br><span class="line">&amp; 10011010</span><br><span class="line">----------</span><br><span class="line"><span class="code">  00001000 &gt; 0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">stat1 = 01001101 就是一个不合法的状态</span><br><span class="line">我们把 stat1 左移一位（ stat1 = stat1 &lt;&lt; 1 ）</span><br><span class="line">得到了 stat2 = 10011010</span><br><span class="line"></span><br><span class="line">我们把他们 and 一下</span><br><span class="line"></span><br><span class="line">  01001101</span><br><span class="line">&amp; 10011010</span><br><span class="line">----------</span><br><span class="line">  00001000 &gt; 0</span><br></pre></td></tr></table></figure>
 <p>那么方法就出来了</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">CheckSingleLine</span><span class="params">(<span class="keyword">int</span> stat)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Check(stat, stat &lt;&lt; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>之后处理一下土地的状态</p>
@@ -574,7 +593,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

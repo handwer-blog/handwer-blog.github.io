@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -398,9 +417,9 @@
 <p>接下来有m行，每行三个整数，a,b,c，表示存在一种航线，能从城市a到达城市b，或从城市b到达城市a，价格为c。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>只有一行，包含一个整数，为最少花费。</p>
 <h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><p>输入样例#1： </p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">5 </span><span class="number">6</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">4</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">1</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">4</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span> <span class="number">3</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">2</span> <span class="number">100</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">5 6 1</span><br><span class="line">0 4</span><br><span class="line">0 1 5</span><br><span class="line">1 2 5</span><br><span class="line">2 3 5</span><br><span class="line">3 4 5</span><br><span class="line">2 3 3</span><br><span class="line">0 2 100</span><br></pre></td></tr></table></figure>
 <p>输出样例#1：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8</span><br></pre></td></tr></table></figure>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这就是分层图最短路的<strong>模板</strong><br><del>但为什么是<code>省选/NOI-</code>呢</del></p>
 <p>我们用DP的思想来看<br>设<code>dis[i][j]</code>表示起点到<code>i</code>点在<code>j</code>层的最短路</p>
 <p>如何分层？<br>理解性记忆。<br>例如本题最多有十层，第<code>k</code>层表示免费了<code>k</code>次的最短路</p>
@@ -559,7 +578,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

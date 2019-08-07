@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -392,8 +411,8 @@
 <h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行有两个整数N,M用空格隔开。(1&lt;=N&lt;=300,1&lt;=M&lt;=300)</p>
 <p>接下来的N行,第I+1行包含两个整数ki和si, ki表示第I门课的直接先修课，si表示第I门课的学分。若ki=0表示没有直接先修课（1&lt;=ki&lt;=N, 1&lt;=si&lt;=20）。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>只有一行，选M门课程的最大得分。</p>
-<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">7 </span> <span class="number">4</span></span><br><span class="line"><span class="symbol">2 </span> <span class="number">2</span></span><br><span class="line"><span class="symbol">0 </span> <span class="number">1</span></span><br><span class="line"><span class="symbol">0 </span> <span class="number">4</span></span><br><span class="line"><span class="symbol">2 </span> <span class="number">1</span></span><br><span class="line"><span class="symbol">7 </span> <span class="number">1</span></span><br><span class="line"><span class="symbol">7 </span> <span class="number">6</span></span><br><span class="line"><span class="symbol">2 </span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
-<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">13</span></span><br></pre></td></tr></table></figure>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">7  4</span><br><span class="line">2  2</span><br><span class="line">0  1</span><br><span class="line">0  4</span><br><span class="line">2  1</span><br><span class="line">7  1</span><br><span class="line">7  6</span><br><span class="line">2  2</span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">13</span><br></pre></td></tr></table></figure>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>注意到题目中的「每门课有一门或没有直接先修课」<br>所以这是一个森林</p>
 <p>我们用一个虚拟点0把所有的树根连起来，构成一棵大树<br>接下来这个题目就从一个DAG上DP转化为了一个树形DP<br>但是！它事一个树形背包</p>
 <hr>
@@ -550,7 +569,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

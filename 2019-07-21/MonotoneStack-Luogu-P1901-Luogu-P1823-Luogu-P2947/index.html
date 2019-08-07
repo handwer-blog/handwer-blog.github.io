@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -405,9 +424,9 @@
 </ul>
 <p>共 N 行，按顺序每行输出一只奶牛的最近仰望对象，如果没有仰望对象，输出 0。</p>
 <h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入样例</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">6</span></span><br><span class="line"><span class="symbol">3 </span></span><br><span class="line"><span class="symbol">2 </span></span><br><span class="line"><span class="symbol">6 </span></span><br><span class="line"><span class="symbol">1 </span></span><br><span class="line"><span class="symbol">1 </span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">6</span><br><span class="line">3 </span><br><span class="line">2 </span><br><span class="line">6 </span><br><span class="line">1 </span><br><span class="line">1 </span><br><span class="line">2</span><br></pre></td></tr></table></figure>
 <p>输出样例</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">3 </span></span><br><span class="line"><span class="symbol">3 </span></span><br><span class="line"><span class="symbol">0 </span></span><br><span class="line"><span class="symbol">6 </span></span><br><span class="line"><span class="symbol">6 </span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">3 </span><br><span class="line">3 </span><br><span class="line">0 </span><br><span class="line">6 </span><br><span class="line">6 </span><br><span class="line">0</span><br></pre></td></tr></table></figure>
 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>FJ has six cows of heights 3, 2, 6, 1, 1, and 2.</p>
 <p>Cows 1 and 2 both look up to cow 3; cows 4 and 5 both look up to cow 6; and cows 3 and 6 do not look up to any cow.</p>
 <p>【输入说明】6 头奶牛的身高分别为 3, 2, 6, 1, 1, 2.</p>
@@ -417,7 +436,7 @@
 <p>对于 50%的数据： 1≤N≤1,000；</p>
 <p>对于 100%的数据：1≤N≤100,000；1≤H_i≤1,000,000；</p>
 <h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>题目就是说，依次给出一堆线段，求对于每条线段，第一个在它右面，长度大于它的线段的下标是多少<br>我们先来模拟一下：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">1[</span>===] 歪着看体验更佳（逃</span><br><span class="line"><span class="attr">2[</span>==]</span><br><span class="line"><span class="attr">3[</span>======]</span><br><span class="line"><span class="attr">4[</span>=]</span><br><span class="line"><span class="attr">5[</span>=]</span><br><span class="line"><span class="attr">6[</span>==]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1[===] 歪着看体验更佳（逃</span><br><span class="line">2[==]</span><br><span class="line">3[======]</span><br><span class="line">4[=]</span><br><span class="line">5[=]</span><br><span class="line">6[==]</span><br></pre></td></tr></table></figure>
 <p>第一次，1号进来了，没有比它高的，让它等一会<br>第二次，2号进来了，它甚至比1号还低，对1号的答案没有什么影响，也让它等一会<br>第三次，3号进来了，它比1、2号都高！此时1、2号的答案都是3号，而且1、2号<strong>对于以后的线段答案是没有影响的</strong>，呆在队伍里已经没有什么用了，让它们出去即可<br>第四次、第五次，4号和5号依次进来，对3号的答案并没有什么影响<br>第六次，6号进来了，4号和5号的答案更新为6号，而且对以后的线段答案也是没有什么影响的（如果以后还有线段的话），出去即可<br>队伍里还有俩线段3和6，它们的答案没有被更新过，也就是没有答案</p>
 <hr>
 <p>这就是一个单调栈的工作流程，通过清除栈里的元素来维护单调性，而本题中第三次循环和第六次循环则是对于单调数据结构进行具体问题具体分析的关键点</p>
@@ -429,14 +448,14 @@
 <p>第 2 到 N+1 行：第 i+1 行有两个整数 Hi 和 Vi，表示第 i 个人发射站的高度和发射的能量值。</p>
 <h3 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出仅一行，表示接收最多能量的发射站接收到的能量值，答案不超过 longint。</p>
 <h2 id="输入输出样例-1"><a href="#输入输出样例-1" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入样例#1</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">2</span> </span><br><span class="line"><span class="symbol">3 </span><span class="number">5</span> </span><br><span class="line"><span class="symbol">6 </span><span class="number">10</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">4 2 </span><br><span class="line">3 5 </span><br><span class="line">6 10</span><br></pre></td></tr></table></figure>
 <p>输出样例#1</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">7</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7</span><br></pre></td></tr></table></figure>
 <h2 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h2><p>对于 40%的数据，1&lt;=N&lt;=5000；1&lt;=Hi&lt;=100000；1&lt;=Vi&lt;=10000;</p>
 <p>对于 70%的数据，1&lt;=N&lt;=100000；1&lt;=Hi&lt;=2,000,000,000；1&lt;=Vi&lt;=10000;</p>
 <p>对于 100%的数据，1&lt;=N&lt;=1000000;1&lt;=Hi&lt;=2,000,000,000；1&lt;=Vi&lt;=10000。</p>
 <h2 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h2><p>同样的，先来模拟一下这个过程：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1[<span class="string">====</span>](<span class="link">2</span>)</span><br><span class="line">2[<span class="string">===</span>](<span class="link">5</span>)</span><br><span class="line">3[<span class="string">======</span>](<span class="link">10</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1[====](2)</span><br><span class="line">2[===](5)</span><br><span class="line">3[======](10)</span><br></pre></td></tr></table></figure>
 <p>第一次，1号发射站进来，它莫得其他发射站来传输能量<br>第二次，2号发射站进来，它可以给1号传输能量<br>第三次，3号发射站进来：<br>2号发射站可以给3号发射站传输能量，1号发射站亦可。由于这两个发射站对于其他发射站的答案已经没有贡献，自己的答案也确定了，让它们出去即可</p>
 <hr>
 <p>本质上也是维护了一个单调递减的栈，在维护单调性的同时确定答案</p>
@@ -447,11 +466,11 @@
 <p>接下来的N行中，每行包含一个整数，表示人的高度，以毫微米(等于10的-9次方米)为单位，每个人的调度都小于2^31毫微米。这些高度分别表示队伍中人的身高。</p>
 <h3 id="输出格式-2"><a href="#输出格式-2" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出仅有一行，包含一个数S，表示队伍中共有S对人可以互相看见。</p>
 <h2 id="输入输出样例-2"><a href="#输入输出样例-2" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入样例#1</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">7 </span></span><br><span class="line"><span class="symbol">2 </span></span><br><span class="line"><span class="symbol">4 </span></span><br><span class="line"><span class="symbol">1 </span></span><br><span class="line"><span class="symbol">2 </span></span><br><span class="line"><span class="symbol">2 </span></span><br><span class="line"><span class="symbol">5 </span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">7 </span><br><span class="line">2 </span><br><span class="line">4 </span><br><span class="line">1 </span><br><span class="line">2 </span><br><span class="line">2 </span><br><span class="line">5 </span><br><span class="line">1</span><br></pre></td></tr></table></figure>
 <p>输出样例#1</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10</span><br></pre></td></tr></table></figure>
 <h2 id="解析-2"><a href="#解析-2" class="headerlink" title="解析"></a>解析</h2><p>依然来模拟一下：，</p>
-<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>[<span class="name">==</span>]</span><br><span class="line"><span class="number">2</span>[<span class="name">====</span>]</span><br><span class="line"><span class="number">3</span>[<span class="name"><span class="builtin-name">=</span></span>]</span><br><span class="line"><span class="number">4</span>[<span class="name">==</span>]</span><br><span class="line"><span class="number">5</span>[<span class="name">==</span>]</span><br><span class="line"><span class="number">6</span>[<span class="name">=====</span>]</span><br><span class="line"><span class="number">7</span>[<span class="name"><span class="builtin-name">=</span></span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1[==]</span><br><span class="line">2[====]</span><br><span class="line">3[=]</span><br><span class="line">4[==]</span><br><span class="line">5[==]</span><br><span class="line">6[=====]</span><br><span class="line">7[=]</span><br></pre></td></tr></table></figure>
 <p>第一次，1号进入，它谁都望不到<br>第二次，2号进入，1、2号能互相看见，此时1号对答案已经没有贡献，出去即可<br>第三次，3号进入，2、3号能互相看见<br>第四次，4号进入，3、4号能互相看见，同时2、4号也可以互相看见，此时3号对答案已经没有贡献，出去即可<br>第五次……第六次……第七次……</p>
 <hr>
 <p>已经很明显了，依然是维护一个单调不增的栈，在维护元素单调性的同时更新答案<br>但是这里的代码实现有一定的技巧</p>
@@ -602,7 +621,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

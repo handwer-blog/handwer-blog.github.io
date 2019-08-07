@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -403,8 +422,8 @@
 <p>例 2里，首先制作 1是不违背限制的；接下来考虑 2 时有&lt;5,2&gt;的限制，所以接下来先制作 5 再制作 2；接下来考虑 3 时有&lt;4,3&gt;的限制，所以接下来先制作 4再制作 3，从而最终的顺序是 1,5,2,4,3。 现在你需要求出这个最优的菜肴制作顺序。无解输出”Impossible!“ （不含引号，首字母大写，其余字母小写）</p>
 <h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行是一个正整数D，表示数据组数。 接下来是D组数据。 对于每组数据： 第一行两个用空格分开的正整数N和M，分别表示菜肴数目和制作顺序限制的条目数。 接下来M行，每行两个正整数x,y，表示”x号菜肴必须先于y号菜肴制作“的限制。（注意：M条限制中可能存在完全相同的限制）</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出文件仅包含 D 行，每行 N 个整数，表示最优的菜肴制作顺序，或者“Impossible!“表示无解（不含引号）。</p>
-<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例-1"><a href="#输入样例-1" class="headerlink" title="输入样例#1"></a>输入样例#1</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">4</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">4</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">1</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">3</span></span><br></pre></td></tr></table></figure>
-<h2 id="输出样例-1"><a href="#输出样例-1" class="headerlink" title="输出样例#1"></a>输出样例#1</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="number">5</span> <span class="number">3</span> <span class="number">4</span> <span class="number">2</span> </span><br><span class="line">Impossible! </span><br><span class="line"><span class="number">1</span> <span class="number">5</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例-1"><a href="#输入样例-1" class="headerlink" title="输入样例#1"></a>输入样例#1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">5 4</span><br><span class="line">5 4</span><br><span class="line">5 3</span><br><span class="line">4 2</span><br><span class="line">3 2</span><br><span class="line">3 3</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">3 1</span><br><span class="line">5 2</span><br><span class="line">5 2</span><br><span class="line">4 3</span><br></pre></td></tr></table></figure>
+<h2 id="输出样例-1"><a href="#输出样例-1" class="headerlink" title="输出样例#1"></a>输出样例#1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 5 3 4 2 </span><br><span class="line">Impossible! </span><br><span class="line">1 5 2 4 3</span><br></pre></td></tr></table></figure>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>【样例解释】</p>
 <p>第二组数据同时要求菜肴1先于菜肴2制作，菜肴2先于菜肴3制作，菜肴3先于</p>
 <p>菜肴1制作，而这是无论如何也不可能满足的，从而导致无解。</p>
@@ -560,7 +579,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -394,15 +413,15 @@
 <p>他为每一只虫子都标上了序号。</p>
 <p>通过这个奇怪的ke学家的研究，找出了在这些虫子中的所有关系的虫子，题目询问在这么多有关系的虫子中是否存在“同性恋”。</p>
 <h1 id="输入格式-amp-样例"><a href="#输入格式-amp-样例" class="headerlink" title="输入格式 &amp; 样例"></a>输入格式 &amp; 样例</h1><p>第一行， 输入一个数，表示有t组数据<br>对于每组数据，第一行输入n,m，表示有n只虫子，有m个关系<br>接下来行每行两个数x,y，表示x,y有关系</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">3 3</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">1 3</span><br><span class="line">4 2</span><br><span class="line">1 2</span><br><span class="line">3 4</span><br></pre></td></tr></table></figure>
 <h1 id="输出格式-amp-样例"><a href="#输出格式-amp-样例" class="headerlink" title="输出格式 &amp; 样例"></a>输出格式 &amp; 样例</h1><p>对于每一组数据： <br><br>先输出：”Scenario #i” ，表示第i组数据 <br><br>然后如果有同性恋的输出”Suspicious bugs found!” <br><br>否则输出”No suspicious bugs found!” <br></p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Scenario </span><span class="comment">#1:</span></span><br><span class="line">Suspicious <span class="keyword">bugs </span>found!</span><br><span class="line"><span class="keyword">Scenario </span><span class="comment">#2:</span></span><br><span class="line">No suspicious <span class="keyword">bugs </span>found!</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Scenario #1:</span><br><span class="line">Suspicious bugs found!</span><br><span class="line">Scenario #2:</span><br><span class="line">No suspicious bugs found!</span><br></pre></td></tr></table></figure>
 <h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>显然这是一个并查集，但并不是一个裸的并查集</p>
 <p>我们要多维护一个数组<code>rel[]</code>，其中<code>rel[i]</code>表示<code>i</code>和它的祖先的关系（relative）。我们定义<code>rel[i]</code>表示两种性别，当根节点相同且<code>rel[]</code>相同时，它们就是同性恋</p>
 <p><code>rel[]</code>的更新方式：</p>
-<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(in <span class="symbol">Find</span>(x))</span><br><span class="line">rel[x] = (rel[x] + rel[<span class="symbol">U</span>[x]]) <span class="comment">% 2;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">in</span> Union(x, y))</span><br><span class="line">int fx = <span class="builtin-name">Find</span>(x), fy = <span class="builtin-name">Find</span>(y);</span><br><span class="line"><span class="built_in">..</span>.</span><br><span class="line">rel[fx] = (rel[x] + rel[y] + 1) % 2;</span><br></pre></td></tr></table></figure>
-<p><code>rel[]</code>的判断方式：<br><figure class="highlight flix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">in</span> Union(x, y))</span><br><span class="line"><span class="keyword">if</span> (fx == fy) &#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">rel</span>[x] == <span class="keyword">rel</span>[y]) suspiciousFound = <span class="literal">true</span>;</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(in Find(x))</span><br><span class="line">rel[x] = (rel[x] + rel[U[x]]) % 2;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(in Union(x, y))</span><br><span class="line">int fx = Find(x), fy = Find(y);</span><br><span class="line">...</span><br><span class="line">rel[fx] = (rel[x] + rel[y] + 1) % 2;</span><br></pre></td></tr></table></figure>
+<p><code>rel[]</code>的判断方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(in Union(x, y))</span><br><span class="line">if (fx == fy) &#123;</span><br><span class="line">	if (rel[x] == rel[y]) suspiciousFound = true;</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>剩下的照常写就行</p>
 <p>注意路径压缩要分开写，先创建一个变量存它的祖先节点再更新 </p>
 <p><del>按秩合并没写过不知道</del></p>
@@ -553,7 +572,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

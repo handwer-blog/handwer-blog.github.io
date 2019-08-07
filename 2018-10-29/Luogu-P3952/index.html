@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -391,7 +410,7 @@
 <p><a href="https://www.luogu.org/problemnew/show/P3952" target="_blank" rel="noopener">题目地址</a></p>
 <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>小明正在学习一种新的编程语言 A++，刚学会循环语句的他激动地写了好多程序并 给出了他自己算出的时间复杂度，可他的编程老师实在不想一个一个检查小明的程序， 于是你的机会来啦！下面请你编写程序来判断小明对他的每个程序给出的时间复杂度是否正确。</p>
 <p>A++语言的循环结构如下：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">F i x <span class="built_in">y</span></span><br><span class="line">    循环体</span><br><span class="line"><span class="built_in">E</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">F i x y</span><br><span class="line">    循环体</span><br><span class="line">E</span><br></pre></td></tr></table></figure>
 <p>其中 $\text{F i x y}$ 表示新建变量 $i$（变量 $i$ 不可与未被销毁的变量重名）并初始化为 $x$， 然后判断 $i$ 和 $y$ 的大小关系，若 $i$ 小于等于 $y$ 则进入循环，否则不进入。每次循环结束后 $i$ 都会被修改成 $i+1$，一旦 $i$ 大于 $y$ 终止循环。</p>
 <p>$x​$ 和 $y​$ 可以是正整数（$x​$ 和 $y​$ 的大小关系不定）或变量 $n​$。$n​$ 是一个表示数据规模的变量，在时间复杂度计算中需保留该变量而不能将其视为常数，该数远大于 100。</p>
 <p>“$\text{E}$”表示循环体结束。循环体结束时，这个循环体新建的变量也被销毁。</p>
@@ -402,8 +421,8 @@
 <p>程序行若以$E$开头，则表示循环体结束。</p>
 <h2 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h2><p>输出文件共 $t$ 行，对应输入的 $t$ 个程序，每行输出<code>Yes</code>或<code>No</code>或者<code>ERR</code>，若程序实际复杂度与输入给出的复杂度一致则输出<code>Yes</code>，不一致则输出<code>No</code>，若程序有语法错误（其中语法错误只有: ① $\text{F}$ 和 $\text{E}$ 不匹配 ②新建的变量与已经存在但未被销毁的变量重复两种情况），则输出<code>ERR</code> 。</p>
 <p>注意：即使在程序不会执行的循环体中出现了语法错误也会编译错误，要输出 <code>ERR</code>。</p>
-<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">2</span> O(<span class="number">1</span>)</span><br><span class="line">F i <span class="number">1</span> <span class="number">1</span></span><br><span class="line">E</span><br><span class="line"><span class="number">2</span> O(n^<span class="number">1</span>)</span><br><span class="line">F x <span class="number">1</span> n</span><br><span class="line">E</span><br><span class="line"><span class="number">1</span> O(<span class="number">1</span>)</span><br><span class="line">F x <span class="number">1</span> n</span><br><span class="line"><span class="number">4</span> O(n^<span class="number">2</span>)</span><br><span class="line">F x <span class="number">5</span> n</span><br><span class="line">F y <span class="number">10</span> n</span><br><span class="line">E</span><br><span class="line">E</span><br><span class="line"><span class="number">4</span> O(n^<span class="number">2</span>)</span><br><span class="line">F x <span class="number">9</span> n</span><br><span class="line">E</span><br><span class="line">F y <span class="number">2</span> n</span><br><span class="line">E</span><br><span class="line"><span class="number">4</span> O(n^<span class="number">1</span>)</span><br><span class="line">F x <span class="number">9</span> n</span><br><span class="line">F y n <span class="number">4</span></span><br><span class="line">E</span><br><span class="line">E</span><br><span class="line"><span class="number">4</span> O(<span class="number">1</span>)</span><br><span class="line">F y n <span class="number">4</span></span><br><span class="line">F x <span class="number">9</span> n</span><br><span class="line">E</span><br><span class="line">E</span><br><span class="line"><span class="number">4</span> O(n^<span class="number">2</span>)</span><br><span class="line">F x <span class="number">1</span> n</span><br><span class="line">F x <span class="number">1</span> <span class="number">10</span></span><br><span class="line">E</span><br><span class="line">E</span><br></pre></td></tr></table></figure>
-<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">Yes</span></span><br><span class="line"><span class="literal">Yes</span></span><br><span class="line"><span class="string">ERR</span></span><br><span class="line"><span class="literal">Yes</span></span><br><span class="line"><span class="literal">No</span></span><br><span class="line"><span class="literal">Yes</span></span><br><span class="line"><span class="literal">Yes</span></span><br><span class="line"><span class="string">ERR</span></span><br></pre></td></tr></table></figure>
+<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">8</span><br><span class="line">2 O(1)</span><br><span class="line">F i 1 1</span><br><span class="line">E</span><br><span class="line">2 O(n^1)</span><br><span class="line">F x 1 n</span><br><span class="line">E</span><br><span class="line">1 O(1)</span><br><span class="line">F x 1 n</span><br><span class="line">4 O(n^2)</span><br><span class="line">F x 5 n</span><br><span class="line">F y 10 n</span><br><span class="line">E</span><br><span class="line">E</span><br><span class="line">4 O(n^2)</span><br><span class="line">F x 9 n</span><br><span class="line">E</span><br><span class="line">F y 2 n</span><br><span class="line">E</span><br><span class="line">4 O(n^1)</span><br><span class="line">F x 9 n</span><br><span class="line">F y n 4</span><br><span class="line">E</span><br><span class="line">E</span><br><span class="line">4 O(1)</span><br><span class="line">F y n 4</span><br><span class="line">F x 9 n</span><br><span class="line">E</span><br><span class="line">E</span><br><span class="line">4 O(n^2)</span><br><span class="line">F x 1 n</span><br><span class="line">F x 1 10</span><br><span class="line">E</span><br><span class="line">E</span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Yes</span><br><span class="line">Yes</span><br><span class="line">ERR</span><br><span class="line">Yes</span><br><span class="line">No</span><br><span class="line">Yes</span><br><span class="line">Yes</span><br><span class="line">ERR</span><br></pre></td></tr></table></figure>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>首先我们肯定一眼就能看出这题是个没有任何优化的<big><big><big>大模拟</big></big></big></p>
 <p>那么如何模拟？ </p>
 <p>首先我们为了方便，把循环体离线下来，用字符串存着 </p>
@@ -576,7 +595,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

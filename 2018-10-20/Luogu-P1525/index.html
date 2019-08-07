@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -395,8 +414,8 @@
 <p>那么，应如何分配罪犯，才能使 Z 市长看到的那个冲突事件的影响力最小？这个最小值是多少？</p>
 <h1 id="Input-Output-格式-amp-样例"><a href="#Input-Output-格式-amp-样例" class="headerlink" title="Input / Output 格式 &amp; 样例"></a>Input / Output 格式 &amp; 样例</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>每行中两个数之间用一个空格隔开。第一行为两个正整数N,M，分别表示罪犯的数目以及存在仇恨的罪犯对数。接下来的M行每行为三个正整数$a_j,b_j,c_j$，表示$a_j$号和$b_j$号罪犯之间存在仇恨，其怨气值为$c_j$。数据保证$1&lt;aj≤bj≤N,0 &lt; cj≤ 1,000,000,000$，且每对罪犯组合只出现一次。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>共 1 行，为 Z 市长看到的那个冲突事件的影响力。如果本年内监狱中未发生任何冲突事件，请输出 0。</p>
-<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">4 </span><span class="number">6</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">4</span> <span class="number">2534</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span> <span class="number">3512</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">28351</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span> <span class="number">6618</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">4</span> <span class="number">1805</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">4</span> <span class="number">12884</span></span><br></pre></td></tr></table></figure>
-<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3512</span></span><br></pre></td></tr></table></figure>
+<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">4 6</span><br><span class="line">1 4 2534</span><br><span class="line">2 3 3512</span><br><span class="line">1 2 28351</span><br><span class="line">1 3 6618</span><br><span class="line">2 4 1805</span><br><span class="line">3 4 12884</span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3512</span><br></pre></td></tr></table></figure>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>显然这是一个并查集</p>
 <p>首先我们把输入记录下来，按照权值从大到小排个序 <br><br>然后对于每一条关系，如果它们的祖先相同，就说明发生了冲突，此时直接输出 + return 0就好 <br><br>否则就进行合并</p>
 <p>如何合并？ <br><br>根据“敌人的敌人就是朋友”的原则，我们维护一个<code>Enemy[i]</code>表示<code>i</code>的的敌人 <br><br>然后对于每一个人，更新它的敌人（如果它的敌人目前没被更新过）<br><br>否则就合并另一个人和他的敌人</p>
@@ -549,7 +568,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

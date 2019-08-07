@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -395,7 +414,7 @@
 <p>每组数据的第二行包含n个正整数a0，a1，a2，……，an（1≤ai≤1000,000,000），表示序列中的每个数。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>对于每组数据，输出一行，包含一个整数，表示该组数据的h因子 。</p>
 <h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
 <h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>首先要把题看懂！！！</p>
 <p>首先要把题看懂！！！</p>
 <p>首先要把题看懂！！！</p>
@@ -410,8 +429,8 @@
 <h2 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行包含一个正整数T（1≤T≤100），表示有多少组数据。</p>
 <p>对于每组数据，只有单独一行，包含一个仅由小写字母组成的字符串。保证字符串的长度不超过100。</p>
 <h2 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h2><p>对于每组数据，输出一行，包含一个整数，表示最少的操作数。</p>
-<h2 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line">ncncn</span><br><span class="line">aaaaba</span><br><span class="line">aaaabb</span><br></pre></td></tr></table></figure>
-<h2 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h2 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">ncncn</span><br><span class="line">aaaaba</span><br><span class="line">aaaabb</span><br></pre></td></tr></table></figure>
+<h2 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
 <h2 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h2><p><del>简单分析之后，</del>我们发现满足题目要求的字符串存在当且仅当这个字符串的奇数位、偶数位分别相同</p>
 <p>那么直接暴力就好</p>
 <p>我们枚举每一个奇数位上的字母，计算有多少个奇数位上的字母与它不同（即要修改多少次）</p>
@@ -425,7 +444,7 @@
 <p>每组数据的接下来n行，每行包含2个正整数a和b，表示该张桌子原本在房间a，需要移动到房间b。</p>
 <h2 id="输出格式-2"><a href="#输出格式-2" class="headerlink" title="输出格式"></a>输出格式</h2><p>对于每组数据，输出一行，包含一个整数，表示移动完n张桌子所需要的最少时间 。</p>
 <h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">10</span> <span class="number">20</span></span><br><span class="line"><span class="number">30</span> <span class="number">40</span></span><br><span class="line"><span class="number">50</span> <span class="number">60</span></span><br><span class="line"><span class="number">70</span> <span class="number">80</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">1</span> <span class="number">3</span></span><br><span class="line"><span class="number">2</span> <span class="number">200</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">10</span> <span class="number">100</span></span><br><span class="line"><span class="number">20</span> <span class="number">80</span></span><br><span class="line"><span class="number">30</span> <span class="number">50</span></span><br></pre></td></tr></table></figure>
-<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">20</span></span><br><span class="line"><span class="number">30</span></span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10</span><br><span class="line">20</span><br><span class="line">30</span><br></pre></td></tr></table></figure>
 <h2 id="解析-2"><a href="#解析-2" class="headerlink" title="解析"></a>解析</h2><p>我们对于每一个桌子的区间头和区间尾都加一再除以二（将房间化为走廊）</p>
 <p>接着开一个长度为250的桶，把走廊长度累计到这个桶里面（暴力区间加1）</p>
 <p>最后取最大值，乘以10（一次移动桌子10十分钟）就是最终答案</p>
@@ -433,8 +452,8 @@
 <h1 id="T4-口算"><a href="#T4-口算" class="headerlink" title="T4. 口算"></a>T4. 口算</h1><h2 id="问题描述-3"><a href="#问题描述-3" class="headerlink" title="问题描述"></a>问题描述</h2><p>Alice口算能力非常强。Bob为了考考Alice，给了她一个长度为n的正整数序列a1，a2，……，an，同时抛出了m个问题。<br>​<br>每个问题给出三个正整数。<br>​<br>Alice需要快速判断出$a_l\times a_{l+1}\times \dots \times a_{r-1} \times a_r $ 是不是d的倍数。<br>​<br>Alice凭借她强大的口算能力快速给出了答案。然而Bob很菜，他并不知道正确答案是什么。请写一个程序帮助Bob计算这些问题的答案。</p>
 <h2 id="输入格式-3"><a href="#输入格式-3" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行包含一个正整数T（1≤T≤10），表示有多少组数据。<br>​<br>每组数据的第一行包含两个正整数n，m（1≤n,m≤100,000），分别表示序列长度以及问题个数。<br>​<br>第二行包含n个正整数a1，a2，……，an（1≤ai≤100,000），表示序列中的每个数。<br>​<br>接下来的m行，每行包含3个正整数l,r,d（1≤l≤r≤n，1≤d≤100,000），表示每个问题。</p>
 <h2 id="输出格式-3"><a href="#输出格式-3" class="headerlink" title="输出格式"></a>输出格式</h2><p>对于每个问题，输出一行，若是倍数，输出Yes，否则输出No。</p>
-<h2 id="输入样例-1"><a href="#输入样例-1" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">5</span></span><br><span class="line"><span class="symbol">6 </span><span class="number">4</span> <span class="number">7</span> <span class="number">2</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">24</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span> <span class="number">18</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">5</span> <span class="number">17</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">5</span> <span class="number">35</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span> <span class="number">21</span></span><br></pre></td></tr></table></figure>
-<h2 id="输出样例-1"><a href="#输出样例-1" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">Yes</span></span><br><span class="line"><span class="literal">No</span></span><br><span class="line"><span class="literal">No</span></span><br><span class="line"><span class="literal">Yes</span></span><br><span class="line"><span class="literal">Yes</span></span><br></pre></td></tr></table></figure>
+<h2 id="输入样例-1"><a href="#输入样例-1" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">5 5</span><br><span class="line">6 4 7 2 5</span><br><span class="line">1 2 24</span><br><span class="line">1 3 18</span><br><span class="line">2 5 17</span><br><span class="line">3 5 35</span><br><span class="line">1 3 21</span><br></pre></td></tr></table></figure>
+<h2 id="输出样例-1"><a href="#输出样例-1" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Yes</span><br><span class="line">No</span><br><span class="line">No</span><br><span class="line">Yes</span><br><span class="line">Yes</span><br></pre></td></tr></table></figure>
 <h2 id="数据规模"><a href="#数据规模" class="headerlink" title="数据规模"></a>数据规模</h2><p>【数据规模】</p>
 <p>对于30%数据，1≤T≤5，1≤n,m≤50，且保证对于每一个问题，$a_l\times a_{l+1}\times \dots \times a_{r-1} \times a_r $不超过long long的数据范围。</p>
 <p>对于60%数据，1≤T≤10，1≤n,m≤1000，1≤ai≤1000</p>
@@ -594,7 +613,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -415,7 +434,7 @@
 <center><small><small><small>图源cnblogs</small></small></small></center>
 
 <p>对于上面这一棵更复杂的树，我们考虑17和18的LCA</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">17 </span>-&gt;(跳<span class="number">4</span>) <span class="number">3</span></span><br><span class="line"><span class="symbol">18 </span>-&gt;(跳<span class="number">4</span>) <span class="number">5</span> -&gt;(跳<span class="number">1</span>) -&gt; <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">17 -&gt;(跳4) 3</span><br><span class="line">18 -&gt;(跳4) 5 -&gt;(跳1) -&gt; 3</span><br></pre></td></tr></table></figure>
 <p>是不是快多了，跳的次数大大减小</p>
 <p>时间复杂度$O(nlogn)$</p>
 <h1 id="LCA-的代码-amp-实现流程"><a href="#LCA-的代码-amp-实现流程" class="headerlink" title="LCA 的代码 &amp; 实现流程"></a>LCA 的代码 &amp; 实现流程</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><p>首先我们要记录各个点的深度$depth[\ ]$和它们$2^i$级的祖先$father[\ ][\ ]$</p>
@@ -581,7 +600,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

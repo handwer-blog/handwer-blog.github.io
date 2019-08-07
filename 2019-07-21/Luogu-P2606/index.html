@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -392,9 +411,9 @@
 <h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>输入文件的第一行包含两个整数 n和p，含义如上所述。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出文件中仅包含一个整数，表示计算1,2,⋯, N的排列中， Magic排列的个数模 p的值。</p>
 <h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><p>输入样例</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">20 </span><span class="number">23</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20 23</span><br></pre></td></tr></table></figure>
 <p>输出样例</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">16</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">16</span><br></pre></td></tr></table></figure>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>100%的数据中，1 ≤N ≤ 10^6, P≤ 10^9，p是一个质数。</p>
 <h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>考虑这么一个事情：<br><br>$P_i &gt; P_{i / 2}$放到一棵树上是什么？<br>把$P_i$看作第$i$个点的权值，那么…… <br>第$i$个点的权值比第$i/2$个点的权值要大，也就是第$i$个点的权值要比第$i \times 2$个点的权值要小……<br>想一想二叉树的表示方法……这好像是一个小根堆？</p>
 <p>问题转化为了：求1-n的所有排列中，可以构成一个小根堆的排列的个数</p>
@@ -552,7 +571,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

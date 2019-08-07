@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -421,10 +440,10 @@
 <h2 id="输入输出格式-amp-样例-2"><a href="#输入输出格式-amp-样例-2" class="headerlink" title="输入输出格式 &amp; 样例"></a>输入输出格式 &amp; 样例</h2><p>输入格式：<br>输入文件 lango.in 共 8 行， 每行 8 个字符；“.”代表一个空格；“B”代表黑子，“W” 代表白子。</p>
 <p>输出格式：<br>输出文件 lango.out 共一行， 有一个整数， 表示一步中黑方能吃掉白子的最大数， 如果无法吃掉就输出“0”。</p>
 <p>输入输出样例<br>输入样例#1： </p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">........</span><br><span class="line">........</span><br><span class="line">........</span><br><span class="line">...BW...</span><br><span class="line">...WB...</span><br><span class="line">........</span><br><span class="line">........</span><br><span class="line">........</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">........</span><br><span class="line">........</span><br><span class="line">........</span><br><span class="line">...BW...</span><br><span class="line">...WB...</span><br><span class="line">........</span><br><span class="line">........</span><br><span class="line">........</span><br></pre></td></tr></table></figure>
 <p>（这个说实话不等宽不行</p>
 <p>输出样例#1： </p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1</span><br></pre></td></tr></table></figure>
 <h2 id="解析-2"><a href="#解析-2" class="headerlink" title="解析"></a>解析</h2><p><del><big><big><big>暴！力！能！过！</big></big></big></del><br><br><br><del><small><small>输出0拿9分</small></small></del></p>
 <h3 id="暴力算法"><a href="#暴力算法" class="headerlink" title="暴力算法"></a>暴力算法</h3><p>数据范围如此之小，我们不如直接枚举所有空格点，对这个点进行八向扩展，累加答案，最后取$max$即可</p>
 <h3 id="正解"><a href="#正解" class="headerlink" title="正解"></a>正解</h3><p>当然是DFS<br>我们还是枚举每一个点，只不过这次不暴力扩展了。<br>我们用<code>dx[]</code>和<code>dy[]</code>来记八个方向，根据它来扩展。<br><code>dfs(int now, int x, int y)</code>中的<code>now</code>就表示现在是第<code>now</code>个方向</p>
@@ -606,7 +625,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

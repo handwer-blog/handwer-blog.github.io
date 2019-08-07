@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -395,8 +414,8 @@
 <h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>输入文件第一行是两个正整数n和m，表示字典D中有n个单词，且有m段文章需要被处理。之后的n行每行描述一个单词，再之后的m行每行描述一段文章。</p>
 <p>其中1&lt;=n, m&lt;=20，每个单词长度不超过10，每段文章长度不超过1M。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>对于输入的每一段文章，你需要输出这段文章在字典D可以被理解的最长前缀的位置。</p>
-<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例-1"><a href="#输入样例-1" class="headerlink" title="输入样例#1"></a>输入样例#1</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span> <span class="number">3</span> </span><br><span class="line"><span class="keyword">is</span></span><br><span class="line"><span class="built_in">name</span></span><br><span class="line">what</span><br><span class="line">your</span><br><span class="line">whatisyourname</span><br><span class="line">whatisyouname</span><br><span class="line">whaisyourname</span><br></pre></td></tr></table></figure>
-<h2 id="输出样例-1"><a href="#输出样例-1" class="headerlink" title="输出样例#1"></a>输出样例#1</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">14 </span> （整段文章’whatisyourname’都能被理解）</span><br><span class="line"><span class="symbol">6 </span> （前缀’whatis’能够被理解）</span><br><span class="line"><span class="symbol">0 </span> （没有任何前缀能够被理解）</span><br></pre></td></tr></table></figure>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例-1"><a href="#输入样例-1" class="headerlink" title="输入样例#1"></a>输入样例#1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">4 3 </span><br><span class="line">is</span><br><span class="line">name</span><br><span class="line">what</span><br><span class="line">your</span><br><span class="line">whatisyourname</span><br><span class="line">whatisyouname</span><br><span class="line">whaisyourname</span><br></pre></td></tr></table></figure>
+<h2 id="输出样例-1"><a href="#输出样例-1" class="headerlink" title="输出样例#1"></a>输出样例#1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">14  （整段文章’whatisyourname’都能被理解）</span><br><span class="line">6  （前缀’whatis’能够被理解）</span><br><span class="line">0  （没有任何前缀能够被理解）</span><br></pre></td></tr></table></figure>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这里选用 Trie 来做</p>
 <hr>
 <p>首先把所有的单词扔进树里，记一下最长单词的长度</p>
@@ -552,7 +571,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

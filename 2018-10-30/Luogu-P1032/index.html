@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -403,8 +422,8 @@
 <p>所有字符串长度的上限为$20$。</p>
 <h2 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h2><p>输出至屏幕。格式如下：</p>
 <p>若在$10$步（包含$10$步）以内能将$A$变换为$B$，则输出最少的变换步数；否则输出”NO ANSWER!”</p>
-<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">abcd xyz</span><br><span class="line"><span class="keyword">abc</span> <span class="keyword">xu</span></span><br><span class="line">ud <span class="keyword">y</span></span><br><span class="line"><span class="keyword">y</span> yz</span><br></pre></td></tr></table></figure>
-<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">abcd xyz</span><br><span class="line">abc xu</span><br><span class="line">ud y</span><br><span class="line">y yz</span><br></pre></td></tr></table></figure>
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>这是一个 BFS</p>
 <p>题目刚上来就有一个坑 <br><br>输入不给行数 只知道最多六行 <br><br>于是我们用一个变量<code>l</code>来记录输入的行数 <br><br>我这里选择用<code>A[0]</code>和<code>B[0]</code>来存两个原字符串</p>
 <p>首先如果<code>l == 0</code>而且<code>A[0] != B[0]</code>，那直接输出<code>NO ANSWER!</code></p>
@@ -561,7 +580,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

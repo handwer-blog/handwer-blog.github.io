@@ -52,6 +52,25 @@
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
 
 
 
@@ -397,7 +416,7 @@
 <p>于是我们考虑在优化的思想基础上进行再次优化。</p>
 <hr>
 <p>在此之前，我们首先要解决一个棘手的问题——字符串的长度。<br>一个字符串子串的对称轴是在字母中间还是在字母上，是由子串长度为偶数还是奇数决定的。于是，为了统一对于奇数长度字符串和偶数长度字符串的做法，我们需要对字符串进行修改。（代码见「代码实现」<code>Pre()</code>部分）</p>
-<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">就比如说</span><br><span class="line"> - - - - - -</span><br><span class="line">|<span class="string">%</span>|<span class="string">%</span>|<span class="string">%</span>|<span class="string">w</span>|<span class="string">y</span>|<span class="string">h</span>|</span><br><span class="line">我们要用一些无关紧要的字符填一下</span><br><span class="line"> - - - - - - - - - - -</span><br><span class="line">|<span class="string">%</span>|<span class="string">!</span>|<span class="string">%</span>|<span class="string">!</span>|<span class="string">%</span>|<span class="string">!</span>|<span class="string">w</span>|<span class="string">!</span>|<span class="string">y</span>|<span class="string">!</span>|<span class="string">h</span>|</span><br><span class="line">这样更好处理</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">就比如说</span><br><span class="line"> - - - - - -</span><br><span class="line">|%|%|%|w|y|h|</span><br><span class="line">我们要用一些无关紧要的字符填一下</span><br><span class="line"> - - - - - - - - - - -</span><br><span class="line">|%|!|%|!|%|!|w|!|y|!|h|</span><br><span class="line">这样更好处理</span><br></pre></td></tr></table></figure>
 <p>修改完了之后，就是真正的<code>Manacher()</code>过程了<br>首先，我们要用一个变量<code>maxRight</code>记录「当前的 最靠右的 回文子串的 右端点」，和一个变量<code>mid</code>记录「当前的 最靠右的 回文子串的 对称轴所在的 字符的 下标」，注意这里的<code>mid</code>是可以不赋初值的</p>
 <p>我们循环枚举<strong>经过处理的字符串</strong>的每一个字符。对于每一个字符的下标<code>i</code>，如果<code>i &lt; maxRight</code>，那么我们就可以获取<code>external[i]</code>的部分信息（<code>external[i]</code>的意义和上文相同），否则就只能将<code>external[i]</code>设为1</p>
 <p>接着就是和暴力一样的扩展了，我这里选择用<code>for</code>语句实现（</p>
@@ -550,7 +569,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
