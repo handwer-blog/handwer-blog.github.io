@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="图论,生成树,最小生成树," />
 
 
 
@@ -107,13 +107,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Handwer&#39;s Blog">
-<meta property="og:url" content="https://blog.handwer-std.top/tags/五校联考/index.html">
+<meta name="description" content="这是最小生成树？">
+<meta name="keywords" content="图论,生成树,最小生成树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BZOJ3714《Kuglarz》">
+<meta property="og:url" content="https://blog.handwer-std.top/2019-08-15/BZOJ3714/index.html">
 <meta property="og:site_name" content="Handwer&#39;s Blog">
+<meta property="og:description" content="这是最小生成树？">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-15T01:19:38.816Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Handwer&#39;s Blog">
+<meta name="twitter:title" content="BZOJ3714《Kuglarz》">
+<meta name="twitter:description" content="这是最小生成树？">
 
 
 
@@ -143,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.handwer-std.top/tags/五校联考/"/>
+  <link rel="canonical" href="https://blog.handwer-std.top/2019-08-15/BZOJ3714/"/>
 
 
 
 
 
-  <title>标签: 五校联考 | Handwer's Blog</title>
+  <title>BZOJ3714《Kuglarz》 | Handwer's Blog</title>
   
 
 
@@ -168,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -306,54 +311,199 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>五校联考<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.handwer-std.top/2019-08-15/BZOJ3714/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Handwer STD">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/NewAvatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Handwer's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018-08-26/2018FSExamRound1T1/" itemprop="url">
-              
-                <span itemprop="name">「五校联考」Round#1 Day1&amp;Day2 T1</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">BZOJ3714《Kuglarz》</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-26T19:14:39+08:00"
-              content="2018-08-26" >
-          08-26
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T09:09:58+08:00">
+                2019-08-15
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019-08-15/BZOJ3714/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019-08-15/BZOJ3714/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+   		  
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>这是最小生成树？</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>魔术师的桌子上有n个杯子排成一行，编号为1,2,…,n，其中某些杯子底下藏有一个小球，如果你准确地猜出是哪些杯子，你就可以获得奖品。花费c_ij元，魔术师就会告诉你杯子i,i+1,…,j底下藏有球的总数的奇偶性。<br>采取最优的询问策略，你至少需要花费多少元，才能保证猜出哪些杯子底下藏着球？</p>
+<h1 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h1><p>第一行一个整数n(1&lt;=n&lt;=2000)。<br>第i+1行(1&lt;=i&lt;=n)有n+1-i个整数，表示每一种询问所需的花费。其中c_ij（对区间[i,j]进行询问的费用，1&lt;=i&lt;=j&lt;=n,1&lt;=c_ij&lt;=10^9）为第i+1行第j+1-i个数。</p>
+<h1 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h1><p>输出一个整数，表示最少花费。</p>
+<h1 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">5  </span><br><span class="line">1 2 3 4 5  </span><br><span class="line">4 3 2 1  </span><br><span class="line">3 4 5  </span><br><span class="line">2 1  </span><br><span class="line">5</span><br></pre></td></tr></table></figure>
+<h1 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7</span><br></pre></td></tr></table></figure>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p><del>从代码里复制过来的</del></p>
+<p>知道两段杯子的奇偶性，相当于知道左边杯子左边的缝到右边杯子右边的缝到奇偶性</p>
+<p>然后显然这个东西具有传递性，即知道缝a到缝b、缝b到缝c的奇偶性 $\Leftrightarrow$ 缝a到缝c的奇偶性</p>
+<p>知道所有数列要保证缝两两之间的奇偶性都要知道</p>
+<p>那么就可以把缝抽象成点，缝两两之间的奇偶性信息抽象成边，边权为询问的代价</p>
+<p>一遍最小生成树完事</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  BZOJ3714.cpp</span></span><br><span class="line"><span class="comment">//  Debugging</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by HandwerSTD on 2019/8/15.</span></span><br><span class="line"><span class="comment">//  Copyright © 2019 HandwerSTD. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="meta-string">"r"</span>, stdin)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="meta-string">"w"</span>, stdout)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rap(a,s,t,i) for (int a = s; a &lt;= t; a += i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> basketball(a,t,s,i) for (int a = t; a &gt; s; a -= i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> countdown(s) while (s --&gt; 0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> lli;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123; <span class="keyword">int</span> x; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x); <span class="keyword">return</span> x; &#125;</span><br><span class="line"><span class="function">lli <span class="title">getll</span><span class="params">()</span> </span>&#123; <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> x; <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;x); <span class="keyword">return</span> x; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 知道两段杯子的奇偶性，相当于知道左边杯子左边的缝到右边杯子右边的缝到奇偶性</span></span><br><span class="line"><span class="comment"> * 然后显然这个东西具有传递性，即知道缝a到缝b、缝b到缝c的奇偶性 &lt;=&gt; 缝a到缝c的奇偶性</span></span><br><span class="line"><span class="comment"> * 知道所有数列要保证缝两两之间的奇偶性都要知道</span></span><br><span class="line"><span class="comment"> * 那么就可以把缝抽象成点，缝两两之间的奇偶性信息抽象成边，边权为询问的代价</span></span><br><span class="line"><span class="comment"> * 一遍最小生成树完事</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">UnionFind</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> u[MAXN];</span><br><span class="line">    </span><br><span class="line">    UnionFind() &#123; <span class="built_in">memset</span>(u, <span class="number">0</span>, <span class="keyword">sizeof</span> u); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Init</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= x; ++i) u[i] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123; <span class="keyword">return</span> u[x] == x ? x : (u[x] = Find(u[x])); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        x = Find(x); y = Find(y);</span><br><span class="line">        <span class="keyword">if</span> (x == y) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        u[x] = y;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; U;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> u, v, w;</span><br><span class="line">    </span><br><span class="line">    Edge(<span class="keyword">int</span> u = <span class="number">0</span>, <span class="keyword">int</span> v = <span class="number">0</span>, <span class="keyword">int</span> w = <span class="number">0</span>) : u(u), v(v), w(w) &#123;&#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Edge &amp;that) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> w &lt; that.w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, cnt;</span><br><span class="line">lli ans;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;Edge&gt; edge;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Kruskal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//    std::sort(edge + 1, edge + 1 + cnt);</span></span><br><span class="line">    <span class="built_in">std</span>::sort(edge.begin(), edge.end());</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cnt; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (U.Union(edge[i].u, edge[i].v)) &#123;</span><br><span class="line">            <span class="comment">//            printf("choosed edge[%d] = &#123; %d %d %d &#125;\n", i, edge[i].u, edge[i].v, edge[i].w);</span></span><br><span class="line">            ++tot; ans += <span class="number">1l</span>l * edge[i].w;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n = getint();</span><br><span class="line">    U.Init(n + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt;= n; ++j) &#123;</span><br><span class="line">            <span class="keyword">int</span> x = getint();</span><br><span class="line">            edge.push_back(Edge(i, j, x));</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cnt = (<span class="keyword">int</span>) edge.size();</span><br><span class="line">    Kruskal();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Handwer STD
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.handwer-std.top/2019-08-15/BZOJ3714/" title="BZOJ3714《Kuglarz》">https://blog.handwer-std.top/2019-08-15/BZOJ3714/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图论/" rel="tag"># 图论</a>
+          
+            <a href="/tags/生成树/" rel="tag"># 生成树</a>
+          
+            <a href="/tags/最小生成树/" rel="tag"># 最小生成树</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019-08-14/Articles-Moving-To-cnblogs/" rel="next" title="关于新开的 cnblogs 博客的一些说明">
+                <i class="fa fa-chevron-left"></i> 关于新开的 cnblogs 博客的一些说明
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019-10-31/BulletinBoard/" rel="prev" title="公告栏">
+                公告栏 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -361,6 +511,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -381,8 +538,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -472,6 +638,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Input"><span class="nav-number">2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Output"><span class="nav-number">3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sample-Input"><span class="nav-number">4.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sample-Output"><span class="nav-number">5.</span> <span class="nav-text">Sample Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解析"><span class="nav-number">6.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">7.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -638,6 +820,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
