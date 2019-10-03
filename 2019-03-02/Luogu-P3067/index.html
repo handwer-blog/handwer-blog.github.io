@@ -6,7 +6,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
+<head><link rel=manifest href=/manifest.json>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="USACO,搜索,Meet in the middle," />
+  <meta name="keywords" content="搜索,USACO,Meet in the middle," />
 
 
 
@@ -108,7 +108,7 @@
 
 
 <meta name="description" content="Meet in the middle + 状态压缩">
-<meta name="keywords" content="USACO,搜索,Meet in the middle">
+<meta name="keywords" content="搜索,USACO,Meet in the middle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="洛谷P3067《[USACO12OPEN]平衡的奶牛群Balanced Cow Subsets》">
 <meta property="og:url" content="https://blog.handwer-std.top/2019-03-02/Luogu-P3067/index.html">
@@ -475,9 +475,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/USACO/" rel="tag"># USACO</a>
-          
             <a href="/tags/搜索/" rel="tag"># 搜索</a>
+          
+            <a href="/tags/USACO/" rel="tag"># USACO</a>
           
             <a href="/tags/Meet-in-the-middle/" rel="tag"># Meet in the middle</a>
           
@@ -1293,5 +1293,10 @@
 
   
 
-</body>
+<script>if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js?t=1570064314855')
+    .then(function () {console.log('ServiceWorker Register Successfully.')})
+    .catch(function (e) {console.error(e)});
+}
+</script></body>
 </html>
