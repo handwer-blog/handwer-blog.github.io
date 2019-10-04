@@ -28,11 +28,11 @@ var precacheUrls = [];
 
   precacheUrls.push('/2018-03-05/windows10/');
 
+  precacheUrls.push('/2019-10-03/ChinaRemainderTheroem/');
+
   precacheUrls.push('/2019-10-02/Luogu-P1168/');
 
   precacheUrls.push('/2019-08-18/Luogu-P2158-BZOJ2190/');
-
-  precacheUrls.push('/2019-08-15/HDU2196/');
 
 toolbox.precache(precacheUrls);
 toolbox.options = {"networkTimeoutSeconds":20};
