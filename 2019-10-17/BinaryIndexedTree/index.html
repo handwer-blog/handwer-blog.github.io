@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><link rel=manifest href=/manifest.json>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/NewAvatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/NewAvatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/NewAvatar.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/NewAvatar.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="树,数据结构,树状数组,模版," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Handwer's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="高效又好写的数据结构">
+<meta name="keywords" content="树,数据结构,树状数组,模版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树状数组学习笔记">
+<meta property="og:url" content="https://blog.handwer-std.top/2019-10-17/BinaryIndexedTree/index.html">
+<meta property="og:site_name" content="Handwer&#39;s Blog">
+<meta property="og:description" content="高效又好写的数据结构">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/17/KAb2Se.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/17/KE3Zkj.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/17/KEdzbq.png">
+<meta property="og:updated_time" content="2019-10-17T13:07:35.619Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树状数组学习笔记">
+<meta name="twitter:description" content="高效又好写的数据结构">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/10/17/KAb2Se.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.handwer-std.top/2019-10-17/BinaryIndexedTree/"/>
+
+
+
+
+
+  <title>树状数组学习笔记 | Handwer's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Handwer's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-frlink">
+          <a href="/frlink/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            我的朋友
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.handwer-std.top/2019-10-17/BinaryIndexedTree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Handwer STD">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/NewAvatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Handwer's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">树状数组学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-17T15:38:38+08:00">
+                2019-10-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019-10-17/BinaryIndexedTree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019-10-17/BinaryIndexedTree/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+   		  
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>高效又好写的数据结构</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><strong>树状数组</strong>或<strong>二叉索引树</strong>（英语：Binary Indexed Tree），又以其发明者命名为Fenwick树，最早由Peter M. Fenwick于1994年以A New Data Structure for Cumulative Frequency Tables为题发表在SOFTWARE PRACTICE AND EXPERIENCE。其初衷是解决数据压缩里的累积频率（Cumulative Frequency）的计算问题，现多用于高效计算数列的前缀和， 区间和。它可以以${\displaystyle O(\log n)}$的时间得到任意前缀和${\displaystyle \sum _{i=1}^{j}A[i],1&lt;=j&lt;=N}$!，并同时支持在${\displaystyle O(\log n)}$时间内支持动态单点值的修改。空间复杂度${\displaystyle O(n)}$。</p>
+<p style="text-align: right">——Wikipedia</p>
+
+<p>简单的说，树状数组就是一个便于在 $O(\log n)$ 时间内维护一个数列 / 矩阵的前缀和，可以支持单点修改、查询，区间修改、查询的数据结构。</p>
+<p>依据支持操作的不同（包含关系），我这里把它分为六类：</p>
+<ul>
+<li>支持序列单点加减、区间和查询的树状数组</li>
+<li>支持序列区间加减、单点查询的树状数组</li>
+<li>支持序列区间加减、区间和查询的树状数组</li>
+<li>支持矩阵单点加减、子矩阵和查询的树状数组</li>
+<li>支持矩阵的子矩阵加减、单点查询的树状数组</li>
+<li>支持矩阵的子矩阵加减、子矩阵和查询的树状数组</li>
+</ul>
+<p>这些会一个一个的讲。</p>
+<h1 id="序列操作"><a href="#序列操作" class="headerlink" title="序列操作"></a>序列操作</h1><h2 id="单点加减、区间和查询"><a href="#单点加减、区间和查询" class="headerlink" title="单点加减、区间和查询"></a>单点加减、区间和查询</h2><p>这个是最基础的树状数组，应该没有人不会吧……</p>
+<p>原理就是通过维护前缀和，修改的时候像暴力维护前缀和一样一个一个往后加，不过每次增长的值不是1而是lowbit，其中“一个数取lowbit能跳到哪”这个关系连边后就形成了一个二叉搜索树。</p>
+<blockquote>
+<p>按照Peter M. Fenwick的说法，正如所有的整数都可以表示成2的幂和，我们也可以把一串序列表示成一系列子序列的和。采用这个想法，我们可将一个前缀和划分成多个子序列的和，而划分的方法与数的2的幂和具有极其相似的方式。一方面，子序列的个数是其二进制表示中1的个数，另一方面，子序列代表的f[i]的个数也是2的幂。</p>
+<p style="text-align: right">——Wikipedia</p>
+</blockquote>
+<p><img src="https://s2.ax1x.com/2019/10/17/KAb2Se.png" alt="KAb2Se.png"></p>
+<p>比如说这一棵就是八个元素的树状数组，对照下面的表可以发现上面的连边规律（点下面的是编号，请自动忽略根节点 9 以及那条边）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1&apos;s lowbit = 1, 1 + lowbit = 2</span><br><span class="line">2&apos;s lowbit = 2, 2 + lowbit = 4</span><br><span class="line">3&apos;s lowbit = 1, 3 + lowbit = 4</span><br><span class="line">4&apos;s lowbit = 4, 4 + lowbit = 8</span><br><span class="line">5&apos;s lowbit = 1, 5 + lowbit = 6</span><br><span class="line">6&apos;s lowbit = 2, 6 + lowbit = 8</span><br><span class="line">7&apos;s lowbit = 1, 7 + lowbit = 8</span><br><span class="line">8&apos;s lowbit = 8, 8 + lowbit = 16</span><br><span class="line">9&apos;s lowbit = 1, 9 + lowbit = 10</span><br><span class="line">10&apos;s lowbit = 2, 10 + lowbit = 12</span><br></pre></td></tr></table></figure>
+<p>那么代码就很容易写出来了：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n, tree[MAX_SIZE];</span><br><span class="line"><span class="comment">// n 为元素个数，tree[] 为树状数组维护的前缀和</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123; <span class="keyword">return</span> (x) &amp; (-x); &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 将 pos 位置的数加上 x</span></span><br><span class="line">    <span class="keyword">for</span> (; pos &lt;= n; pos += lowbit(pos)) tree[pos] += x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Query</span><span class="params">(<span class="keyword">int</span> pos)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 查询 [1,pos] 之间的数的和</span></span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (; pos &gt;= <span class="number">1</span>; pos -= lowbit(pos)) ret += tree[pos];</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rangeQuery</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 查询 [l,r] 之间的数的和</span></span><br><span class="line">    <span class="keyword">return</span> Query(r) - Query(l - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="区间加减、单点查询"><a href="#区间加减、单点查询" class="headerlink" title="区间加减、单点查询"></a>区间加减、单点查询</h2><p>不知道你们有没有听说过一个东西叫做「差分」</p>
+<p>定义差分数组 <code>d[i] = a[i] - a[i - 1]</code>，其中 <code>a[]</code> 表示原数列<br>那么对 <code>d[i]</code> 求一个前缀和就可以得出 <code>a[i]</code>的值了<br>举个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">数组下标从 0 开始，元素存储从 1 开始，a[0] = d[0] = 0</span><br><span class="line">a[] = &#123;0, 1, 3, 4, 2&#125;</span><br><span class="line">d[] = &#123;/, 1, 2, 2, -2&#125;</span><br></pre></td></tr></table></figure></p>
+<p>发现了什么？<br>$$\sum_{i = 1}^{n} d_i = a_i$$</p>
+<p>如何修改$\text{[L,R]}+x$？<br>先给结论：在$\text{L}$处$+x$，在$\text{R+1}$处$-x$<br>直观理解：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">下标从 1 开始。</span><br><span class="line">原数列：0 0 0 0 0 0</span><br><span class="line">按照上面的方法 [2,4]+x</span><br><span class="line">0 x 0 0 -x 0</span><br><span class="line">看看前缀和之后会发生什么……</span><br><span class="line">0 x x x 0 0</span><br><span class="line">！！！！！</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>而维护前缀和这种事情，树状数组最在行了</p>
+<p>可以写出代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n, a[MAXN], bit[MAXN];  </span><br><span class="line"><span class="comment">// n 为元素个数，a 为原数组，bit 为差分数组</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">int</span> x)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">for</span> (; pos &lt;= n; pos += lowbit(pos)) bit[pos] += x;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rangeModify</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    Modify(l, x); Modify(r + <span class="number">1</span>, -x);</span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Query</span><span class="params">(<span class="keyword">int</span> pos)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;  </span><br><span class="line">    <span class="keyword">for</span> (; pos &gt;= <span class="number">1</span>; pos -= lowbit(pos)) ret += bit[pos];  </span><br><span class="line">    <span class="keyword">return</span> ret;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span> to n increase <span class="number">1</span>) &#123;  </span><br><span class="line">        read a[i]</span><br><span class="line">        rangeModify(i, i, a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    read x, read y, read k </span><br><span class="line">    rangeModify(x, y, k);</span><br><span class="line">    <span class="comment">// 将 [x,y] 区间内的数加上 k  </span></span><br><span class="line">    ...</span><br><span class="line">    read k</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, Query(k));  </span><br><span class="line">    <span class="comment">// 查询 k 位置的元素</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="区间加减、区间和查询"><a href="#区间加减、区间和查询" class="headerlink" title="区间加减、区间和查询"></a>区间加减、区间和查询</h2><p><del>线段树天下第一</del><br>但是线段树难写、难调，常数还大，占空间还多。。。</p>
+<p>如果你只需要区间加减、区间和查询，树状数组无疑是你最好的选择</p>
+<hr>
+<p>区间加减维护一下差分数组就行了</p>
+<p>考虑区间和本质是</p>
+<p>$$\sum_{a = 1}^{p}\sum_{i = 1}^{a}d_i$$</p>
+<p>计算一下每个 $d_i$ 被算的次数，顺便把式子变换一下</p>
+<p>$$\sum_{a = 1}^{p}d_a \times (p - a + 1)$$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">举个例子</span><br><span class="line">比如说 p = 5 时，可以发现 </span><br><span class="line">ans = </span><br><span class="line">d[1] + </span><br><span class="line">d[1] + d[2] +</span><br><span class="line">d[1] + d[2] + d[3] + </span><br><span class="line">d[1] + d[2] + d[3] + d[4] + </span><br><span class="line">d[1] + d[2] + d[3] + d[4] + d[5]</span><br><span class="line">找一找规律就可以搞出上面的式子了</span><br></pre></td></tr></table></figure>
+<p>拆一下 $\sum$，可以变换成</p>
+<p>$$(p + 1)\sum_{a = 1}^{p}d_a - \sum_{a = 1}^{p}d_a \times a$$</p>
+<p>这样的话，只需要分别维护两个差分数组，一个记 $d_a$，一个记 $d_a \times a$ 就行</p>
+<p>修改$\text{[L,R] + }x$的时候，像上面<a href="#区间加减、单点查询">区间加减、单点查询</a>一样，把 $\text{[L]} + x,\text{[R+1]} - x$（对两个数组进行的修改可以合并到 <code>Modify()</code> 函数中，具体见代码）<br>查询的时候像上面<a href="#单点加减、区间和查询">单点加减、区间和查询</a>一样，是前缀和作差</p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码没有经过提交，仅进行了一些小样例测试！</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> lli;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;  </span><br><span class="line">lli ss[MAXN];  </span><br><span class="line">lli biti[MAXN], bitpi[MAXN];</span><br><span class="line"><span class="comment">// ss 表示原数组，biti 表示维护 d[a] 的数组， bitpi 表示维护 d[a] * a 的数组</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> pos, lli x)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> dx = pos;  </span><br><span class="line">    <span class="keyword">for</span> (; pos &lt;= n; pos += lowbit(pos)) &#123;  </span><br><span class="line">        <span class="comment">// 为了方便，可以把 rangeModify() 里的乘法挪到 Modify() 里面</span></span><br><span class="line">        biti[pos] += x; bitpi[pos] += x * <span class="number">1l</span>l * dx;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rangeModify</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, lli x)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// 这是把括号里的乘法挪到 Modify() 里面的写法</span></span><br><span class="line">    Modify(l, x); Modify(r + <span class="number">1</span>, -x);  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function">lli <span class="title">Query</span><span class="params">(<span class="keyword">int</span> pos)</span> </span>&#123;  </span><br><span class="line">    lli ret = <span class="number">0</span>, dx = pos;  </span><br><span class="line">    <span class="keyword">while</span> (pos &gt;= <span class="number">1</span>) &#123; ret += (dx + <span class="number">1</span>) * <span class="number">1l</span>l * biti[pos] - bitpi[pos]; pos -= lowbit(pos); &#125;  </span><br><span class="line">    <span class="keyword">return</span> ret;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function">lli <span class="title">rangeQuery</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123; <span class="keyword">return</span> Query(r) - Query(l - <span class="number">1</span>); &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="矩阵操作"><a href="#矩阵操作" class="headerlink" title="矩阵操作"></a>矩阵操作</h1><p>一维的操作都讲完了，那能不能把它推广到二维上面呢？答案是肯定的。<br>提前说一句，以下操作从访问$n$个元素变成了$nm$个元素，时间复杂度变为$O(\log(nm))$</p>
+<h2 id="单点加减、子矩阵和查询"><a href="#单点加减、子矩阵和查询" class="headerlink" title="单点加减、子矩阵和查询"></a>单点加减、子矩阵和查询</h2><p>前面说过，树状数组是利用前缀和的思想进行实现的，既然二维也有前缀和，何不照葫芦画瓢把而为树状数组搞出来呢？</p>
+<hr>
+<p>先来复习一下。</p>
+<p>$$\sum_{i = l}^{r} a_i = \sum_{i = 1}^{r} a_i - \sum_{i = 1}^{l - 1} a_i$$</p>
+<p>为了方便，定义 $f(x,y)=\sum_{i = 1}^{x}\sum_{j = 1}^{y}a_{i,j}$</p>
+<p>$$\sum_{i = x_1}^{x_2}\sum_{j = y_1}^{y_2}a_{i,j}=f(x_2,y_2)-f(x_1 - 1,y_2)-f(x_2,y_1-1)+f(x_1-1,y_1-1)$$</p>
+<p>直观来看，</p>
+<p><img src="https://s2.ax1x.com/2019/10/17/KE3Zkj.png" alt="KE3Zkj.png"></p>
+<p>定义$\text{Sum}(a,b,c,d)$为以$(a,b)$为左下角，$(c,d)$为右上角（对于矩阵是反着的）的矩阵元素之和，那么很显然能看出 $\text{Sum}(5,4,7,5)=\text{Sum}(1,1,7,5)-\text{Sum}(1,1,7,3)-\text{Sum}(1,1,4,5)+\text{Sum}(1,1,4,3)$，也就是四边形$\text{ABCD}-\text{ABGI}-\text{AHFD}+\text{AHEI}$元素的值</p>
+<p>二维树状数组和一位的除了多了一维之外没多大区别，手法从一维前缀和换到了二维前缀和</p>
+<p>看代码就知道了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码没有经过提交，仅进行了一些小样例测试！</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, q, bit[MAXN][MAXN];  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 是不是和一维的手法差不多（逃</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> w)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">for</span> (; x &lt;= n; x += lowbit(x)) &#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> fy = y; fy &lt;= m; fy += lowbit(fy)) &#123;  </span><br><span class="line">            <span class="comment">// 说一个坑：这里不要对 y 进行直接修改</span></span><br><span class="line">            <span class="comment">// 因为下一次循环 x 的时候需要用 y</span></span><br><span class="line">            <span class="comment">// 我当初在这里栽坑调了快 10min。。。</span></span><br><span class="line">            bit[x][fy] += w;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Query</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;  </span><br><span class="line">    <span class="keyword">for</span> (; x &gt;= <span class="number">1</span>; x -= lowbit(x)) &#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> fy = y; fy &gt;= <span class="number">1</span>; fy -= lowbit((fy))) &#123;  </span><br><span class="line">            ans += bit[x][fy];  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> ans;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">matrixQuery</span><span class="params">(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// x1 &lt;= x2, y1 &lt;= y2  </span></span><br><span class="line">    <span class="keyword">int</span> a = Query(x2, y2);  </span><br><span class="line">    <span class="keyword">int</span> b = Query(x1 - <span class="number">1</span>, y2);  </span><br><span class="line">    <span class="keyword">int</span> c = Query(x2, y1 - <span class="number">1</span>);  </span><br><span class="line">    <span class="keyword">int</span> d = Query(x1 - <span class="number">1</span>, y1 - <span class="number">1</span>);    </span><br><span class="line">    <span class="keyword">return</span> a - b - c + d;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="子矩阵加减、单点查询"><a href="#子矩阵加减、单点查询" class="headerlink" title="子矩阵加减、单点查询"></a>子矩阵加减、单点查询</h2><p>还记得<a href="#区间加减、单点查询">区间加减、单点查询</a>吗？<br>接下来把它推广到二维！</p>
+<hr>
+<p>查询手法一样的，二维前缀和</p>
+<p>如何修改$(x_1,y_1)\text{ to }(x_2,y_2)$？<br>先说结论：<br>$d[x_1][y_1] + x,d[x_1][y_2+1]-x,d[x_2+1][y_1]-x,d[x_2+1][y_2+1]+x$<br>直观理解：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">下标从 1 开始</span><br><span class="line">  1 2 3 4 5</span><br><span class="line">1 0 0 0 0 0</span><br><span class="line">2 0 0 0 0 0</span><br><span class="line">3 0 0 0 0 0</span><br><span class="line">4 0 0 0 0 0</span><br><span class="line">修改(1,2)-&gt;(4,3) + x</span><br><span class="line">  1  2  3  4  5</span><br><span class="line">1 0  0  0  0  0</span><br><span class="line">2 x  0  0  0 -x</span><br><span class="line">3 0  0  0  0  0</span><br><span class="line">4 -x 0  0  0  x</span><br><span class="line">前缀和：</span><br><span class="line">  1 2 3 4 5</span><br><span class="line">1 0 0 0 0 0</span><br><span class="line">2 x x x x 0</span><br><span class="line">3 x x x x 0</span><br><span class="line">4 0 0 0 0 0</span><br></pre></td></tr></table></figure></p>
+<p>放代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码没有经过提交，仅进行了一些小样例测试！</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, q, bit[MAXN][MAXN];  </span><br><span class="line"><span class="comment">// n,m 为矩阵大小，bit 为差分数组</span></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> w)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = x; i &lt;= n; i += lowbit(i)) &#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = y; j &lt;= m; j += lowbit(j)) &#123;  </span><br><span class="line">            bit[i][j] += w;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">matrixModify</span><span class="params">(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2, <span class="keyword">int</span> w)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// x1 &lt;= x2  </span></span><br><span class="line">    Modify(x1, y1, w); Modify(x1, y2 + <span class="number">1</span>, -w);  </span><br><span class="line">    Modify(x2 + <span class="number">1</span>, y1, -w); Modify(x2 + <span class="number">1</span>, y2 + <span class="number">1</span>, w);  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Query</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;  </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = x; i &gt;= <span class="number">1</span>; i -= lowbit(i)) &#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = y; j &gt;= <span class="number">1</span>; j -= lowbit(j)) &#123;  </span><br><span class="line">            ret += bit[i][j];  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> ret;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="子矩阵加减、子矩阵和查询"><a href="#子矩阵加减、子矩阵和查询" class="headerlink" title="子矩阵加减、子矩阵和查询"></a>子矩阵加减、子矩阵和查询</h2><p>最后一种操作，也是最难的操作</p>
+<p>……其实并不难，如果你把前面都学懂了。</p>
+<p>和<a href="#区间加减、区间和查询">区间加减、区间和查询</a>一样，先看看查询操作的本质</p>
+<p>$$<br>\sum_{i=1}^{x} \sum_{j=1}^{y} \sum_{k=1}^{i} \sum_{h=1}^{j} d[h][k]<br>$$</p>
+<p>先统计一下 $d[i][j]$ 被访问了多少次，然后<big><big>稍微</big></big>整理一下式子，变成</p>
+<!--$$
+{\sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times(x+1-i) \times(y+1-j)} \\= {(x+1)(y+1) \times \sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j]} \\ {-(y+1) \times \sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times i} \\ {-(x+1) \times \sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times j} \\ {\quad+\sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times i \times j}
+$$-->
+<p><img src="https://s2.ax1x.com/2019/10/17/KEdzbq.png" alt="KEdzbq.png"></p>
+<p>所以，实现区修区查需要维护四个差分数组！</p>
+<ul>
+<li>第一个：维护$d[i][j]$</li>
+<li>第二个：维护$d[i][j]\times i$</li>
+<li>第三个：维护$d[i][j]\times j$</li>
+<li>第四个：维护$d[i][j]\times i\times j$</li>
+</ul>
+<p>接下来是<strong>完整</strong>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  </span></span><br><span class="line"><span class="comment">// Created by HandwerSTD on 2019/10/17.  </span></span><br><span class="line"><span class="comment">//  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 洛谷 P4514 《上帝造题的七分钟》</span></span><br><span class="line"><span class="comment">// 常数略大。。开O2过的  </span></span><br><span class="line">  </span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;  </span></span></span><br><span class="line">  </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="meta-string">"r"</span>, stdin)  </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="meta-string">"w"</span>, stdout)  </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rap(a,s,t,i) for (int a = s; a &lt;= t; a += i)  </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> basketball(a,t,s,i) for (int a = t; a &gt; s; a -= i)  </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> countdown(s) while (s --&gt; 0)  </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)  </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) ((x &amp; (-x)))  </span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;  </span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;  </span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> lli;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123; <span class="keyword">int</span> x; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x); <span class="keyword">return</span> x; &#125;  </span><br><span class="line"><span class="function">lli <span class="title">getll</span><span class="params">()</span> </span>&#123; <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> x; <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;x); <span class="keyword">return</span> x; &#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2048</span> + <span class="number">10</span>;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> n, m, q;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">namespace</span> BIT &#123;  </span><br><span class="line">    <span class="keyword">int</span> d[MAXN][MAXN], di[MAXN][MAXN];  </span><br><span class="line">    <span class="keyword">int</span> dj[MAXN][MAXN], dij[MAXN][MAXN];  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> w)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = x; i &lt;= n; i += lowbit(i)) &#123;  </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = y; j &lt;= m; j += lowbit(j)) &#123;  </span><br><span class="line">                d[i][j] += w; di[i][j] += w * x;  </span><br><span class="line">                dj[i][j] += w * y; dij[i][j] += w * x * y;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">matrixModify</span><span class="params">(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2, <span class="keyword">int</span> w)</span> </span>&#123;  </span><br><span class="line">        Modify(x1, y1, w); Modify(x2 + <span class="number">1</span>, y2 + <span class="number">1</span>, w);  </span><br><span class="line">        Modify(x1, y2 + <span class="number">1</span>, -w); Modify(x2 + <span class="number">1</span>, y1, -w);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Query</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">int</span> ret = <span class="number">0</span>;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = x; i &gt;= <span class="number">1</span>; i -= lowbit(i)) &#123;  </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = y; j &gt;= <span class="number">1</span>; j -= lowbit(j)) &#123;  </span><br><span class="line">                ret += d[i][j] * (x + <span class="number">1</span>) * (y + <span class="number">1</span>)  </span><br><span class="line">                       - (y + <span class="number">1</span>) * di[i][j]  </span><br><span class="line">                       - (x + <span class="number">1</span>) * dj[i][j]  </span><br><span class="line">                       + dij[i][j];  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">return</span> ret;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">matrixQuery</span><span class="params">(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">int</span> a = Query(x2, y2);  </span><br><span class="line">        <span class="keyword">int</span> b = Query(x1 - <span class="number">1</span>, y1 - <span class="number">1</span>);  </span><br><span class="line">        <span class="keyword">int</span> c = Query(x1 - <span class="number">1</span>, y2);  </span><br><span class="line">        <span class="keyword">int</span> d = Query(x2, y1 - <span class="number">1</span>);  </span><br><span class="line">        <span class="keyword">return</span> a - c - d + b;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);  </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> _s; <span class="built_in">cin</span> &gt;&gt; _s;  </span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;  </span><br><span class="line"><span class="comment">//    rap (i, 1, n, 1) &#123;  </span></span><br><span class="line"><span class="comment">//        rap (j, 1, m, 1) &#123;  </span></span><br><span class="line"><span class="comment">//            int fx = 0;  </span></span><br><span class="line"><span class="comment">//            scanf("%d", &amp;fx);  </span></span><br><span class="line"><span class="comment">//            BIT::matrixModify(i, j, i, j, fx);  </span></span><br><span class="line"><span class="comment">//        &#125;  </span></span><br><span class="line"><span class="comment">//    &#125;  </span></span><br><span class="line">  <span class="keyword">char</span> ch = <span class="number">0</span>;  </span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; ch) &#123;  </span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">0</span>, b = <span class="number">0</span>, c = <span class="number">0</span>, d = <span class="number">0</span>;  </span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d;  </span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'L'</span>) &#123;  </span><br><span class="line">            <span class="keyword">int</span> delta = <span class="number">0</span>;  </span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; delta;  </span><br><span class="line">            BIT::matrixModify(a, b, c, d, delta);  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line"><span class="comment">//            scanf("\n");  </span></span><br><span class="line"><span class="comment">//            printf("%d\n", BIT::matrixQuery(a, b, c, d));  </span></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; BIT::matrixQuery(a, b, c, d) &lt;&lt; <span class="built_in">endl</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line"><span class="comment">//        getchar();  </span></span><br><span class="line">  &#125;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Handwer STD
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.handwer-std.top/2019-10-17/BinaryIndexedTree/" title="树状数组学习笔记">https://blog.handwer-std.top/2019-10-17/BinaryIndexedTree/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/树/" rel="tag"># 树</a>
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/树状数组/" rel="tag"># 树状数组</a>
+          
+            <a href="/tags/模版/" rel="tag"># 模版</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019-10-13/HDU6108/" rel="next" title="HDU6108《小C的倍数问题》">
+                <i class="fa fa-chevron-left"></i> HDU6108《小C的倍数问题》
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019-10-17/Cantor-Expansion/" rel="prev" title="「初赛」康托展开学习笔记">
+                「初赛」康托展开学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/NewAvatar.jpg"
+                alt="Handwer STD" />
+            
+              <p class="site-author-name" itemprop="name">Handwer STD</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">142</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/handwerstd" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:handwerstudotie@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.luogu.org/space/show?uid=56626" target="_blank" title="Luogu">
+                      
+                        <i class="fa fa-fw fa-code"></i>Luogu</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://t.me/handwer/" target="_blank" title="Telegram">
+                      
+                        <i class="fa fa-fw fa-telegram"></i>Telegram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#序列操作"><span class="nav-number">2.</span> <span class="nav-text">序列操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单点加减、区间和查询"><span class="nav-number">2.1.</span> <span class="nav-text">单点加减、区间和查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区间加减、单点查询"><span class="nav-number">2.2.</span> <span class="nav-text">区间加减、单点查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区间加减、区间和查询"><span class="nav-number">2.3.</span> <span class="nav-text">区间加减、区间和查询</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵操作"><span class="nav-number">3.</span> <span class="nav-text">矩阵操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单点加减、子矩阵和查询"><span class="nav-number">3.1.</span> <span class="nav-text">单点加减、子矩阵和查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子矩阵加减、单点查询"><span class="nav-number">3.2.</span> <span class="nav-text">子矩阵加减、单点查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子矩阵加减、子矩阵和查询"><span class="nav-number">3.3.</span> <span class="nav-text">子矩阵加减、子矩阵和查询</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Handwer STD</span>
+
+  
+</div>
+
+
+  <div class="powered-by" style="font-size:12px">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info" style="font-size:12px">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+<span class="post-meta-divider" style="font-size:12px">|</span>
+<span id="busuanzi_container_site_uv" style="font-size:12px">
+你是第<span id="busuanzi_value_site_uv" style="font-size:12px"></span>个来访问的dalao
+<span class="post-meta-divider" style="font-size:12px">|</span>
+这个博客已经被访问了<span id="busuanzi_value_site_pv" style="font-size:12px"></span>次
+</span>
+<div style="color:black;font-size:10px">
+<span class="from">————</span>
+</div>
+<div style="color:black;font-size:12px">
+<script type="text/javascript" src="https://api.imjad.cn/hitokoto/?cat=&amp;charset=utf-8&amp;length=50&amp;encode=js&amp;fun=sync&amp;source="></script><div id="hitokoto"><script>hitokoto()</script><span class="hitokoto" title=""></span></div>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz',
+        appKey: 'y8tzSOvAsnOqNYwRNQI7WG9v',
+        placeholder: '想说什么？',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "vertical";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script>if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js?t=1571319273788')
+    .then(function () {console.log('ServiceWorker Register Successfully.')})
+    .catch(function (e) {console.error(e)});
+}
+</script></body>
+</html>
