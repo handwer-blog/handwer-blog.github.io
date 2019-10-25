@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="Handwer&#39;s Blog">
 <meta property="og:description" content="人类智慧题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-30T15:27:14.548Z">
+<meta property="og:updated_time" content="2019-10-25T15:00:34.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="洛谷P2519《[HAOI2011]problem a》">
 <meta name="twitter:description" content="人类智慧题">
@@ -407,15 +407,11 @@
 <p>人类智慧题</p>
 </blockquote>
 <a id="more"></a>
-<h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>一次考试共有n个人参加，第i个人说：“有ai个人分数比我高，bi个人分数比我低。”问最少有几个人没有说真话(可能有相同的分数)</p>
-<h1 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h1><p>第一行一个整数n，接下来n行每行两个整数，第i+1行的两个整数分别代表ai、bi</p>
-<h1 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h1><p>一个整数，表示最少有几个人说谎</p>
-<h1 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3  </span><br><span class="line">2 0  </span><br><span class="line">0 2    </span><br><span class="line">2 2</span><br></pre></td></tr></table></figure>
-<h1 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1</span><br></pre></td></tr></table></figure>
-<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>我个人对「人类智慧题」的定义是「运用人脑求特殊解也想不出来的问题」</p>
+<p>由于一些原因，不对题面作出展示，请自行寻找</p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>我个人对「人类智慧题」对定义是「运用人脑求特殊解也想不出来的问题」</p>
 <p>第一眼看到这题的时候，我一脸问号<br>直到老师开始讲题……</p>
 <hr>
-<p>首先，把题目转化一下<br>对于每个学生，给定了有多少人成绩比他好，成绩比他差，那就把它转化为一个成绩区间，表示这个区间内的人（可能只有 1 个）成绩相同</p>
+<p>首先把题目转化一下<br>对于每个学生，给定了有多少成绩比他好、比他差，那就把数据转换为一个成绩区间，表示这个区间内的人（可能只有 1 个）成绩相同</p>
 <p>然后考虑一下「假话」的判断方式</p>
 <ol>
 <li>成绩比他好的 + 成绩比他差的 + 他 &gt; 总人数<br>这个请自行理解</li>
@@ -578,7 +574,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">145</span>
+                  <span class="site-state-item-count">146</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -591,7 +587,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -659,7 +655,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Input"><span class="nav-number">2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Output"><span class="nav-number">3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sample-Input"><span class="nav-number">4.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sample-Output"><span class="nav-number">5.</span> <span class="nav-text">Sample Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解析"><span class="nav-number">6.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">7.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#解析"><span class="nav-number">1.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">2.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
             
 
           </div>
@@ -1271,7 +1267,7 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1571570384840')
+  navigator.serviceWorker.register('/sw.js?t=1572046183786')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

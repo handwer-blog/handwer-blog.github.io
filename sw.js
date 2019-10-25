@@ -26,13 +26,13 @@ var precacheUrls = [];
 
   precacheUrls.push('/2019-10-31/BulletinBoard/');
 
+  precacheUrls.push('/2019-10-25/CF453A/');
+
   precacheUrls.push('/2019-10-20/LuoguP1074/');
 
   precacheUrls.push('/2019-10-20/LuoguP4514/');
 
   precacheUrls.push('/2019-10-20/LuoguP4145/');
-
-  precacheUrls.push('/2019-10-17/Cantor-Expansion/');
 
 toolbox.precache(precacheUrls);
 toolbox.options = {"networkTimeoutSeconds":20};
