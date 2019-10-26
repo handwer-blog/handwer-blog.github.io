@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="清北学堂,字符串,模拟,贪心," />
+  <meta name="keywords" content="清北学堂,贪心,字符串,模拟," />
 
 
 
@@ -108,7 +108,7 @@
 
 
 <meta name="description" content="暴力分！暴力分！">
-<meta name="keywords" content="清北学堂,字符串,模拟,贪心">
+<meta name="keywords" content="清北学堂,贪心,字符串,模拟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2018 Autumn 清北学堂普及刷题班 Day5 题解">
 <meta property="og:url" content="https://blog.handwer-std.top/2018-10-05/2018AutumnQBXTDay5/index.html">
@@ -154,7 +154,7 @@
 
 
 
-  <title>2018 Autumn 清北学堂普及刷题班 Day5 题解 | Handwer's Blog</title>
+  <title>2018 Autumn 清北学堂普及刷题班 Day5 题解 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -173,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -432,7 +432,7 @@
 <li>否则让<code>alphabet[i] -= k</code>，然后把<code>k</code>置为0，最后<code>break</code>掉即可</li>
 </ul>
 <p>此时，<code>alphabet</code>的意义已经从字母数量变成了<strong>经过删除后的</strong>还可输出字母数量</p>
-<p>之后，我们开一个bool数组<code>chk[i]</code>表示<code>str[i]</code>是否还能被输出，并<strong>倒序</strong>（注意是倒序，因为题目要求从前面开始删，显然我们要保留后面几位）枚举 $i\ (0 &lt; i &lt; n)$</p>
+<p>之后，我们开一个bool数组<code>chk[i]</code>表示<code>str[i]</code>是否还能被输出，并<strong>倒序</strong>（注意是倒序，因为题目要求从前面开始删，显然我们要保留后面几位）枚举 $i (0 &lt; i &lt; n)$</p>
 <ul>
 <li>当<code>alphabet[str[i] - &#39;a&#39;] &gt; 0</code>时，将<code>chk[i]</code>设为<code>true</code>并<code>--alphabet[str[i] - &#39;a&#39;]</code></li>
 </ul>
@@ -505,11 +505,11 @@
           
             <a href="/tags/清北学堂/" rel="tag"># 清北学堂</a>
           
+            <a href="/tags/贪心/" rel="tag"># 贪心</a>
+          
             <a href="/tags/字符串/" rel="tag"># 字符串</a>
           
             <a href="/tags/模拟/" rel="tag"># 模拟</a>
-          
-            <a href="/tags/贪心/" rel="tag"># 贪心</a>
           
         </div>
       
@@ -618,7 +618,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1311,9 +1311,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -159,7 +159,7 @@
 
 
 
-  <title>欧拉图学习笔记 | Handwer's Blog</title>
+  <title>欧拉图学习笔记 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -178,7 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -428,8 +428,10 @@
 <hr>
 <p>通俗地说，</p>
 <p>对于一个图的某条路径，如果能从一个点出发将这个图的所有边都不重复地走一遍，那么这条路径就被称为欧拉路；对于一个图的某条路径，如果能从一个点出发将这个图的所有边都不重复地走一遍并回到起点，那么这条路径就被称为欧拉回路。</p>
-<p>比如下图中的<br>$$ (A,B) \rightarrow (B,C) \rightarrow (C,D) \rightarrow (D,B) $$<br>就是一条欧拉路。<br><img src="/images/EulerPath-EulerCircuit/0.png" alt="0"></p>
-<p>比如下图中的<br>$$ (A,B) \rightarrow (B,C) \rightarrow (D,C) \rightarrow (C,A) $$<br>就是一条欧拉回路。<br><img src="/images/EulerPath-EulerCircuit/1.png" alt="1"></p>
+<p>比如下图中的</p>
+<script type="math/tex; mode=display">(A,B) \rightarrow (B,C) \rightarrow (C,D) \rightarrow (D,B)</script><p>就是一条欧拉路。<br><img src="/images/EulerPath-EulerCircuit/0.png" alt="0"></p>
+<p>比如下图中的</p>
+<script type="math/tex; mode=display">(A,B) \rightarrow (B,C) \rightarrow (D,C) \rightarrow (C,A)</script><p>就是一条欧拉回路。<br><img src="/images/EulerPath-EulerCircuit/1.png" alt="1"></p>
 <h1 id="判定"><a href="#判定" class="headerlink" title="判定"></a>判定</h1><h2 id="无向图判定"><a href="#无向图判定" class="headerlink" title="无向图判定"></a>无向图判定</h2><ol>
 <li><p>无孤立点的无向图 G 为欧拉图，当且仅当图 G 连通且所有顶点的度都是偶数。</p>
 </li>
@@ -451,27 +453,16 @@
 <p>比如说我们有这样一张图：</p>
 <p><img src="/images/EulerPath-EulerCircuit/2.png" alt="2"></p>
 <p>我们随便取一个点，比如说 $ 1 $，把它加入一个<strong>栈</strong>。</p>
-<p>$$ Stack_1 = 1] $$</p>
-<p>$$ Path_1 = [\ ] $$</p>
-<p>我们用 $ u $ 表示 $ Stack_1 \rightarrow Top $<br>如果当前的 $ u $ 点已没有未访问的出边，就将 $ u $ 从 $ Stack_1 $ 里弹出来，加入到 $ Path_1 $ 的<strong>前端</strong></p>
+<script type="math/tex; mode=display">Stack_1 = 1]</script><script type="math/tex; mode=display">Path_1 = [\ ]</script><p>我们用 $ u $ 表示 $ Stack_1 \rightarrow Top $<br>如果当前的 $ u $ 点已没有未访问的出边，就将 $ u $ 从 $ Stack_1 $ 里弹出来，加入到 $ Path_1 $ 的<strong>前端</strong></p>
 <p>重复上面的过程，直到 $ Stack_1 $ 为空。</p>
-<p><img src="/images/EulerPath-EulerCircuit/3.png" alt="3"><br>在这个过程中，<br>$$ Stack_1 = 2]1],\ Path_1 = [\ ] $$</p>
-<p>$$ Stack_1 = 4]2]1],\ Path_1 = [\ ] $$</p>
-<p>$$ Stack_1 = 1]4]2]1],\ Path_1 = [\ ] $$</p>
-<p>$$ Stack_1 = 5]4]2]1],\ Path_1 = [1] $$</p>
-<p>$$ Stack_1 = 6]5]4]2]1],\ Path_1 = [1] $$</p>
-<p>$$ Stack_1 = 4]6]5]4]2]1],\ Path_1 = [1] $$</p>
-<p>$$ Stack_1 = 2]5]4]2]1],\ Path_1 = [6,4,1] $$</p>
-<p>$$ Stack_1 = 3]2]5]4]2]1],\ Path_1 = [6,4,1] $$</p>
-<p>$$ Stack_1 = 5]3]2]5]4]2]1],\ Path_1 = [6,4,1] $$</p>
-<hr>
+<p><img src="/images/EulerPath-EulerCircuit/3.png" alt="3"><br>在这个过程中，</p>
+<script type="math/tex; mode=display">Stack_1 = 2]1],\ Path_1 = [\ ]</script><script type="math/tex; mode=display">Stack_1 = 4]2]1],\ Path_1 = [\ ]</script><script type="math/tex; mode=display">Stack_1 = 1]4]2]1],\ Path_1 = [\ ]</script><script type="math/tex; mode=display">Stack_1 = 5]4]2]1],\ Path_1 = [1]</script><script type="math/tex; mode=display">Stack_1 = 6]5]4]2]1],\ Path_1 = [1]</script><script type="math/tex; mode=display">Stack_1 = 4]6]5]4]2]1],\ Path_1 = [1]</script><script type="math/tex; mode=display">Stack_1 = 2]5]4]2]1],\ Path_1 = [6,4,1]</script><script type="math/tex; mode=display">Stack_1 = 3]2]5]4]2]1],\ Path_1 = [6,4,1]</script><script type="math/tex; mode=display">Stack_1 = 5]3]2]5]4]2]1],\ Path_1 = [6,4,1]</script><hr>
 <p>所有的边都访问了，开始回溯存路径</p>
-<p>$$ Stack_1 = \ ],\ Path_1 = [1,2,4,5,2,3,6,4,1] $$</p>
-<p>最终答案即为 $ Path_1 $</p>
+<script type="math/tex; mode=display">Stack_1 = \ ],\ Path_1 = [1,2,4,5,2,3,6,4,1]</script><p>最终答案即为 $ Path_1 $</p>
 <h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><p>假装自己写的是真正的 $ \LaTeX $</p>
 <hr>
 <p>⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯</p>
-<p>$ \text{Algorithm 1: Hierholzer(s)} $<br>⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯<br>$ 1: \text{while s} $ 存在未被删除的无向边 $ (s,t)\  \text{do} $<br>$ 2: $ &nbsp;&nbsp;&nbsp;&nbsp;删除无向边 $ (s,t) $<br>$ 3: $ &nbsp;&nbsp;&nbsp;&nbsp;$ \text{Hierholzer(t)} $<br>$ 4: \text{End while} $<br>$ 5: cnt \leftarrow cnt + 1$<br>$ 6: Path[cnt] \leftarrow s$<br>⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯</p>
+<p>$ \text{Algorithm 1: Hierholzer(s)} $<br>⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯<br>$ 1: \text{while s} $ 存在未被删除的无向边 $ (s,t)  \text{do} $<br>$ 2: $ &nbsp;&nbsp;&nbsp;&nbsp;删除无向边 $ (s,t) $<br>$ 3: $ &nbsp;&nbsp;&nbsp;&nbsp;$ \text{Hierholzer(t)} $<br>$ 4: \text{End while} $<br>$ 5: cnt \leftarrow cnt + 1$<br>$ 6: Path[cnt] \leftarrow s$<br>⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯</p>
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>真正的代码</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN_M = <span class="number">10000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> G[MAXN_M][MAXN_M], ans[MAXN_M], cnt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Hierholzer</span><span class="params">(<span class="keyword">int</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> t = __MIN_NODE; t &lt;= __MAX_NODE; ++t) &#123;</span><br><span class="line">        <span class="comment">// 预防数据中不出现标号为 1 的节点的情况</span></span><br><span class="line">        <span class="comment">// __MIN_NODE 指数据中标号最小的节点的标号</span></span><br><span class="line">        <span class="comment">// __MAX_NODE 同上</span></span><br><span class="line">        <span class="keyword">if</span> (G[s][t]) &#123;</span><br><span class="line">            <span class="comment">// 使用邻接矩阵存图，更加易懂</span></span><br><span class="line">            --G[s][t];</span><br><span class="line">            --G[t][s];</span><br><span class="line">            Hierholzer(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ans[++cnt] = s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Fluery-算法"><a href="#Fluery-算法" class="headerlink" title="Fluery 算法"></a>Fluery 算法</h2><p><del>挖坑待填</del></p>
@@ -631,7 +622,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1324,9 +1315,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

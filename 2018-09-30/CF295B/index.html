@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -154,7 +154,7 @@
 
 
 
-  <title>Codeforces 295B 《Greg and Graph》 | Handwer's Blog</title>
+  <title>Codeforces 295B 《Greg and Graph》 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -173,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -414,12 +414,12 @@
 <ul>
 <li>游戏包含 $n$ 步。</li>
 <li>第 $i$ 步Greg从图中删掉编号为 $x_i$ 的点。当删除一个点时，这个点的出边和入边都会被删除。</li>
-<li>在执行每一步之前，Greg想知道所有点对间最短路长度的和。最短路可以经过任何没删掉的点。换句话说，如果我们假设 $d(i, v, u)$ 是在删掉 $x_i$ 前 $v$ 和 $u$ 间的最短路长度，那么Greg想知道下面这个求和的值：$$\sum_{v, u, v \neq u} d(i, v, u)$$</li>
+<li>在执行每一步之前，Greg想知道所有点对间最短路长度的和。最短路可以经过任何没删掉的点。换句话说，如果我们假设 $d(i, v, u)$ 是在删掉 $x_i$ 前 $v$ 和 $u$ 间的最短路长度，那么Greg想知道下面这个求和的值：<script type="math/tex">\sum_{v, u, v \neq u} d(i, v, u)</script></li>
 </ul>
 <p>帮帮Greg，输出每一步之前要求的值。</p>
-<h1 id="Input-Output-格式-amp-样例"><a href="#Input-Output-格式-amp-样例" class="headerlink" title="Input / Output 格式 &amp; 样例"></a>Input / Output 格式 &amp; 样例</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行包含一个整数 $n \ (1 \leq n \leq 500)$ ，代表图中的点数。</p>
-<p>下面 $n$ 行每行包含 $n$ 个整数，代表边权：第 $i$ 行的第 $j$ 个数 $a_{ij} \ (1 \leq a_{ij} \leq 10^5, a_{ii} = 0)$ 代表从 $i$ 到 $j$ 的边权。</p>
-<p>最后一行包含 $n$ 个整数： $x_1, x_2, \dots, x_n \ (1 \leq x_i \leq n)$ ，分别为Greg每一步删掉的点的编号。</p>
+<h1 id="Input-Output-格式-amp-样例"><a href="#Input-Output-格式-amp-样例" class="headerlink" title="Input / Output 格式 &amp; 样例"></a>Input / Output 格式 &amp; 样例</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行包含一个整数 $n  (1 \leq n \leq 500)$ ，代表图中的点数。</p>
+<p>下面 $n$ 行每行包含 $n$ 个整数，代表边权：第 $i$ 行的第 $j$ 个数 $a_{ij}  (1 \leq a_{ij} \leq 10^5, a_{ii} = 0)$ 代表从 $i$ 到 $j$ 的边权。</p>
+<p>最后一行包含 $n$ 个整数： $x_1, x_2, \dots, x_n  (1 \leq x_i \leq n)$ ，分别为Greg每一步删掉的点的编号。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出 $n$ 个整数，第 $i$ 个数等于游戏的第 $i$ 步之前统计的求和值。</p>
 <p>请不要在C++中使用<code>%lld</code>标志来输出64位整数<code>long long</code>，推荐使用<code>cin, cout</code>流或者用<code>%I64d</code>标志。</p>
 <h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><p>Case #1: </p>
@@ -590,7 +590,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1283,9 +1283,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

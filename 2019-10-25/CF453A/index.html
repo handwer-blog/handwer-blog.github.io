@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -154,7 +154,7 @@
 
 
 
-  <title>Codeforces 453A《Little Pony and Expected Maximum》 | Handwer's Blog</title>
+  <title>Codeforces 453A《Little Pony and Expected Maximum》 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -173,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -435,9 +435,9 @@
 <h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>代码里什么都有</p>
 <p>期望的公式是 $E(x) = \sum P(x = i) \times i$</p>
 <p>顺便把注释里的两个式子渲染一下：</p>
-<p>$$<br>ans = {\sum_{i = 1}^{m} i \times [i^n - (i - 1)^n] \over m^n}<br>$$</p>
-<p>$$<br>ans = \sum_{i = 1}^{m} i \times \big[\big({i \over m}\big)^n - \big({i - 1 \over m}\big)^n\big]<br>$$</p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> db;</span><br><span class="line"></span><br><span class="line"><span class="function">db <span class="title">fp</span><span class="params">(db a, <span class="keyword">int</span> b)</span> </span>&#123; db r = <span class="number">1</span>; <span class="keyword">while</span> (b) &#123; <span class="keyword">if</span> (b &amp; <span class="number">1</span>) r = r * a; a = a * a; b &gt;&gt;= <span class="number">1</span>; &#125; <span class="keyword">return</span> r; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">double</span> ans;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 掷 n 次骰子，最大点数不超过 k 的方案数为 k^n</span></span><br><span class="line"><span class="comment"> * 掷 n 次骰子，最大点数不超过 k - 1 的方案数为 (k - 1)^n</span></span><br><span class="line"><span class="comment"> * 减一下就可以知道最大点数为 k 的方案数</span></span><br><span class="line"><span class="comment"> * 然后套一下期望的公式就可以知道</span></span><br><span class="line"><span class="comment"> * ans = &#123;\sum_&#123;i = 1&#125;^&#123;m&#125; i \times [i^n - (i - 1)^n] \over m^n&#125;</span></span><br><span class="line"><span class="comment"> * 整理一下得到</span></span><br><span class="line"><span class="comment"> * ans = \sum_&#123;i = 1&#125;^&#123;m&#125; i \times \big[\big(&#123;i \over m&#125;\big)^n - \big(&#123;i - 1 \over m&#125;\big)^n\big]</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;m, &amp;n);</span><br><span class="line">    <span class="keyword">double</span> last = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        db d = fp(((<span class="keyword">double</span>) i * <span class="number">1.0</span>) / ((<span class="keyword">double</span>) m * <span class="number">1.0</span>), n);</span><br><span class="line">        ans = ans + ((<span class="keyword">double</span>) i * <span class="number">1.0</span>) * (d - last);</span><br><span class="line">        last = d;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%0.12lf\n"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+ans = {\sum_{i = 1}^{m} i \times [i^n - (i - 1)^n] \over m^n}</script><script type="math/tex; mode=display">
+ans = \sum_{i = 1}^{m} i \times \big[\big({i \over m}\big)^n - \big({i - 1 \over m}\big)^n\big]</script><h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> db;</span><br><span class="line"></span><br><span class="line"><span class="function">db <span class="title">fp</span><span class="params">(db a, <span class="keyword">int</span> b)</span> </span>&#123; db r = <span class="number">1</span>; <span class="keyword">while</span> (b) &#123; <span class="keyword">if</span> (b &amp; <span class="number">1</span>) r = r * a; a = a * a; b &gt;&gt;= <span class="number">1</span>; &#125; <span class="keyword">return</span> r; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">double</span> ans;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 掷 n 次骰子，最大点数不超过 k 的方案数为 k^n</span></span><br><span class="line"><span class="comment"> * 掷 n 次骰子，最大点数不超过 k - 1 的方案数为 (k - 1)^n</span></span><br><span class="line"><span class="comment"> * 减一下就可以知道最大点数为 k 的方案数</span></span><br><span class="line"><span class="comment"> * 然后套一下期望的公式就可以知道</span></span><br><span class="line"><span class="comment"> * ans = &#123;\sum_&#123;i = 1&#125;^&#123;m&#125; i \times [i^n - (i - 1)^n] \over m^n&#125;</span></span><br><span class="line"><span class="comment"> * 整理一下得到</span></span><br><span class="line"><span class="comment"> * ans = \sum_&#123;i = 1&#125;^&#123;m&#125; i \times \big[\big(&#123;i \over m&#125;\big)^n - \big(&#123;i - 1 \over m&#125;\big)^n\big]</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;m, &amp;n);</span><br><span class="line">    <span class="keyword">double</span> last = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        db d = fp(((<span class="keyword">double</span>) i * <span class="number">1.0</span>) / ((<span class="keyword">double</span>) m * <span class="number">1.0</span>), n);</span><br><span class="line">        ans = ans + ((<span class="keyword">double</span>) i * <span class="number">1.0</span>) * (d - last);</span><br><span class="line">        last = d;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%0.12lf\n"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -500,8 +500,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019-10-31/BulletinBoard/" rel="prev" title="公告栏">
-                公告栏 <i class="fa fa-chevron-right"></i>
+              <a href="/2019-10-26/Luogu-P5142/" rel="prev" title="洛谷P5142《区间方差》">
+                洛谷P5142《区间方差》 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -586,7 +586,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1279,9 +1279,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

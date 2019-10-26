@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -154,7 +154,7 @@
 
 
 
-  <title>HDU6108《小C的倍数问题》 | Handwer's Blog</title>
+  <title>HDU6108《小C的倍数问题》 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -173,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -416,7 +416,15 @@
 <h1 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
 <h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>小 学 数 学</p>
 <hr>
-<p>考虑$p$进制表示的实质是<br>$x = a_1p^n+a_2p^{(n - 1)} + a_3p^{(n - 2)} + \dots + a_{n+1}$<br>稍微变形一下<br>$$x=a_1(p^n-1)+a_2(p^{n-1}-1)+a_3(p^{n - 3} - 1) + \dots + \sum_{i = 1}^{n + 1}a_i$$<br>然后注意到$p^n - 1=(p - 1)(p^{n - 1} + p^{n - 2} + \dots + 1)$<br>把它代入进去<br>$$<br>\begin{aligned}<br>x&amp;=a_1(p - 1)(p^{n - 1} + p^{n - 2} + \dots + 1)<br>\&amp;+a_2(p - 1)(p^{n - 2} + p^{n - 3} + \dots + 1)<br>\&amp;+a_3(p - 1)(p^{n - 3} + p^{n - 4} + \dots + 1) + \dots<br>\&amp;+ \sum_{i = 1}^{n + 1}a_i<br>\end{aligned}<br>$$<br>发现前面几项都有一个 $p - 1$<br>那么，当且仅当$\sum_{i = 1}^{n + 1}a_i$，即 x 各位数字之和 $\equiv 0(\bmod (p - 1))$ 时，$x \equiv 0 (\bmod (p - 1))$</p>
+<p>考虑$p$进制表示的实质是<br>$x = a_1p^n+a_2p^{(n - 1)} + a_3p^{(n - 2)} + \dots + a_{n+1}$<br>稍微变形一下</p>
+<script type="math/tex; mode=display">x=a_1(p^n-1)+a_2(p^{n-1}-1)+a_3(p^{n - 3} - 1) + \dots + \sum_{i = 1}^{n + 1}a_i</script><p>然后注意到$p^n - 1=(p - 1)(p^{n - 1} + p^{n - 2} + \dots + 1)$<br>把它代入进去</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+x&=a_1(p - 1)(p^{n - 1} + p^{n - 2} + \dots + 1)
+\\&+a_2(p - 1)(p^{n - 2} + p^{n - 3} + \dots + 1)
+\\&+a_3(p - 1)(p^{n - 3} + p^{n - 4} + \dots + 1) + \dots 
+\\&+ \sum_{i = 1}^{n + 1}a_i
+\end{aligned}</script><p>发现前面几项都有一个 $p - 1$<br>那么，当且仅当$\sum_{i = 1}^{n + 1}a_i$，即 x 各位数字之和 $\equiv 0(\bmod (p - 1))$ 时，$x \equiv 0 (\bmod (p - 1))$</p>
 <p>one more thing<br>对于任意的自然数$a,p$，如果 $a \mod p = 0$，那么有$a \mod x = 0(x \mid p)$</p>
 <p>所以这题的思路已经很明显了，求的就是$p - 1$的因子个数</p>
 <h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by HandwerSTD on 2019/10/13.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span> (T --&gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> fx = <span class="number">0</span>, ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;fx); --fx;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, fs = <span class="built_in">sqrt</span>(fx); i &lt;= fs; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (fx % i != <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            ++ans; <span class="keyword">if</span> ((fx / i) != i) ++ans;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -568,7 +576,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1261,9 +1269,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

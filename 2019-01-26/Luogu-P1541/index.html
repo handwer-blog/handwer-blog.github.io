@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -107,18 +107,18 @@
 
 
 
-<meta name="description" content="ProjectDP - 3   枚举转移">
+<meta name="description" content="ProjectDP - 3 枚举转移">
 <meta name="keywords" content="动态规划，DP,ProjectDP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="洛谷P1541「NOIP2010」《乌龟棋》">
 <meta property="og:url" content="https://blog.handwer-std.top/2019-01-26/Luogu-P1541/index.html">
 <meta property="og:site_name" content="Handwer&#39;s Blog">
-<meta property="og:description" content="ProjectDP - 3   枚举转移">
+<meta property="og:description" content="ProjectDP - 3 枚举转移">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-08-04T04:43:35.104Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="洛谷P1541「NOIP2010」《乌龟棋》">
-<meta name="twitter:description" content="ProjectDP - 3   枚举转移">
+<meta name="twitter:description" content="ProjectDP - 3 枚举转移">
 
 
 
@@ -154,7 +154,7 @@
 
 
 
-  <title>洛谷P1541「NOIP2010」《乌龟棋》 | Handwer's Blog</title>
+  <title>洛谷P1541「NOIP2010」《乌龟棋》 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -173,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -405,8 +405,6 @@
       
         <blockquote>
 <p>ProjectDP - 3</p>
-</blockquote>
-<blockquote>
 <p>枚举转移</p>
 </blockquote>
 <a id="more"></a>
@@ -427,21 +425,10 @@
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>先来想想五维的 DP</p>
 <p>我们设 $ f(i,j,k,l,m) $ 表示当前用了 $i$ 个卡片1， $j$ 个卡片2， $k$ 个卡片3， $l$ 个卡片4，走了 $m$ 步时的最大得分</p>
 <p>分别对四种卡片进行转移</p>
-<p>$$ Max = f[i-1][j][k][l][m - 1] (i \geq 1) $$</p>
-<p>$$ Max = max(Max,f[i][j-1][k][l][m - 2]) (j \geq 1, m \geq 3) $$</p>
-<p>$$ Max = max(Max,f[i][j][k-1][l][m - 3]) (k \geq 1, m \geq 4) $$</p>
-<p>$$ Max = max(Max,f[i][j][k][l-1][m - 4]) (l \geq 1, m \geq 5) $$</p>
-<p>$$ f[i][j][k][l][m] = Max + Score[m] $$</p>
-<hr>
+<script type="math/tex; mode=display">Max = f[i-1][j][k][l][m - 1] (i \geq 1)</script><script type="math/tex; mode=display">Max = max(Max,f[i][j-1][k][l][m - 2]) (j \geq 1, m \geq 3)</script><script type="math/tex; mode=display">Max = max(Max,f[i][j][k-1][l][m - 3]) (k \geq 1, m \geq 4)</script><script type="math/tex; mode=display">Max = max(Max,f[i][j][k][l-1][m - 4]) (l \geq 1, m \geq 5)</script><script type="math/tex; mode=display">f[i][j][k][l][m] = Max + Score[m]</script><hr>
 <p>考虑一下优化。<br>显然 $m$ 是可以通过计算得出的，$ m = i + 2j + 3k + 4l + 1 $ （注意后面的+1，因为是从第一个格开始的），那么就能省去一维</p>
 <p>转移方程就变为了</p>
-<p>$$ m = i + 2j + 3k + 4l + 1 $$</p>
-<p>$$ Max = f[i-1][j][k][l] (i \geq 1) $$</p>
-<p>$$ Max = max(Max,f[i][j-1][k][l]) (j \geq 1) $$</p>
-<p>$$ Max = max(Max,f[i][j][k-1][l]) (k \geq 1) $$</p>
-<p>$$ Max = max(Max,f[i][j][k][l-1]) (l \geq 1) $$</p>
-<p>$$ f[i][j][k][l] = Max + Score[m] $$</p>
-<p>最终答案<del>留做习题</del>见代码</p>
+<script type="math/tex; mode=display">m = i + 2j + 3k + 4l + 1</script><script type="math/tex; mode=display">Max = f[i-1][j][k][l] (i \geq 1)</script><script type="math/tex; mode=display">Max = max(Max,f[i][j-1][k][l]) (j \geq 1)</script><script type="math/tex; mode=display">Max = max(Max,f[i][j][k-1][l]) (k \geq 1)</script><script type="math/tex; mode=display">Max = max(Max,f[i][j][k][l-1]) (l \geq 1)</script><script type="math/tex; mode=display">f[i][j][k][l] = Max + Score[m]</script><p>最终答案<del>留做习题</del>见代码</p>
 <h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  3.cpp</span></span><br><span class="line"><span class="comment">//  ProjectDP</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by HandwerSTD on 2019/1/25.</span></span><br><span class="line"><span class="comment">//  Copyright © 2019 Handwer STD. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="meta-string">"r"</span>, stdin)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="meta-string">"w"</span>, stdout)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::max;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * CARD1 means the card that can make the turtle go 1 block.</span></span><br><span class="line"><span class="comment"> * CARD2, CARD3 and CARD4 too.</span></span><br><span class="line"><span class="comment"> * dp[i][j][k][l] records the max score when there are i CARD1(s), j CARD2(s), k CARD3(s) and l CARD4(s) have been used.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Formula:</span></span><br><span class="line"><span class="comment"> *     Step = i * 1 + j * 2 + k * 3 + l * 4 + 1</span></span><br><span class="line"><span class="comment"> *     Max = dp[i][j][k][k]</span></span><br><span class="line"><span class="comment"> *     Max = max(Max, dp[i-1][j][k][l]) (i &gt;= 1)</span></span><br><span class="line"><span class="comment"> *     Max = max(Max, dp[i][j-1][k][l]) (j &gt;= 1)</span></span><br><span class="line"><span class="comment"> *     Max = max(Max, dp[i][j][k-1][l]) (k &gt;= 1)</span></span><br><span class="line"><span class="comment"> *     Max = max(Max, dp[i][j][k][l-1]) (l &gt;= 1)</span></span><br><span class="line"><span class="comment"> *     dp[i][j][k][l] = Max + score[Step]</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Answer:</span></span><br><span class="line"><span class="comment"> *     dp[a][b][c][d],</span></span><br><span class="line"><span class="comment"> *     a -&gt; the amount of CARD1, b, c, and d too.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">350</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">120</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXCARD = <span class="number">40</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, sc[MAXN], cds[MAXM];</span><br><span class="line"><span class="keyword">int</span> a, b, c, d;</span><br><span class="line"><span class="keyword">int</span> dp[MAXCARD][MAXCARD][MAXCARD][MAXCARD];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    IMPROVE_IO();</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; sc[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; cds[i];</span><br><span class="line">        <span class="keyword">if</span> (cds[i] == <span class="number">1</span>) ++a;</span><br><span class="line">        <span class="keyword">if</span> (cds[i] == <span class="number">2</span>) ++b;</span><br><span class="line">        <span class="keyword">if</span> (cds[i] == <span class="number">3</span>) ++c;</span><br><span class="line">        <span class="keyword">if</span> (cds[i] == <span class="number">4</span>) ++d;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= a; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= b; ++j) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= c; ++k) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= d; ++l) &#123;</span><br><span class="line">                    <span class="keyword">int</span> walked = <span class="number">1</span> + i * <span class="number">1</span> + j * <span class="number">2</span> + k * <span class="number">3</span> + l * <span class="number">4</span>;</span><br><span class="line">                    <span class="keyword">if</span> (walked &gt; n) <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">int</span> Max = dp[i][j][k][l];</span><br><span class="line">                    <span class="keyword">if</span> (i - <span class="number">1</span> &gt;= <span class="number">0</span>) Max = max(Max, dp[i<span class="number">-1</span>][j][k][l]);</span><br><span class="line">                    <span class="keyword">if</span> (j - <span class="number">1</span> &gt;= <span class="number">0</span>) Max = max(Max, dp[i][j<span class="number">-1</span>][k][l]);</span><br><span class="line">                    <span class="keyword">if</span> (k - <span class="number">1</span> &gt;= <span class="number">0</span>) Max = max(Max, dp[i][j][k<span class="number">-1</span>][l]);</span><br><span class="line">                    <span class="keyword">if</span> (l - <span class="number">1</span> &gt;= <span class="number">0</span>) Max = max(Max, dp[i][j][k][l<span class="number">-1</span>]);</span><br><span class="line">                    dp[i][j][k][l] = Max + sc[walked];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; dp[a][b][c][d] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -589,7 +576,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1282,9 +1269,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

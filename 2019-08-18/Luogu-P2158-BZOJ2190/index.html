@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -157,7 +157,7 @@
 
 
 
-  <title>洛谷P2158《[SDOI2008]仪仗队》 | Handwer's Blog</title>
+  <title>洛谷P2158《[SDOI2008]仪仗队》 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -176,7 +176,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -421,26 +421,28 @@
 <h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>来快乐推一推式子</p>
 <p>首先考虑一下没有被看到的点长什么样<br>显然没有被看到的点$(x,y)$与原点的连线上一定有一点，记为 $(\frac x t , \frac y t )$</p>
 <p>由于所有坐标都是整数，那么有</p>
-<p>$$<br>t \mid x, t \mid y  \Leftrightarrow  t \mid \gcd(x, y)<br>$$</p>
-<p>所以可以知道这个事情：<br>一个点$(x, y)$不可以被看到，等价于$\gcd(x, y) \neq 1$。<br>所以题目要求的就是所有的数对$(x,y)$的个数，满足 $\gcd(x, y) = 1$</p>
+<script type="math/tex; mode=display">
+t \mid x, t \mid y  \Leftrightarrow  t \mid \gcd(x, y)</script><p>所以可以知道这个事情：<br>一个点$(x, y)$不可以被看到，等价于$\gcd(x, y) \neq 1$。<br>所以题目要求的就是所有的数对$(x,y)$的个数，满足 $\gcd(x, y) = 1$</p>
 <hr>
 <p>分开考虑答案</p>
 <p>首先是坐标形如 $(0, y), (x, 0)$ 的这些点，也就是在 $x$ 轴和 $y$ 轴上的点，均只能看见一个 $(0, 1),(1, 0)$，统计答案的时候就直接 $+ 2$ 就行了。</p>
 <p>然后是在直线 $y = x$ 上的点，也只能被看见一个 $(1, 1)$，统计答案的时候再来个 $+ 1$。</p>
 <p>剩下的点可以用两个 $\sum$ 统计。<br>最后式子长这样（注意$\text{ans}$函数的参数值）：</p>
-<p>$$<br>\begin{align}<br>\text{ans}(n + 1) = 3 + \sum_{x = 1}^{n} \sum_{y = 1}^{x - 1}[\gcd(x, y) = 1] + \sum_{x = 1}^{n} \sum_{y = x + 1}^{n}[\gcd(x, y) = 1]<br>\end{align}<br>$$</p>
-<p>看一眼这张图：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\text{ans}(n + 1) = 3 + \sum_{x = 1}^{n} \sum_{y = 1}^{x - 1}[\gcd(x, y) = 1] + \sum_{x = 1}^{n} \sum_{y = x + 1}^{n}[\gcd(x, y) = 1] 
+\end{align}</script><p>看一眼这张图：</p>
 <p><img src="https://i.loli.net/2019/08/18/rDIhj6WHcpUnbNa.png" alt=""></p>
 <p>可以发现，第一种情况对应的是点 $U, V$，第二种情况对应的是 $W$，两个 $\sum$ 分别对应点 $A \rightarrow J$ 和 $K \rightarrow T$ 的能看见的点的数量。</p>
 <p>还是不懂？ 手动模拟一下吧，看看它会统计哪些点<br>两个 $\sum$ 相当于语句</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ans = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> x = <span class="number">1</span> to n <span class="keyword">do</span></span><br><span class="line">	<span class="keyword">for</span> y = <span class="number">1</span> to x - <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">		ans = ans + (gcd(x,y) == <span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> x = <span class="number">1</span> to n <span class="keyword">do</span></span><br><span class="line">	<span class="keyword">for</span> y = x + <span class="number">1</span> to n <span class="keyword">do</span></span><br><span class="line">		ans = ans + (gcd(x,y) == <span class="number">1</span>)</span><br><span class="line">ans = ans + <span class="number">3</span></span><br></pre></td></tr></table></figure>
 <p>显然可以看到的点是关于直线 $y = x$ 对称的，所以上面的式子又可以写成</p>
-<p>$$<br>\text{ans}(n + 1) = 3 + 2\sum_{x = 1}^{n} \sum_{y = 1}^{x - 1}[\gcd(x, y) = 1]<br>$$</p>
-<hr>
+<script type="math/tex; mode=display">
+\text{ans}(n + 1) = 3 + 2\sum_{x = 1}^{n} \sum_{y = 1}^{x - 1}[\gcd(x, y) = 1]</script><hr>
 <p>这个式子肯定跑不过去的。把这个式子化简一下</p>
 <p>注意到一个很常见的积性函数</p>
-<p>$$<br>\varphi(x) = \sum_{i = 1}^{x}[\gcd(i, x) = 1]<br>$$</p>
-<p>代入原式！</p>
+<script type="math/tex; mode=display">
+\varphi(x) = \sum_{i = 1}^{x}[\gcd(i, x) = 1]</script><p>代入原式！</p>
 <p>$\text{ans}(n + 1) = 3 + 2\sum_{x = 1}^{n} \sum_{y = 1}^{x - 1}[\gcd(x, y) = 1]$<br>$= 3 + 2\sum_{x = 1}^{n} (\sum_{y = 1}^{x}[\gcd(x, y) = 1] - [\gcd(x, x) = 1])$<br>$= 3 + 2\sum_{x = 1}^{n} (\varphi(x) - [\gcd(x, x) = 1])$</p>
 <p>好了，现在就有了一个可以 $O(n)$ 计算的式子了！</p>
 <p>（式子要分行写是因为我博客的 Math 引擎好像炸了。。。渲染不了多行，将就看吧/kk）</p>
@@ -597,7 +599,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1290,9 +1292,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

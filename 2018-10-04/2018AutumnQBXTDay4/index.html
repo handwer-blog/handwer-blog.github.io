@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="清北学堂,贪心,浮点数运算," />
+  <meta name="keywords" content="清北学堂,浮点数运算,贪心," />
 
 
 
@@ -108,7 +108,7 @@
 
 
 <meta name="description" content="没人AC的题目和没人得分的题目">
-<meta name="keywords" content="清北学堂,贪心,浮点数运算">
+<meta name="keywords" content="清北学堂,浮点数运算,贪心">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2018 Autumn 清北学堂普及刷题班 Day4 题解">
 <meta property="og:url" content="https://blog.handwer-std.top/2018-10-04/2018AutumnQBXTDay4/index.html">
@@ -154,7 +154,7 @@
 
 
 
-  <title>2018 Autumn 清北学堂普及刷题班 Day4 题解 | Handwer's Blog</title>
+  <title>2018 Autumn 清北学堂普及刷题班 Day4 题解 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -173,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -409,6 +409,7 @@
 <a id="more"></a>
 <h1 id="T1-牛奶"><a href="#T1-牛奶" class="headerlink" title="T1. 牛奶"></a>T1. 牛奶</h1><p><del>没AC的退役吧</del></p>
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>为了增加营养，你决定每天喝牛奶，牛奶的营养含量十分固定，下表示牛奶上写的营养成分表。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -443,6 +444,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>这天你喝了N mL的牛奶，那么你摄入的营养成分分别为多少呢？</p>
 <h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>一个整数N</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>6个用空格隔开的数字，分别表示6项营养成分的数值，单位和表上单位相同，四舍五入保留一位小数。</p>
@@ -475,6 +477,7 @@
 <h2 id="数据范围-2"><a href="#数据范围-2" class="headerlink" title="数据范围"></a>数据范围</h2><p>对于30%的数据，1&lt;=n&lt;=20。 <br><br>对于另外20%的数据，所有果汁只包含单种维生素。 <br><br>对于100%的数据，1&lt;=n&lt;=1000, 1&lt;=ci&lt;=100000。</p>
 <h2 id="解析-2"><a href="#解析-2" class="headerlink" title="解析"></a>解析</h2><p>DP </p>
 <p>我们设$f_{i,j}$表示前i种果汁状态为j时的价格，其中</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -513,9 +516,14 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>转移方程：<br></p>
-<p><center><br><code>a[i|w] = min(a[i|w], a[i] + c[i])</code> <br><br></center></p>
-<p><center><br><code>w = w | (1 左移 (str[i] - &#39;A&#39;))</code>，其中<code>1 ≤ i ≤ str.length()</code><br></center></p>
+<p><center>
+`a[i|w] = min(a[i|w], a[i] + c[i])` <br>
+</center></p>
+<p><center>
+`w = w | (1 左移 (str[i] - 'A'))`，其中`1 ≤ i ≤ str.length()`
+</center></p>
 <h2 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* -- Basic Headers -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* -- STL Iterator -- */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*  Constants Start  */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*  Constants End  */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*  Variants Start  */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*  Variants End  */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> FastIO &#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">DEBUG</span><span class="params">(<span class="keyword">char</span> comment[], <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">		<span class="built_in">cerr</span> &lt;&lt; comment &lt;&lt; x &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> s = <span class="number">0</span>, x = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">char</span> ch = getchar();</span><br><span class="line">		<span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">			<span class="keyword">if</span> (ch == <span class="string">'-'</span>) x = <span class="number">-1</span>;</span><br><span class="line">			ch = getchar();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) &#123;</span><br><span class="line">			s = s * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">			ch = getchar();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> s * x;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">inline</span> <span class="keyword">void</span> __basic_putint(<span class="keyword">int</span> x) &#123;</span><br><span class="line">		<span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			x = -x;</span><br><span class="line">			<span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (x &gt;= <span class="number">10</span>) __basic_putint(x / <span class="number">10</span>);</span><br><span class="line">		<span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">char</span> external)</span> </span>&#123;</span><br><span class="line">		__basic_putint(x);</span><br><span class="line">		<span class="built_in">putchar</span>(external);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span> </span>&#123;</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">ifndef</span> HANDWER_FILE</span></span><br><span class="line">	freopen(<span class="string">"testdata.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"testdata.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="keyword">int</span> t[<span class="number">8</span> + <span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">8</span>; ++i) t[i] = <span class="number">60</span>;</span><br><span class="line">	t[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">string</span> s;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">		<span class="keyword">int</span> x;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; x;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; s;</span><br><span class="line">		<span class="keyword">int</span> len = s.length();</span><br><span class="line">		<span class="keyword">int</span> v = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= len; ++j) v |= (<span class="number">1</span> &lt;&lt; s[j<span class="number">-1</span>] - <span class="string">'A'</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">8</span>; ++j) t[j | v] = <span class="built_in">std</span>::min(t[j | v], t[j] + x);</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">if</span> (t[<span class="number">7</span>] &gt; <span class="number">1e8</span>) <span class="built_in">puts</span>(<span class="string">"-1"</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; t[<span class="number">7</span>] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="T4-队列"><a href="#T4-队列" class="headerlink" title="T4. 队列"></a>T4. 队列</h1><p><del>挖坑待填</del></p>
 
@@ -555,9 +563,9 @@
           
             <a href="/tags/清北学堂/" rel="tag"># 清北学堂</a>
           
-            <a href="/tags/贪心/" rel="tag"># 贪心</a>
-          
             <a href="/tags/浮点数运算/" rel="tag"># 浮点数运算</a>
+          
+            <a href="/tags/贪心/" rel="tag"># 贪心</a>
           
         </div>
       
@@ -666,7 +674,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1359,9 +1367,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

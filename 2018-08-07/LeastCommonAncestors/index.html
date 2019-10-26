@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -157,7 +157,7 @@
 
 
 
-  <title>最近公共祖先 LCA | Handwer's Blog</title>
+  <title>最近公共祖先 LCA | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -176,7 +176,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -413,6 +413,7 @@
 <h1 id="LCA-的概念"><a href="#LCA-的概念" class="headerlink" title="LCA 的概念"></a>LCA 的概念</h1><blockquote>
 <p>在<a href="https://zh.wikipedia.org/wiki/%E5%9B%BE%E8%AE%BA" target="_blank" rel="noopener">图论</a>和<a href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6" target="_blank" rel="noopener">计算机科学</a>中，<strong>最近公共祖先</strong>（英语：lowest common ancestor）是指在一个<a href="https://zh.wikipedia.org/wiki/%E6%A0%91_(%E5%9B%BE%E8%AE%BA" target="_blank" rel="noopener">树</a>)或者<a href="https://zh.wikipedia.org/wiki/%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE" target="_blank" rel="noopener">有向无环图</a>中同时拥有v和w作为后代的最深的节点。</p>
 <p align="right">——Wikipedia</p>
+
 </blockquote>
 <p><del>看不懂没关系</del></p>
 <p>简单的来说，就是两个节点v和w的最近的祖先节点</p>
@@ -437,7 +438,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">17 -&gt;(跳4) 3</span><br><span class="line">18 -&gt;(跳4) 5 -&gt;(跳1) -&gt; 3</span><br></pre></td></tr></table></figure>
 <p>是不是快多了，跳的次数大大减小</p>
 <p>时间复杂度$O(nlogn)$</p>
-<h1 id="LCA-的代码-amp-实现流程"><a href="#LCA-的代码-amp-实现流程" class="headerlink" title="LCA 的代码 &amp; 实现流程"></a>LCA 的代码 &amp; 实现流程</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><p>首先我们要记录各个点的深度$depth[\ ]$和它们$2^i$级的祖先$father[\ ][\ ]$</p>
+<h1 id="LCA-的代码-amp-实现流程"><a href="#LCA-的代码-amp-实现流程" class="headerlink" title="LCA 的代码 &amp; 实现流程"></a>LCA 的代码 &amp; 实现流程</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><p>首先我们要记录各个点的深度$depth[ ]$和它们$2^i$级的祖先$father[ ][ ]$</p>
 <p>用$depth[i]$表示$i$点的深度，$father[i][j]$表示$i$点的$2^i$级的祖先</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 预处理</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfsInit</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    depth[root] = depth[fa] + <span class="number">1</span>;</span><br><span class="line">    father[root][<span class="number">0</span>] = fa;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; (<span class="number">1</span> &lt;&lt; i) &lt;= depth[root]; ++i) &#123;</span><br><span class="line">        father[root][i] = father[father[root][i<span class="number">-1</span>]][i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> e = head[root]; e; e = edge[e].next) &#123;</span><br><span class="line">        <span class="keyword">if</span> (edge[e].prev != fa) dfsInit(edge[e].prev, root);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>接着我们就可以找LCA辣</p>
@@ -600,7 +601,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1293,9 +1294,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

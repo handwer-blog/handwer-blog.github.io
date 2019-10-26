@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -154,7 +154,7 @@
 
 
 
-  <title>洛谷P2023《维护序列》 | Handwer's Blog</title>
+  <title>洛谷P2023《维护序列》 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -173,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -418,7 +418,7 @@
 <h3 id="大致方向"><a href="#大致方向" class="headerlink" title="大致方向"></a>大致方向</h3><p>首先我们来康一康只有区间加的时候怎么做 <br>维护一个标记<code>add[i]</code>表示节点<code>i</code>对应的区间<code>[l,r]</code>被加了多少 <br>在下放标记时，<code>sum[i]</code>会被更新为<code>sum[i] + add[i] * (r - l + 1)</code> <br>我们把它看作 $x + b$ 的形式，其中<code>sum[i]</code>对应$x$， <code>add[i]</code> 对应$b$，后面的看作常数就好啦 <br>那么区间加乘的形式就应该是 $ax+b$，也就意味着要多维护一个标记<code>mul[i]</code>表示节点<code>i</code>对应的区间<code>[l,r]</code>被乘了多少，<code>sum[i]</code>会被更新为<code>sum[i] * mul[i] + add[i] * (r - l + 1)</code> <br></p>
 <hr>
 <h3 id="区间修改"><a href="#区间修改" class="headerlink" title="区间修改"></a>区间修改</h3><p>先看乘法，比如<code>i</code>节点对应区间<code>[l,r]</code>被乘了一个$k$，本质上就是$k(ax+b)$，拆出来就是$kax + kb$，也就是把<code>mul[i]</code>和<code>add[i]</code>都乘上一个$k$ <br>加法本质上就是 $ax + b + k$，整理得 $ax + (b + k)$，那么把<code>add[i]</code>加上$k$就行了</p>
-<h3 id="标记下放"><a href="#标记下放" class="headerlink" title="标记下放"></a>标记下放</h3><p>同样地，把每个节点看作 $ax+b$  的关系，在这里<code>i</code>节点对应的区间和<code>[l,r]</code>为$ax+b$，左子树<code>lc(i)</code>对应的区间和<code>[l, mid]</code>为$a’y+b’$ <br>遵循先乘后加的原则，对左子树乘上一个$a$得 <br>$$aa’y+ab’$$ <br>然后加上 $b$ <br>$$aa’y+ab’+b$$ <br>整理得 <br>$$(aa’)y + (ab’ + b)$$ <br>观察下这个式子，把它写成$ax+b$的形式 <br>$$Ay+B\ (A=aa’,B=ab’ + b)$$ <br>发现了什么？</p>
+<h3 id="标记下放"><a href="#标记下放" class="headerlink" title="标记下放"></a>标记下放</h3><p>同样地，把每个节点看作 $ax+b$  的关系，在这里<code>i</code>节点对应的区间和<code>[l,r]</code>为$ax+b$，左子树<code>lc(i)</code>对应的区间和<code>[l, mid]</code>为$a’y+b’$ <br>遵循先乘后加的原则，对左子树乘上一个$a$得 <br><script type="math/tex">aa'y+ab'</script> <br>然后加上 $b$ <br><script type="math/tex">aa'y+ab'+b</script> <br>整理得 <br><script type="math/tex">(aa')y + (ab' + b)</script> <br>观察下这个式子，把它写成$ax+b$的形式 <br><script type="math/tex">Ay+B\ (A=aa',B=ab' + b)</script> <br>发现了什么？</p>
 <p>本质上就是，<br>左子树的乘法标记 乘上 当前点的乘法标记 <br>左子树的加法标记 先乘上 当前点的乘法标记 再加上 当前点的加法标记</p>
 <p><code>mul[lc(i)] *= mul[i], add[lc(i)] = add[lc(i)] * mul[i] + add[i]</code></p>
 <p>对右子树进行一遍同样的操作，清空标记即可（稍有常识的人都知道<code>mul[i]</code>要初始化为1）</p>
@@ -569,7 +569,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1262,9 +1262,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

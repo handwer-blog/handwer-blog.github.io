@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -158,7 +158,7 @@
 
 
 
-  <title>树状数组学习笔记 | Handwer's Blog</title>
+  <title>树状数组学习笔记 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -177,7 +177,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -430,6 +430,7 @@
 <blockquote>
 <p>按照Peter M. Fenwick的说法，正如所有的整数都可以表示成2的幂和，我们也可以把一串序列表示成一系列子序列的和。采用这个想法，我们可将一个前缀和划分成多个子序列的和，而划分的方法与数的2的幂和具有极其相似的方式。一方面，子序列的个数是其二进制表示中1的个数，另一方面，子序列代表的f[i]的个数也是2的幂。</p>
 <p style="text-align: right">——Wikipedia</p>
+
 </blockquote>
 <p><img src="https://s2.ax1x.com/2019/10/17/KAb2Se.png" alt="KAb2Se.png"></p>
 <p>比如说这一棵就是八个元素的树状数组，对照下面的表可以发现上面的连边规律（点下面的是编号，请自动忽略根节点 9 以及那条边）。</p>
@@ -438,8 +439,8 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n, tree[MAX_SIZE];</span><br><span class="line"><span class="comment">// n 为元素个数，tree[] 为树状数组维护的前缀和</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123; <span class="keyword">return</span> (x) &amp; (-x); &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 将 pos 位置的数加上 x</span></span><br><span class="line">    <span class="keyword">for</span> (; pos &lt;= n; pos += lowbit(pos)) tree[pos] += x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Query</span><span class="params">(<span class="keyword">int</span> pos)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 查询 [1,pos] 之间的数的和</span></span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (; pos &gt;= <span class="number">1</span>; pos -= lowbit(pos)) ret += tree[pos];</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rangeQuery</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 查询 [l,r] 之间的数的和</span></span><br><span class="line">    <span class="keyword">return</span> Query(r) - Query(l - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="区间加减、单点查询"><a href="#区间加减、单点查询" class="headerlink" title="区间加减、单点查询"></a>区间加减、单点查询</h2><p>不知道你们有没有听说过一个东西叫做「差分」</p>
 <p>定义差分数组 <code>d[i] = a[i] - a[i - 1]</code>，其中 <code>a[]</code> 表示原数列<br>那么对 <code>d[i]</code> 求一个前缀和就可以得出 <code>a[i]</code>的值了<br>举个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">数组下标从 0 开始，元素存储从 1 开始，a[0] = d[0] = 0</span><br><span class="line">a[] = &#123;0, 1, 3, 4, 2&#125;</span><br><span class="line">d[] = &#123;/, 1, 2, 2, -2&#125;</span><br></pre></td></tr></table></figure></p>
-<p>发现了什么？<br>$$\sum_{i = 1}^{n} d_i = a_i$$</p>
-<p>如何修改$\text{[L,R]}+x$？<br>先给结论：在$\text{L}$处$+x$，在$\text{R+1}$处$-x$<br>直观理解：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">下标从 1 开始。</span><br><span class="line">原数列：0 0 0 0 0 0</span><br><span class="line">按照上面的方法 [2,4]+x</span><br><span class="line">0 x 0 0 -x 0</span><br><span class="line">看看前缀和之后会发生什么……</span><br><span class="line">0 x x x 0 0</span><br><span class="line">！！！！！</span><br></pre></td></tr></table></figure></p>
+<p>发现了什么？</p>
+<script type="math/tex; mode=display">\sum_{i = 1}^{n} d_i = a_i</script><p>如何修改$\text{[L,R]}+x$？<br>先给结论：在$\text{L}$处$+x$，在$\text{R+1}$处$-x$<br>直观理解：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">下标从 1 开始。</span><br><span class="line">原数列：0 0 0 0 0 0</span><br><span class="line">按照上面的方法 [2,4]+x</span><br><span class="line">0 x 0 0 -x 0</span><br><span class="line">看看前缀和之后会发生什么……</span><br><span class="line">0 x x x 0 0</span><br><span class="line">！！！！！</span><br></pre></td></tr></table></figure></p>
 <hr>
 <p>而维护前缀和这种事情，树状数组最在行了</p>
 <p>可以写出代码：</p>
@@ -449,13 +450,10 @@
 <hr>
 <p>区间加减维护一下差分数组就行了</p>
 <p>考虑区间和本质是</p>
-<p>$$\sum_{a = 1}^{p}\sum_{i = 1}^{a}d_i$$</p>
-<p>计算一下每个 $d_i$ 被算的次数，顺便把式子变换一下</p>
-<p>$$\sum_{a = 1}^{p}d_a \times (p - a + 1)$$</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">举个例子</span><br><span class="line">比如说 p = 5 时，可以发现 </span><br><span class="line">ans = </span><br><span class="line">d[1] + </span><br><span class="line">d[1] + d[2] +</span><br><span class="line">d[1] + d[2] + d[3] + </span><br><span class="line">d[1] + d[2] + d[3] + d[4] + </span><br><span class="line">d[1] + d[2] + d[3] + d[4] + d[5]</span><br><span class="line">找一找规律就可以搞出上面的式子了</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">\sum_{a = 1}^{p}\sum_{i = 1}^{a}d_i</script><p>计算一下每个 $d_i$ 被算的次数，顺便把式子变换一下</p>
+<script type="math/tex; mode=display">\sum_{a = 1}^{p}d_a \times (p - a + 1)</script><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">举个例子</span><br><span class="line">比如说 p = 5 时，可以发现 </span><br><span class="line">ans = </span><br><span class="line">d[1] + </span><br><span class="line">d[1] + d[2] +</span><br><span class="line">d[1] + d[2] + d[3] + </span><br><span class="line">d[1] + d[2] + d[3] + d[4] + </span><br><span class="line">d[1] + d[2] + d[3] + d[4] + d[5]</span><br><span class="line">找一找规律就可以搞出上面的式子了</span><br></pre></td></tr></table></figure>
 <p>拆一下 $\sum$，可以变换成</p>
-<p>$$(p + 1)\sum_{a = 1}^{p}d_a - \sum_{a = 1}^{p}d_a \times a$$</p>
-<p>这样的话，只需要分别维护两个差分数组，一个记 $d_a$，一个记 $d_a \times a$ 就行</p>
+<script type="math/tex; mode=display">(p + 1)\sum_{a = 1}^{p}d_a - \sum_{a = 1}^{p}d_a \times a</script><p>这样的话，只需要分别维护两个差分数组，一个记 $d_a$，一个记 $d_a \times a$ 就行</p>
 <p>修改$\text{[L,R] + }x$的时候，像上面<a href="#区间加减、单点查询">区间加减、单点查询</a>一样，把 $\text{[L]} + x,\text{[R+1]} - x$（对两个数组进行的修改可以合并到 <code>Modify()</code> 函数中，具体见代码）<br>查询的时候像上面<a href="#单点加减、区间和查询">单点加减、区间和查询</a>一样，是前缀和作差</p>
 <p>代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码没有经过提交，仅进行了一些小样例测试！</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> lli;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;  </span><br><span class="line">lli ss[MAXN];  </span><br><span class="line">lli biti[MAXN], bitpi[MAXN];</span><br><span class="line"><span class="comment">// ss 表示原数组，biti 表示维护 d[a] 的数组， bitpi 表示维护 d[a] * a 的数组</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> pos, lli x)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> dx = pos;  </span><br><span class="line">    <span class="keyword">for</span> (; pos &lt;= n; pos += lowbit(pos)) &#123;  </span><br><span class="line">        <span class="comment">// 为了方便，可以把 rangeModify() 里的乘法挪到 Modify() 里面</span></span><br><span class="line">        biti[pos] += x; bitpi[pos] += x * <span class="number">1l</span>l * dx;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rangeModify</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, lli x)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// 这是把括号里的乘法挪到 Modify() 里面的写法</span></span><br><span class="line">    Modify(l, x); Modify(r + <span class="number">1</span>, -x);  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function">lli <span class="title">Query</span><span class="params">(<span class="keyword">int</span> pos)</span> </span>&#123;  </span><br><span class="line">    lli ret = <span class="number">0</span>, dx = pos;  </span><br><span class="line">    <span class="keyword">while</span> (pos &gt;= <span class="number">1</span>) &#123; ret += (dx + <span class="number">1</span>) * <span class="number">1l</span>l * biti[pos] - bitpi[pos]; pos -= lowbit(pos); &#125;  </span><br><span class="line">    <span class="keyword">return</span> ret;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function">lli <span class="title">rangeQuery</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123; <span class="keyword">return</span> Query(r) - Query(l - <span class="number">1</span>); &#125;</span><br></pre></td></tr></table></figure>
@@ -463,10 +461,8 @@
 <h2 id="单点加减、子矩阵和查询"><a href="#单点加减、子矩阵和查询" class="headerlink" title="单点加减、子矩阵和查询"></a>单点加减、子矩阵和查询</h2><p>前面说过，树状数组是利用前缀和的思想进行实现的，既然二维也有前缀和，何不照葫芦画瓢把而为树状数组搞出来呢？</p>
 <hr>
 <p>先来复习一下。</p>
-<p>$$\sum_{i = l}^{r} a_i = \sum_{i = 1}^{r} a_i - \sum_{i = 1}^{l - 1} a_i$$</p>
-<p>为了方便，定义 $f(x,y)=\sum_{i = 1}^{x}\sum_{j = 1}^{y}a_{i,j}$</p>
-<p>$$\sum_{i = x_1}^{x_2}\sum_{j = y_1}^{y_2}a_{i,j}=f(x_2,y_2)-f(x_1 - 1,y_2)-f(x_2,y_1-1)+f(x_1-1,y_1-1)$$</p>
-<p>直观来看，</p>
+<script type="math/tex; mode=display">\sum_{i = l}^{r} a_i = \sum_{i = 1}^{r} a_i - \sum_{i = 1}^{l - 1} a_i</script><p>为了方便，定义 $f(x,y)=\sum_{i = 1}^{x}\sum_{j = 1}^{y}a_{i,j}$</p>
+<script type="math/tex; mode=display">\sum_{i = x_1}^{x_2}\sum_{j = y_1}^{y_2}a_{i,j}=f(x_2,y_2)-f(x_1 - 1,y_2)-f(x_2,y_1-1)+f(x_1-1,y_1-1)</script><p>直观来看，</p>
 <p><img src="https://s2.ax1x.com/2019/10/17/KE3Zkj.png" alt="KE3Zkj.png"></p>
 <p>定义$\text{Sum}(a,b,c,d)$为以$(a,b)$为左下角，$(c,d)$为右上角（对于矩阵是反着的）的矩阵元素之和，那么很显然能看出 $\text{Sum}(5,4,7,5)=\text{Sum}(1,1,7,5)-\text{Sum}(1,1,7,3)-\text{Sum}(1,1,4,5)+\text{Sum}(1,1,4,3)$，也就是四边形$\text{ABCD}-\text{ABGI}-\text{AHFD}+\text{AHEI}$元素的值</p>
 <p>二维树状数组和一位的除了多了一维之外没多大区别，手法从一维前缀和换到了二维前缀和</p>
@@ -481,8 +477,8 @@
 <h2 id="子矩阵加减、子矩阵和查询"><a href="#子矩阵加减、子矩阵和查询" class="headerlink" title="子矩阵加减、子矩阵和查询"></a>子矩阵加减、子矩阵和查询</h2><p>最后一种操作，也是最难的操作</p>
 <p>……其实并不难，如果你把前面都学懂了。</p>
 <p>和<a href="#区间加减、区间和查询">区间加减、区间和查询</a>一样，先看看查询操作的本质</p>
-<p>$$<br>\sum_{i=1}^{x} \sum_{j=1}^{y} \sum_{k=1}^{i} \sum_{h=1}^{j} d[h][k]<br>$$</p>
-<p>先统计一下 $d[i][j]$ 被访问了多少次，然后<big><big>稍微</big></big>整理一下式子，变成</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{x} \sum_{j=1}^{y} \sum_{k=1}^{i} \sum_{h=1}^{j} d[h][k]</script><p>先统计一下 $d[i][j]$ 被访问了多少次，然后<big><big>稍微</big>&lt;/big&gt;整理一下式子，变成</big></p>
 <!--$$
 {\sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times(x+1-i) \times(y+1-j)} \\= {(x+1)(y+1) \times \sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j]} \\ {-(y+1) \times \sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times i} \\ {-(x+1) \times \sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times j} \\ {\quad+\sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times i \times j}
 $$-->
@@ -646,7 +642,7 @@ $$-->
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1339,9 +1335,9 @@ $$-->
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

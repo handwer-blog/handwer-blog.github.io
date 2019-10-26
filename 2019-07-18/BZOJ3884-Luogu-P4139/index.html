@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -154,7 +154,7 @@
 
 
 
-  <title>BZOJ3884 洛谷P4139《上帝与集合的正确用法》 | Handwer's Blog</title>
+  <title>BZOJ3884 洛谷P4139《上帝与集合的正确用法》 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -173,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -415,7 +415,17 @@
 <h1 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h1><p>对于100%的数据，T&lt;=1000,p&lt;=10^7</p>
 <h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>一开始看到这个题目，我是懵逼的</p>
 <p>这题让我们求$2^\infty\bmod p$的值，考虑把它转化一下</p>
-<p>根据扩展欧拉定理可知<br>$$<br>a ^ b= \begin{cases} a ^ {b \bmod \varphi(p)} \quad &amp; \gcd(a,p)=1 \ a ^ b \quad &amp; \gcd(a,p) \not=1, b &lt; \varphi(p)\ a ^ {b \bmod \varphi(p) + \varphi (p)} \quad &amp; \gcd(a,p) \not=1, b \ge \varphi(p)\ \end{cases}<br>$$<br>所以把它变成第三条的形式<br>$$<br>2^{2^{2^{2^{2^{…}}}}}\bmod p=2^{2^{2^{2^{2^{…}}}} \bmod \varphi(p) + \varphi(p)}<br>$$<br>把第一个2的指数摘出来单独康一康<br>$$<br>2^{2^{2^{2^{…}}}} \bmod \varphi(p) + \varphi(p)<br>$$<br>设$\varphi(p) + \varphi(p) = a$，上式变为<br>$$<br>2^{2^{2^{2^{…}}}} \bmod a<br>$$<br>好像在哪见过……那就再来一遍<br>$$<br>2^{2^{2^{2^{2^{…}}}}}\bmod a=2^{2^{2^{2^{2^{…}}}} \bmod \varphi(a) + \varphi(a)}<br>$$<br>这是个递归式！</p>
+<p>根据扩展欧拉定理可知</p>
+<script type="math/tex; mode=display">
+a ^ b= \begin{cases} a ^ {b \bmod \varphi(p)} \quad & \gcd(a,p)=1 \\ a ^ b \quad & \gcd(a,p) \not=1, b < \varphi(p)\\ a ^ {b \bmod \varphi(p) + \varphi (p)} \quad & \gcd(a,p) \not=1, b \ge \varphi(p)\\ \end{cases}</script><p>所以把它变成第三条的形式</p>
+<script type="math/tex; mode=display">
+2^{2^{2^{2^{2^{...}}}}}\bmod p=2^{2^{2^{2^{2^{...}}}} \bmod \varphi(p) + \varphi(p)}</script><p>把第一个2的指数摘出来单独康一康</p>
+<script type="math/tex; mode=display">
+2^{2^{2^{2^{...}}}} \bmod \varphi(p) + \varphi(p)</script><p>设$\varphi(p) + \varphi(p) = a$，上式变为</p>
+<script type="math/tex; mode=display">
+2^{2^{2^{2^{...}}}} \bmod a</script><p>好像在哪见过……那就再来一遍</p>
+<script type="math/tex; mode=display">
+2^{2^{2^{2^{2^{...}}}}}\bmod a=2^{2^{2^{2^{2^{...}}}} \bmod \varphi(a) + \varphi(a)}</script><p>这是个递归式！</p>
 <p>那么解法就很显然了：<br>根据扩展欧拉定理，把指数部分变形，然后递归进去继续变形指数部分的指数部分……</p>
 <hr>
 <p>找一找递归出口<br>在模$p$的意义下，一个数的取值范围是$[0,p-1]$<br>考虑让这个数变成定值，显然$p=1$时，这个数为$0$<br>这个就是递归出口，当模数为1时，返回0</p>
@@ -569,7 +579,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1262,9 +1272,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

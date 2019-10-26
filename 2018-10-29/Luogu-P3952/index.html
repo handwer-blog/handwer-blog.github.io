@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -154,7 +154,7 @@
 
 
 
-  <title>洛谷P3952《时间复杂度》 | Handwer's Blog</title>
+  <title>洛谷P3952《时间复杂度》 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -173,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -423,7 +423,7 @@
 <p>注意：即使在程序不会执行的循环体中出现了语法错误也会编译错误，要输出 <code>ERR</code>。</p>
 <h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">8</span><br><span class="line">2 O(1)</span><br><span class="line">F i 1 1</span><br><span class="line">E</span><br><span class="line">2 O(n^1)</span><br><span class="line">F x 1 n</span><br><span class="line">E</span><br><span class="line">1 O(1)</span><br><span class="line">F x 1 n</span><br><span class="line">4 O(n^2)</span><br><span class="line">F x 5 n</span><br><span class="line">F y 10 n</span><br><span class="line">E</span><br><span class="line">E</span><br><span class="line">4 O(n^2)</span><br><span class="line">F x 9 n</span><br><span class="line">E</span><br><span class="line">F y 2 n</span><br><span class="line">E</span><br><span class="line">4 O(n^1)</span><br><span class="line">F x 9 n</span><br><span class="line">F y n 4</span><br><span class="line">E</span><br><span class="line">E</span><br><span class="line">4 O(1)</span><br><span class="line">F y n 4</span><br><span class="line">F x 9 n</span><br><span class="line">E</span><br><span class="line">E</span><br><span class="line">4 O(n^2)</span><br><span class="line">F x 1 n</span><br><span class="line">F x 1 10</span><br><span class="line">E</span><br><span class="line">E</span><br></pre></td></tr></table></figure>
 <h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Yes</span><br><span class="line">Yes</span><br><span class="line">ERR</span><br><span class="line">Yes</span><br><span class="line">No</span><br><span class="line">Yes</span><br><span class="line">Yes</span><br><span class="line">ERR</span><br></pre></td></tr></table></figure>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>首先我们肯定一眼就能看出这题是个没有任何优化的<big><big><big>大模拟</big></big></big></p>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>首先我们肯定一眼就能看出这题是个没有任何优化的<big><big><big>大模拟</big>&lt;/big&gt;&lt;/big&gt;</big></big></p>
 <p>那么如何模拟？ </p>
 <p>首先我们为了方便，把循环体离线下来，用字符串存着 </p>
 <p>根据题意，我们写一个函数<code>GetNumber()</code>把字符串里的数字存下来 具体和快读差不多 </p>
@@ -595,7 +595,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1288,9 +1288,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

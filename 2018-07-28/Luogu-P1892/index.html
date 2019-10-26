@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -156,7 +156,7 @@
 
 
 
-  <title>洛谷P1892《[BOI2003]团伙》 | Handwer's Blog</title>
+  <title>洛谷P1892《[BOI2003]团伙》 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -175,7 +175,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -427,14 +427,14 @@
 <li>我的敌人的朋友是我的敌人</li>
 <li>我的敌人的敌人是我的朋友</li>
 </ol>
-<p>那么我们要另开一个$Enemy[\ ]$数组，$Enemy[i]$表示 $i$ 的<strong>其中一个</strong>敌人</p>
+<p>那么我们要另开一个$Enemy[ ]$数组，$Enemy[i]$表示 $i$ 的<strong>其中一个</strong>敌人</p>
 <p>每次合并敌人的时候，先判断是否有记录过敌人：</p>
 <ul>
 <li>如果有，那么就把当前的敌人和记录的敌人合并在一个团伙里</li>
 <li>如果没有，那么就把当前的敌人记录</li>
 </ul>
-<p>最后开一个数组$count[\ ]$进行统计</p>
-<p><strong><big><big>这里要注意几个点：</big></big></strong></p>
+<p>最后开一个数组$count[ ]$进行统计</p>
+<p><strong><big><big>这里要注意几个点：</big>&lt;/big&gt;</big></strong></p>
 <ol>
 <li>开始时并查集数组要<strong>开两倍</strong>，因为你要把敌人和朋友存在一个数组里</li>
 <li>合并敌人时要注意合并的不是敌人本身，而是$Find($敌人$)$</li>
@@ -589,7 +589,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1282,9 +1282,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

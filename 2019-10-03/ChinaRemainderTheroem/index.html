@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -156,7 +156,7 @@
 
 
 
-  <title>中国剩余定理（CRT）学习笔记 | Handwer's Blog</title>
+  <title>中国剩余定理（CRT）学习笔记 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -175,7 +175,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -417,7 +417,9 @@
 <p>（我博客行间公式渲染好像有点问题……）</p>
 <p>CRT 的使用条件是 $m_i$ 两两互质，$m_i$ 两两不互质需要使用 exCRT 即扩展中国剩余定理</p>
 <hr>
-<p>首先定义 $M = \prod_{i = 1}^n m_i$，并设 $M_i = \lfloor {M \over {m_i}} \rfloor$，$t_i = M_i^{-1} \bmod M$（即$t_i$满足$M_i t_i \equiv 1 (\bmod M)$）<br>那么该同余方程的一个解为<br>$$<br>x_0=(\sum_{i=1}^{k} a_{i} M_i t_{i})\bmod M<br>$$<br>通解为 $x = x_0 + i \times M$，最小非负整数解为 $(x_0 \bmod M + M) \bmod M$</p>
+<p>首先定义 $M = \prod_{i = 1}^n m_i$，并设 $M_i = \lfloor {M \over {m_i}} \rfloor$，$t_i = M_i^{-1} \bmod M$（即$t_i$满足$M_i t_i \equiv 1 (\bmod M)$）<br>那么该同余方程的一个解为</p>
+<script type="math/tex; mode=display">
+x_0=(\sum_{i=1}^{k} a_{i} M_i t_{i})\bmod M</script><p>通解为 $x = x_0 + i \times M$，最小非负整数解为 $(x_0 \bmod M + M) \bmod M$</p>
 <p>如果有 $a &lt; 0$ 的情况时要注意负数取模问题</p>
 <h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  CRT.cpp</span></span><br><span class="line"><span class="comment">//  Debugging</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by HandwerSTD on 2019/10/3.</span></span><br><span class="line"><span class="comment">//  Copyright © 2019 HandwerSTD. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="meta-string">"r"</span>, stdin)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="meta-string">"w"</span>, stdout)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rap(a,s,t,i) for (int a = s; a &lt;= t; a += i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> basketball(a,t,s,i) for (int a = t; a &gt; s; a -= i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> countdown(s) while (s --&gt; 0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> lli;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getint</span><span class="params">()</span> </span>&#123; <span class="keyword">int</span> x; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x); <span class="keyword">return</span> x; &#125;</span><br><span class="line"><span class="function">lli <span class="title">getll</span><span class="params">()</span> </span>&#123; <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> x; <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;x); <span class="keyword">return</span> x; &#125;</span><br><span class="line"></span><br><span class="line">lli k, a[<span class="number">10000</span> + <span class="number">10</span>], m[<span class="number">10000</span> + <span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> ChinaRemainderTheorem &#123;</span><br><span class="line">    <span class="function">lli <span class="title">exgcd</span><span class="params">(lli a, lli b, lli &amp;x, lli &amp;y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (b == <span class="number">0</span>) &#123; x = <span class="number">1</span>; y = <span class="number">0</span>; <span class="keyword">return</span> a; &#125;</span><br><span class="line">        lli g = exgcd(b, a % b, y, x);</span><br><span class="line">        y -= a / b * x;</span><br><span class="line">        <span class="keyword">return</span> g;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">lli <span class="title">CRT</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        lli X = <span class="number">0</span>, M = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (lli i = <span class="number">1</span>; i &lt;= k; ++i) M *= m[i];</span><br><span class="line">        <span class="keyword">for</span> (lli i = <span class="number">1</span>; i &lt;= k; ++i) &#123;</span><br><span class="line">            lli ti = <span class="number">0</span>, y = <span class="number">0</span>;</span><br><span class="line">            lli mmi = M / m[i];</span><br><span class="line">            exgcd(mmi, m[i], ti, y);</span><br><span class="line">            X = ((X + a[i] * mmi * ti) % M + M) % M;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> X &lt; <span class="number">0</span> ? (X + M) : X;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    k = getll();</span><br><span class="line">    <span class="comment">/// x === ai (mod mi)</span></span><br><span class="line">    rap (i, <span class="number">1</span>, k, <span class="number">1</span>) &#123; m[i] = getll(); a[i] = getll(); &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ChinaRemainderTheorem::CRT());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -566,7 +568,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1259,9 +1261,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

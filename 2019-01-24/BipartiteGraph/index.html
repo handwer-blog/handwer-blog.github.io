@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -159,7 +159,7 @@
 
 
 
-  <title>二分图匹配学习笔记 & HDU2063 题解 | Handwer's Blog</title>
+  <title>二分图匹配学习笔记 & HDU2063 题解 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -178,7 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -423,7 +423,7 @@
 <p>依次检查每一条边，看看是否满足顶点一个在$X$中，一个在$Y$中</p>
 <hr>
 <p>若某一图不连通，就在每个联通块里进行判定</p>
-<h1 id="二分图匹配"><a href="#二分图匹配" class="headerlink" title="二分图匹配"></a>二分图匹配</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>给定一个二分图$G$，在$G$的子图$M$中，$M$的边集${E}$中的任意两条边都不依附于同一个顶点，则称$M$是一个匹配。</p>
+<h1 id="二分图匹配"><a href="#二分图匹配" class="headerlink" title="二分图匹配"></a>二分图匹配</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>给定一个二分图$G$，在$G$的子图$M$中，$M$的边集$\{E\}$中的任意两条边都不依附于同一个顶点，则称$M$是一个匹配。</p>
 <p>图中蓝色的边是数量为2的匹配</p>
 <p><img src="https://s1.ax2x.com/2018/07/06/oQPHl.png" alt="oQPHl.png"></p>
 <h2 id="最大匹配-amp-完全匹配"><a href="#最大匹配-amp-完全匹配" class="headerlink" title="最大匹配 &amp; 完全匹配"></a>最大匹配 &amp; 完全匹配</h2><p>选择边数最大的子图称为「二分图的最大匹配问题」</p>
@@ -437,8 +437,8 @@
 <p>从$x_4$到$y_2$找一条路径：</p>
 <p>$<br>x_4 \rightarrow y_3 \rightarrow x_2 \rightarrow y1 \rightarrow x1 \rightarrow y2<br>$</p>
 <p>这条路径就是<strong>「增广路径」</strong></p>
-<p>其中属于$M$的边有：<br>${x2,y3}, {x1,y1}$</p>
-<p>不属于$M$的边有：<br>${x4,y3}, {x2,y1},{x1,y2}$</p>
+<p>其中属于$M$的边有：<br>$\{x2,y3\}, \{x1,y1\}$</p>
+<p>不属于$M$的边有：<br>$\{x4,y3\}, \{x2,y1\},\{x1,y2\}$</p>
 <p>显然，<i><b>不属于$M$的边比属于$M$的边要多一条</b></i></p>
 <hr>
 <p>将这条增广路上的边全都「反色」，如图</p>
@@ -632,7 +632,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1325,9 +1325,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -107,19 +107,19 @@
 
 
 
-<meta name="description" content="ProjectDP - 29   需要维护两行状态的状压DP">
+<meta name="description" content="ProjectDP - 29 需要维护两行状态的状压DP">
 <meta name="keywords" content="动态规划，DP,ProjectDP,状压DP,NOI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="洛谷P2704《[NOI2001]炮兵阵地》">
 <meta property="og:url" content="https://blog.handwer-std.top/2019-02-04/Luogu-P2704/index.html">
 <meta property="og:site_name" content="Handwer&#39;s Blog">
-<meta property="og:description" content="ProjectDP - 29   需要维护两行状态的状压DP">
+<meta property="og:description" content="ProjectDP - 29 需要维护两行状态的状压DP">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://cdn.luogu.org/upload/pic/1881.png">
 <meta property="og:updated_time" content="2019-08-04T04:36:16.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="洛谷P2704《[NOI2001]炮兵阵地》">
-<meta name="twitter:description" content="ProjectDP - 29   需要维护两行状态的状压DP">
+<meta name="twitter:description" content="ProjectDP - 29 需要维护两行状态的状压DP">
 <meta name="twitter:image" content="https://cdn.luogu.org/upload/pic/1881.png">
 
 
@@ -156,7 +156,7 @@
 
 
 
-  <title>洛谷P2704《[NOI2001]炮兵阵地》 | Handwer's Blog</title>
+  <title>洛谷P2704《[NOI2001]炮兵阵地》 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -175,7 +175,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -407,8 +407,6 @@
       
         <blockquote>
 <p>ProjectDP - 29</p>
-</blockquote>
-<blockquote>
 <p>需要维护两行状态的状压DP</p>
 </blockquote>
 <a id="more"></a>
@@ -427,7 +425,7 @@
 <p>转移方程显然，<br>$ dp[i][j][k] = max(dp[i][j][k], dp[i-1][k][l] + $ <code>Popcount(stats[j])</code> $ ) $，<br>其中 $j$ 表示当前行的状态编号，$k$ 表示上一行的，$l$ 表示再上一行的</p>
 <p>注意判一下地形是否符合，方法参见<a href="/2019-01-29/Luogu-P1879/">洛谷P1879</a></p>
 <hr>
-<p>我要开<big><big>滚动数组</big></big></p>
+<p>我要开<big><big>滚动数组</big>&lt;/big&gt;</big></p>
 <h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  29.cpp</span></span><br><span class="line"><span class="comment">//  ProjectDP</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by HandwerSTD on 2019/1/29.</span></span><br><span class="line"><span class="comment">//  Copyright © 2019 Handwer STD. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="meta-string">"r"</span>, stdin)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="meta-string">"w"</span>, stdout)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">100</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">10</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = (<span class="number">1</span> &lt;&lt; <span class="number">10</span>) - <span class="number">1</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> status[MAX], dp[<span class="number">2</span>][MAX][MAX], can[MAXN];</span><br><span class="line"><span class="keyword">int</span> cnt, n, m;</span><br><span class="line"><span class="keyword">char</span> str[MAXM];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(x) &#123;</span><br><span class="line">        <span class="keyword">if</span>(x &amp; <span class="number">1</span>) ret++;</span><br><span class="line">        x &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Check</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &amp; b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Check3</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Check(a,b) || Check(a,c) || Check(b,c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>,str + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; ++j)</span><br><span class="line">            <span class="keyword">if</span>(str[j] == <span class="string">'H'</span>)can[i] = (can[i] &lt;&lt; <span class="number">1</span>) | <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> can[i] = can[i] &lt;&lt; <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= (<span class="number">1</span> &lt;&lt; m) - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span>((!(i &amp; (i &lt;&lt; <span class="number">2</span>))) &amp;&amp; (!(i &amp; (i &lt;&lt; <span class="number">1</span>))))</span><br><span class="line">            status[++cnt] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= cnt; ++i)</span><br><span class="line">        dp[<span class="number">1</span> % <span class="number">2</span>][i][<span class="number">1</span>] = pop(status[i]);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= cnt; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!(status[j] &amp; can[i])) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= cnt; ++k) &#123;</span><br><span class="line">                    <span class="keyword">if</span> ((!(status[k] &amp; can[i - <span class="number">1</span>])) &amp;&amp; (!Check(status[j],status[k]))) &#123;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">1</span>; l &lt;= cnt; ++l)&#123;</span><br><span class="line">                            <span class="keyword">if</span> ((!(status[l] &amp; can[i - <span class="number">2</span>])) &amp;&amp; (!Check3(status[j], status[k], status[l])))</span><br><span class="line">                                dp[i % <span class="number">2</span>][j][k] = <span class="built_in">std</span>::max(dp[i % <span class="number">2</span>][j][k], dp[(i - <span class="number">1</span>) % <span class="number">2</span>][k][l] + pop(status[j]));</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= cnt; ++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= cnt; ++j)</span><br><span class="line">            ans = <span class="built_in">std</span>::max(ans, dp[n % <span class="number">2</span>][i][j]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -579,7 +577,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1272,9 +1270,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="图论,生成树,NOIP,DFS,LCA," />
+  <meta name="keywords" content="图论,生成树,DFS,NOIP,LCA," />
 
 
 
@@ -108,7 +108,7 @@
 
 
 <meta name="description" content="题目描述A国有n座城市，编号从  1到n，城市之间有  m  条双向道路。每一条道路对车辆都有重量限制，简称限重。现在有  q 辆货车在运输货物， 司机们想知道每辆车在不超过车辆限重的情况下，最多能运多重的货物。">
-<meta name="keywords" content="图论,生成树,NOIP,DFS,LCA">
+<meta name="keywords" content="图论,生成树,DFS,NOIP,LCA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="洛谷P1967「NOIP2013」《货车运输》">
 <meta property="og:url" content="https://blog.handwer-std.top/2019-03-30/Luogu-P1967/index.html">
@@ -154,7 +154,7 @@
 
 
 
-  <title>洛谷P1967「NOIP2013」《货车运输》 | Handwer's Blog</title>
+  <title>洛谷P1967「NOIP2013」《货车运输》 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -173,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -421,14 +421,7 @@
 <p>想一想答案怎么求。<br>既然新图有一个性质「两点间有唯一的不重复经过同一条边的路径」，那么走一遍这条路径不就求出答案了吗！</p>
 <p>为什么不再往上走一走？能运载的最大货物量是由这条路径决定的，往上走只可能有两种结果：上面边权比最小值大，上面边权比最小值小。第一种情况对答案没有什么贡献（因为最大值影响不了最小值），第二种情况则会<strong>劣化答案</strong>！</p>
 <p>显然这条路径被这两个点的 LCA 分成两段，从一个点向上到 LCA 再向下到另一个点，那么在求 LCA 往上蹦的过程中求一下最小值就行了。可以倍增。</p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><p>#include <algorithm></algorithm></p>
-<p>#include <iostream></iostream></p>
-<p>#include <cstring></cstring></p>
-<p>#include <cstdio></cstdio></p>
-<p>#define FILE_IN(<strong>fname) freopen(</strong>fname, “r”, stdin)</p>
-<p>#define FILE_OUT(<strong>fname) freopen(</strong>fname, “w”, stdout)</p>
-<p>#define IMPROVE_IO() std::ios::sync_with_stdio(false)</p>
-<p>using std::cin;<br>using std::cout;<br>using std::endl;</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <algorithm></algorithm></h1><h1 id="include-1"><a href="#include-1" class="headerlink" title="include "></a>include <iostream></iostream></h1><h1 id="include-2"><a href="#include-2" class="headerlink" title="include "></a>include <cstring></cstring></h1><h1 id="include-3"><a href="#include-3" class="headerlink" title="include "></a>include <cstdio></cstdio></h1><h1 id="define-FILE-IN-fname-freopen-fname-“r”-stdin"><a href="#define-FILE-IN-fname-freopen-fname-“r”-stdin" class="headerlink" title="define FILE_IN(fname) freopen(fname, “r”, stdin)"></a>define FILE_IN(<strong>fname) freopen(</strong>fname, “r”, stdin)</h1><h1 id="define-FILE-OUT-fname-freopen-fname-“w”-stdout"><a href="#define-FILE-OUT-fname-freopen-fname-“w”-stdout" class="headerlink" title="define FILE_OUT(fname) freopen(fname, “w”, stdout)"></a>define FILE_OUT(<strong>fname) freopen(</strong>fname, “w”, stdout)</h1><h1 id="define-IMPROVE-IO-std-ios-sync-with-stdio-false"><a href="#define-IMPROVE-IO-std-ios-sync-with-stdio-false" class="headerlink" title="define IMPROVE_IO() std::ios::sync_with_stdio(false)"></a>define IMPROVE_IO() std::ios::sync_with_stdio(false)</h1><p>using std::cin;<br>using std::cout;<br>using std::endl;</p>
 <p>const int MAXN = 100000 + 10;<br>const int MAXM = MAXN * 5;<br>const int LOG = 21;</p>
 <p>int n, m, q;</p>
 <p>namespace Graph{<br>    struct RawEdge {<br>        int prev, next, weight;</p>
@@ -593,9 +586,9 @@ return 0;
           
             <a href="/tags/生成树/" rel="tag"># 生成树</a>
           
-            <a href="/tags/NOIP/" rel="tag"># NOIP</a>
-          
             <a href="/tags/DFS/" rel="tag"># DFS</a>
+          
+            <a href="/tags/NOIP/" rel="tag"># NOIP</a>
           
             <a href="/tags/LCA/" rel="tag"># LCA</a>
           
@@ -706,7 +699,7 @@ return 0;
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -787,7 +780,7 @@ return 0;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入格式"><span class="nav-number">2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出格式"><span class="nav-number">3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入输出样例"><span class="nav-number">4.</span> <span class="nav-text">输入输出样例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解析"><span class="nav-number">5.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">6.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入格式"><span class="nav-number">2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出格式"><span class="nav-number">3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入输出样例"><span class="nav-number">4.</span> <span class="nav-text">输入输出样例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解析"><span class="nav-number">5.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">6.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include"><span class="nav-number">7.</span> <span class="nav-text">include </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include-1"><span class="nav-number">8.</span> <span class="nav-text">include </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include-2"><span class="nav-number">9.</span> <span class="nav-text">include </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include-3"><span class="nav-number">10.</span> <span class="nav-text">include </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-FILE-IN-fname-freopen-fname-“r”-stdin"><span class="nav-number">11.</span> <span class="nav-text">define FILE_IN(fname) freopen(fname, “r”, stdin)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-FILE-OUT-fname-freopen-fname-“w”-stdout"><span class="nav-number">12.</span> <span class="nav-text">define FILE_OUT(fname) freopen(fname, “w”, stdout)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-IMPROVE-IO-std-ios-sync-with-stdio-false"><span class="nav-number">13.</span> <span class="nav-text">define IMPROVE_IO() std::ios::sync_with_stdio(false)</span></a></li></ol></div>
             
 
           </div>
@@ -1399,9 +1392,9 @@ return 0;
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

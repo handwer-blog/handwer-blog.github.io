@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head><link rel=manifest href=/manifest.json>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -154,7 +154,7 @@
 
 
 
-  <title>洛谷P1119《灾后重建》 | Handwer's Blog</title>
+  <title>洛谷P1119《灾后重建》 | Handwer's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -173,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -423,8 +423,7 @@
 <p>对于$100\%$的数据，有 $N≤200$，$M≤N \times (N-1)/2$，$Q≤50000$，所有输入数据涉及整数均不超过$100000$。</p>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>首先 $ N \leq 200 $，那么肯定是用 Floyd</p>
 <p>Floyd 算法的本质是 DP，转移方程为 </p>
-<p>$$ f_{i,j} = min(f_{i,j},\ f_{i,k} + f_{k,j}) $$</p>
-<p>其中的这个 $k$ 就是「中转点」，表示当前最大能经过编号为 $k$ 的点。</p>
+<script type="math/tex; mode=display">f_{i,j} = min(f_{i,j},\ f_{i,k} + f_{k,j})</script><p>其中的这个 $k$ 就是「中转点」，表示当前最大能经过编号为 $k$ 的点。</p>
 <p>明确了这些，我们再来看题。</p>
 <hr>
 <p>给出每一个点状态转为「可用」的时间和所有的边，让你求任意点到点的距离。<br>我们跑 Floyd 时，$k$ 限制了我们当前能走的点，就相当于是题目中点的「不可用」状态！再加上所有的询问都是按照时间顺序给出的，所以我们就可以利用 Floyd 的性质来做这题。</p>
@@ -579,7 +578,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">147</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1272,9 +1271,9 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572046183786')
+  navigator.serviceWorker.register('/sw.js?t=1572086049351')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
-</script></body>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>
