@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><link rel=manifest href=/manifest.json>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0"><link rel="manifest" href="/manifest.json">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -27,8 +27,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -47,7 +47,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -74,9 +74,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/NewAvatar.jpg?v=5.1.4">
@@ -94,13 +94,13 @@
 
 
 
-  <meta name="keywords" content="算法,ST表,RMQ问题,模板," />
+  <meta name="keywords" content="算法,ST表,RMQ问题,模板,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Handwer's Blog" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Handwer's Blog" type="application/atom+xml">
 
 
 
@@ -150,7 +150,7 @@
 
 
 
-  <link rel="canonical" href="https://blog.handwer-std.top/2019-02-15/RMQ-SparseTable/"/>
+  <link rel="canonical" href="https://blog.handwer-std.top/2019-02-15/RMQ-SparseTable/">
 
 
 
@@ -184,7 +184,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Handwer's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -214,7 +214,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -224,7 +224,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -234,7 +234,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -244,7 +244,7 @@
         <li class="menu-item menu-item-frlink">
           <a href="/frlink/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br>
             
             我的朋友
           </a>
@@ -254,7 +254,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -267,7 +267,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -288,9 +288,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -331,7 +329,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Handwer STD">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/NewAvatar.jpg">
     </span>
 
@@ -418,7 +416,7 @@
 <p>那么显然</p>
 <script type="math/tex; mode=display">F(i,0) = P[i]</script><p>状态转移方程？</p>
 <hr>
-<p>首先，任意一个区间的最小值等于 $min($这个区间前一半的最小值$,$ 这个区间后一半点最小值$)$<br>这个很好理解吧<br>把$F( )$结合进去，就是</p>
+<p>首先，任意一个区间的最小值等于 $min($这个区间前一半的最小值$,$ 这个区间后一半点最小值$)$<br>这个很好理解吧<br>把$F(\ )$结合进去，就是</p>
 <script type="math/tex; mode=display">F(i,j) = min(F(i,j-1),F(i + 2^{j-1}, j - 1))</script><hr>
 <p>还有什么细节？<br>上面的式子看的你很想递归是吧（反正我是）<br>如果你不想递归的话，你八成会：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; ...)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; ...)</span><br><span class="line">        F[i][j] = ...</span><br></pre></td></tr></table></figure>
@@ -430,14 +428,14 @@
 <p>实现确实是很简单，但是原理就……<del>也是很简单</del></p>
 <hr>
 <p>首先给你一个定理：<br>对于任意 $x \in \mathbb{N^*}$ ，都有 $ 2^{\lfloor log_2(x) \rfloor} &gt; \lfloor \frac{x}{2} \rfloor $</p>
-<p>然后令查询区间$[l,r]$的长度 $\text{len} = r - (l - 1), \text{ll} = log_2(\text{len})$<br>那么根据上边可得 $ 2^{\text{ll}} &gt; \lfloor \frac{len}{2} \rfloor $<br>这意味着什么？<br>这意味着查询的区间有重叠！<br>不过这并不能意味啥，重叠又怎么样，只是查询的区间变了</p>
+<p>然后令查询区间$[l,r]$的长度 $\text{len} = r - (l - 1),\ \text{ll} = log_2(\text{len})$<br>那么根据上边可得 $ 2^{\text{ll}} &gt; \lfloor \frac{len}{2} \rfloor $<br>这意味着什么？<br>这意味着查询的区间有重叠！<br>不过这并不能意味啥，重叠又怎么样，只是查询的区间变了</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">原来我们查询区间，都是查询这个区间的一半</span><br><span class="line">比如更新[l,r]之间的最小值就是</span><br><span class="line">f[l][r] = std::min(f[l][mid], f[mid + 1][r]);</span><br><span class="line"></span><br><span class="line">但是这次不一样，这次的mid超过了区间的一半</span><br><span class="line">那就可以这么写：</span><br><span class="line"></span><br><span class="line">int Query(int l, int r) &#123;</span><br><span class="line">    int k = std::log(r - (l - 1)) / std::log(2);</span><br><span class="line">    return std::min(f[l][k], f[r - ((1 &lt;&lt; k) -1)][k]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>是 $O(1)$ 的吧</p>
 <p>它查询的区间相当于是这样的：<br><strong>（画的不准确，仅供参考）</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_ _ _ _ _ _ _ _ _ </span><br><span class="line">-------====       f[l][k]</span><br><span class="line">       ====------ f[r - ((1 &lt;&lt; k) - 1)][k]</span><br><span class="line">       </span><br><span class="line">等号就是两个查询区间的并集</span><br></pre></td></tr></table></figure>
 <p>这也就是它为什么不能查询区间和的原因<br><del>前缀和足够了</del></p>
 <p><img src="https://cdn.luogu.org/upload/pic/5010.png" alt="qwq"></p>
-<h1 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h1><p>⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯<br>$ \text{Algorithm 1: Sparse Table} $<br>⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯<br>$ \text{Init(The Sparse Table } f, \text{The original sequence } a, \text{no return value})$<br>&nbsp;&nbsp;$ 1. \text{For } i \text{ from 1 to n do}$<br>&nbsp;&nbsp;$ 2.     f[i][0] = a[i] $<br>&nbsp;&nbsp;$ 3. \text{End For} $<br>&nbsp;&nbsp;$ 4.  j \leftarrow 1, i \leftarrow 1$<br>&nbsp;&nbsp;$ 5. \text{While } 2^j \leq n \text{ do} $<br>&nbsp;&nbsp;$ 6.     \text{While } i + 2^j - 1 \leq n \text{ do} $<br>&nbsp;&nbsp;$ 7.         f[i][j] = min(f[i][j-1], f[i + 2^{j-1}][j-1]) $<br>&nbsp;&nbsp;$ 8.         i \leftarrow i + 1 $<br>&nbsp;&nbsp;$ 9.     \text{End While}$<br>$ 10.     j \leftarrow j + 1 $<br>$ 11. \text{End While} $ </p>
+<h1 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h1><p>⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯<br>$ \text{Algorithm 1: Sparse Table} $<br>⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯<br>$ \text{Init(The Sparse Table } f, \text{The original sequence } a, \text{no return value})$<br>&nbsp;&nbsp;$ 1. \text{For } i \text{ from 1 to n do}$<br>&nbsp;&nbsp;$ 2. \ \ \ \ f[i][0] = a[i] $<br>&nbsp;&nbsp;$ 3. \text{End For} $<br>&nbsp;&nbsp;$ 4. \ j \leftarrow 1, i \leftarrow 1$<br>&nbsp;&nbsp;$ 5. \text{While } 2^j \leq n \text{ do} $<br>&nbsp;&nbsp;$ 6. \ \ \ \ \text{While } i + 2^j - 1 \leq n \text{ do} $<br>&nbsp;&nbsp;$ 7. \ \ \ \ \ \ \ \ f[i][j] = min(f[i][j-1], f[i + 2^{j-1}][j-1]) $<br>&nbsp;&nbsp;$ 8. \ \ \ \ \ \ \ \ i \leftarrow i + 1 $<br>&nbsp;&nbsp;$ 9. \ \ \ \ \text{End While}$<br>$ 10. \ \ \ \ j \leftarrow j + 1 $<br>$ 11. \text{End While} $ </p>
 <p>$ \text{Query(}l,r\text{,return a value x}) $<br>$ 1. k \leftarrow log_2(r - l + 1)$<br>$ 2. \text{return } x = min(f[l][k], f[r - (2^k - 1)][k]$<br>⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯</p>
 <h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// luogu-judger-enable-o2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="meta-string">"r"</span>, stdin)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="meta-string">"w"</span>, stdout)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = (<span class="number">100000</span> + <span class="number">10</span>) * <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXLOG = <span class="number">17</span> + <span class="number">10</span>; <span class="comment">// floor(log2(100000 + 10))</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, q;</span><br><span class="line"><span class="keyword">int</span> Table[MAXN][MAXLOG];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BuildTable</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; (<span class="number">1</span> &lt;&lt; j) &lt;= n; ++j) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i + (<span class="number">1</span> &lt;&lt; j) - <span class="number">1</span> &lt;= n; ++i) &#123;</span><br><span class="line">            Table[i][j] = <span class="built_in">std</span>::max(Table[i][j<span class="number">-1</span>], Table[i + (<span class="number">1</span> &lt;&lt; (j - <span class="number">1</span>))][j - <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Query</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> k = <span class="built_in">std</span>::<span class="built_in">log</span>(r - (l - <span class="number">1</span>)) / <span class="built_in">std</span>::<span class="built_in">log</span>(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::max(Table[l][k], Table[r - ((<span class="number">1</span> &lt;&lt; k) - <span class="number">1</span>)][k]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;q);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;Table[i][<span class="number">0</span>]);</span><br><span class="line">    <span class="comment">// 这里可以省去seq[i]，对Table[i][0]进行直接写入</span></span><br><span class="line">    BuildTable();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= q; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;l, &amp;r);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, Query(l, r));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p><a href="https://www.luogu.org/problemnew/show/P3865" target="_blank" rel="noopener">洛谷P3865【模板】ST表</a></p>
@@ -576,9 +574,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/NewAvatar.jpg"
-                alt="Handwer STD" />
+              <img class="site-author-image" itemprop="image" src="/images/NewAvatar.jpg" alt="Handwer STD">
             
               <p class="site-author-name" itemprop="name">Handwer STD</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -591,7 +587,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">147</span>
+                  <span class="site-state-item-count">148</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -726,8 +722,17 @@
 <span class="from">————</span>
 </div>
 <div style="color:black;font-size:12px">
-<script type="text/javascript" src="https://api.imjad.cn/hitokoto/?cat=&amp;charset=utf-8&amp;length=50&amp;encode=js&amp;fun=sync&amp;source="></script><div id="hitokoto"><script>hitokoto()</script><span class="hitokoto" title=""></span></div>
+<script type="text/javascript" src="https://api.imjad.cn/hitokoto/?cat=&amp;charset=utf-8&amp;length=50&amp;encode=js&amp;fun=sync&amp;source="></script><div id="hitokoto"><script>hitokoto()</script><span class="hitokoto" title></span></div>
 </div>
+
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize("");
+    }
+  </script>
+
 
         
 
@@ -1284,7 +1289,7 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572098138625')
+  navigator.serviceWorker.register('/sw.js?t=1572272344161')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

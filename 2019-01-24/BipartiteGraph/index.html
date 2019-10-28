@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><link rel=manifest href=/manifest.json>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0"><link rel="manifest" href="/manifest.json">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -27,8 +27,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -47,7 +47,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -74,9 +74,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/NewAvatar.jpg?v=5.1.4">
@@ -94,13 +94,13 @@
 
 
 
-  <meta name="keywords" content="图论,二分图,BFS," />
+  <meta name="keywords" content="图论,二分图,BFS,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Handwer's Blog" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Handwer's Blog" type="application/atom+xml">
 
 
 
@@ -153,7 +153,7 @@
 
 
 
-  <link rel="canonical" href="https://blog.handwer-std.top/2019-01-24/BipartiteGraph/"/>
+  <link rel="canonical" href="https://blog.handwer-std.top/2019-01-24/BipartiteGraph/">
 
 
 
@@ -187,7 +187,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Handwer's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -217,7 +217,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -227,7 +227,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -237,7 +237,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -247,7 +247,7 @@
         <li class="menu-item menu-item-frlink">
           <a href="/frlink/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br>
             
             我的朋友
           </a>
@@ -257,7 +257,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -270,7 +270,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -291,9 +291,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -334,7 +332,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Handwer STD">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/NewAvatar.jpg">
     </span>
 
@@ -423,7 +421,7 @@
 <p>依次检查每一条边，看看是否满足顶点一个在$X$中，一个在$Y$中</p>
 <hr>
 <p>若某一图不连通，就在每个联通块里进行判定</p>
-<h1 id="二分图匹配"><a href="#二分图匹配" class="headerlink" title="二分图匹配"></a>二分图匹配</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>给定一个二分图$G$，在$G$的子图$M$中，$M$的边集$\{E\}$中的任意两条边都不依附于同一个顶点，则称$M$是一个匹配。</p>
+<h1 id="二分图匹配"><a href="#二分图匹配" class="headerlink" title="二分图匹配"></a>二分图匹配</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>给定一个二分图$G$，在$G$的子图$M$中，$M$的边集${E}$中的任意两条边都不依附于同一个顶点，则称$M$是一个匹配。</p>
 <p>图中蓝色的边是数量为2的匹配</p>
 <p><img src="https://s1.ax2x.com/2018/07/06/oQPHl.png" alt="oQPHl.png"></p>
 <h2 id="最大匹配-amp-完全匹配"><a href="#最大匹配-amp-完全匹配" class="headerlink" title="最大匹配 &amp; 完全匹配"></a>最大匹配 &amp; 完全匹配</h2><p>选择边数最大的子图称为「二分图的最大匹配问题」</p>
@@ -437,8 +435,8 @@
 <p>从$x_4$到$y_2$找一条路径：</p>
 <p>$<br>x_4 \rightarrow y_3 \rightarrow x_2 \rightarrow y1 \rightarrow x1 \rightarrow y2<br>$</p>
 <p>这条路径就是<strong>「增广路径」</strong></p>
-<p>其中属于$M$的边有：<br>$\{x2,y3\}, \{x1,y1\}$</p>
-<p>不属于$M$的边有：<br>$\{x4,y3\}, \{x2,y1\},\{x1,y2\}$</p>
+<p>其中属于$M$的边有：<br>${x2,y3}, {x1,y1}$</p>
+<p>不属于$M$的边有：<br>${x4,y3}, {x2,y1},{x1,y2}$</p>
 <p>显然，<i><b>不属于$M$的边比属于$M$的边要多一条</b></i></p>
 <hr>
 <p>将这条增广路上的边全都「反色」，如图</p>
@@ -617,9 +615,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/NewAvatar.jpg"
-                alt="Handwer STD" />
+              <img class="site-author-image" itemprop="image" src="/images/NewAvatar.jpg" alt="Handwer STD">
             
               <p class="site-author-name" itemprop="name">Handwer STD</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -632,7 +628,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">147</span>
+                  <span class="site-state-item-count">148</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -767,8 +763,17 @@
 <span class="from">————</span>
 </div>
 <div style="color:black;font-size:12px">
-<script type="text/javascript" src="https://api.imjad.cn/hitokoto/?cat=&amp;charset=utf-8&amp;length=50&amp;encode=js&amp;fun=sync&amp;source="></script><div id="hitokoto"><script>hitokoto()</script><span class="hitokoto" title=""></span></div>
+<script type="text/javascript" src="https://api.imjad.cn/hitokoto/?cat=&amp;charset=utf-8&amp;length=50&amp;encode=js&amp;fun=sync&amp;source="></script><div id="hitokoto"><script>hitokoto()</script><span class="hitokoto" title></span></div>
 </div>
+
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize("");
+    }
+  </script>
+
 
         
 
@@ -1325,7 +1330,7 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572098138625')
+  navigator.serviceWorker.register('/sw.js?t=1572272344161')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
