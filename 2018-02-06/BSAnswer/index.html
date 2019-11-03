@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="二分查找,二分答案,">
+  <meta name="keywords" content="学习笔记,二分查找,二分答案,">
 
 
 
@@ -108,14 +108,14 @@
 
 
 <meta name="description" content="$O(\log_2n)$的优秀算法">
-<meta name="keywords" content="二分查找,二分答案">
+<meta name="keywords" content="学习笔记,二分查找,二分答案">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二分查找&amp;二分答案">
 <meta property="og:url" content="https://blog.handwer-std.top/2018-02-06/BSAnswer/index.html">
 <meta property="og:site_name" content="Handwer&#39;s Blog">
 <meta property="og:description" content="$O(\log_2n)$的优秀算法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-26T11:45:02.011Z">
+<meta property="og:updated_time" content="2019-11-03T09:33:22.883Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二分查找&amp;二分答案">
 <meta name="twitter:description" content="$O(\log_2n)$的优秀算法">
@@ -422,9 +422,9 @@
 </li>
 </ol>
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">BinarySearch</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> t,<span class="keyword">int</span> x[])</span></span>&#123;</span><br><span class="line">  <span class="keyword">while</span> (l &lt;= r)&#123;</span><br><span class="line">    <span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (x[mid] == t) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (x[mid] &lt; t) l = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (x[mid] &gt; t) r = mid - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (l &gt; r) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> dest;</span><br><span class="line">  <span class="built_in">cin</span> &gt;&gt; dest;</span><br><span class="line">  <span class="keyword">int</span> n;</span><br><span class="line">  <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">  <span class="keyword">int</span> *p = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;i++) <span class="built_in">cin</span> &gt;&gt; p[i];</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,BinarySearch(<span class="number">0</span>,n - <span class="number">1</span>,dest,p)?<span class="string">"YES"</span>:<span class="string">"NO"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="二分答案"><a href="#二分答案" class="headerlink" title="二分答案"></a>二分答案</h2><p>看完了二分查找，你会发现二分并没有什么卵用。</p>
-<p>对，大部分情况二分的确没有什么用，但是从它身上衍生出来的二分答案却是一个很有用的东西！</p>
-<p>二分答案，就是通过二分的方式枚举出一个答案来，然后再验证你的查找结果是否正确，从而获取答案</p>
+<h2 id="二分答案"><a href="#二分答案" class="headerlink" title="二分答案"></a>二分答案</h2><p>看完了二分查找，你会发现二分好像只能用来在有序数列里找数。</p>
+<p>对，一些情况二分只能拿来找数，但是从它身上衍生出来的二分答案却是一个很有用的东西！</p>
+<p>二分答案，就是通过二分查找的方式枚举出一个答案来，然后再验证你的查找结果是否正确，从而获取答案</p>
 <h3 id="要求-amp-特点"><a href="#要求-amp-特点" class="headerlink" title="要求&amp;特点"></a>要求&amp;特点</h3><ol>
 <li>答案具有<strong>单调性</strong></li>
 <li>题面里包含与“最小的最大，最大的最小”相关的字眼</li>
@@ -481,6 +481,8 @@
     <footer class="post-footer">
       
         <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
           
             <a href="/tags/二分查找/" rel="tag"># 二分查找</a>
           
@@ -591,7 +593,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">151</span>
+                  <span class="site-state-item-count">152</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -604,7 +606,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1293,7 +1295,7 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572704359705')
+  navigator.serviceWorker.register('/sw.js?t=1572777815501')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

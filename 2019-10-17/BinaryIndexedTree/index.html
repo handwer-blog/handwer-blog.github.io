@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="数据结构,树状数组,树,模版,">
+  <meta name="keywords" content="学习笔记,数据结构,树状数组,树,">
 
 
 
@@ -108,7 +108,7 @@
 
 
 <meta name="description" content="高效又好写的数据结构">
-<meta name="keywords" content="数据结构,树状数组,树,模版">
+<meta name="keywords" content="学习笔记,数据结构,树状数组,树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树状数组学习笔记">
 <meta property="og:url" content="https://blog.handwer-std.top/2019-10-17/BinaryIndexedTree/index.html">
@@ -117,8 +117,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/17/KAb2Se.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/17/KE3Zkj.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/10/17/KEdzbq.png">
-<meta property="og:updated_time" content="2019-10-17T13:07:35.619Z">
+<meta property="og:updated_time" content="2019-11-03T10:43:17.744Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="树状数组学习笔记">
 <meta name="twitter:description" content="高效又好写的数据结构">
@@ -459,7 +458,7 @@
 <h2 id="单点加减、子矩阵和查询"><a href="#单点加减、子矩阵和查询" class="headerlink" title="单点加减、子矩阵和查询"></a>单点加减、子矩阵和查询</h2><p>前面说过，树状数组是利用前缀和的思想进行实现的，既然二维也有前缀和，何不照葫芦画瓢把而为树状数组搞出来呢？</p>
 <hr>
 <p>先来复习一下。</p>
-<script type="math/tex; mode=display">\sum_{i = l}^{r} a_i = \sum_{i = 1}^{r} a_i - \sum_{i = 1}^{l - 1} a_i</script><p>为了方便，定义 $f(x,y)=\sum<em>{i = 1}^{x}\sum</em>{j = 1}^{y}a_{i,j}$</p>
+<script type="math/tex; mode=display">\sum_{i = l}^{r} a_i = \sum_{i = 1}^{r} a_i - \sum_{i = 1}^{l - 1} a_i</script><p>为了方便，定义 <script type="math/tex">f(x,y)=\sum_{i = 1}^{x} \sum_{j = 1}^{y} a_{i,j}</script></p>
 <script type="math/tex; mode=display">\sum_{i = x_1}^{x_2}\sum_{j = y_1}^{y_2}a_{i,j}=f(x_2,y_2)-f(x_1 - 1,y_2)-f(x_2,y_1-1)+f(x_1-1,y_1-1)</script><p>直观来看，</p>
 <p><img src="https://s2.ax1x.com/2019/10/17/KE3Zkj.png" alt="KE3Zkj.png"></p>
 <p>定义$\text{Sum}(a,b,c,d)$为以$(a,b)$为左下角，$(c,d)$为右上角（对于矩阵是反着的）的矩阵元素之和，那么很显然能看出 $\text{Sum}(5,4,7,5)=\text{Sum}(1,1,7,5)-\text{Sum}(1,1,7,3)-\text{Sum}(1,1,4,5)+\text{Sum}(1,1,4,3)$，也就是四边形$\text{ABCD}-\text{ABGI}-\text{AHFD}+\text{AHEI}$元素的值</p>
@@ -476,11 +475,9 @@
 <p>……其实并不难，如果你把前面都学懂了。</p>
 <p>和<a href="#区间加减、区间和查询">区间加减、区间和查询</a>一样，先看看查询操作的本质</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^{x} \sum_{j=1}^{y} \sum_{k=1}^{i} \sum_{h=1}^{j} d[h][k]</script><p>先统计一下 $d[i][j]$ 被访问了多少次，然后<big><big>稍微</big>&lt;/big&gt;整理一下式子，变成</big></p>
-<!--$$
-{\sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times(x+1-i) \times(y+1-j)} \\= {(x+1)(y+1) \times \sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j]} \\ {-(y+1) \times \sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times i} \\ {-(x+1) \times \sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times j} \\ {\quad+\sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times i \times j}
-$$-->
-<p><img src="https://s2.ax1x.com/2019/10/17/KEdzbq.png" alt="KEdzbq.png"></p>
+\sum_{i=1}^{x} \sum_{j=1}^{y} \sum_{k=1}^{i} \sum_{h=1}^{j} d[h][k]</script><p>先统计一下 $d[i][j]$ 被访问了多少次，然后<big>稍微</big>整理一下式子，变成</p>
+<script type="math/tex; mode=display">
+{\sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times(x+1-i) \times(y+1-j)} \\= {(x+1)(y+1) \times \sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j]} \\ {-(y+1) \times \sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times i} \\ {-(x+1) \times \sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times j} \\ {\quad+\sum_{i=1}^{x} \sum_{j=1}^{y} d[i][j] \times i \times j}</script><!--![KEdzbq.png](https://s2.ax1x.com/2019/10/17/KEdzbq.png)-->
 <p>所以，实现区修区查需要维护四个差分数组！</p>
 <ul>
 <li>第一个：维护$d[i][j]$</li>
@@ -525,13 +522,13 @@ $$-->
       
         <div class="post-tags">
           
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
             <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
           
             <a href="/tags/树状数组/" rel="tag"># 树状数组</a>
           
             <a href="/tags/树/" rel="tag"># 树</a>
-          
-            <a href="/tags/模版/" rel="tag"># 模版</a>
           
         </div>
       
@@ -638,7 +635,7 @@ $$-->
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">151</span>
+                  <span class="site-state-item-count">152</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -651,7 +648,7 @@ $$-->
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1340,7 +1337,7 @@ $$-->
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1572704359705')
+  navigator.serviceWorker.register('/sw.js?t=1572777815501')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
