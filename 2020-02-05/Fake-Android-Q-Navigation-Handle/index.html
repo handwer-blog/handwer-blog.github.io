@@ -115,10 +115,13 @@
 <meta property="og:site_name" content="Handwer&#39;s Blog">
 <meta property="og:description" content="Android Q 是真的香，可惜我只有 Android P">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-05T04:38:02.030Z">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/05/1r6p1H.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/05/1rgxhT.md.png">
+<meta property="og:updated_time" content="2020-02-05T05:23:11.020Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何把 Android P 的小药丸改成 Q 的小横条">
 <meta name="twitter:description" content="Android Q 是真的香，可惜我只有 Android P">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/02/05/1r6p1H.png">
 
 
 
@@ -416,7 +419,41 @@
 <h2 id="开启手势及动画"><a href="#开启手势及动画" class="headerlink" title="开启手势及动画"></a>开启手势及动画</h2><p><a href="https://www.coolapk.com/apk/ch.deletescape.lawnchair.ci" target="_blank" rel="noopener">Lawnchair 测试版</a>拥有 Android Q 的动画和手势，下载安装后用 Magisk 模块 QuickSwitch 设为默认桌面和最近应用提供者（Recent Provider），重启即可</p>
 <p>接下来长按桌面空白处，打开「主屏幕设置」，找到「最近任务」，把「向上滑动以切换应用」、「Full gesture mode」、「向左滑动以返回」都打开并重启</p>
 <p>接下来打开应用、返回桌面的动画就会变成 Android Q 的非线性动画，小药丸此时和 Android Q 的小横条的功能是一样的，只有外观不一样</p>
-<h2 id="更改外观"><a href="#更改外观" class="headerlink" title="更改外观"></a>更改外观</h2><p>To be continued…</p>
+<h2 id="更改外观"><a href="#更改外观" class="headerlink" title="更改外观"></a>更改外观</h2><center><i>需要修改系统文件</i></center>
+
+<p>小药丸的外观是由 SystemUI.apk 控制的，导航栏的大小是由 framework-res.apk 控制的，需要修改这两个文件</p>
+<h3 id="修改-SystemUI"><a href="#修改-SystemUI" class="headerlink" title="修改 SystemUI"></a>修改 SystemUI</h3><p>打开 MT 管理器，定位到 <code>/system/priv-app/SystemUI/</code>，将里面的 SystemUI.apk 文件做好备份，出事了直接进 recovery 恢复（<code>data</code> 没有解锁的需要刷完整包）</p>
+<p>点击 SystemUI.apk 再点击「查看」，此时这个 apk 以 zip 的形式展开了。点击右上角三个点 $\vdots$ 选择「搜索」，在搜索框中输入 <code>ic_sysbar_home_quick</code>，理论上只有一个搜索结果 <code>ic_sysbar_home_quick_step.xml</code>，点开它，此时进入了该文件所在的目录。点击该文件，选择「反编译」，等待它加载好。</p>
+<p>修改 <code>android:height</code> 和 <code>android:width</code> 后面的值为 <code>140dp</code><br>修改 <code>android:viewportWidth</code> 和 <code>android:viewportHeight</code> 后面的值为 <code>140.0</code></p>
+<p>修改 <code>android:pathData</code> 后面的字符串为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">M138,72H2c-0.89,0-2-1.11-2-2l0,0c0-0.89,1.11-2,2-2H138c1.11,0,2,0.89,2,2l0,0c0,0.89,-1.11,2,-2,2z</span><br></pre></td></tr></table></figure>
+<p>只替换<strong>引号里面</strong>的内容，<strong>请直接复制</strong>，一个字母都不能错，否则有可能开机后无限 fc</p>
+<p><code>android:fillColor</code> 不用动</p>
+<p>最终这个文件应该差不多长这样：</p>
+<p><img src="https://s2.ax1x.com/2020/02/05/1r6p1H.png" alt="1r6p1H.png"></p>
+<p><strong>上面的数据请不要随意更改，更改任意一个都需要重新计算 pathData，请直接使用上面提供的数据</strong></p>
+<p>保存文件，退出编辑器，提示更新文件选是，重启，此时小药丸就变成小横条了，但是导航栏还是那么大一个</p>
+<h3 id="修改-framework-res-apk"><a href="#修改-framework-res-apk" class="headerlink" title="修改 framework-res.apk"></a>修改 framework-res.apk</h3><p>更改导航栏高度有两个选择：</p>
+<ul>
+<li>直接上重力工具箱（Android P 版本）</li>
+<li>修改 framework-res.apk</li>
+</ul>
+<p>这里介绍如何修改 framework-res.apk</p>
+<p>打开 MT 管理器，定位到 <code>/system/framework/</code>，将里面的 framework-res.apk 文件做好备份，出事了也可以直接用 recovery 恢复</p>
+<p>点击 framework-res.apk 再点击「查看」，此时这个 apk 以 zip 的形式展开了。点击 resources.arsc 文件，再点击「Arsc编辑器」。</p>
+<p>点击「Android」，之后点击「dimen」，进入之后再次点击「dimen」（理论上应该是第一个选项），点击右上角三个点 $\vdots$ 选择过滤，在搜索框中输入「navigation」，点击确定</p>
+<p>此时应该就剩下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">navigation_bar_height</span><br><span class="line">navigation_bar_height_car_mode</span><br><span class="line">navigation_bar_height_landscape</span><br><span class="line">navigation_bar_height_landscape_car_mode</span><br><span class="line">navigation_bar_width</span><br><span class="line">navigation_bar_width_car_mode</span><br></pre></td></tr></table></figure>
+<p>这几项</p>
+<p>修改（点击选项，在输入框中修改）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">navigation_bar_height</span><br><span class="line">navigation_bar_height_landscape</span><br><span class="line">navigation_bar_width</span><br><span class="line">navigation_bar_width_car_mode</span><br></pre></td></tr></table></figure>
+<p>为 <code>25dp</code>（这个是我觉得一个比较适合的值，数字大了导航栏就会更高，数字小了导航栏就会更低，可以按照习惯自由调整）<br>剩下的两项改不改都可以</p>
+<p>调整完了保存文件，退出编辑器，提示更新文件选是，接着重启，重启之后导航栏的高度就降下来了</p>
+<p>此时你就获得了一个 Android Q 的小横条</p>
+<p>效果图</p>
+<p><img src="https://s2.ax1x.com/2020/02/05/1rgxhT.md.png" alt="1rgxhT.png"></p>
+<h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>返回键可以使用微聚去除，或者替换透明 png 文件也可以</p>
+<p>侧滑返回手势可以使用流体手势实现</p>
 
       
     </div>
@@ -465,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020-01-23/Luogu-P2272-ZJOI2007/" rel="next" title="Luogu-P2272-ZJOI2007">
-                <i class="fa fa-chevron-left"></i> Luogu-P2272-ZJOI2007
+              <a href="/2020-01-20/Luogu-P1608/" rel="next" title="洛谷P1608《路径统计》">
+                <i class="fa fa-chevron-left"></i> 洛谷P1608《路径统计》
               </a>
             
           </div>
@@ -555,7 +592,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">161</span>
+                  <span class="site-state-item-count">160</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -636,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备材料"><span class="nav-number">2.</span> <span class="nav-text">准备材料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#教程"><span class="nav-number">3.</span> <span class="nav-text">教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#刷机"><span class="nav-number">3.1.</span> <span class="nav-text">刷机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启手势及动画"><span class="nav-number">3.2.</span> <span class="nav-text">开启手势及动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改外观"><span class="nav-number">3.3.</span> <span class="nav-text">更改外观</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备材料"><span class="nav-number">2.</span> <span class="nav-text">准备材料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#教程"><span class="nav-number">3.</span> <span class="nav-text">教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#刷机"><span class="nav-number">3.1.</span> <span class="nav-text">刷机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启手势及动画"><span class="nav-number">3.2.</span> <span class="nav-text">开启手势及动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改外观"><span class="nav-number">3.3.</span> <span class="nav-text">更改外观</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-SystemUI"><span class="nav-number">3.3.1.</span> <span class="nav-text">修改 SystemUI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-framework-res-apk"><span class="nav-number">3.3.2.</span> <span class="nav-text">修改 framework-res.apk</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优化"><span class="nav-number">4.</span> <span class="nav-text">优化</span></a></li></ol></div>
             
 
           </div>
@@ -1257,7 +1294,7 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1580877503574')
+  navigator.serviceWorker.register('/sw.js?t=1580880214131')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

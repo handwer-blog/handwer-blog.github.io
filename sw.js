@@ -28,11 +28,11 @@ var precacheUrls = [];
 
   precacheUrls.push('/2020-02-05/Fake-Android-Q-Navigation-Handle/');
 
-  precacheUrls.push('/2020-01-23/Luogu-P2272-ZJOI2007/');
-
   precacheUrls.push('/2020-01-20/Luogu-P1608/');
 
   precacheUrls.push('/2020-01-18/POJ2001/');
+
+  precacheUrls.push('/2020-01-17/Luogu-P2761/');
 
 toolbox.precache(precacheUrls);
 toolbox.options = {"networkTimeoutSeconds":20};
