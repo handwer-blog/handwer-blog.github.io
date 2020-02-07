@@ -24,7 +24,7 @@ var precacheUrls = [];
 
   precacheUrls.push('/');
 
-  precacheUrls.push('/2019-10-31/BulletinBoard/');
+  precacheUrls.push('/2020-02-07/BulletinBoard/');
 
   precacheUrls.push('/2020-02-05/Fake-Android-Q-Navigation-Handle/');
 
