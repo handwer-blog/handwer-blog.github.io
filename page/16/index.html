@@ -1,0 +1,584 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Handwer&#39;s Blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  
+  <meta name="author" content="Handwer STD"> 
+
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0HB0Bt.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: true,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '现在，走吧，有花开在旅程。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  
+    <div class="preview">
+  <nav class="navbar j-navbar-menu">
+    <i class="iconfont iconmenu"></i>
+  </nav>
+  <div class="preview-image">
+    <h2 class="preview-motto" id="motto"></h2>
+    <!-- <span class="preview-cursor">|</span> -->
+    
+    <img src="/images/theme/cloud.png" class="preview-overlay" draggable="false">
+    
+  </div>
+  <div class="preview-scroll">
+    <a href="#container" class="smooth-scroll"><i class="iconfont iconMouse"></i></a>
+  </div>
+</div>
+  
+  <div class="container" id="container">
+    <section class="row post">
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2018/09-30/CF295B/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2018/09-30/CF295B/">Codeforces 295B 《Greg and Graph》</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+开倒车 倒序 Floyd
+
+
+
+题目链接
+题目描述 翻译来自洛谷 
+
+Greg有一个有边权的有向图，包含 
+n
+
+
+
+
+ 
+
+ 个点。这个图的每两个点之间都有两个方向的边。Greg喜欢用他的图...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>九月 30, 2018</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3055</span>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2018/09-15/Luogu-P1908/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2018/09-15/Luogu-P1908/">洛谷P1908《逆序对》</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+Based on 归并排序
+
+
+
+题目地址
+题目描述猫猫TOM和小老鼠JERRY最近又较量上了，但是毕竟都是成年人，他们已经不喜欢再玩那种你追我赶的游戏，现在他们喜欢玩统计。最近，TOM老猫查...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>九月 15, 2018</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>1934</span>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2018/09-15/DepthFirstSearch/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2018/09-15/DepthFirstSearch/">深度优先搜索</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+常见算法 / 骗分技巧
+
+
+
+洛谷P1605 迷宫题目地址
+DFS 入门题
+用一个数组mp存图，vis记录是否经过了这个点
+12mp[i][j] = 0 表示有障碍mp[i][j] = 1 表...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>九月 15, 2018</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3016</span>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2018/08-26/2018FSExamRound1T1/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2018/08-26/2018FSExamRound1T1/">「五校联考」Round#1 Day1&amp;amp;Day2 T1</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">由于权限原因，暂不提供题面 &amp; 评测地址
+Day1 T1 dice.cpp解析题目让我们求一个骰子每次滚动时最顶数字之和
+随意观察可知一个骰子滚4圈所得的和 
+=14
+
+
+
+
+
+
+ 
+
+...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 26, 2018</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>4521</span>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2018/08-08/Luogu-P3884/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2018/08-08/Luogu-P3884/">洛谷P3884《[JLOI2009]二叉树问题》</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+不用倍增的 almost裸的LCA
+
+
+
+题目描述如下图所示的一棵二叉树的深度、宽度及结点间距离分别为：
+深度：4 宽度：4（同一层最多结点个数）
+结点间距离： ⑧→⑥为8 (3×2+2=8)...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 08, 2018</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3596</span>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2018/08-07/LeastCommonAncestors/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2018/08-07/LeastCommonAncestors/">最近公共祖先 LCA 算法学习笔记</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+两个结点找共同的爸爸
+
+
+
+LCA 的概念
+在图论和计算机科学中，最近公共祖先（英语：lowest common ancestor）是指在一个树或者有向无环图中同时拥有v和w作为后代的最深的节...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 07, 2018</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>4391</span>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2018/08-05/Luogu-P1531/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2018/08-05/Luogu-P1531/">洛谷P1531《I Hate It》</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+暴力能过的线段树板子题
+
+
+
+题目背景很多学校流行一种比较的习惯。老师们很喜欢询问，从某某到某某当中，分数最高的是多少。这让很多学生很反感。
+题目描述不管你喜不喜欢，现在需要你做的是，就是按照...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 05, 2018</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>5042</span>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2018/08-05/Luogu-P1563/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2018/08-05/Luogu-P1563/">洛谷P1563「NOIP2016」《玩具谜题》</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+暴力模拟
+
+
+
+题目描述小南有一套可爱的玩具小人, 它们各有不同的职业。
+有一天, 这些玩具小人把小南的眼镜藏了起来。 小南发现玩具小人们围成了一个圈,它们有的面朝圈内,有的面朝圈外。如下图:...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 05, 2018</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3528</span>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2018/08-05/mul-inverse-modulo/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2018/08-05/mul-inverse-modulo/">乘法逆元求法</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+数论中的重要内容
+
+
+
+注意：本文只讨论模数为质数的情况，因为当模数为合数时，不一定所有数都有逆元
+定义在
+\bmod\ p
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+
+ 
+
+的意义下，我们把
+x
+
+
+
+
+...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 05, 2018</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3301</span>
+      </div>
+    </div>
+  </div>
+</div>
+  
+</section>
+    <section class="paginator">
+  
+  <a class="extend prev" rel="prev" href="/page/15/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/17/">&gt;</a>
+  
+</section>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:handwerstudotie@gmail.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

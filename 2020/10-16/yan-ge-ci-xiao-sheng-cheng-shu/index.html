@@ -1,0 +1,453 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>严格次小生成树 - Handwer&#39;s Blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="题意简述给定一个无向连通图，求出它的一棵生成树，满足边..."> 
+  
+  <meta name="author" content="Handwer STD"> 
+
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0HB0Bt.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '现在，走吧，有花开在旅程。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">严格次小生成树</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HajkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">严格次小生成树</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 16, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7518</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h1><p>给定一个无向连通图，求出它的一棵生成树，满足边权之和仅次于最小生成树。</p>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>一个很自然的想法就是，枚举每一条选中的边，用另外一条没选中的边替换，求出次小值。</p>
+<p>考虑怎么优化这个算法。</p>
+<hr>
+<p>首先换一下枚举顺序，改为<strong>枚举每一条没选中的边</strong>，用它来替换一条选中的边，因为维护树上的信息比维护一堆零散的边的信息要简单得多。</p>
+<p>接着我们来考虑要更换哪条边。很显然，<strong>要更换的一定是最大的那条边</strong>，这样可以对最小生成树的边权和产生的影响最小，让次小生成树「只比它大恰好一点点」。那么我们维护一个最小生成树的<strong>链上边权最大值</strong>就没了。</p>
+<hr>
+<p>有小朋友可能会问：如果换边的时候搞成了一个基环森林咋办？<br>答案是：对于一条未选的边 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="7.999ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 3443.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">(u, v, w)</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-75" d="M21 287Q21 295 30 318T55 370T99 420T158 442Q204 442 227 417T250 358Q250 340 216 246T182 105Q182 62 196 45T238 27T291 44T328 78L339 95Q341 99 377 247Q407 367 413 387T427 416Q444 431 463 431Q480 431 488 421T496 402L420 84Q419 79 419 68Q419 43 426 35T447 26Q469 29 482 57T512 145Q514 153 532 153Q551 153 551 144Q550 139 549 130T540 98T523 55T498 17T462 -8Q454 -10 438 -10Q372 -10 347 46Q345 45 336 36T318 21T296 6T267 -6T233 -11Q189 -11 155 7Q103 38 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-76" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-77" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAIN-28" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-75" x="389" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2C" x="962" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-76" x="1407" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2C" x="1892" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-77" x="2337" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-29" x="3054" y="0"></use>
+</g>
+</svg> ，我们只替换 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.071ex" height="1.843ex" style="vertical-align: -0.338ex;" viewBox="0 -647.8 2614.1 793.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">u \rightarrow v</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-75" d="M21 287Q21 295 30 318T55 370T99 420T158 442Q204 442 227 417T250 358Q250 340 216 246T182 105Q182 62 196 45T238 27T291 44T328 78L339 95Q341 99 377 247Q407 367 413 387T427 416Q444 431 463 431Q480 431 488 421T496 402L420 84Q419 79 419 68Q419 43 426 35T447 26Q469 29 482 57T512 145Q514 153 532 153Q551 153 551 144Q550 139 549 130T540 98T523 55T498 17T462 -8Q454 -10 438 -10Q372 -10 347 46Q345 45 336 36T318 21T296 6T267 -6T233 -11Q189 -11 155 7Q103 38 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-76" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-75" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2192" x="850" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-76" x="2128" y="0"></use>
+</g>
+</svg> 这条链上的所有边。这个比较显然，自己画图理解一下。</p>
+<p>行了，本题的大概思路到这里就结束了，大家洗洗睡吧。</p>
+<hr>
+<p>真的吗？<br>再来读一遍题：<strong>严格</strong>次小生成树，生成树权值之和要<strong>严格小于</strong>最小生成树<br>如果按照上面的操作，我们可能会碰到这样一种情况——<strong>当前枚举的未选择边边权 = 最小生成树中的最大边权</strong>，此时对边权和产生的影响<strong>恰好为零</strong>，此时我们求出的仅仅是<strong>另外一棵最小生成树</strong>而已。</p>
+<p>怎么办？</p>
+<hr>
+<p>很简单，再维护一个次大值即可，如果最大值等于枚举的边权，就拿次大值算影响。</p>
+<p>行了，本题到这里真的结束了。</p>
+<h1 id="代码细节"><a href="#代码细节" class="headerlink" title="代码细节"></a>代码细节</h1><p>主要的实现细节是求链上最大值和次大值。这个用倍增维护比较舒服。</p>
+<p>关于如何求最大值就不说了，和求倍增的<code>fa[u][i]</code>都差不多。</p>
+<p>以下的代码都是令 <code>maxw[u][i][0]</code> 表示 <code>u</code> 向上跳 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.962ex" height="2.676ex" style="vertical-align: -0.338ex;" viewBox="0 -1006.6 844.8 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">2^i</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAIN-32" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-69" x="707" y="583"></use>
+</g>
+</svg> 层经过的边权最大值，<code>maxw[u][i][1]</code> 表示 <code>u</code> 向上跳 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.962ex" height="2.676ex" style="vertical-align: -0.338ex;" viewBox="0 -1006.6 844.8 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">2^i</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAIN-32" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-69" x="707" y="583"></use>
+</g>
+</svg> 层经过的边权次大值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span>  i  =  <span class="hljs-number">1</span>; depth[u] &gt;= twon[i]; ++i) &#123;<br>    <span class="hljs-comment">// 更新 fa</span><br>    fa[u][i] =  fa[fa[u][i  -  <span class="hljs-number">1</span>]][i  -  <span class="hljs-number">1</span>];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>维护次大值比较麻烦。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 更新最大值、次大值</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span>  i  =  <span class="hljs-number">1</span>; depth[u] &gt;= twon[i]; ++i) &#123;;<br>	<span class="hljs-comment">// maxw[u][i][0] 可以从 maxw[u][i - 1][0] 和 maxw[fa[u][i - 1]][i - 1][0] 继承过来</span><br>	maxw[u][i][<span class="hljs-number">0</span>] = <span class="hljs-built_in">std</span>::max(maxw[u][i  -  <span class="hljs-number">1</span>][<span class="hljs-number">0</span>], maxw[fa[u][i  -  <span class="hljs-number">1</span>]][i  -  <span class="hljs-number">1</span>][<span class="hljs-number">0</span>])<br>	<span class="hljs-comment">// maxw[u][i][1] 可以从 maxw[u][i - 1][1] maxw[fa[u][i - 1]][i - 1][1]</span><br>	<span class="hljs-comment">// 和 maxw[u][i - 1][0] maxw[fa[u][i - 1]][i - 1][0] 中的较小值 继承过来</span><br>	<span class="hljs-keyword">if</span> (maxw[u][i  -  <span class="hljs-number">1</span>][<span class="hljs-number">0</span>] ==  maxw[fa[u][i  -  <span class="hljs-number">1</span>]][i  -  <span class="hljs-number">1</span>][<span class="hljs-number">0</span>]) &#123;<br>	    <span class="hljs-comment">// 为了保证严格次小，当 maxw[u][i - 1][0] == maxw[fa[u][i - 1]][i - 1][0] 时</span><br>	    <span class="hljs-comment">// 无法转移 maxw[u][i][1]</span><br>		maxw[u][i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">std</span>::max(maxw[u][i  -  <span class="hljs-number">1</span>][<span class="hljs-number">1</span>], maxw[fa[u][i  -  <span class="hljs-number">1</span>]][i  -  <span class="hljs-number">1</span>][<span class="hljs-number">1</span>]);<br>	&#125; <span class="hljs-keyword">else</span>  maxw[u][i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">std</span>::max(<br>		<span class="hljs-built_in">std</span>::min(maxw[u][i  -  <span class="hljs-number">1</span>][<span class="hljs-number">0</span>], maxw[fa[u][i  -  <span class="hljs-number">1</span>]][i  -  <span class="hljs-number">1</span>][<span class="hljs-number">0</span>]),<br>		<span class="hljs-built_in">std</span>::max(maxw[u][i  -  <span class="hljs-number">1</span>][<span class="hljs-number">1</span>], maxw[fa[u][i  -  <span class="hljs-number">1</span>]][i  -  <span class="hljs-number">1</span>][<span class="hljs-number">1</span>])<br>	);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>接下来是查询。查询可以分成两个部分 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.818ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 4227.1 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">u \rightarrow \text{LCA}</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-75" d="M21 287Q21 295 30 318T55 370T99 420T158 442Q204 442 227 417T250 358Q250 340 216 246T182 105Q182 62 196 45T238 27T291 44T328 78L339 95Q341 99 377 247Q407 367 413 387T427 416Q444 431 463 431Q480 431 488 421T496 402L420 84Q419 79 419 68Q419 43 426 35T447 26Q469 29 482 57T512 145Q514 153 532 153Q551 153 551 144Q550 139 549 130T540 98T523 55T498 17T462 -8Q454 -10 438 -10Q372 -10 347 46Q345 45 336 36T318 21T296 6T267 -6T233 -11Q189 -11 155 7Q103 38 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-4C" d="M128 622Q121 629 117 631T101 634T58 637H25V683H36Q48 680 182 680Q324 680 348 683H360V637H333Q273 637 258 635T233 622L232 342V129Q232 57 237 52Q243 47 313 47Q384 47 410 53Q470 70 498 110T536 221Q536 226 537 238T540 261T542 272T562 273H582V268Q580 265 568 137T554 5V0H25V46H58Q100 47 109 49T128 61V622Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-43" d="M56 342Q56 428 89 500T174 615T283 681T391 705Q394 705 400 705T408 704Q499 704 569 636L582 624L612 663Q639 700 643 704Q644 704 647 704T653 705H657Q660 705 666 699V419L660 413H626Q620 419 619 430Q610 512 571 572T476 651Q457 658 426 658Q322 658 252 588Q173 509 173 342Q173 221 211 151Q232 111 263 84T328 45T384 29T428 24Q517 24 571 93T626 244Q626 251 632 257H660L666 251V236Q661 133 590 56T403 -21Q262 -21 159 83T56 342Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-41" d="M255 0Q240 3 140 3Q48 3 39 0H32V46H47Q119 49 139 88Q140 91 192 245T295 553T348 708Q351 716 366 716H376Q396 715 400 709Q402 707 508 390L617 67Q624 54 636 51T687 46H717V0H708Q699 3 581 3Q458 3 437 0H427V46H440Q510 46 510 64Q510 66 486 138L462 209H229L209 150Q189 91 189 85Q189 72 209 59T259 46H264V0H255ZM447 255L345 557L244 256Q244 255 345 255H447Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-75" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2192" x="850" y="0"></use>
+<g transform="translate(2128,0)">
+ <use xlink:href="#E1-MJMAIN-4C"></use>
+ <use xlink:href="#E1-MJMAIN-43" x="625" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-41" x="1348" y="0"></use>
+</g>
+</g>
+</svg> 和 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.616ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 4140.1 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">v \rightarrow \text{LCA}</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-76" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-4C" d="M128 622Q121 629 117 631T101 634T58 637H25V683H36Q48 680 182 680Q324 680 348 683H360V637H333Q273 637 258 635T233 622L232 342V129Q232 57 237 52Q243 47 313 47Q384 47 410 53Q470 70 498 110T536 221Q536 226 537 238T540 261T542 272T562 273H582V268Q580 265 568 137T554 5V0H25V46H58Q100 47 109 49T128 61V622Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-43" d="M56 342Q56 428 89 500T174 615T283 681T391 705Q394 705 400 705T408 704Q499 704 569 636L582 624L612 663Q639 700 643 704Q644 704 647 704T653 705H657Q660 705 666 699V419L660 413H626Q620 419 619 430Q610 512 571 572T476 651Q457 658 426 658Q322 658 252 588Q173 509 173 342Q173 221 211 151Q232 111 263 84T328 45T384 29T428 24Q517 24 571 93T626 244Q626 251 632 257H660L666 251V236Q661 133 590 56T403 -21Q262 -21 159 83T56 342Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-41" d="M255 0Q240 3 140 3Q48 3 39 0H32V46H47Q119 49 139 88Q140 91 192 245T295 553T348 708Q351 716 366 716H376Q396 715 400 709Q402 707 508 390L617 67Q624 54 636 51T687 46H717V0H708Q699 3 581 3Q458 3 437 0H427V46H440Q510 46 510 64Q510 66 486 138L462 209H229L209 150Q189 91 189 85Q189 72 209 59T259 46H264V0H255ZM447 255L345 557L244 256Q244 255 345 255H447Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-76" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2192" x="763" y="0"></use>
+<g transform="translate(2041,0)">
+ <use xlink:href="#E1-MJMAIN-4C"></use>
+ <use xlink:href="#E1-MJMAIN-43" x="625" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-41" x="1348" y="0"></use>
+</g>
+</g>
+</svg>，就成了一个链上倍增。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 最小值，次小值，高度差（x 为 u 和 v 之一，y 为 LCA）</span><br><span class="hljs-keyword">int</span> mx = <span class="hljs-number">0</span>, smx = <span class="hljs-number">0</span>, k = depth[x] - depth[y];<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= LOGM; ++i) &#123;<br>	<span class="hljs-keyword">if</span> (k &amp; (<span class="hljs-number">1</span> &lt;&lt; i)) &#123;<br>		<span class="hljs-keyword">if</span> (smx &lt; maxw[x][i][<span class="hljs-number">1</span>]) &#123;<br>			smx = maxw[x][i][<span class="hljs-number">1</span>];<br>		&#125;<br>		<span class="hljs-keyword">if</span> (mx &lt; maxw[x][i][<span class="hljs-number">0</span>]) &#123;<br>			smx = <span class="hljs-built_in">std</span>::max(smx, mx);<br>			mx = maxw[x][i][<span class="hljs-number">0</span>];<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// Accepted</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DEBUG(x) std::cerr &lt;&lt; #x &lt;&lt; <span class="hljs-meta-string">&quot; = &quot;</span> &lt;&lt; x &lt;&lt; std::endl;</span><br><br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> s = <span class="hljs-number">0</span>, x = <span class="hljs-number">1</span>; <span class="hljs-keyword">char</span> ch = getchar();<br>    <span class="hljs-keyword">while</span> (!<span class="hljs-built_in">isdigit</span>(ch)) &#123; <span class="hljs-keyword">if</span> (ch == <span class="hljs-string">&#x27;-&#x27;</span>) x = -x; ch = getchar(); &#125;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(ch)) &#123; s = s * <span class="hljs-number">10</span> + ch - <span class="hljs-string">&#x27;0&#x27;</span>; ch = getchar(); &#125;<br>    <span class="hljs-keyword">return</span> s * x;<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXN = <span class="hljs-number">100000</span> + <span class="hljs-number">10</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXM = <span class="hljs-number">300000</span> + <span class="hljs-number">10</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXLOG = <span class="hljs-number">17</span> + <span class="hljs-number">3</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> LOGM = <span class="hljs-number">17</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Edge</span> &#123;</span><br>    <span class="hljs-keyword">int</span> v, w; Edge(<span class="hljs-keyword">int</span> _v = <span class="hljs-number">0</span>, <span class="hljs-keyword">int</span> _w = <span class="hljs-number">0</span>) : v(_v), w(_w) &#123;&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">REdge</span> &#123;</span><br>    <span class="hljs-keyword">int</span> u, v, w; <span class="hljs-keyword">bool</span> chose;<br>    REdge() &#123; u = v = w = <span class="hljs-number">0</span>; chose = <span class="hljs-number">0</span>; &#125;<br>    <span class="hljs-keyword">void</span> _r() &#123;<br>        u = read(); v = read(); w = read();<br>    &#125;<br>    <span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span> &lt; (<span class="hljs-keyword">const</span> REdge &amp;th) <span class="hljs-keyword">const</span> &#123;<br>        <span class="hljs-keyword">return</span> w &lt; th.w;<br>    &#125;<br>&#125; edge[MAXM];<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">DSU</span> &#123;</span><br>    <span class="hljs-keyword">int</span> u[MAXN];<br>    DSU() &#123; <span class="hljs-built_in">memset</span>(u, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span> u); &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123; <span class="hljs-keyword">return</span> !u[x] ? x : u[x] = find(u[x]); &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>&#123;<br>        x = find(x); y = find(y);<br>        <span class="hljs-keyword">if</span> (x == y) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        u[x] = y; <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125; kk;<br><br><span class="hljs-keyword">int</span> n, m;<br><span class="hljs-comment">// twon[i] = 2^i</span><br><span class="hljs-keyword">int</span> twon[MAXLOG]; <br><span class="hljs-comment">// 生成树上做 LCA</span><br><span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;Edge&gt; G[MAXN];<br><span class="hljs-keyword">int</span> fa[MAXN][MAXLOG], depth[MAXN];<br><span class="hljs-comment">// maxw[u][i][0] 为 u 往上跳 2^i 次经过的边权最大值，maxw[][][1] 为次大值</span><br><span class="hljs-keyword">int</span> maxw[MAXN][MAXLOG][<span class="hljs-number">2</span>];<br><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> minDelta = <span class="hljs-number">0x3f3f3f3f3f3f3f3f</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> <span class="hljs-title">Kruskal</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>; <span class="hljs-keyword">int</span> ch = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">std</span>::sort(edge + <span class="hljs-number">1</span>, edge + <span class="hljs-number">1</span> + m);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) &#123;<br>        <span class="hljs-keyword">if</span> (kk.merge(edge[i].u, edge[i].v)) &#123;<br>            ++ch;<br>            edge[i].chose = <span class="hljs-literal">true</span>;<br>            ans += <span class="hljs-number">1l</span>l * edge[i].w;<br>            G[edge[i].u].push_back(Edge(edge[i].v, edge[i].w));<br>            G[edge[i].v].push_back(Edge(edge[i].u, edge[i].w));<br>        &#125;<br>        <span class="hljs-keyword">if</span> (ch == n - <span class="hljs-number">1</span>) <span class="hljs-keyword">break</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u)</span> </span>&#123;<br>    <span class="hljs-comment">// depth[u][0] maxw[u][0][0/1] 的处理放在枚举边的时候更方便一些</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; depth[u] &gt;= twon[i]; ++i) &#123;<br>        <span class="hljs-comment">// 更新 fa</span><br>        fa[u][i] = fa[fa[u][i - <span class="hljs-number">1</span>]][i - <span class="hljs-number">1</span>];<br>        <span class="hljs-comment">// 更新最大值、次大值</span><br>        <span class="hljs-comment">// maxw[u][i][0] 可以从 maxw[u][i - 1][0] 和 maxw[fa[u][i - 1]][i - 1][0] 继承过来</span><br>        <span class="hljs-comment">// maxw[u][i][1] 可以从 maxw[u][i - 1][1] maxw[fa[u][i - 1]][i - 1][1] </span><br>        <span class="hljs-comment">// 和 maxw[u][i - 1][0] maxw[fa[u][i - 1]][i - 1][0] 中的较小值 继承过来</span><br>        <span class="hljs-comment">// 为了保证严格次小，当 maxw[u][i - 1][0] == maxw[fahter[u][i - 1]][i - 1][0] 时</span><br>        <span class="hljs-comment">// 无法转移 maxw[u][i][1]</span><br>        maxw[u][i][<span class="hljs-number">0</span>] = <span class="hljs-built_in">std</span>::max(maxw[u][i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>], maxw[fa[u][i - <span class="hljs-number">1</span>]][i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>]);<br>        <span class="hljs-keyword">if</span> (maxw[u][i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>] == maxw[fa[u][i - <span class="hljs-number">1</span>]][i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>]) &#123;<br>            maxw[u][i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">std</span>::max(maxw[u][i - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>], maxw[fa[u][i - <span class="hljs-number">1</span>]][i - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>]);<br>        &#125; <span class="hljs-keyword">else</span> maxw[u][i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">std</span>::max(<br>                <span class="hljs-built_in">std</span>::min(maxw[u][i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>], maxw[fa[u][i - <span class="hljs-number">1</span>]][i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>]),<br>                <span class="hljs-built_in">std</span>::max(maxw[u][i - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>], maxw[fa[u][i - <span class="hljs-number">1</span>]][i - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>])<br>        );<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, siz = (<span class="hljs-keyword">int</span>) G[u].size(); i &lt; siz; ++i) &#123;<br>        <span class="hljs-keyword">int</span> v = G[u][i].v, w = G[u][i].w;<br>        <span class="hljs-keyword">if</span> (v == fa[u][<span class="hljs-number">0</span>]) <span class="hljs-keyword">continue</span>;<br>        maxw[v][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = w; maxw[v][<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">-1</span>;<br>        fa[v][<span class="hljs-number">0</span>] = u; depth[v] = depth[u] + <span class="hljs-number">1</span>;<br>        dfs(v);<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">initLCA</span><span class="hljs-params">()</span> </span>&#123;<br>    twon[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= LOGM; ++i) &#123;<br>        twon[i] = twon[i - <span class="hljs-number">1</span>] * <span class="hljs-number">2</span>;<br>    &#125;<br>    depth[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    dfs(<span class="hljs-number">1</span>);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">LCA</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (depth[x] &lt; depth[y]) <span class="hljs-built_in">std</span>::swap(x, y);<br>    <span class="hljs-keyword">int</span> k = depth[x] - depth[y];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= LOGM; ++i) &#123;<br>        <span class="hljs-keyword">if</span> (k &amp; (<span class="hljs-number">1</span> &lt;&lt; i)) x = fa[x][i];<br>    &#125;<br>    <span class="hljs-keyword">if</span> (x == y) <span class="hljs-keyword">return</span> x;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = LOGM; i &gt;= <span class="hljs-number">0</span>; --i) &#123;<br>        <span class="hljs-keyword">if</span> (fa[x][i] != fa[y][i]) x = fa[x][i], y = fa[y][i];<br>    &#125;<br>    <span class="hljs-keyword">return</span> fa[x][<span class="hljs-number">0</span>];<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">GetLeastDelta</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span> dw)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> mx = <span class="hljs-number">0</span>, smx = <span class="hljs-number">0</span>, k = depth[x] - depth[y];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= LOGM; ++i) &#123;<br>        <span class="hljs-keyword">if</span> (k &amp; (<span class="hljs-number">1</span> &lt;&lt; i)) &#123;<br>            <span class="hljs-keyword">if</span> (smx &lt; maxw[x][i][<span class="hljs-number">1</span>]) &#123;<br>                smx = maxw[x][i][<span class="hljs-number">1</span>];<br>            &#125;<br>            <span class="hljs-keyword">if</span> (mx &lt; maxw[x][i][<span class="hljs-number">0</span>]) &#123;<br>                smx = <span class="hljs-built_in">std</span>::max(smx, mx);<br>                mx = maxw[x][i][<span class="hljs-number">0</span>];<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (mx == dw) minDelta = <span class="hljs-built_in">std</span>::min(minDelta, <span class="hljs-number">1l</span>l * (dw - smx));<br>    <span class="hljs-keyword">else</span> minDelta = <span class="hljs-built_in">std</span>::min(minDelta, <span class="hljs-number">1l</span>l * (dw - mx));<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    n = read(); m = read();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) edge[i]._r();<br>    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> mst = Kruskal();<br>    <span class="hljs-comment">// printf(&quot;%d\n&quot;, mst);</span><br>    initLCA();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) &#123;<br>        <span class="hljs-keyword">if</span> (!edge[i].chose) &#123;<br>            <span class="hljs-keyword">int</span> l = LCA(edge[i].u, edge[i].v);<br>            GetLeastDelta(edge[i].u, l, edge[i].w);<br>            GetLeastDelta(edge[i].v, l, edge[i].w);<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>, mst + minDelta);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>Handwer STD</li>
+  <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2020/10-16/yan-ge-ci-xiao-sheng-cheng-shu/index.html">https://blog.handwer-std.top/2020/10-16/yan-ge-ci-xiao-sheng-cheng-shu/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AC%A1%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" rel="tag">次小生成树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%88%90%E6%A0%91/" rel="tag">生成树</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2020/10-16/ba-shu-ma-wen-ti/"><i class="iconfont iconleft"></i>八数码问题</a>
+  
+  
+    <a href="/2020/10-16/yan-ge-ci-duan-lu/">严格次短路<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz",
+        app_key: "y8tzSOvAsnOqNYwRNQI7WG9v",
+        placeholder: "看了这么多，可能你有话想说",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:handwerstudotie@gmail.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

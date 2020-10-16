@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>POJ2001《Shortest Prefixes》 - Handwer&#39;s Blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="
+这题在纸上手玩一遍找找规律就出来了
+
+
+
+传送门：h..."> 
+  
+  <meta name="author" content="Handwer STD"> 
+
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0HB0Bt.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '现在，走吧，有花开在旅程。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">POJ2001《Shortest Prefixes》</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">POJ2001《Shortest Prefixes》</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 18, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4580</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <blockquote>
+<p>这题在纸上手玩一遍找找规律就出来了</p>
+</blockquote>
+<!--erom-->
+
+<p>传送门：<a target="_blank" rel="noopener" href="http://poj.org/problem?id=2001">http://poj.org/problem…</a></p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>首先看到这是个字符串题</p>
+<p>再然后一想，这个要处理前缀相等问题</p>
+<p>好，就是你了，Trie</p>
+<hr>
+<p>先把给定的字符串插进 Trie 里</p>
+<p>在纸上画出样例的 Trie 树，手玩一下，找找规律</p>
+<p>应该可以发现这样一句废话：<br>一个字符串的「最短无歧义缩写」是该字符串到「它的『最长有歧义缩写』的最后一位」的下一位所构成的前缀</p>
+<p>举个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plain">字符串“wyhaksx”和“wyhaknoi”<br>w y h a k s x<br>w y h a k n o i<br>此时 wyhak 这个缩写是有歧义的，因为它两句话都能表示，而且它还是最长有歧义缩写；<br>但是再加一个字母，wyhaks 就没有歧义了，是最短无歧义缩写，<br>因为它只能表示 wyhaksx 不能表示 wyhaknoi，而你找不到比它更短的了<br></code></pre></td></tr></table></figure>
+
+<p>同时对照着 Trie 树看看（再添加一个“wyhac”加强例子的一般性）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs plain">w → y → h↘<br>         a → c<br>         ↓<br>         k<br>        ↙ ↘<br>      s     n<br>      ↓     ↓<br>      x     o<br>            ↓<br>            i<br><br></code></pre></td></tr></table></figure>
+
+<p>你发现了什么？<br>最长有歧义缩写的结尾正好在深度最大的分支处！<br>最短无歧义缩写的结尾正好是深度最大的分支的子节点！</p>
+<blockquote>
+<p>两个字符串，一个字符串是另一个字符串的子串（“wyh”和“wyhak”）这种情况先不考虑。</p>
+</blockquote>
+<hr>
+<p>那么现在问题转化成了如何找深度最高的分支的位置。</p>
+<p>这个比较简单，在插入字符串的时候，对于每一个节点，记一下这个点有几条向下连的边，连边数超过 2 的话就是分支；再记一下这个节点的父亲是谁；插完之后记一下这个字符串对应结尾在 Trie 中的位置（也就是动态开点后的节点编号）。</p>
+<p>查找的时候，从刚刚记的结尾位置开始向上查找，直到找到第一个分支，返回它的子节点编号即可</p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">findNode</span><span class="hljs-params">(<span class="hljs-keyword">int</span> down)</span> </span>&#123;<br>	<span class="hljs-comment">// 沿着叶子节点往上走，找到第一个分叉节点，返回它的儿子</span><br>	<span class="hljs-comment">// 分叉节点即为向下连的边超过两条的点</span><br>	<span class="hljs-keyword">int</span> now = location[down]; <span class="hljs-comment">// 获取这个字符串对应的结尾节点</span><br>	<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>		<span class="hljs-keyword">if</span> (now == <span class="hljs-number">1</span>) <span class="hljs-keyword">break</span>; <span class="hljs-comment">// 居然滚回根节点了</span><br>		<span class="hljs-keyword">int</span> father = node[now].from; <span class="hljs-comment">// 父亲节点</span><br>		<span class="hljs-keyword">if</span> (node[father].edges &gt;= <span class="hljs-number">2</span>) <span class="hljs-keyword">break</span>; <span class="hljs-comment">// 找到了 orz</span><br>		now = father; <span class="hljs-comment">// 往上跳</span><br>	&#125;<br>	<span class="hljs-keyword">return</span> now;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>接下来只需要顺着下去溜一遍，把字符串复制一下输出就好了，需要注意的是到了刚刚找到的节点要 <code>break</code> 掉</p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> down)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> endNode = findNode(down); <span class="hljs-comment">// 调用上面的函数获取最终节点</span><br>	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> res = <span class="hljs-string">&quot;&quot;</span>; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;ds = originalStrings[down];<br>	<span class="hljs-keyword">int</span> now = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, len = (<span class="hljs-keyword">int</span>) ds.length(); i &lt; len; ++i) &#123;<br>		<span class="hljs-keyword">int</span> next = node[now].next[toNum(ds[i])]; <span class="hljs-comment">// 获取当前节点的子节点</span><br>		res += ds[i]; now = next; <span class="hljs-comment">// 复制字符串，更新位置</span><br>		<span class="hljs-keyword">if</span> (next == endNode) <span class="hljs-keyword">break</span>; <span class="hljs-comment">// 如果下一个节点是终点，那就停掉</span><br>	&#125;<br>	<span class="hljs-keyword">return</span> res; <span class="hljs-comment">// 返回这个输出的结果就好了</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>One more thing.</p>
+<p>「两个字符串，一个字符串是另一个字符串的子串的情况」？<br>答案：简单粗暴地在字符串尾加一个特殊字符，强行搞出一个分支来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plain">例如“wyh”和“wyhak”<br>可以修改成“wyh#”和“wyhak#”<br><br>w → y → h → #<br>        ↘ a → k → #<br><br></code></pre></td></tr></table></figure>
+
+<p>这样不就有分支了吗</p>
+<p>那是不是还要修改一下 <code>std::string find(int)</code> 函数？<br>不用！</p>
+<p>注意到这种情况下，调用 <code>findNode(int)</code> 函数获得的实际上是 <code>#</code> 所在的节点编号，而 <code>find(int)</code> 函数在找的时候，循环 <strong>至多</strong> 会循环到 <strong>原字符串的长度</strong>，复制字符串 <strong>至多</strong> 会复制 <strong>完整的原字符串</strong>，所以压根不需要特判。</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXSTRS = <span class="hljs-number">1000</span> + <span class="hljs-number">10</span>;<br><br><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> originalStrings[MAXSTRS];<br><span class="hljs-keyword">int</span> location[MAXSTRS];<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Trie</span> &#123;</span><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-keyword">static</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXNODES = <span class="hljs-number">30000</span> + <span class="hljs-number">10</span>;<br><br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span><br>		<span class="hljs-keyword">bool</span> str; <span class="hljs-keyword">int</span> from, siz, edges;<br>		<span class="hljs-keyword">int</span> next[<span class="hljs-number">30</span>];<br>		Node() &#123; <br>			str = <span class="hljs-number">0</span>; from = siz = edges = <span class="hljs-number">0</span>;<br>			<span class="hljs-built_in">memset</span>(next, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span> next); <br>		&#125;<br>	&#125;;<br>	Node node[MAXNODES];<br>	<span class="hljs-keyword">int</span> cnt;<br><br>	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">toNum</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> &amp;s)</span> </span>&#123; <br>		<span class="hljs-keyword">if</span> (s == <span class="hljs-string">&#x27;#&#x27;</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">27</span>;<br>		<span class="hljs-keyword">return</span> s - <span class="hljs-string">&#x27;a&#x27;</span> + <span class="hljs-number">1</span>; <br>	&#125;<br><br><span class="hljs-keyword">public</span>:<br>	Trie() &#123; cnt = <span class="hljs-number">1</span>; &#125;<br><br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> s, <span class="hljs-keyword">int</span> down)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> now = <span class="hljs-number">1</span>, strLen = (<span class="hljs-keyword">int</span>) s.length();<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; strLen; ++i) &#123;<br>			<span class="hljs-keyword">int</span> &amp;next = node[now].next[toNum(s[i])];<br>			<span class="hljs-keyword">if</span> (next == <span class="hljs-number">0</span>) &#123; <br>				next = ++cnt; node[next].from = now; <br>				++node[now].edges;<br>			&#125;<br>			now = next;<br>		&#125;<br>		node[now].str = <span class="hljs-literal">true</span>;<br>		location[down] = now;<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">findNode</span><span class="hljs-params">(<span class="hljs-keyword">int</span> down)</span> </span>&#123;<br>		<span class="hljs-comment">// 沿着叶子节点往上走，找到第一个分叉节点，返回它的儿子</span><br>		<span class="hljs-comment">// 分叉节点即为向下连的边超过两条的点</span><br>		<span class="hljs-keyword">int</span> now = location[down];<br>		<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>			<span class="hljs-keyword">if</span> (now == <span class="hljs-number">1</span>) <span class="hljs-keyword">break</span>; <span class="hljs-comment">// md 居然滚回根节点了</span><br>			<span class="hljs-keyword">int</span> father = node[now].from; <span class="hljs-comment">// 父亲节点</span><br>			<span class="hljs-comment">// printf(&quot;\tNow on node [%d], its father is [%d], \n\tits father&#x27;s out-edges amount is %d;\n&quot;, now, father, node[father].edges);</span><br>			<span class="hljs-keyword">if</span> (node[father].edges &gt;= <span class="hljs-number">2</span>) <span class="hljs-keyword">break</span>; <span class="hljs-comment">// 找到了 orz</span><br>			now = father; <span class="hljs-comment">// 往上跳</span><br>		&#125;<br>		<span class="hljs-keyword">return</span> now;<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> down)</span> </span>&#123;<br>		<span class="hljs-comment">// 获得答案</span><br>		<span class="hljs-comment">// printf(&quot;[DEBUG] Now processing [%d] -&gt; %s:\n&quot;, down, originalStrings[down].c_str());</span><br>		<span class="hljs-keyword">int</span> endNode = findNode(down);<br>		<span class="hljs-comment">// printf(&quot;\tendNode = %d\n&quot;, endNode);</span><br>		<span class="hljs-comment">// printf(&quot;\tCopying string...\n&quot;);</span><br>		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> res = <span class="hljs-string">&quot;&quot;</span>; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;ds = originalStrings[down];<br>		<span class="hljs-keyword">int</span> now = <span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, len = (<span class="hljs-keyword">int</span>) ds.length(); i &lt; len; ++i) &#123;<br>			<span class="hljs-keyword">int</span> next = node[now].next[toNum(ds[i])];<br>			<span class="hljs-comment">// printf(&quot;\tnow = %d, next = %d, now char = %c\n&quot;, now, next, ds[i]);</span><br>			res += ds[i]; now = next;<br>			<span class="hljs-keyword">if</span> (next == endNode) <span class="hljs-keyword">break</span>;<br>		&#125;<br>		<span class="hljs-keyword">return</span> res;<br>	&#125;<br>&#125; trie;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span> &gt;&gt; originalStrings[++n]); <br>	--n;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) <br>		trie.insert(originalStrings[i] + <span class="hljs-string">&quot;#&quot;</span>, i);<br>	<span class="hljs-comment">// trie.initSize();</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s %s\n&quot;</span>, originalStrings[i].c_str(), trie.find(i).c_str());<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>Handwer STD</li>
+  <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2020/01-18/POJ2001/index.html">https://blog.handwer-std.top/2020/01-18/POJ2001/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trie/" rel="tag">Trie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2020/01-20/Luogu-P1608/"><i class="iconfont iconleft"></i>洛谷P1608《路径统计》</a>
+  
+  
+    <a href="/2020/01-17/Luogu-P2761/">洛谷P2761《软件补丁问题》<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz",
+        app_key: "y8tzSOvAsnOqNYwRNQI7WG9v",
+        placeholder: "看了这么多，可能你有话想说",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:handwerstudotie@gmail.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>洛谷P2922《[USACO08DEC]秘密消息Secret Message》 - Handwer&#39;s Blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="
+在 Trie 中储存两个信息
+
+
+
+题目描述Bess..."> 
+  
+  <meta name="author" content="Handwer STD"> 
+
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0HB0Bt.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '现在，走吧，有花开在旅程。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">洛谷P2922《[USACO08DEC]秘密消息Secret Message》</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">洛谷P2922《[USACO08DEC]秘密消息Secret Message》</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>三月 23, 2019</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4664</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <blockquote>
+<p>在 Trie 中储存两个信息</p>
+</blockquote>
+<!--erom-->
+
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>Bessie is leading the cows in an attempt to escape! To do this, the cows are sending secret binary messages to each other.</p>
+<p>Ever the clever counterspy, Farmer John has intercepted the first b_i (1 &lt;= b_i &lt;= 10,000) bits of each of M (1 &lt;= M &lt;= 50,000) of these secret binary messages.</p>
+<p>He has compiled a list of N (1 &lt;= N &lt;= 50,000) partial codewords that he thinks the cows are using. Sadly, he only knows the first c_j (1 &lt;= c_j &lt;= 10,000) bits of codeword j.</p>
+<p>For each codeword j, he wants to know how many of the intercepted messages match that codeword (i.e., for codeword j, how many times does a message and the codeword have the same initial bits). Your job is to compute this number.</p>
+<p>The total number of bits in the input (i.e., the sum of the b_i and the c_j) will not exceed 500,000.</p>
+<p>Memory Limit: 32MB</p>
+<p>POINTS: 270</p>
+<p>贝茜正在领导奶牛们逃跑．为了联络，奶牛们互相发送秘密信息．</p>
+<p>信息是二进制的，共有M(1≤M≤50000)条．反间谍能力很强的约翰已经部分拦截了这些信息，知道了第i条二进制信息的前bi(l《bi≤10000)位．他同时知道，奶牛使用N(1≤N≤50000)条密码．但是，他仅仅了解第J条密码的前cj(1≤cj≤10000)位．</p>
+<p>对于每条密码J，他想知道有多少截得的信息能够和它匹配．也就是说，有多少信息和这条密码有着相同的前缀．当然，这个前缀长度必须等于密码和那条信息长度的较小者．</p>
+<p>在输入文件中，位的总数（即∑Bi+∑Ci）不会超过500000.</p>
+<h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><ul>
+<li><p>Line 1: Two integers: M and N</p>
+</li>
+<li><p>Lines 2..M+1: Line i+1 describes intercepted code i with an integer b_i followed by b_i space-separated 0’s and 1’s</p>
+</li>
+<li><p>Lines M+2..M+N+1: Line M+j+1 describes codeword j with an integer c_j followed by c_j space-separated 0’s and 1’s</p>
+</li>
+</ul>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><ul>
+<li>Lines 1..M: Line j: The number of messages that the jth codeword could match.</li>
+</ul>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><h2 id="输入样例-1"><a href="#输入样例-1" class="headerlink" title="输入样例#1"></a>输入样例#1</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">4 </span><span class="hljs-number">5</span> <br><span class="hljs-symbol">3 </span><span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <br><span class="hljs-symbol">1 </span><span class="hljs-number">1</span> <br><span class="hljs-symbol">3 </span><span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <br><span class="hljs-symbol">3 </span><span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <br><span class="hljs-symbol">1 </span><span class="hljs-number">0</span> <br><span class="hljs-symbol">1 </span><span class="hljs-number">1</span> <br><span class="hljs-symbol">2 </span><span class="hljs-number">0</span> <span class="hljs-number">1</span> <br><span class="hljs-symbol">5 </span><span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span> <br><span class="hljs-symbol">2 </span><span class="hljs-number">1</span> <span class="hljs-number">1</span> <br></code></pre></td></tr></table></figure>
+<h2 id="输出样例-1"><a href="#输出样例-1" class="headerlink" title="输出样例#1"></a>输出样例#1</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span><br><span class="hljs-symbol">3 </span><br><span class="hljs-symbol">1 </span><br><span class="hljs-symbol">1 </span><br><span class="hljs-symbol">2 </span><br></code></pre></td></tr></table></figure>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>Four messages; five codewords.</p>
+<p>The intercepted messages start with 010, 1, 100, and 110.</p>
+<p>The possible codewords start with 0, 1, 01, 01001, and 11.</p>
+<p>0 matches only 010: 1 match</p>
+<p>1 matches 1, 100, and 110: 3 matches</p>
+<p>01 matches only 010: 1 match</p>
+<p>01001 matches 010: 1 match</p>
+<p>11 matches 1 and 110: 2 matches</p>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>查询前缀的题很容易想到 Trie</p>
+<hr>
+<p>维护两个信息 <code>pass</code> 和 <code>lasts</code><br><code>pass</code> 表示当前节点有多少条信息经过， <code>lasts</code> 表示有多少以当前节点结尾的信息（不一定没有相同的串）</p>
+<p>插入就不说了，说说查询</p>
+<hr>
+<p>查询的时候，记一下路径上<code>lasts</code>的和（也就是拿原信息去匹配查询信息）</p>
+<p>首先对于每一条查询信息，都分两种情况</p>
+<ol>
+<li>这条信息被完美的查询完了</li>
+<li>这条信息查到一半断开了</li>
+</ol>
+<p>对于第二种情况，什么都不用管，输出统计的<code>lasts</code>的和就行<br>对于第一种情况，则需要减去<strong>查询信息</strong>的最后一个节点的<code>lasts</code>值，加上<code>pass</code>值再输出</p>
+<p>为什么呢？</p>
+<hr>
+<p><strong><em>这里建议画图理解</em></strong></p>
+<p>首先，如果查到一半断开了，那么答案就是<strong>用原信息去匹配查询信息</strong>的匹配数，也就是<code>lasts</code>的和</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">比如下面的例子<br>查询信息：<br>rain_air_txdy<br>原始信息：<br>rain<br>rain_air<br>rain_air_tql（这个也是没法匹配的，后几个字符不同）<br>那么匹配数就是<span class="hljs-number">2</span>，即为答案<br></code></pre></td></tr></table></figure>
+
+<p>如果查询完了，那么说明<strong>存在能匹配查询信息的原信息</strong>，所以「用原信息去匹配查询信息的匹配数」还不够，要再加上「用查询信息去匹配原信息的匹配数」，也就是<code>lasts的总和 + pass</code></p>
+<p>有这么一种情况，就是<strong>原信息与查询信息相同</strong>，那么它在当前节点的<code>lasts</code>里面算了一次，在当前节点的<code>pass</code>又算了一次！所以要减去当前节点的<code>lasts</code></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">比如下面的例子<br>查询信息：<br>rain_air_txdy<br>原始信息：<br>rain_air_txdy_tql<br>rain_air_txdy<br>答案是啥？<span class="hljs-number">2</span><br><br>注意到y这里的 pass 是<span class="hljs-number">2</span>，把两条信息都算上了<br>但同时y这里的 lasts 也是<span class="hljs-number">1</span>啊！！！<br>这不就重了吗，所以要减去 lasts<br></code></pre></td></tr></table></figure>
+
+<p><del>我觉得我说的已经够通俗易懂了吧<img   class="lazyload" data-original="https://s2.ax1x.com/2019/03/23/AJ3jc8.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="AJ3jc8.png" border="0" /></del></p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="hljs-meta-string">&quot;r&quot;</span>, stdin)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="hljs-meta-string">&quot;w&quot;</span>, stdout)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)</span><br><br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXN = <span class="hljs-number">500000</span> + <span class="hljs-number">10</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Trie</span> &#123;</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span><br>        <span class="hljs-keyword">int</span> pass, lasts;<br>        <span class="hljs-keyword">int</span> next[<span class="hljs-number">2</span> + <span class="hljs-number">1</span>];<br>        <br>        Node() &#123;<br>            pass = lasts = <span class="hljs-number">0</span>;<br>            <span class="hljs-built_in">memset</span>(next, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span> next);<br>        &#125;<br>    &#125; node[MAXN];<br>    <br>    <span class="hljs-keyword">int</span> cnt;<br>    <br>    Trie() &#123;<br>        cnt = <span class="hljs-number">0</span>;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SwitchTo</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;now, <span class="hljs-keyword">bool</span> data)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (node[now].next[data] == <span class="hljs-number">0</span>) &#123;<br>            node[now].next[data] = ++cnt;<br>        &#125;<br>        now = node[now].next[data];<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">switchTo</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;now, <span class="hljs-keyword">bool</span> data)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (node[now].next[data] == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        now = node[now].next[data];<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125; t;<br><br><span class="hljs-keyword">int</span> m, n;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    IMPROVE_IO();<br>    <span class="hljs-built_in">cin</span> &gt;&gt; m &gt;&gt; n;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) &#123;<br>        <span class="hljs-keyword">int</span> f = <span class="hljs-number">0</span>, pos = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">cin</span> &gt;&gt; f;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= f; ++j) &#123;<br>            <span class="hljs-keyword">int</span> nf = <span class="hljs-number">0</span>;<br>            <span class="hljs-built_in">cin</span> &gt;&gt; nf;<br>            t.SwitchTo(pos, nf);<br>            ++t.node[pos].pass;<br>        &#125;<br>        ++t.node[pos].lasts;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>        <span class="hljs-keyword">int</span> f = <span class="hljs-number">0</span>, pos = <span class="hljs-number">0</span>, ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">cin</span> &gt;&gt; f;<br>        <span class="hljs-keyword">bool</span> cont = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= f; ++i) &#123;<br>            <span class="hljs-keyword">int</span> nf = <span class="hljs-number">0</span>;<br>            <span class="hljs-built_in">cin</span> &gt;&gt; nf;<br>            <span class="hljs-keyword">if</span> (cont &amp;&amp; t.switchTo(pos, nf)) &#123;<br>                ans += t.node[pos].lasts;<br>            &#125; <span class="hljs-keyword">else</span> cont = <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (cont) ans = ans - t.node[pos].lasts + t.node[pos].pass;<br>        <span class="hljs-built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="hljs-built_in">endl</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>Handwer STD</li>
+  <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2019/03-23/Luogu-P2922/index.html">https://blog.handwer-std.top/2019/03-23/Luogu-P2922/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trie/" rel="tag">Trie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USACO/" rel="tag">USACO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2019/03-23/CF735D/"><i class="iconfont iconleft"></i>Codeforces 735D《Taxes》</a>
+  
+  
+    <a href="/2019/03-23/UVA1508/">UVA1508《Equipment》<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz",
+        app_key: "y8tzSOvAsnOqNYwRNQI7WG9v",
+        placeholder: "看了这么多，可能你有话想说",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:handwerstudotie@gmail.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

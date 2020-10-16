@@ -1,0 +1,408 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>线段树学习笔记 - Handwer&#39;s Blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="
+快速查找和修改区间
+
+注：本文包含洛谷 P3372 ..."> 
+  
+  <meta name="author" content="Handwer STD"> 
+
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0HB0Bt.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '现在，走吧，有花开在旅程。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">线段树学习笔记</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">线段树学习笔记</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>四月 01, 2018</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5008</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <blockquote>
+<p>快速查找和修改区间</p>
+</blockquote>
+<p>注：本文包含<a target="_blank" rel="noopener" href="https://www.luogu.org/problemnew/show/P3372">洛谷 P3372 【模板】线段树 1</a> 题解</p>
+<!--erom-->
+
+
+
+<h1 id="线段树模板"><a href="#线段树模板" class="headerlink" title="线段树模板"></a>线段树模板</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>什么是线段树？</li>
+</ul>
+<p>线段树是一种二叉搜索树，与区间树相似，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。</p>
+<ul>
+<li>线段树的主要用途及好处？</li>
+</ul>
+<p>线段树可以快速的查找某一个节点在若干条线段中出现的次数，时间复杂度为O(logN）。</p>
+<ul>
+<li>线段树的应用？</li>
+</ul>
+<p>最简单的应用就是记录线段是否被覆盖，随时查询当前被覆盖线段的总长度。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="基础函数"><a href="#基础函数" class="headerlink" title="基础函数"></a>基础函数</h3><p>我们选择一个<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.745ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 2043 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">O(1)</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-4F" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-4F" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-28" x="763" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-31" x="1153" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-29" x="1653" y="0"></use>
+</g>
+</svg>的取儿子函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">leftChild</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span> </span>&#123;<br>	<span class="hljs-keyword">return</span> p &lt;&lt; <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-comment">// 左子树 </span><br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">rightChild</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span> </span>&#123;<br>	<span class="hljs-keyword">return</span> p &lt;&lt; <span class="hljs-number">1</span> | <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-comment">// 右子树 </span><br><br></code></pre></td></tr></table></figure>
+
+<p>线段树的维护：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pushUp</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span> </span>&#123;<br>	t[p] = t[leftChild(p)] + t[rightChild(p)];<br>&#125;<br><span class="hljs-comment">// 向上维护区间</span><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pushUpMin</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span> </span>&#123;<br>	t[p] = <span class="hljs-built_in">std</span>::min(t[leftChild(p)], t[rightChild(p)]);<br>&#125; <br><span class="hljs-comment">// 向t[p]下放Min标签</span><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pushUpMax</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span> </span>&#123;<br>	t[p] = <span class="hljs-built_in">std</span>::max(t[leftChild(p)], t[rightChild(p)]);<br>&#125; <br><span class="hljs-comment">// 向t[p]下放Max标签</span><br><br></code></pre></td></tr></table></figure>
+
+<p>递归建树：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> lli;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">buildTree</span><span class="hljs-params">(lli p, lli l, lli r)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span> (l == r) &#123;<br>		ans[p] = a[l];<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-comment">// 如果左右区间相同，则必是叶子节点</span><br>	lli mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>	buildTree(leftChild(p), l, mid);<br>	buildTree(rightChild(p), mid + <span class="hljs-number">1</span>, r);<br>	<span class="hljs-comment">// 递归</span><br>	pushUp(p); <br>&#125; <br><span class="hljs-comment">// 递归 + 二分建树</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="区间修改函数"><a href="#区间修改函数" class="headerlink" title="区间修改函数"></a>区间修改函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Record</span><span class="hljs-params">(lli p, lli l, lli r, lli k)</span> </span>&#123;<br>	tag[p] = tag[p] + k;<br>	ans[p] = ans[p] + k * (r - l + <span class="hljs-number">1</span>);<br>	<span class="hljs-comment">// 因为是区间统一改变，所以ans要加元素个数 </span><br>&#125;<br><span class="hljs-comment">// 记录当前节点所代表的区间</span><br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pushDown</span><span class="hljs-params">(lli p, lli l, lli r)</span> </span>&#123;<br>	lli mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>	Record(leftChild(p), l, mid, tag[p]);<br>	Record(rightChild(p), mid + <span class="hljs-number">1</span>, r, tag[p]);<br>	tag[p] = <span class="hljs-number">0</span>;<br>	<span class="hljs-comment">// 每次更新两个儿子节点，不断向下传递 </span><br>&#125; <br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(lli nl, lli nr, lli l, lli r, lli p, lli k)</span> </span>&#123;<br>	<span class="hljs-comment">// 将要修改从 nl 到 nr 的区间</span><br>	<span class="hljs-comment">// l,r 为当前节点所储存的区间 </span><br>	<span class="hljs-comment">// p 为当前节点的编号</span><br>	<span class="hljs-keyword">if</span> (nl &lt;= l &amp;&amp; r &lt;= nr) &#123;<br>		ans[p] += k * (r - l + <span class="hljs-number">1</span>);<br>		tag[p] += k;<br>		<span class="hljs-keyword">return</span>;<br>	&#125; <br>	pushDown(p, l, r);	<br>	lli mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span> (nl &lt;= mid) update(nl, nr, l, mid, leftChild(p), k)<br>	<span class="hljs-keyword">if</span> (nr &gt; mid) update(nl, nr,mid + <span class="hljs-number">1</span>, r, rightChild(p), k);<br>	pushUp(p);<br>&#125;<br><span class="hljs-comment">// 更新区间 </span><br></code></pre></td></tr></table></figure>
+
+<h3 id="查询区间函数"><a href="#查询区间函数" class="headerlink" title="查询区间函数"></a>查询区间函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> lli <span class="hljs-title">query</span><span class="hljs-params">(lli qx, lli qy, lli l, lli r, lli p)</span> </span>&#123;<br>	lli res = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy) <span class="hljs-keyword">return</span> ans[p];<br>	lli mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>	pushDown(p, l, r);<br>	<span class="hljs-keyword">if</span> (qx &lt;= mid) res += query(qx, qy, l, mid, leftChild(p));<br>	<span class="hljs-keyword">if</span> (mid + <span class="hljs-number">1</span> &lt;= qy) res += query(qx, qy, mid + <span class="hljs-number">1</span>, r, rightChild(p));<br>	<span class="hljs-keyword">return</span> res; <br>&#125;<br><span class="hljs-comment">// 查询区间 </span><br></code></pre></td></tr></table></figure>
+
+<p>依然采用二分的形式…</p>
+<h1 id="洛谷-P3372-题解"><a href="#洛谷-P3372-题解" class="headerlink" title="洛谷 P3372 题解"></a>洛谷 P3372 题解</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>已知一个数列，你需要进行下面两种操作：</p>
+<p>1.将某区间每一个数加上x</p>
+<p>2.求出某区间每一个数的和</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行包含两个整数N、M，分别表示该数列数字的个数和操作的总个数。</p>
+<p>第二行包含N个用空格分隔的整数，其中第i个数字表示数列第i项的初始值。</p>
+<p>接下来M行每行包含3或4个整数，表示一个操作，具体如下：</p>
+<p>操作1： 格式：1 x y k 含义：将区间[x,y]内每个数加上k</p>
+<p>操作2： 格式：2 x y 含义：输出区间[x,y]内每个数的和</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出包含若干行整数，即为所有操作2的结果。</p>
+<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">5 </span><span class="hljs-number">5</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">5</span> <span class="hljs-number">4</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span><br><span class="hljs-symbol">2 </span><span class="hljs-number">2</span> <span class="hljs-number">4</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">2</span><br><span class="hljs-symbol">2 </span><span class="hljs-number">3</span> <span class="hljs-number">4</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">1</span><br><span class="hljs-symbol">2 </span><span class="hljs-number">1</span> <span class="hljs-number">4</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">11</span><br><span class="hljs-number">8</span><br><span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>就是把上面的函数都复制下来就行了= =</p>
+<p>没什么多解释的</p>
+<p>注释见上面代码</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br><span class="hljs-comment">// using namespace std;</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> ll;<br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> ull;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXN = <span class="hljs-number">1000000</span> + <span class="hljs-number">1</span>;<br><br>ull n, m, a[MAXN], ans[MAXN &lt;&lt; <span class="hljs-number">2</span>], tag[MAXN &lt;&lt; <span class="hljs-number">2</span>];<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> ll <span class="hljs-title">ls</span><span class="hljs-params">(ll x)</span> </span>&#123;<br>	<span class="hljs-keyword">return</span> x &lt;&lt; <span class="hljs-number">1</span>; <br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> ll <span class="hljs-title">rs</span><span class="hljs-params">(ll x)</span> </span>&#123;<br>	<span class="hljs-keyword">return</span> x &lt;&lt; <span class="hljs-number">1</span> | <span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">scan</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld %lld&quot;</span>, &amp;n, &amp;m);<br>	<span class="hljs-keyword">for</span> (ll i = <span class="hljs-number">1</span>;i &lt;= n;i++) &#123;<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>, &amp;a[i]);<br>	&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pushUp</span><span class="hljs-params">(ll p)</span> </span>&#123;<br>	ans[p] = ans[ls(p)] + ans[rs(p)];<br>&#125; <br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">build</span><span class="hljs-params">(ll p, ll l, ll r)</span> </span>&#123;<br>	tag[p] = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">if</span> (l == r) &#123;<br>		ans[p] = a[l];<br>		<span class="hljs-keyword">return</span>; <br>	&#125;<br>	ll mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>	build(ls(p), l, mid);<br>	build(rs(p), mid + <span class="hljs-number">1</span>, r);<br>	pushUp(p);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rec</span><span class="hljs-params">(ll p, ll l, ll r, ll k)</span> </span>&#123;<br>	tag[p] = tag[p] + k;<br>	ans[p] = ans[p] + k * (r - l + <span class="hljs-number">1</span>);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pushDown</span><span class="hljs-params">(ll p,ll l, ll r)</span> </span>&#123;<br>	ll mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>	rec(ls(p), l, mid, tag[p]);<br>	rec(rs(p), mid + <span class="hljs-number">1</span>, r, tag[p]);<br>	tag[p] = <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(ll nl, ll nr, ll l, ll r, ll p, ll k)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span> (nl &lt;= l &amp;&amp; r &lt;= nr) &#123;<br>		ans[p] += k * (r - l + <span class="hljs-number">1</span>);<br>		tag[p] += k;<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	pushDown(p, l, r);<br>	ll mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span> (nl &lt;= mid) update(nl, nr, l, mid, ls(p), k);<br>	<span class="hljs-keyword">if</span> (nr &gt; mid) update(nl, nr, mid + <span class="hljs-number">1</span>, r, rs(p), k);<br>	pushUp(p);<br>&#125;<br><br><span class="hljs-function">ll <span class="hljs-title">query</span><span class="hljs-params">(ll qx, ll qy, ll l, ll r, ll p)</span> </span>&#123;<br>	ll res = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy) <span class="hljs-keyword">return</span> ans[p];<br>	ll mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>	pushDown(p, l, r);<br>	<span class="hljs-keyword">if</span> (qx &lt;= mid) res += query(qx, qy, l, mid, ls(p));<br>	<span class="hljs-keyword">if</span> (qy &gt; mid) res += query(qx, qy, mid + <span class="hljs-number">1</span>, r, rs(p));<br>	<span class="hljs-keyword">return</span> res;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-comment">// ios::sync_with_stdio(false);</span><br>	ll a1, b, c, d, e, f;<br>	scan();<br>	build(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, n);<br>	<span class="hljs-keyword">while</span> (m--) &#123;<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>, &amp;a1);<br>		<span class="hljs-keyword">switch</span>(a1) &#123;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:&#123;<br>				<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld %lld %lld&quot;</span>, &amp;b, &amp;c, &amp;d);<br>				update(b, c, <span class="hljs-number">1</span>, n, <span class="hljs-number">1</span>, d);<br>				<span class="hljs-keyword">break</span>;<br>			&#125;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:&#123;<br>				<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld %lld&quot;</span>, &amp;e, &amp;f);<br>				<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>, query(e, f, <span class="hljs-number">1</span>, n, <span class="hljs-number">1</span>));	<br>				<span class="hljs-keyword">break</span>;<br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">// 注意一下，stdio 和 iostream 混用会出现很多奇怪的bug！</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>Handwer STD</li>
+  <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2018/04-01/Segment-Tree/index.html">https://blog.handwer-std.top/2018/04-01/Segment-Tree/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%9D%BF/" rel="tag">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag">线段树</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2018/04-14/Luogu-P1536/"><i class="iconfont iconleft"></i>洛谷P1536 《村村通》</a>
+  
+  
+    <a href="/2018/03-31/calculating-pi/">计算π<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz",
+        app_key: "y8tzSOvAsnOqNYwRNQI7WG9v",
+        placeholder: "看了这么多，可能你有话想说",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:handwerstudotie@gmail.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BZOJ3331《[BeiJing2013]压力》 - Handwer&#39;s Blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="题意给你一张 n 个点 m 条边的无向图，再给你 q ..."> 
+  
+  <meta name="author" content="Handwer STD"> 
+
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0HB0Bt.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '现在，走吧，有花开在旅程。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">BZOJ3331《[BeiJing2013]压力》</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">BZOJ3331《[BeiJing2013]压力》</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 03, 2019</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5055</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>给你一张 n 个点 m 条边的无向图，再给你 q 个点对，让你计算对于每一个点，有多少个点对间的路径必定经过这个点。N≤100000,M,Q≤200000。</p>
+<!--erom-->
+
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>首先可以发现这样一个东西：</p>
+<blockquote>
+<p>在原图对应的圆方树上，一个点对之间的所有圆点都会被经过</p>
+</blockquote>
+<p>那就好做了</p>
+<p>首先建出圆方树，然后问题转化为了一个树上链修改，单点查询的题目</p>
+<p>直接树上差分一下就行了</p>
+<hr>
+<p>我还是讲一下这个差分吧</p>
+<p>具体就是对于点对<code>(u,v)</code>，<code>diff[u]++, diff[v]++, diff[LCA(u,v)]--, diff[father[LCA(u,v)]]--</code></p>
+<p>最后一遍 dfs 还原一下树上前缀和即可</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//</span><br><span class="hljs-comment">// Created by HandwerSTD on 2019/11/2.</span><br><span class="hljs-comment">// Copyright (c) 2019 HandwerSTD. All rights reserved.</span><br><span class="hljs-comment">// Title: [BeiJing2013]压力</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// sto Qingyu orz</span><br><span class="hljs-comment">// 感谢真神sqy无私的教诲。膜时队者处处阿克，只因大师sqy在他背后。不膜大师者违背了真神的旨意，真神必将降下天谴，</span><br><span class="hljs-comment">// 使其天天爆零</span><br><span class="hljs-comment">// 我不由自主地膜拜真神sqy。</span><br><span class="hljs-comment">//</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXN = <span class="hljs-number">200000</span> + <span class="hljs-number">10</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> NEWN = MAXN &lt;&lt; <span class="hljs-number">1</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXQ = <span class="hljs-number">200000</span> + <span class="hljs-number">10</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span><br>    <span class="hljs-keyword">int</span> next; <span class="hljs-keyword">bool</span> typ;<br>    Node(<span class="hljs-keyword">int</span> _next = <span class="hljs-number">0</span>, <span class="hljs-keyword">bool</span> _typ = <span class="hljs-literal">false</span>) &#123; next = _next; typ = _typ; &#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">qu</span> &#123;</span> <span class="hljs-keyword">int</span> u, v; qu(<span class="hljs-keyword">int</span> _u = <span class="hljs-number">0</span>, <span class="hljs-keyword">int</span> _v = <span class="hljs-number">0</span>) &#123; u = _u; v = _v; &#125; &#125; qs[MAXQ];<br><br><span class="hljs-keyword">int</span> n, tn, m, q;<br><br><span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; head[MAXN];<br><span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; tree[NEWN];<br><br><span class="hljs-keyword">namespace</span> Tarjan &#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> dfn[MAXN], low[MAXN], timestamp;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> stk[MAXN], top;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">work</span><span class="hljs-params">(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>)</span></span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">tarjan</span><span class="hljs-params">()</span> </span>&#123;<br>        tn = n;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= tn; ++i) <span class="hljs-keyword">if</span> (!dfn[i]) work(i, <span class="hljs-number">0</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">work</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u, <span class="hljs-keyword">int</span> fa)</span> </span>&#123;<br>        dfn[u] = low[u] = ++timestamp;<br>        stk[++top] = u;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, siz = (<span class="hljs-keyword">int</span>) head[u].size(); i &lt; siz; ++i) &#123;<br>            <span class="hljs-keyword">int</span> v = head[u][i];<br>            <span class="hljs-keyword">if</span> (!dfn[v]) &#123;<br>                work(v, u);<br>                low[u] = <span class="hljs-built_in">std</span>::min(low[u], low[v]);<br>                <span class="hljs-keyword">if</span> (low[v] &gt;= dfn[u]) &#123;<br>                    <span class="hljs-keyword">int</span> x = <span class="hljs-number">-1</span>; ++tn; <span class="hljs-comment">// 直接在这里建圆方树，++tn 是给圆方树的方点分配编号</span><br>                    <span class="hljs-keyword">do</span> &#123;<br>                        x = stk[top--];<br>                        tree[tn].push_back(x);<br>                        tree[x].push_back(tn);<br><span class="hljs-comment">//                        printf(&quot;Edge connected: &lt;%d, %d&gt;\n&quot;, tn, x);</span><br>                    &#125; <span class="hljs-keyword">while</span> (x != v);<br>                    tree[u].push_back(tn); tree[tn].push_back(u);<br><span class="hljs-comment">//                    printf(&quot;Edge connected: &lt;%d, %d&gt;\n&quot;, tn, u);</span><br>                &#125;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (v != fa) low[u] = <span class="hljs-built_in">std</span>::min(low[u], dfn[v]);<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">namespace</span> LCA &#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> father[NEWN][<span class="hljs-number">30</span>], depth[NEWN];<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> lg[NEWN];<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>)</span></span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= tn; ++i) &#123;<br>            lg[i] = lg[i - <span class="hljs-number">1</span>] + (<span class="hljs-number">1</span> &lt;&lt; lg[i - <span class="hljs-number">1</span>] == i);<br>        &#125;<br>        dfs(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u, <span class="hljs-keyword">int</span> fa)</span> </span>&#123;<br>        father[u][<span class="hljs-number">0</span>] = fa; depth[u] = depth[fa] + <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; (<span class="hljs-number">1</span> &lt;&lt; i) &lt;= depth[u]; ++i) &#123;<br>            father[u][i] = father[father[u][i - <span class="hljs-number">1</span>]][i - <span class="hljs-number">1</span>];<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, siz = (<span class="hljs-keyword">int</span>) tree[u].size(); i &lt; siz; ++i) &#123;<br>            <span class="hljs-keyword">int</span> v = tree[u][i];<br>            <span class="hljs-keyword">if</span> (v != fa) dfs(v, u);<br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u, <span class="hljs-keyword">int</span> v)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (depth[u] &lt; depth[v]) <span class="hljs-built_in">std</span>::swap(u, v);<br>        <span class="hljs-keyword">while</span> (depth[u] &gt; depth[v]) &#123;<br>            u = father[u][lg[depth[u] - depth[v]] - <span class="hljs-number">1</span>];<br>        &#125;<br>        <span class="hljs-keyword">if</span> (u == v) <span class="hljs-keyword">return</span> u;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = lg[depth[u]]; i &gt;= <span class="hljs-number">0</span>; --i) &#123;<br>            <span class="hljs-keyword">if</span> (father[u][i] != father[v][i]) &#123;<br>                u = father[u][i]; v = father[v][i];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> father[u][<span class="hljs-number">0</span>];<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">namespace</span> Difference &#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> diff[NEWN];<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">modify</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u, <span class="hljs-keyword">int</span> v)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> l = LCA::get(u, v);<br><span class="hljs-comment">//        printf(&quot;u = %d, v = %d, LCA&lt;%d, %d&gt; = %d, LCA&#x27;s father = %d\n&quot;, u, v, u, v, l, LCA::father[l][0]);</span><br>        ++diff[u]; ++diff[v];<br>        --diff[l]; --diff[LCA::father[l][<span class="hljs-number">0</span>]];<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u)</span> </span>&#123;<br><span class="hljs-comment">//        printf(&quot;[dfs(u)] u = %d\n&quot;, u);</span><br>        <span class="hljs-keyword">using</span> LCA::father;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, siz = (<span class="hljs-keyword">int</span>) tree[u].size(); i &lt; siz; ++i) &#123;<br>            <span class="hljs-keyword">int</span> v = tree[u][i]; <span class="hljs-keyword">if</span> (v == father[u][<span class="hljs-number">0</span>]) <span class="hljs-keyword">continue</span>;<br>            dfs(v);<br>            diff[u] += diff[v];<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d %d&quot;</span>, &amp;n, &amp;m, &amp;q);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) &#123;<br>        <span class="hljs-keyword">int</span> u, v; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;u, &amp;v);<br>        head[u].push_back(v); head[v].push_back(u);<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= q; ++i) &#123;<br>        <span class="hljs-keyword">int</span> u, v; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;u, &amp;v);<br>        qs[i] = qu(u, v);<br>    &#125;<br>    Tarjan::tarjan();<br>    LCA::init();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= q; ++i) &#123;<br>        <span class="hljs-keyword">int</span> u = qs[i].u, v = qs[i].v;<br><span class="hljs-comment">//        printf(&quot;Query #%d: u = %d, v = %d\n&quot;, i, u, v);</span><br>        Difference::modify(u, v);<br>    &#125;<br>    Difference::dfs(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, Difference::diff[i]);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>Handwer STD</li>
+  <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2019/11-03/BZOJ3331/index.html">https://blog.handwer-std.top/2019/11-03/BZOJ3331/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/" rel="tag">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCA/" rel="tag">LCA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tarjan/" rel="tag">Tarjan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/" rel="tag">各省省选</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9C%86%E6%96%B9%E6%A0%91/" rel="tag">圆方树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%AE%E5%88%86/" rel="tag">差分</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2019/11-04/Luogu-P3200/"><i class="iconfont iconleft"></i>洛谷P3200《[HNOI2009]有趣的数列》</a>
+  
+  
+    <a href="/2019/11-03/Persistent-Segment-Tree/">可持久化线段树学习笔记<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz",
+        app_key: "y8tzSOvAsnOqNYwRNQI7WG9v",
+        placeholder: "看了这么多，可能你有话想说",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:handwerstudotie@gmail.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

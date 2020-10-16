@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TopCoder 13955《WalkOverATree》 - Handwer&#39;s Blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="Problem StatementGiven is a..."> 
+  
+  <meta name="author" content="Handwer STD"> 
+
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0HB0Bt.png" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0HB0Bt.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '现在，走吧，有花开在旅程。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">TopCoder 13955《WalkOverATree》</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">TopCoder 13955《WalkOverATree》</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>七月 31, 2019</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4145</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h1><p>Given is a tree on n nodes. The nodes are numbered 0 through n-1. You are given the description of the tree as a int[]  <strong>parent</strong>  with n-1 elements. For each valid i, there is an edge between vertices (i+1) and  <strong>parent</strong>[i].</p>
+<!--erom-->
+
+<p>A person is currently standing in node 0. In a single step, the person can move from its current node to any adjacent node. You are given an int  <strong>L</strong>. The person is allowed to make at most  <strong>L</strong>  steps.</p>
+<p>Return the maximum number of nodes the person can visit during the walk. Node 0 (where the walk starts) and the node where the walk ends count as visited. Each visited node is only counted once, even if it is visited multiple times.</p>
+<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p>Class: WalkOverATree<br>Method: maxNodesVisited<br>Parameters: int[], int<br>Returns: int<br>Method signature: int maxNodesVisited(int[] parent, int L)<br>(be sure your method is public)</p>
+<h1 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h1><ul>
+<li><p><strong>parent</strong>  will contain between 0 and 49 elements, inclusive.</p>
+</li>
+<li><p>For each i,  <strong>parent</strong>[i] will be between 0 and i, inclusive.</p>
+</li>
+<li><p><strong>L</strong>  will be between 1 and 100, inclusive.</p>
+</li>
+</ul>
+<h1 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h1><p>请自行到 vjudge 上寻找</p>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>英文很好懂，只需人教初二水平（反正我准初三选手看懂了）</p>
+<p>题目大意：<br>给定一棵 n 个点的树，编号 0~n-1。连边方式以输入每个点的父亲给出，对于每个 i，有一条边连接点 (i+1) 和点 father[i]，而且 father[i] 是 (i+1) 的父亲。<br>有一个人站在点 0，可以向四周走不超过 L 步，求出这个人能经过多少不同的点</p>
+<p>这题和 dp 有什么关系吗。。。</p>
+<p>这题的难点大概就是 class 的使用和答案统计了吧</p>
+<p>class 的使用可以参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_31908675/article/details/81198751">这里</a></p>
+<p>答案统计和基本的思路见代码吧</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//</span><br><span class="hljs-comment">//  TopCoder13955.cpp</span><br><span class="hljs-comment">//  Title: WalkOverATree</span><br><span class="hljs-comment">//  Debugging</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//  Created by HandwerSTD on 2019/7/31.</span><br><span class="hljs-comment">//  Copyright © 2019 HandwerSTD. All rights reserved.</span><br><span class="hljs-comment">//</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="hljs-meta-string">&quot;r&quot;</span>, stdin)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="hljs-meta-string">&quot;w&quot;</span>, stdout)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rap(a,s,t,i) for (int a = s; a &lt;= t; a += i)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> basketball(a,t,s,i) for (int a = t; a &gt;= s; a -= i)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> countdown(s) while (s --&gt; 0)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)</span><br><br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> lli;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getint</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">int</span> x; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x); <span class="hljs-keyword">return</span> x; &#125;<br><span class="hljs-function">lli <span class="hljs-title">getll</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> x; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>, &amp;x); <span class="hljs-keyword">return</span> x; &#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WalkOverATree</span> &#123;</span><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * 直接暴力就好了。。。</span><br><span class="hljs-comment">     * 一遍 DFS 预处理出所有的点的深度（根节点深度为 0）</span><br><span class="hljs-comment">     * 答案的输出见下</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     */</span><br>    <br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXN = <span class="hljs-number">50</span> + <span class="hljs-number">10</span>;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXL = <span class="hljs-number">100</span> + <span class="hljs-number">10</span>;<br>    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; head[MAXN];<br>    <span class="hljs-keyword">int</span> depthWalk[MAXL];<br>    <span class="hljs-keyword">int</span> maxstep = <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(<span class="hljs-keyword">int</span> root = <span class="hljs-number">1</span>, <span class="hljs-keyword">int</span> father = <span class="hljs-number">0</span>, <span class="hljs-keyword">int</span> step = <span class="hljs-number">0</span>)</span> </span>&#123;<br>        depthWalk[root] = step;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, siz = (<span class="hljs-keyword">int</span>) head[root].size(); i &lt; siz; ++i) &#123;<br>            <span class="hljs-keyword">int</span> next = head[root][i];<br>            <span class="hljs-keyword">if</span> (next == father) <span class="hljs-keyword">continue</span>;<br>            DFS(next, root, step + <span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br>    <br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxNodesVisited</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; father, <span class="hljs-keyword">int</span> L)</span> </span>&#123;<br>        <span class="hljs-built_in">memset</span>(head, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span> head);<br>        maxstep = L;<br>        <span class="hljs-keyword">int</span> N = (<span class="hljs-keyword">int</span>) father.size() + <span class="hljs-number">1</span>; <span class="hljs-comment">// 把根节点算上</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, siz = N - <span class="hljs-number">1</span>; i &lt; siz; ++i) &#123;<br>            <span class="hljs-keyword">int</span> prev = (i + <span class="hljs-number">1</span>) + <span class="hljs-number">1</span>, next = father[i] + <span class="hljs-number">1</span>;<br>            <span class="hljs-comment">// 编号整体加一</span><br>            head[prev].push_back(next);<br>            head[next].push_back(prev);<br>        &#125;<br>        DFS();<br>        ans = *<span class="hljs-built_in">std</span>::max_element(depthWalk + <span class="hljs-number">1</span>, depthWalk + <span class="hljs-number">1</span> + N);<br>        <span class="hljs-keyword">if</span> (ans &gt; L) <span class="hljs-keyword">return</span> L + <span class="hljs-number">1</span>; <span class="hljs-comment">// 能走的最长的路径已经超过了 L，直接返回 L + 1（把根节点算上）</span><br>        ans = <span class="hljs-built_in">std</span>::min(N, ans + <span class="hljs-number">1</span> + (L - ans) / <span class="hljs-number">2</span>);<br>        <span class="hljs-comment">// ans + 1：走过的最长路径加上根节点</span><br>        <span class="hljs-comment">// L - ans：剩下能走的路径，不能浪费</span><br>        <span class="hljs-comment">// (L - ans) / 2：需要一半的路径来折返</span><br>        <span class="hljs-comment">// 注意：剩下的 L - ans 这些路径可以在任何地方用来走，不只是用来在最深的点折返</span><br>        <span class="hljs-comment">// 还有一种情况：所有的点都走完了，还有步数</span><br>        <span class="hljs-comment">// 这时候答案就不会再继续累加了</span><br>        <span class="hljs-comment">// 这种情况下 ans 就要对 N 取个 min</span><br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">// 记得最后提交的时候不要带 main 函数</span><br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> int main() &#123;</span><br><span class="hljs-comment"> std::vector&lt;int&gt; fa;</span><br><span class="hljs-comment"> fa.clear();</span><br><span class="hljs-comment"> int x = 0;</span><br><span class="hljs-comment"> while (true) &#123;</span><br><span class="hljs-comment"> cin &gt;&gt; x;</span><br><span class="hljs-comment"> if (x == -1) break;</span><br><span class="hljs-comment"> fa.push_back(x);</span><br><span class="hljs-comment"> &#125;</span><br><span class="hljs-comment"> int l = 0;</span><br><span class="hljs-comment"> cin &gt;&gt; l;</span><br><span class="hljs-comment"> WalkOverATree wk;</span><br><span class="hljs-comment"> cout &lt;&lt; wk.maxNodesVisited(fa, l) &lt;&lt; endl;</span><br><span class="hljs-comment"> return 0;</span><br><span class="hljs-comment"> &#125;</span><br><span class="hljs-comment"> */</span><br><br></code></pre></td></tr></table></figure>
+
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>Handwer STD</li>
+  <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2019/07-31/TopCoder13955/index.html">https://blog.handwer-std.top/2019/07-31/TopCoder13955/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/" rel="tag">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopCoder/" rel="tag">TopCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2019/07-31/Luogu-P3177-BZOJ4033/"><i class="iconfont iconleft"></i>洛谷P3177《[HAOI2015]树上染色》</a>
+  
+  
+    <a href="/2019/07-30/Luogu-P2519-BZOJ2298/">洛谷P2519《[HAOI2011]problem a》<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz",
+        app_key: "y8tzSOvAsnOqNYwRNQI7WG9v",
+        placeholder: "看了这么多，可能你有话想说",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:handwerstudotie@gmail.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
