@@ -1,0 +1,430 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>单调栈专项练习 - Handwer&#39;s Blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="
+单调数据结构
+
+
+
+
+练习：洛谷P2947《Look..."> 
+  
+  <meta name="author" content="Handwer STD"> 
+
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0H2W79.jpg">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '现在，走吧，有花开在旅程。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-N0TBYCY1Y9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-N0TBYCY1Y9');</script>
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">单调栈专项练习</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/frlink " class="underline"> 友链</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaOTU.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">单调栈专项练习</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>七月 21, 2019</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>8236</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <blockquote>
+<p>单调数据结构</p>
+</blockquote>
+<!--erom-->
+
+
+<h1 id="练习：洛谷P2947《Look-Up》"><a href="#练习：洛谷P2947《Look-Up》" class="headerlink" title="练习：洛谷P2947《Look Up》"></a>练习：洛谷P2947《Look Up》</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>Farmer John’s N (1 &lt;= N &lt;= 100,000) cows, conveniently numbered 1..N, are once again standing in a row. Cow i has height H_i (1 &lt;= H_i &lt;= 1,000,000).</p>
+<p>Each cow is looking to her left toward those with higher index numbers. We say that cow i ‘looks up’ to cow j if i &lt; j and H_i &lt; H_j. For each cow i, FJ would like to know the index of the first cow in line looked up to by cow i.</p>
+<p>Note: about 50% of the test data will have N &lt;= 1,000.</p>
+<p>约翰的N(1≤N≤10^5)头奶牛站成一排，奶牛i的身高是Hi(l≤Hi≤1,000,000)．现在，每只奶牛都在向右看齐．对于奶牛i，如果奶牛j满足i&lt;j且Hi&lt;Hj，我们可以说奶牛i可以仰望奶牛j． 求出每只奶牛离她最近的仰望对象．</p>
+<p>Input</p>
+<h2 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><ul>
+<li><p>Line 1: A single integer: N</p>
+</li>
+<li><p>Lines 2..N+1: Line i+1 contains the single integer: H_i</p>
+</li>
+</ul>
+<p>第 1 行输入 N，之后每行输入一个身高 H_i。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><ul>
+<li>Lines 1..N: Line i contains a single integer representing the smallest index of a cow up to which cow i looks. If no such cow exists, print 0.</li>
+</ul>
+<p>共 N 行，按顺序每行输出一只奶牛的最近仰望对象，如果没有仰望对象，输出 0。</p>
+<h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入样例</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">6</span><br><span class="hljs-symbol">3 </span><br><span class="hljs-symbol">2 </span><br><span class="hljs-symbol">6 </span><br><span class="hljs-symbol">1 </span><br><span class="hljs-symbol">1 </span><br><span class="hljs-symbol">2 </span><br></code></pre></td></tr></table></figure>
+<p>输出样例</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">3 </span><br><span class="hljs-symbol">3 </span><br><span class="hljs-symbol">0 </span><br><span class="hljs-symbol">6 </span><br><span class="hljs-symbol">6 </span><br><span class="hljs-symbol">0 </span><br></code></pre></td></tr></table></figure>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>FJ has six cows of heights 3, 2, 6, 1, 1, and 2.</p>
+<p>Cows 1 and 2 both look up to cow 3; cows 4 and 5 both look up to cow 6; and cows 3 and 6 do not look up to any cow.</p>
+<p>【输入说明】6 头奶牛的身高分别为 3, 2, 6, 1, 1, 2.</p>
+<p>【输出说明】奶牛#1,#2 仰望奶牛#3，奶牛#4,#5 仰望奶牛#6，奶牛#3 和#6 没有仰望对象。</p>
+<p>【数据规模】</p>
+<p>对于 20%的数据： 1≤N≤10；</p>
+<p>对于 50%的数据： 1≤N≤1,000；</p>
+<p>对于 100%的数据：1≤N≤100,000；1≤H_i≤1,000,000；</p>
+<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>题目就是说，依次给出一堆线段，求对于每条线段，第一个在它右面，长度大于它的线段的下标是多少<br>我们先来模拟一下：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">1</span>[===] 歪着看体验更佳（逃<br><span class="hljs-number">2</span>[==]<br><span class="hljs-number">3</span>[======]<br><span class="hljs-number">4</span>[=]<br><span class="hljs-number">5</span>[=]<br><span class="hljs-number">6</span>[==]<br></code></pre></td></tr></table></figure>
+<p>第一次，1号进来了，没有比它高的，让它等一会<br>第二次，2号进来了，它甚至比1号还低，对1号的答案没有什么影响，也让它等一会<br>第三次，3号进来了，它比1、2号都高！此时1、2号的答案都是3号，而且1、2号<strong>对于以后的线段答案是没有影响的</strong>，呆在队伍里已经没有什么用了，让它们出去即可<br>第四次、第五次，4号和5号依次进来，对3号的答案并没有什么影响<br>第六次，6号进来了，4号和5号的答案更新为6号，而且对以后的线段答案也是没有什么影响的（如果以后还有线段的话），出去即可<br>队伍里还有俩线段3和6，它们的答案没有被更新过，也就是没有答案</p>
+<hr>
+<p>这就是一个单调栈的工作流程，通过清除栈里的元素来维护单调性，而本题中第三次循环和第六次循环则是对于单调数据结构进行具体问题具体分析的关键点</p>
+<p>可以看出，实质上是维护了一个单调不增的栈，在维护栈的单调性过程中求出了答案</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stack&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="hljs-meta-string">&quot;r&quot;</span>, stdin)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="hljs-meta-string">&quot;w&quot;</span>, stdout)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rep(a,s,t,i) for (int a = s; a &lt;= t; a += i)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> repp(a,s,t,i) for (int a = s; a &lt; t; a += i)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> countdown(s) while (s --&gt; 0)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)</span><br><br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getint</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">int</span> x; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x); <span class="hljs-keyword">return</span> x; &#125;<br><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getll</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> x; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>, &amp;x); <span class="hljs-keyword">return</span> x; &#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXN = <span class="hljs-number">100000</span> + <span class="hljs-number">10</span>;<br><br><span class="hljs-keyword">int</span> n, ans[MAXN];<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Cow</span> &#123;</span><br>    <span class="hljs-keyword">int</span> height, id;<br>    <br>    Cow() : height(<span class="hljs-number">0</span>), id(<span class="hljs-number">0</span>) &#123;&#125;<br>    Cow(<span class="hljs-keyword">int</span> height, <span class="hljs-keyword">int</span> id) : height(height), id(id) &#123;&#125;<br>&#125;;<br><br><span class="hljs-built_in">std</span>::<span class="hljs-built_in">stack</span>&lt;Cow&gt; stk;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    n = getint();<br>    rep (i, <span class="hljs-number">1</span>, n, <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">int</span> height = getint();<br>        <span class="hljs-keyword">while</span> (!stk.empty() &amp;&amp; stk.top().height &lt; height) &#123;<br>            <span class="hljs-comment">// stk.top().height &lt; height 维护栈内元素单调不增性</span><br>            <span class="hljs-comment">// 如果 stk.top().height &gt; height 则单调性仍存在，不必维护</span><br>            ans[stk.top().id] = i;<br>            <span class="hljs-comment">// 更新答案</span><br>            stk.pop();<br>        &#125;<br>        stk.push((Cow) &#123; height, i &#125;);<br>    &#125;<br>    rep (i, <span class="hljs-number">1</span>, n, <span class="hljs-number">1</span>) &#123; <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, ans[i]); &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+<h1 id="巩固：洛谷P1901《发射站》"><a href="#巩固：洛谷P1901《发射站》" class="headerlink" title="巩固：洛谷P1901《发射站》"></a>巩固：洛谷P1901《发射站》</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>某地有 N 个能量发射站排成一行，每个发射站 i 都有不相同的高度 Hi，并能向两边（当 然两端的只能向一边）同时发射能量值为 Vi 的能量，并且发出的能量只被两边最近的且比 它高的发射站接收。</p>
+<p>显然，每个发射站发来的能量有可能被 0 或 1 或 2 个其他发射站所接受，特别是为了安 全，每个发射站接收到的能量总和是我们很关心的问题。由于数据很多，现只需要你帮忙计 算出接收最多能量的发射站接收的能量是多少。</p>
+<h2 id="输入输出格式-1"><a href="#输入输出格式-1" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><h3 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h3><p>第 1 行：一个整数 N;</p>
+<p>第 2 到 N+1 行：第 i+1 行有两个整数 Hi 和 Vi，表示第 i 个人发射站的高度和发射的能量值。</p>
+<h3 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出仅一行，表示接收最多能量的发射站接收到的能量值，答案不超过 longint。</p>
+<h2 id="输入输出样例-1"><a href="#输入输出样例-1" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入样例#1</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">3</span><br><span class="hljs-symbol">4 </span><span class="hljs-number">2</span> <br><span class="hljs-symbol">3 </span><span class="hljs-number">5</span> <br><span class="hljs-symbol">6 </span><span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
+<p>输出样例#1</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h2><p>对于 40%的数据，1&lt;=N&lt;=5000；1&lt;=Hi&lt;=100000；1&lt;=Vi&lt;=10000;</p>
+<p>对于 70%的数据，1&lt;=N&lt;=100000；1&lt;=Hi&lt;=2,000,000,000；1&lt;=Vi&lt;=10000;</p>
+<p>对于 100%的数据，1&lt;=N&lt;=1000000;1&lt;=Hi&lt;=2,000,000,000；1&lt;=Vi&lt;=10000。</p>
+<h2 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h2><p>同样的，先来模拟一下这个过程：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown">1[<span class="hljs-string">====</span>](<span class="hljs-link">2</span>)<br>2[<span class="hljs-string">===</span>](<span class="hljs-link">5</span>)<br>3[<span class="hljs-string">======</span>](<span class="hljs-link">10</span>)<br></code></pre></td></tr></table></figure>
+<p>第一次，1号发射站进来，它莫得其他发射站来传输能量<br>第二次，2号发射站进来，它可以给1号传输能量<br>第三次，3号发射站进来：<br>2号发射站可以给3号发射站传输能量，1号发射站亦可。由于这两个发射站对于其他发射站的答案已经没有贡献，自己的答案也确定了，让它们出去即可</p>
+<hr>
+<p>本质上也是维护了一个单调递减的栈，在维护单调性的同时确定答案</p>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stack&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="hljs-meta-string">&quot;r&quot;</span>, stdin)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="hljs-meta-string">&quot;w&quot;</span>, stdout)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rep(a,s,t,i) for (int a = s; a &lt;= t; a += i)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> repp(a,s,t,i) for (int a = s; a &lt; t; a += i)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> countdown(s) while (s --&gt; 0)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)</span><br><br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getint</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">int</span> x; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x); <span class="hljs-keyword">return</span> x; &#125;<br><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getll</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> x; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>, &amp;x); <span class="hljs-keyword">return</span> x; &#125;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Launcher</span> &#123;</span><br>    <span class="hljs-keyword">int</span> id;<br>    <span class="hljs-keyword">int</span> height; <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> energy;<br>    <span class="hljs-comment">// height: 该发射站的高度</span><br>    <span class="hljs-comment">// energy: 该发射站的能量强度</span><br>    Launcher() &#123; id = height = energy = <span class="hljs-number">0</span>; &#125;<br>    Launcher(<span class="hljs-keyword">int</span> id, <span class="hljs-keyword">int</span> height, <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> energy) : id(id), height(height), energy(energy) &#123;&#125;<br>&#125;;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXN = <span class="hljs-number">1000000</span> + <span class="hljs-number">10</span>;<br><br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> ans[MAXN]; <span class="hljs-comment">// 答案不超过 long int</span><br><span class="hljs-built_in">std</span>::<span class="hljs-built_in">stack</span>&lt;Launcher&gt; stk;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    n = getint();<br>    rep (i, <span class="hljs-number">1</span>, n, <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">int</span> h = getint();<br>        <span class="hljs-keyword">int</span> energy = getint();<br>        <span class="hljs-keyword">while</span> (!stk.empty() &amp;&amp; stk.top().height &lt; h) &#123;<br>            ans[i] += stk.top().energy; <span class="hljs-comment">// 栈顶对应的发射站能「向右」发射能量到当前的发射站</span><br>            stk.pop(); <span class="hljs-comment">// 维护栈的单调递减性</span><br>        &#125;<br>        <span class="hljs-keyword">if</span> (!stk.empty()) ans[stk.top().id] += energy; <span class="hljs-comment">// 当前发射站能「向左」发射能量到栈顶对应的发射站</span><br>        stk.push((Launcher) &#123; i, h, energy &#125;);<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>, (<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span>) *<span class="hljs-built_in">std</span>::max_element(ans + <span class="hljs-number">1</span>, ans + <span class="hljs-number">1</span> + n));<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+
+<h1 id="提高：洛谷P1823《Patrik-音乐会的等待》"><a href="#提高：洛谷P1823《Patrik-音乐会的等待》" class="headerlink" title="提高：洛谷P1823《Patrik 音乐会的等待》"></a>提高：洛谷P1823《Patrik 音乐会的等待》</h1><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>N个人正在排队进入一个音乐会。人们等得很无聊，于是他们开始转来转去，想在队伍里寻找自己的熟人。队列中任意两个人A和B，如果他们是相邻或他们之间没有人比A或B高，那么他们是可以互相看得见的。</p>
+<p>写一个程序计算出有多少对人可以互相看见。</p>
+<h2 id="输入输出格式-2"><a href="#输入输出格式-2" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><h3 id="输入格式-2"><a href="#输入格式-2" class="headerlink" title="输入格式"></a>输入格式</h3><p>输入的第一行包含一个整数N (1 ≤ N ≤ 500 000), 表示队伍中共有N个人。</p>
+<p>接下来的N行中，每行包含一个整数，表示人的高度，以毫微米(等于10的-9次方米)为单位，每个人的调度都小于2^31毫微米。这些高度分别表示队伍中人的身高。</p>
+<h3 id="输出格式-2"><a href="#输出格式-2" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出仅有一行，包含一个数S，表示队伍中共有S对人可以互相看见。</p>
+<h2 id="输入输出样例-2"><a href="#输入输出样例-2" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入样例#1</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">7 </span><br><span class="hljs-symbol">2 </span><br><span class="hljs-symbol">4 </span><br><span class="hljs-symbol">1 </span><br><span class="hljs-symbol">2 </span><br><span class="hljs-symbol">2 </span><br><span class="hljs-symbol">5 </span><br><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<p>输出样例#1</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
+<h2 id="解析-2"><a href="#解析-2" class="headerlink" title="解析"></a>解析</h2><p>依然来模拟一下：，</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs scheme"><span class="hljs-number">1</span>[<span class="hljs-name">==</span>]<br><span class="hljs-number">2</span>[<span class="hljs-name">====</span>]<br><span class="hljs-number">3</span>[<span class="hljs-name"><span class="hljs-builtin-name">=</span></span>]<br><span class="hljs-number">4</span>[<span class="hljs-name">==</span>]<br><span class="hljs-number">5</span>[<span class="hljs-name">==</span>]<br><span class="hljs-number">6</span>[<span class="hljs-name">=====</span>]<br><span class="hljs-number">7</span>[<span class="hljs-name"><span class="hljs-builtin-name">=</span></span>]<br></code></pre></td></tr></table></figure>
+<p>第一次，1号进入，它谁都望不到<br>第二次，2号进入，1、2号能互相看见，此时1号对答案已经没有贡献，出去即可<br>第三次，3号进入，2、3号能互相看见<br>第四次，4号进入，3、4号能互相看见，同时2、4号也可以互相看见，此时3号对答案已经没有贡献，出去即可<br>第五次……第六次……第七次……</p>
+<hr>
+<p>已经很明显了，依然是维护一个单调不增的栈，在维护元素单调性的同时更新答案<br>但是这里的代码实现有一定的技巧</p>
+<h2 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stack&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="hljs-meta-string">&quot;r&quot;</span>, stdin)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="hljs-meta-string">&quot;w&quot;</span>, stdout)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rep(a,s,t,i) for (int a = s; a &lt;= t; a += i)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> repp(a,s,t,i) for (int a = s; a &lt; t; a += i)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> countdown(s) while (s --&gt; 0)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)</span><br><br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getint</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">int</span> x; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x); <span class="hljs-keyword">return</span> x; &#125;<br><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getll</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> x; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>, &amp;x); <span class="hljs-keyword">return</span> x; &#125;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Height</span> &#123;</span><br>    <span class="hljs-comment">// 按照顺序把相邻等高的人视为一组</span><br>    <span class="hljs-keyword">int</span> height; <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> amount;<br>    <span class="hljs-comment">// height: 该组的高度</span><br>    <span class="hljs-comment">// amount: 该组的人数</span><br>    Height() &#123; height = amount = <span class="hljs-number">0</span>; &#125;<br>    Height(<span class="hljs-keyword">int</span> height, <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> amount) : height(height), amount(amount) &#123;&#125;<br>&#125;;<br><br><span class="hljs-keyword">int</span> n;<br><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> ans;<br><span class="hljs-built_in">std</span>::<span class="hljs-built_in">stack</span>&lt;Height&gt; stk;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    n = getint();<br>    rep (i, <span class="hljs-number">1</span>, n, <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">int</span> h = getint();<br>        Height hh = (Height) &#123; h, <span class="hljs-number">1</span> &#125;;<br>        <span class="hljs-keyword">while</span> (!stk.empty() &amp;&amp; stk.top().height &lt;= h) &#123;<br>            ans += stk.top().amount; <span class="hljs-comment">// 当前人能够看见上一组整组的人</span><br>            <span class="hljs-keyword">if</span> (stk.top().height == h) hh.amount += stk.top().amount; <span class="hljs-comment">// 如果两组人等高，就把两组人归到一组去</span><br>            stk.pop();<br>        &#125;<br>        <span class="hljs-keyword">if</span> (!stk.empty()) ++ans;<br>        <span class="hljs-comment">// 在放当前的人进栈之前，如果栈非空，说明栈顶这个人是能看见当前的人的</span><br>        stk.push(hh);<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>, ans);<br>    <span class="hljs-comment">// C(100000, 2) &gt; (1 &lt;&lt; 31)</span><br>    <span class="hljs-comment">// 答案超过 int</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>Handwer STD</li>
+  <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2019-07-21/MonotoneStack-Luogu-P1901-Luogu-P1823-Luogu-P2947/index.html">https://blog.handwer-std.top/2019-07-21/MonotoneStack-Luogu-P1901-Luogu-P1823-Luogu-P2947/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0/" rel="tag">专项练习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" rel="tag">单调栈</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2019-07-21/Luogu-P2606/"><i class="iconfont iconleft"></i>洛谷P2606《排列计数》</a>
+  
+  
+    <a href="/2019-07-18/BZOJ3884-Luogu-P4139/">BZOJ3884 洛谷P4139《上帝与集合的正确用法》<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz",
+        app_key: "y8tzSOvAsnOqNYwRNQI7WG9v",
+        placeholder: "看了这么多，可能你有话想说",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

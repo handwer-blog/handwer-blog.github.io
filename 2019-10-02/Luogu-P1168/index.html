@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>洛谷P1168《中位数》 - Handwer&#39;s Blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="
+两个优先队列
+
+
+
+解析第一反应肯定是堆，毕竟自带排..."> 
+  
+  <meta name="author" content="Handwer STD"> 
+
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0H2W79.jpg">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '现在，走吧，有花开在旅程。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-N0TBYCY1Y9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-N0TBYCY1Y9');</script>
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">洛谷P1168《中位数》</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/frlink " class="underline"> 友链</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">洛谷P1168《中位数》</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 02, 2019</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3523</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <blockquote>
+<p>两个优先队列</p>
+</blockquote>
+<!--erom-->
+
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>第一反应肯定是堆，毕竟自带排序，找中位数也方便</p>
+<p>关键是 <code>std::priority_queue</code>  不能访问内部元素就很烦</p>
+<p>但是，要访问的内部元素好像就一个中位数啊？</p>
+<hr>
+<p>考虑把中位数手动记下来，然后把中位数前边的数用一个大根堆存一下，把中位数后面的数用一个小根堆存一下，这样依然能保证元素是始终有序的</p>
+<p>依次读入每一个数，如果这个数比「当前记着的中位数」小就放进大根堆里，否则放进小根堆里</p>
+<p>查询的时候需要对中位数进行更新：<br>如果左右两个堆的大小相等，说明中位数还是那个中位数；<br>否则分两种情况讨论：</p>
+<ol>
+<li>大根堆更大<br>说明中位数一定在大根堆里，那么就把中位数塞进小根堆里，再把大根堆堆顶取出来当新的中位数，重复做直到两个堆大小相等</li>
+<li>小根堆更大<br>说明中位数一定在小根堆里，那么就把中位数塞进大根堆里，再把小根堆堆顶取出来当新的中位数，重复做直到两个堆大小相等</li>
+</ol>
+<p>最后输出更新完的中位数即可</p>
+<p>本方法对应代码中的 <code>Method1</code></p>
+<hr>
+<p>或者可以直接使用 <code>std::vector</code> 和 <code>std::upper_bound</code> 来模拟一个堆，输出的时候直接访问 <code>vec[(i / 2 + 1) - 1]</code> 即可</p>
+<p><code>std::upper_bound(Begin Iterator, End Iterator, Value)</code> 是一个使用二分查找，在有序序列 <code>[Begin Iterator, End Iterator)</code> 中查找第一个大于 <code>Value</code> 的位置的函数；<code>std::vector&lt;int&gt;::insert(Position Iterator, Value)</code> 可以在 <code>Position Iterator</code> 前面插入元素 <code>Value</code>，利用这两个函数可以实现插入元素而不破坏序列的有序性。</p>
+<p>本方法对应代码中的 <code>Method2</code></p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//</span><br><span class="hljs-comment">//  LuoguP1168.cpp</span><br><span class="hljs-comment">//  Title: 中位数</span><br><span class="hljs-comment">//  Debugging</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//  Created by HandwerSTD on 2019/10/2.</span><br><span class="hljs-comment">//  Copyright © 2019 HandwerSTD. All rights reserved.</span><br><span class="hljs-comment">//</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FILE_IN(__fname) freopen(__fname, <span class="hljs-meta-string">&quot;r&quot;</span>, stdin)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FILE_OUT(__fname) freopen(__fname, <span class="hljs-meta-string">&quot;w&quot;</span>, stdout)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rap(a,s,t,i) for (int a = s; a &lt;= t; a += i)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> basketball(a,t,s,i) for (int a = t; a &gt; s; a -= i)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> countdown(s) while (s --&gt; 0)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> IMPROVE_IO() std::ios::sync_with_stdio(false)</span><br><br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> lli;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getint</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">int</span> x; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x); <span class="hljs-keyword">return</span> x; &#125;<br><span class="hljs-function">lli <span class="hljs-title">getll</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> x; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>, &amp;x); <span class="hljs-keyword">return</span> x; &#125;<br><br><span class="hljs-keyword">int</span> n;<br><br><span class="hljs-keyword">namespace</span> Method1 &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 此题正解</span><br><span class="hljs-comment">     * 用一个大根堆维护中位数之前的数，一个小根堆维护中位数之后的数</span><br><span class="hljs-comment">     */</span><br>    <br>    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">priority_queue</span>&lt;<span class="hljs-keyword">int</span>&gt; before;<br>    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">priority_queue</span>&lt;<span class="hljs-keyword">int</span>, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;, <span class="hljs-built_in">std</span>::greater&lt;<span class="hljs-keyword">int</span>&gt; &gt; after;<br>    <span class="hljs-keyword">int</span> mid;<br>    <br>    <span class="hljs-keyword">void</span> _main() &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>            <span class="hljs-keyword">int</span> now = getint();<br>            <span class="hljs-keyword">if</span> (i == <span class="hljs-number">1</span>) &#123; mid = now; &#125;<br>            <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">if</span> (now &lt; mid) before.push(now);<br>                <span class="hljs-keyword">else</span> after.push(now);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (i &amp; <span class="hljs-number">1</span>) &#123;<br>                <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> befsiz = before.size();<br>                <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> aftsiz = after.size();<br>                <span class="hljs-keyword">while</span> (befsiz != aftsiz) &#123;<br>                    <span class="hljs-keyword">if</span> (befsiz &lt; aftsiz) &#123;<br>                        before.push(mid);<br>                        mid = after.top(); after.pop();<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        after.push(mid);<br>                        mid = before.top(); before.pop();<br>                    &#125;<br>                    befsiz = before.size(); aftsiz = after.size();<br>                &#125;<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, mid);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">namespace</span> Method2 &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 沙雕做法</span><br><span class="hljs-comment">     * 使用 std::vector 和 std::lower_bound 手写堆</span><br><span class="hljs-comment">     */</span><br>    <br>    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; vec;<br>    <br>    <span class="hljs-keyword">void</span> _main() &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>            <span class="hljs-keyword">int</span> now = getint();<br>            vec.insert(<span class="hljs-built_in">std</span>::upper_bound(vec.begin(), vec.end(), now), now);<br>            <span class="hljs-keyword">if</span> (i &amp; <span class="hljs-number">1</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, vec.at(i / <span class="hljs-number">2</span> + <span class="hljs-number">1</span> - <span class="hljs-number">1</span>));<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    n = getint();<br>    <span class="hljs-keyword">if</span> (<span class="hljs-number">1</span> + <span class="hljs-number">1</span> == <span class="hljs-number">3</span>) Method2::_main();<br>    <span class="hljs-keyword">else</span> Method1::_main();<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>Handwer STD</li>
+  <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2019-10-02/Luogu-P1168/index.html">https://blog.handwer-std.top/2019-10-02/Luogu-P1168/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL/" rel="tag">STL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A0%86/" rel="tag">堆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%9F%E5%88%97/" rel="tag">队列</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2019-10-03/ChinaRemainderTheroem/"><i class="iconfont iconleft"></i>中国剩余定理（CRT）学习笔记</a>
+  
+  
+    <a href="/2019-08-18/Luogu-P2158-BZOJ2190/">洛谷P2158《[SDOI2008]仪仗队》<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz",
+        app_key: "y8tzSOvAsnOqNYwRNQI7WG9v",
+        placeholder: "看了这么多，可能你有话想说",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

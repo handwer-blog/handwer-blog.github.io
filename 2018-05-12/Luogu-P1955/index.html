@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>洛谷P1955 《[NOI2015]程序自动分析》 - Handwer&#39;s Blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="
+第一道NOI的题目
+
+
+
+
+
+洛谷 P1955 题解..."> 
+  
+  <meta name="author" content="Handwer STD"> 
+
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0H2W79.jpg">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '现在，走吧，有花开在旅程。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-N0TBYCY1Y9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-N0TBYCY1Y9');</script>
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">洛谷P1955 《[NOI2015]程序自动分析》</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/frlink " class="underline"> 友链</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">洛谷P1955 《[NOI2015]程序自动分析》</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>五月 12, 2018</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5537</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <blockquote>
+<p>第一道NOI的题目</p>
+</blockquote>
+<!--erom-->
+
+
+
+<h1 id="洛谷-P1955-题解"><a href="#洛谷-P1955-题解" class="headerlink" title="洛谷 P1955 题解"></a>洛谷 P1955 题解</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>在实现程序自动分析的过程中，常常需要判定一些约束条件是否能被同时满足。</p>
+<p>考虑一个约束满足问题的简化版本：假设x1,x2,x3…代表程序中出现的变量，给定n个形如xi=xj或xi≠xj的变量相等/不等的约束条件，请判定是否可以分别为每一个变量赋予恰当的值，使得上述所有约束条件同时被满足。例如，一个问题中的约束条件为：x1=x2,x2=x3,x3=x4,x4≠x1，这些约束条件显然是不可能同时被满足的，因此这个问题应判定为不可被满足。</p>
+<p>现在给出一些约束满足问题，请分别对它们进行判定。</p>
+<h2 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><h3 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h3><p>从文件prog.in中读入数据。</p>
+<p>输入文件的第1行包含1个正整数t，表示需要判定的问题个数。注意这些问题之间是相互独立的。</p>
+<p>对于每个问题，包含若干行：</p>
+<p>第1行包含1个正整数n，表示该问题中需要被满足的约束条件个数。接下来n行，每行包括3个整数i,j,e，描述1个相等/不等的约束条件，相邻整数之间用单个空格隔开。若e=1，则该约束条件为xi=xj；若e=0，则该约束条件为xi≠xj；</p>
+<h3 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h3><p>输出到文件 prog.out 中。</p>
+<p>输出文件包括t行。</p>
+<p>输出文件的第 k行输出一个字符串“ YES” 或者“ NO”（不包含引号，字母全部大写），“ YES” 表示输入中的第k个问题判定为可以被满足，“ NO” 表示不可被满足。</p>
+<h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p>输入 #1</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">2</span><br><span class="hljs-number">2</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">1</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">0</span><br><span class="hljs-number">2</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">1</span><br><span class="hljs-symbol">2 </span><span class="hljs-number">1</span> <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<p>输出 #1</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-literal">NO</span><br><span class="hljs-literal">YES</span><br></code></pre></td></tr></table></figure>
+<p>输入 #2</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">2</span><br><span class="hljs-number">3</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">1</span><br><span class="hljs-symbol">2 </span><span class="hljs-number">3</span> <span class="hljs-number">1</span><br><span class="hljs-symbol">3 </span><span class="hljs-number">1</span> <span class="hljs-number">1</span><br><span class="hljs-number">4</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">1</span><br><span class="hljs-symbol">2 </span><span class="hljs-number">3</span> <span class="hljs-number">1</span><br><span class="hljs-symbol">3 </span><span class="hljs-number">4</span> <span class="hljs-number">1</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">4</span> <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<p>输出 #2</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-literal">YES</span><br><span class="hljs-literal">NO</span><br></code></pre></td></tr></table></figure>
+<p>数据范围（图片来自洛谷）<br><img   class="lazyload" data-original="https://cdn.luogu.org/upload/pic/1503.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="data"></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>把题目中的「x1=x2」看做x1和x2在同一个集合里，「x1≠x2」看做x1和x2不在同一个集合里……</p>
+<p>好了，显而易见这是道并查集的题目</p>
+<p>读懂了题目，下手就很简单了</p>
+<p>这里要注意：<br>「x1≠x2」是无法进行的操作（因为你不能强制他们不在同一个集合里！若非要实现，就又要维护一个数组），把它看成查询操作。</p>
+<p>而且「x1=x2」类似的操作要先做，「x1≠x2」类似的操作要最后做（因为后者对集合没有影响，它是一个查询操作）</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">如果你遇到了类似这样的数据：<br>...<br><span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">0</span><br><span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span><br>...<br>那么根据我们的思路， 「<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">0</span>」是一个查询操作，对集合没有影响，那么就相当于少了一个操作！<br>必须要先进行「x1=x2」类似的合并操作，再做「x1≠x2」类似的查询操作<br></code></pre></td></tr></table></figure>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.org/record/show?rid=7256140">90分代码 评测记录（未离散化）</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXN = <span class="hljs-number">100000</span> + <span class="hljs-number">10</span>;<br><br><span class="hljs-keyword">int</span> U[MAXN], n, t;<br><span class="hljs-keyword">int</span> e[MAXN], e0[MAXN], x[MAXN], y[MAXN];<br><br><span class="hljs-comment">/* 快读 */</span><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getInt</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> s = <span class="hljs-number">0</span>, x = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">char</span> ch = getchar();<br>	<span class="hljs-keyword">while</span> (ch &gt; <span class="hljs-string">&#x27;9&#x27;</span> || ch &lt; <span class="hljs-string">&#x27;0&#x27;</span>) &#123;<br>		<span class="hljs-keyword">if</span> (ch == <span class="hljs-string">&#x27;-&#x27;</span>) x = -x;<br>		ch = getchar();<br>	&#125;<br>	<span class="hljs-keyword">while</span> (ch &gt;= <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; ch &lt;= <span class="hljs-string">&#x27;9&#x27;</span>) &#123;<br>		s = s * <span class="hljs-number">10</span> + ch - <span class="hljs-string">&#x27;0&#x27;</span>;<br>		ch = getchar();<br>	&#125;<br>	<span class="hljs-keyword">return</span> s * x;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">Find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span> (U[x] == x) <span class="hljs-keyword">return</span> x;<br>	<span class="hljs-keyword">return</span> U[x] = Find(U[x]);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Union</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>&#123;<br>	x = Find(x), y = Find(y);<br>	<span class="hljs-keyword">if</span> (x == y) <span class="hljs-keyword">return</span>;<br>	U[x] = y;<br>	<span class="hljs-keyword">return</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Main</span><span class="hljs-params">()</span> </span>&#123;<br>	n = getInt();<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; MAXN; ++i) &#123;<br>		U[i] = i;<br>	&#125;<br>	<span class="hljs-built_in">memset</span>(e, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(e));<br>	<span class="hljs-built_in">memset</span>(x, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(x));<br>	<span class="hljs-built_in">memset</span>(y, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(y));<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>		x[i] = getInt(), y[i] = getInt(), e[i] = getInt();<br>	&#125;<br>	<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>;<br>    <span class="hljs-comment">// 第一次做 「x1=y1」的合并操作</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>		<span class="hljs-keyword">int</span> fe = e[i], fx = x[i], fy = y[i];<br>		<span class="hljs-keyword">if</span> (fe == <span class="hljs-number">1</span>) Union(fx, fy);<br>	&#125;<br>   <span class="hljs-comment">//  第二次做 「x1≠y1」的查询操作</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>		<span class="hljs-keyword">int</span> fe = e[i], fx = x[i], fy = y[i];<br>		<span class="hljs-keyword">if</span> (fe == <span class="hljs-number">0</span>) &#123;<br>			<span class="hljs-keyword">if</span>(Find(fx) == Find(fy)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>		&#125;<br>	&#125;<br>	<br>	<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>	t = getInt();<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; t; ++i)&#123;<br>		<span class="hljs-keyword">if</span> (Main()) <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;YES&quot;</span>);<br>		<span class="hljs-keyword">else</span> <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;NO&quot;</span>);<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h1 id="离散化"><a href="#离散化" class="headerlink" title="离散化"></a>离散化</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><right>——引自百度百科</right></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">离散化，把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。<br>通俗的说，离散化是在不改变数据相对大小的条件下，对数据进行相应的缩小。例如：<br>原数据：<span class="hljs-number">1</span>,<span class="hljs-number">999</span>,<span class="hljs-number">100000</span>,<span class="hljs-number">15</span>；处理后：<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>；<br>原数据：&#123;<span class="hljs-number">100</span>,<span class="hljs-number">200</span>&#125;，&#123;<span class="hljs-number">20</span>,<span class="hljs-number">50000</span>&#125;，&#123;<span class="hljs-number">1</span>,<span class="hljs-number">400</span>&#125;；<br>处理后：&#123;<span class="hljs-number">3</span>,<span class="hljs-number">4</span>&#125;，&#123;<span class="hljs-number">2</span>,<span class="hljs-number">6</span>&#125;，&#123;<span class="hljs-number">1</span>,<span class="hljs-number">5</span>&#125;；<br></code></pre></td></tr></table></figure>
+<p>对一堆数据进行离散化，</p>
+<ol>
+<li>先排序 [ 推荐 std::sort() ]（针对有序序列进行离散化）</li>
+<li>删除重复元素（节省空间）</li>
+<li>对数据进行索引（最终目的）</li>
+</ol>
+<p>而其中我们要用到STL提供的pair来储存变量。pair提供一个包含两个数据成员的结构体模板，可以快速访问其中的元素，就像一个压缩包一样（  </p>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.org/record/show?rid=7260594">AC代码 评测记录</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Pair pair<span class="hljs-meta-string">&lt;ll,ll&gt; </span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> ll;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXN = <span class="hljs-number">600000</span> + <span class="hljs-number">10</span>;<br><br><span class="hljs-keyword">int</span> U[MAXN], n, t;<br><span class="hljs-keyword">int</span> e[MAXN], x[MAXN], y[MAXN];<br><br>Pair p[MAXN];<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getInt</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> s = <span class="hljs-number">0</span>, x = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">char</span> ch = getchar();<br>    <span class="hljs-keyword">while</span> (ch &gt; <span class="hljs-string">&#x27;9&#x27;</span> || ch &lt; <span class="hljs-string">&#x27;0&#x27;</span>) &#123;<br>        <span class="hljs-keyword">if</span> (ch == <span class="hljs-string">&#x27;-&#x27;</span>) x = -x;<br>        ch = getchar();<br>    &#125;<br>    <span class="hljs-keyword">while</span> (ch &gt;= <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; ch &lt;= <span class="hljs-string">&#x27;9&#x27;</span>) &#123;<br>        s = s * <span class="hljs-number">10</span> + ch - <span class="hljs-string">&#x27;0&#x27;</span>;<br>        ch = getchar();<br>    &#125;<br>    <span class="hljs-keyword">return</span> s * x;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">Find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (U[x] == x) <span class="hljs-keyword">return</span> x;<br>    <span class="hljs-keyword">return</span> U[x] = Find(U[x]);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Union</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>&#123;<br>    x = Find(x), y = Find(y);<br>    U[x] = y;<br>    <span class="hljs-keyword">return</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">stlCmp</span><span class="hljs-params">(Pair x, Pair y)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> (x.first &gt; y.first);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Disc</span><span class="hljs-params">(Pair a[], <span class="hljs-keyword">int</span> A[])</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> tot = <span class="hljs-number">0</span>;<br>    sort(a + <span class="hljs-number">1</span>, a + n*<span class="hljs-number">2</span> + <span class="hljs-number">1</span>, stlCmp);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n*<span class="hljs-number">2</span>; ++i) &#123;<br>        <span class="hljs-keyword">if</span> (i == <span class="hljs-number">1</span> || a[i].first != a[i<span class="hljs-number">-1</span>].first) tot++;<br>        A[a[i].second] = tot;<br>    &#125; <br>&#125; <br><br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Main</span><span class="hljs-params">()</span> </span>&#123;<br>    n = getInt();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">500010</span>; ++i) &#123;<br>        U[i] = i;<br>    &#125;<br>    <span class="hljs-built_in">memset</span>(e, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(e));<br>    <span class="hljs-built_in">memset</span>(x, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(x));<br>    <span class="hljs-built_in">memset</span>(y, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(y));<br>    <span class="hljs-built_in">memset</span>(p, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(p));<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>        <span class="hljs-keyword">int</span> ax = getInt(), ay = getInt(), ae = getInt();<br>        e[i] = ae;<br>        p[i] = <span class="hljs-built_in">make_pair</span>(ax, i);<br>        p[i + n] = <span class="hljs-built_in">make_pair</span>(ay, i+n);<br>    &#125;<br>    Disc(p, x);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) y[i] = x[n + i];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>        <span class="hljs-keyword">int</span> fe = e[i], fx = x[i], fy = y[i];<br>        <span class="hljs-keyword">if</span> (fe == <span class="hljs-number">1</span>) Union(fx, fy);<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>        <span class="hljs-keyword">int</span> fe = e[i], fx = x[i], fy = y[i];<br>        <span class="hljs-keyword">if</span> (fe == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">if</span>(Find(fx) == Find(fy)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    t = getInt();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; t; ++i)&#123;<br>        <span class="hljs-keyword">if</span> (Main()) <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;YES&quot;</span>);<br>        <span class="hljs-keyword">else</span> <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;NO&quot;</span>);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>Handwer STD</li>
+  <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2018-05-12/Luogu-P1955/index.html">https://blog.handwer-std.top/2018-05-12/Luogu-P1955/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/" rel="tag">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="tag">并查集</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2018-07-03/ShortestPath/"><i class="iconfont iconleft"></i>最短路径算法</a>
+  
+  
+    <a href="/2018-04-14/union-set/">并查集模板<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz",
+        app_key: "y8tzSOvAsnOqNYwRNQI7WG9v",
+        placeholder: "看了这么多，可能你有话想说",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

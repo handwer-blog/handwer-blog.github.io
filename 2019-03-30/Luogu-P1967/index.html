@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>洛谷P1967「NOIP2013」《货车运输》 - Handwer&#39;s Blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="题目描述A国有n座城市，编号从  1到n，城市之间有 ..."> 
+  
+  <meta name="author" content="Handwer STD"> 
+
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0H2W79.jpg">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '现在，走吧，有花开在旅程。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-N0TBYCY1Y9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-N0TBYCY1Y9');</script>
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">洛谷P1967「NOIP2013」《货车运输》</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/frlink " class="underline"> 友链</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaOTU.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">洛谷P1967「NOIP2013」《货车运输》</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>三月 30, 2019</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4428</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>A国有n座城市，编号从  1到n，城市之间有  m  条双向道路。每一条道路对车辆都有重量限制，简称限重。现在有  q 辆货车在运输货物， 司机们想知道每辆车在不超过车辆限重的情况下，最多能运多重的货物。</p>
+<!--erom-->
+
+<h1 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h1><p>第一行有两个用一个空格隔开的整数n,m，表示  A  国有n  座城市和  m  条道路。</p>
+<p>接下来  m行每行3个整数  x, y, z，每两个整数之间用一个空格隔开，表示从  x号城市到y号城市有一条限重为  z  的道路。注意： **  x  不等于  y，两座城市之间可能有多条道路 ** 。</p>
+<p>接下来一行有一个整数 q，表示有 q 辆货车需要运货。</p>
+<p>接下来 q 行，每行两个整数 x、y，之间用一个空格隔开，表示一辆货车需要从 x 城市运输货物到 y 城市，注意： ** x 不等于 y ** 。</p>
+<h1 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h1><p>共有  q  行，每行一个整数，表示对于每一辆货车，它的最大载重是多少。如果货车不能到达目的地，输出−1。</p>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><p><strong>输入 #1</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">4 </span><span class="hljs-number">3</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">4</span><br><span class="hljs-symbol">2 </span><span class="hljs-number">3</span> <span class="hljs-number">3</span><br><span class="hljs-symbol">3 </span><span class="hljs-number">1</span> <span class="hljs-number">1</span><br><span class="hljs-number">3</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">3</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">4</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>输出 #1</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">3</span><br><span class="hljs-number">-1</span><br><span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><p>题目让我们求对于每个司机，最多能运多少货物，也就是在给定的两点间必经路线中求最大边权，显然我们要最大化这个边权，才能使答案更优。</p>
+<p>注意到一些边是无论如何都不会被经过的，这些边通常较小，经过它们会劣化答案。那么一个很显然的贪心就是，排个序，依次选择最大的边加入新图，尽量不选较小的边，直到新图联通且无环，两点间有唯一的不重复经过同一条边的路径</p>
+<p>等等……这个是最大生成树？<strong>是的。</strong></p>
+<hr>
+<p>想一想答案怎么求。<br>既然新图有一个性质「两点间有唯一的不重复经过同一条边的路径」，那么走一遍这条路径不就求出答案了吗！</p>
+<p>为什么不再往上走一走？能运载的最大货物量是由这条路径决定的，往上走只可能有两种结果：上面边权比最小值大，上面边权比最小值小。第一种情况对答案没有什么贡献（因为最大值影响不了最小值），第二种情况则会<strong>劣化答案</strong>！</p>
+<p>显然这条路径被这两个点的 LCA 分成两段，从一个点向上到 LCA 再向下到另一个点，那么在求 LCA 往上蹦的过程中求一下最小值就行了。可以倍增。</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><p>#include <algorithm><br>#include <iostream><br>#include <cstring><br>#include <cstdio></p>
+<p>#define FILE_IN(__fname) freopen(__fname, “r”, stdin)<br>#define FILE_OUT(__fname) freopen(__fname, “w”, stdout)<br>#define IMPROVE_IO() std::ios::sync_with_stdio(false)</p>
+<p>using std::cin;<br>using std::cout;<br>using std::endl;</p>
+<p>const int MAXN = 100000 + 10;<br>const int MAXM = MAXN * 5;<br>const int LOG = 21;</p>
+<p>int n, m, q;</p>
+<p>namespace Graph{<br>    struct RawEdge {<br>        int prev, next, weight;</p>
+<pre><code>    bool operator &lt; (const RawEdge &amp;that) const &#123;
+        return weight &gt; that.weight;
+    &#125;
+&#125; redge[MAXM];
+
+struct Edge &#123;
+    int now, next, weight;
+&#125; edge[MAXM];
+
+int head[MAXN], cnt;
+
+bool vis[MAXN];
+
+void addEdge(int prev, int next, int weight) &#123;
+    edge[++cnt].now = next;
+    edge[cnt].weight = weight;
+    edge[cnt].next = head[prev];
+    head[prev] = cnt;
+&#125;
+
+struct UnionFind&#123;
+    int seq[MAXN];
+
+    UnionFind() &#123; memset(seq, 0, sizeof seq); &#125;
+
+    int Find(int x) &#123;
+        if (seq[x] == 0) return x;
+        return seq[x] = Find(seq[x]);
+    &#125;
+
+    bool Union(int x, int y) &#123;
+        x = Find(x); y = Find(y);
+        if (x == y) return false;
+        seq[x] = y;
+        return true;
+    &#125;
+&#125; U;
+
+void Kruskal() &#123;
+    std::sort(redge + 1, redge + 1 + m);
+    for(int i = 1; i &lt;= m; ++i) &#123;
+        if (U.Union(redge[i].prev, redge[i].next)) &#123;
+            addEdge(redge[i].prev, redge[i].next, redge[i].weight);
+            addEdge(redge[i].next, redge[i].prev, redge[i].weight);
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p>}</p>
+<p>namespace LCAs {<br>    using namespace Graph;<br>    int depth[MAXN], fa[MAXN][LOG], w[MAXN][LOG];</p>
+<pre><code>void Search(int root) &#123;
+    vis[root] = true;
+    for(int e = head[root]; e; e = edge[e].next) &#123;
+        int now = edge[e].now;
+        if (vis[now]) continue;
+        depth[now] = depth[root] + 1;
+        fa[now][0] = root;
+        w[now][0] = edge[e].weight;
+        Search(now);
+    &#125;
+&#125;
+
+int GetAnswer(int x, int y) &#123;
+    if (U.Find(x) != U.Find(y)) return -1;
+    int ans = 0x7f7f7f7f;
+    if (depth[x] &gt; depth[y]) std::swap(x,y);
+
+    for (int i = LOG - 1; i &gt;= 0; --i) &#123;
+        if (depth[fa[y][i]] &gt;= depth[x]) &#123;
+            ans = std::min(ans, w[y][i]);
+            y = fa[y][i];
+        &#125;
+    &#125;
+
+    if (x == y) return ans;
+
+    for (int i = LOG - 1; i &gt;= 0; --i) &#123;
+        if (fa[x][i] != fa[y][i]) &#123;
+            ans = std::min(ans, std::min(w[x][i], w[y][i]));
+            x = fa[x][i];
+            y = fa[y][i];
+        &#125;
+    &#125;
+
+    ans = std::min(ans, std::min(w[x][0], w[y][0]));
+    return ans;
+&#125;</code></pre>
+<p>}</p>
+<p>int main() {<br>    using namespace LCAs;<br>    using namespace Graph;</p>
+<pre><code>scanf(&quot;%d %d&quot;, &amp;n, &amp;m);
+for (int i = 1; i &lt;= m; ++i) &#123;
+    int x, y, z;
+    scanf(&quot;%d %d %d&quot;, &amp;x, &amp;y, &amp;z);
+    redge[i].prev = x;
+    redge[i].next = y;
+    redge[i].weight = z;
+&#125;
+
+Kruskal();
+
+for (int i = 1; i &lt;= n; ++i)&#123;
+    if (!vis[i]) &#123;
+        depth[i] = 1;
+        Search(i);
+        fa[i][0] = i;
+        w[i][0] = 0x7f7f7f7f;
+    &#125;
+&#125;
+for (int i = 1; i &lt;= LOG - 1; ++i) &#123;
+    for (int j = 1; j &lt;= n; ++j) &#123;
+        fa[j][i] = fa[fa[j][i-1]][i-1];
+        w[j][i] = std::min(w[j][i-1], w[fa[j][i-1]][i-1]);
+    &#125;
+&#125;
+
+scanf(&quot;%d&quot;, &amp;q);
+for (int i = 1; i &lt;= q; ++i) &#123;
+    int prev, next;
+    cin &gt;&gt; prev &gt;&gt; next;
+    printf(&quot;%d\n&quot;, GetAnswer(prev, next));
+&#125;
+return 0;</code></pre>
+<p>}</p>
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>Handwer STD</li>
+  <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2019-03-30/Luogu-P1967/index.html">https://blog.handwer-std.top/2019-03-30/Luogu-P1967/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/" rel="tag">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCA/" rel="tag">LCA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOIP/" rel="tag">NOIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%88%90%E6%A0%91/" rel="tag">生成树</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2019-05-11/Luogu-P2014/"><i class="iconfont iconleft"></i>洛谷P2014《选课》</a>
+  
+  
+    <a href="/2019-03-30/NOIP2018-PJ-Tree-Luogu-P5018/">洛谷P5018「NOIP2018普及组」《对称二叉树》<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz",
+        app_key: "y8tzSOvAsnOqNYwRNQI7WG9v",
+        placeholder: "看了这么多，可能你有话想说",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
