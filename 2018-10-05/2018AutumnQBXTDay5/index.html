@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" color-mode=light>
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -45,7 +45,7 @@ Problem A. clim...">
 
   
   
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_onl0g0h21np.css">
 
   
 
@@ -72,7 +72,8 @@ Problem A. clim...">
       pjax: false,
       lazyload: {
         enable: true,
-        loadingImage: '',
+        onlyPost: 'false',
+        loading: '/images/theme/loading.gif'
       },
       donate: {
         enable: false,
@@ -114,6 +115,9 @@ Problem A. clim...">
   <div class="left"></div>
   <div class="center">2018 Autumn 清北学堂普及刷题班 Day5 题解</div>
   <div class="right">
+    
+      <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+    
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
 </nav>
@@ -401,6 +405,11 @@ Problem A. clim...">
     <i class="iconfont iconcaret-up"></i>
   </div>
   
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
 </body>
 
 
@@ -418,7 +427,7 @@ Problem A. clim...">
 
 
 
-<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
 
 
