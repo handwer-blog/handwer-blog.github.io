@@ -1679,7 +1679,10 @@ body ul {
   left: 0;
 }
 .navbar {
-  background-color: rgba(255,255,255,0.8);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
 }
+
+  .navbar {
+      background-color: rgba(var(--color-background-rgb), 0.8);
+  }
