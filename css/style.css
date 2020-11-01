@@ -27,9 +27,6 @@
   --color-text-secondary: #9899ab;
   --color-text-third: #7d8594;
 }
-[color-mode='dark'] .hljs {
-  color: var(--color-text);
-}
 [color-mode='dark'] .tags a {
   color: var(--color-text) !important;
 }
@@ -38,7 +35,7 @@
   background-color: rgba(var(--color-background-rgb), 0.7) !important;
 }
 .navbar {
-  background-color: rgba(var(--color-background-rgb), 0.9) !important;
+  background-color: rgba(var(--color-background-rgb), 0.8) !important;
 }
 *,
 *::before,
@@ -682,9 +679,6 @@ body ul {
   height: 100%;
   width: 100%;
 }
-.blur {
-  filter: blur(10px);
-}
 .underline {
   position: relative;
   color: var(--color-text) !important;
@@ -787,6 +781,8 @@ body ul {
   height: 100vh;
   top: 0;
   background-color: rgba(255,255,255,0.7);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  backdrop-filter: saturate(180%) blur(10px);
   z-index: 50;
 }
 .menu .menu-wrap {
@@ -846,7 +842,9 @@ body ul {
   width: 100%;
   top: 0;
   z-index: 200;
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(255,255,255,0.8);
+  -webkit-backdrop-filter: saturate(180%) blur(5px);
+  backdrop-filter: saturate(180%) blur(5px);
   transition: transform 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
 }
 .navbar.hide {
@@ -919,7 +917,7 @@ body ul {
   text-align: center;
   line-height: 40px;
   border-radius: 50%;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.5) !important;
   opacity: 0.5;
   cursor: pointer;
 }
@@ -1321,7 +1319,6 @@ body ul {
   border: none;
 }
 .article .wrap .main .content figure .code code {
-  background-color: var(--color-background-secondary);
   padding: 1em;
 }
 .article .wrap .main .content figure > * {
