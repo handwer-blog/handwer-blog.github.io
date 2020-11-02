@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.handwer-std.top/2020-11-02/CF1398/</loc>
+    
+    <lastmod>2020-11-02</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.handwer-std.top/2020-11-02/CF1430/</loc>
     
     <lastmod>2020-11-02</lastmod>
@@ -191,20 +198,6 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-10-03/2018AutumnQBXTDay3/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2018-07-20/Luogu-P1821/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.handwer-std.top/2018-09-15/Luogu-P1908/</loc>
     
     <lastmod>2020-10-16</lastmod>
@@ -212,14 +205,14 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-11-02/Arbiter/</loc>
+    <loc>https://blog.handwer-std.top/2018-10-03/2018AutumnQBXTDay3/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-08-13/ZROI918/</loc>
+    <loc>https://blog.handwer-std.top/2018-10-02/2018AutumnQBXTDay2/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -240,7 +233,28 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-10-02/2018AutumnQBXTDay2/</loc>
+    <loc>https://blog.handwer-std.top/2019-08-13/ZROI918/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2018-11-02/Arbiter/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2018-07-20/Luogu-P1821/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2019-10-25/CF453A/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -261,14 +275,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-09-30/CF333A/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2019-10-17/BinaryIndexedTree/</loc>
+    <loc>https://blog.handwer-std.top/2019-07-18/BZOJ3884-Luogu-P4139/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -303,28 +310,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-10-04/2018AutumnQBXTDay4/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.handwer-std.top/2019-10-28/CF1244D/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2018-10-01/2018AutumnQBXTDay1/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2019-03-19/Android-GetFilePathWithDocumentsProvider/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -338,6 +324,27 @@
   </url>
   
   <url>
+    <loc>https://blog.handwer-std.top/2019-03-19/Android-GetFilePathWithDocumentsProvider/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2018-10-01/2018AutumnQBXTDay1/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2018-10-04/2018AutumnQBXTDay4/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.handwer-std.top/2018-02-06/BSAnswer/</loc>
     
     <lastmod>2020-10-16</lastmod>
@@ -345,14 +352,14 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-01-12/BZOJ1601/</loc>
+    <loc>https://blog.handwer-std.top/2018-11-25/BZOJ2763-Luogu-P4568-JLOI2011/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-11-25/BZOJ2763-Luogu-P4568-JLOI2011/</loc>
+    <loc>https://blog.handwer-std.top/2019-01-12/BZOJ1601/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -380,7 +387,14 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-07-18/BZOJ3884-Luogu-P4139/</loc>
+    <loc>https://blog.handwer-std.top/2019-10-17/BinaryIndexedTree/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2018-09-30/CF333A/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -388,6 +402,13 @@
   
   <url>
     <loc>https://blog.handwer-std.top/2018-09-30/CF295B/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2018-03-31/calculating-pi/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -408,20 +429,6 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-03-31/calculating-pi/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2019-10-25/CF453A/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.handwer-std.top/2018-08-05/Luogu-P1531/</loc>
     
     <lastmod>2020-10-16</lastmod>
@@ -429,7 +436,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-03-30/Luogu-P1092/</loc>
+    <loc>https://blog.handwer-std.top/2019-01-24/Luogu-P1083/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -443,13 +450,6 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-01-22/Luogu-P1119/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.handwer-std.top/2019-02-16/Luogu-P1122/</loc>
     
     <lastmod>2020-10-16</lastmod>
@@ -457,7 +457,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-10-30/Luogu-P1032/</loc>
+    <loc>https://blog.handwer-std.top/2019-01-22/Luogu-P1119/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -465,6 +465,13 @@
   
   <url>
     <loc>https://blog.handwer-std.top/2019-01-10/Luogu-P1141/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2019-03-30/Luogu-P1092/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -492,14 +499,14 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-11-01/Luogu-P1280/</loc>
+    <loc>https://blog.handwer-std.top/2019-01-23/Luogu-P1330/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-01-23/Luogu-P1330/</loc>
+    <loc>https://blog.handwer-std.top/2018-11-01/Luogu-P1280/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -513,7 +520,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-01-24/Luogu-P1083/</loc>
+    <loc>https://blog.handwer-std.top/2018-10-30/Luogu-P1032/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -555,13 +562,6 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-08-08/HDU1483/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.handwer-std.top/2020-02-05/Fake-Android-Q-Navigation-Handle/</loc>
     
     <lastmod>2020-10-16</lastmod>
@@ -569,7 +569,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-01-18/EulerPath-EulerCircuit/</loc>
+    <loc>https://blog.handwer-std.top/2019-08-08/HDU1483/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -577,6 +577,13 @@
   
   <url>
     <loc>https://blog.handwer-std.top/2018-09-15/DepthFirstSearch/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2019-01-18/EulerPath-EulerCircuit/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -611,14 +618,14 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2017-12-30/SPFA/</loc>
+    <loc>https://blog.handwer-std.top/2019-01-21/Luogu-P1341/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-05-12/Luogu-P1955/</loc>
+    <loc>https://blog.handwer-std.top/2017-12-30/SPFA/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -646,13 +653,6 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-07-28/Luogu-P1892/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.handwer-std.top/2019-02-14/Luogu-P1896/</loc>
     
     <lastmod>2020-10-16</lastmod>
@@ -674,6 +674,13 @@
   </url>
   
   <url>
+    <loc>https://blog.handwer-std.top/2018-05-12/Luogu-P1955/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.handwer-std.top/2019-03-30/Luogu-P1967/</loc>
     
     <lastmod>2020-10-16</lastmod>
@@ -681,14 +688,14 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-01-22/Luogu-P1969/</loc>
+    <loc>https://blog.handwer-std.top/2018-04-14/union-set/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-04-14/union-set/</loc>
+    <loc>https://blog.handwer-std.top/2019-01-22/Luogu-P1969/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -716,13 +723,6 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-10-31/Luogu-P1577/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.handwer-std.top/2018-10-02/Luogu-P2040/</loc>
     
     <lastmod>2020-10-16</lastmod>
@@ -730,7 +730,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-11-01/Luogu-P2062/</loc>
+    <loc>https://blog.handwer-std.top/2018-10-31/Luogu-P1577/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -744,7 +744,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2020-01-20/Luogu-P1608/</loc>
+    <loc>https://blog.handwer-std.top/2019-11-01/Luogu-P2062/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -758,14 +758,21 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-03-09/Luogu-P2292/</loc>
+    <loc>https://blog.handwer-std.top/2020-01-20/Luogu-P1608/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-01-21/Luogu-P1341/</loc>
+    <loc>https://blog.handwer-std.top/2018-07-28/Luogu-P1892/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2019-03-09/Luogu-P2292/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -786,35 +793,21 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-11-05/Luogu-P2449/</loc>
+    <loc>https://blog.handwer-std.top/2018-10-04/Luogu-P3110/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-03-10/matrix-mul/</loc>
+    <loc>https://blog.handwer-std.top/2019-07-29/Luogu-P2341-BZOJ1051-LOJ10091/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-07-21/Luogu-P2606/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2019-02-04/Luogu-P2619/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2019-02-04/Luogu-P2704/</loc>
+    <loc>https://blog.handwer-std.top/2019-02-14/Luogu-P2504/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -822,6 +815,13 @@
   
   <url>
     <loc>https://blog.handwer-std.top/2019-01-20/Luogu-P2731/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2019-02-04/Luogu-P2704/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -849,13 +849,6 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-01-10/Luogu-P2984/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.handwer-std.top/2019-03-02/Luogu-P3067/</loc>
     
     <lastmod>2020-10-16</lastmod>
@@ -863,7 +856,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-10-04/Luogu-P3110/</loc>
+    <loc>https://blog.handwer-std.top/2019-01-10/Luogu-P2984/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -877,7 +870,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-02-14/Luogu-P2504/</loc>
+    <loc>https://blog.handwer-std.top/2019-02-04/Luogu-P2619/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -898,13 +891,6 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-12-26/Luogu-P3879/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.handwer-std.top/2018-08-08/Luogu-P3884/</loc>
     
     <lastmod>2020-10-16</lastmod>
@@ -912,21 +898,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-01-27/Luogu-P2320/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2018-07-04/Luogu-P2330/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2019-07-30/Luogu-P2519-BZOJ2298/</loc>
+    <loc>https://blog.handwer-std.top/2018-12-26/Luogu-P3879/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -940,21 +912,42 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-07-29/Luogu-P2341-BZOJ1051-LOJ10091/</loc>
+    <loc>https://blog.handwer-std.top/2019-11-05/Luogu-P2449/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-11-03/Persistent-Segment-Tree/</loc>
+    <loc>https://blog.handwer-std.top/2019-07-21/Luogu-P2606/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-07-21/MonotoneStack-Luogu-P1901-Luogu-P1823-Luogu-P2947/</loc>
+    <loc>https://blog.handwer-std.top/2018-07-04/Luogu-P2330/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2019-01-27/Luogu-P2320/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2018-03-10/matrix-mul/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2019-07-30/Luogu-P2519-BZOJ2298/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -962,6 +955,13 @@
   
   <url>
     <loc>https://blog.handwer-std.top/2019-03-02/Luogu-P4799/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2018-11-05/LYOI-Mid-KT-Team-Contest2/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -982,7 +982,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-10-20/LuoguP4514/</loc>
+    <loc>https://blog.handwer-std.top/2018-11-03/LYOI-Mid-KT-Team-Contest1/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -996,21 +996,14 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-11-03/LYOI-Mid-KT-Team-Contest1/</loc>
+    <loc>https://blog.handwer-std.top/2019-10-20/LuoguP4514/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-02-04/Luogu-P4017/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2018-10-04/MyTemplate/</loc>
+    <loc>https://blog.handwer-std.top/2019-11-03/Persistent-Segment-Tree/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -1024,14 +1017,21 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-07-12/Luogu-P3907/</loc>
+    <loc>https://blog.handwer-std.top/2018-10-04/MyTemplate/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-11-05/LYOI-Mid-KT-Team-Contest2/</loc>
+    <loc>https://blog.handwer-std.top/2019-02-04/Luogu-P4017/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2019-07-12/Luogu-P3907/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -1052,21 +1052,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-10-20/SP3377/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2018-07-03/ShortestPath/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2018-11-10/Luogu-P2010/</loc>
+    <loc>https://blog.handwer-std.top/2019-07-21/MonotoneStack-Luogu-P1901-Luogu-P1823-Luogu-P2947/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -1080,14 +1066,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-02-15/RMQ-SparseTable/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2019-02-16/SDWC-Article/</loc>
+    <loc>https://blog.handwer-std.top/2018-03-05/windows10/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -1101,14 +1080,14 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-11-24/SecureYourPC/</loc>
+    <loc>https://blog.handwer-std.top/2018-11-10/Luogu-P2010/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-04-01/Segment-Tree/</loc>
+    <loc>https://blog.handwer-std.top/2019-03-23/UVA1508/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -1129,21 +1108,49 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-03-23/UVA1508/</loc>
+    <loc>https://blog.handwer-std.top/2019-02-16/SDWC-Article/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-03-05/windows10/</loc>
+    <loc>https://blog.handwer-std.top/2019-02-15/RMQ-SparseTable/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-05-11/Luogu-P2016/</loc>
+    <loc>https://blog.handwer-std.top/2018-04-01/Segment-Tree/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2018-10-20/SP3377/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2018-11-24/SecureYourPC/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2018-07-03/ShortestPath/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2019-07-06/Luogu-P2023/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -1157,7 +1164,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-10-06/Luogu-P1750/</loc>
+    <loc>https://blog.handwer-std.top/2018-10-02/NOIP2017-PJ-Chess-Luogu-P3958/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -1171,14 +1178,14 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-01-10/Luogu-P1629/</loc>
+    <loc>https://blog.handwer-std.top/2019-02-04/Luogu-P1621/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2019-02-04/Luogu-P1621/</loc>
+    <loc>https://blog.handwer-std.top/2018-10-06/Luogu-P1750/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -1206,14 +1213,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/2018-10-02/NOIP2017-PJ-Chess-Luogu-P3958/</loc>
-    
-    <lastmod>2020-10-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/2019-07-06/Luogu-P2023/</loc>
+    <loc>https://blog.handwer-std.top/2019-05-11/Luogu-P2016/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -1221,6 +1221,13 @@
   
   <url>
     <loc>https://blog.handwer-std.top/2019-08-08/HDU3183/</loc>
+    
+    <lastmod>2020-10-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/2019-01-10/Luogu-P1629/</loc>
     
     <lastmod>2020-10-16</lastmod>
     
@@ -1341,6 +1348,13 @@
   </url>
   
   <url>
+    <loc>https://blog.handwer-std.top/tags/%E7%8E%84%E5%AD%A6%E9%A2%98%E9%9D%A2/</loc>
+    <lastmod>2020-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.handwer-std.top/tags/%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
@@ -1349,13 +1363,6 @@
   
   <url>
     <loc>https://blog.handwer-std.top/tags/%E8%B4%AA%E5%BF%83/</loc>
-    <lastmod>2020-11-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/tags/%E7%8E%84%E5%AD%A6%E9%A2%98%E9%9D%A2/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1376,14 +1383,21 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/Android-%E5%BC%80%E5%8F%91/</loc>
+    <loc>https://blog.handwer-std.top/tags/%E8%87%AA%E6%B5%8B/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/Java/</loc>
+    <loc>https://blog.handwer-std.top/tags/%E4%BA%94%E6%A0%A1%E8%81%94%E8%80%83/</loc>
+    <lastmod>2020-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/tags/%E5%8F%AA%E6%9C%89%E7%BB%8F%E5%8E%86%E8%BF%87%E7%9A%84%E4%BA%BA%E6%89%8D%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%96%E7%95%8C/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1418,21 +1432,14 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/%E8%87%AA%E6%B5%8B/</loc>
+    <loc>https://blog.handwer-std.top/tags/Android-%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/%E4%BA%94%E6%A0%A1%E8%81%94%E8%80%83/</loc>
-    <lastmod>2020-11-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/tags/%E5%8F%AA%E6%9C%89%E7%BB%8F%E5%8E%86%E8%BF%87%E7%9A%84%E4%BA%BA%E6%89%8D%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%96%E7%95%8C/</loc>
+    <loc>https://blog.handwer-std.top/tags/Java/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1460,14 +1467,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/BZOJ/</loc>
-    <lastmod>2020-11-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/tags/USACO/</loc>
+    <loc>https://blog.handwer-std.top/tags/%E7%9C%81%E9%80%89/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1475,20 +1475,6 @@
   
   <url>
     <loc>https://blog.handwer-std.top/tags/%E5%9B%BE%E8%AE%BA/</loc>
-    <lastmod>2020-11-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/tags/%E7%94%9F%E6%88%90%E6%A0%91/</loc>
-    <lastmod>2020-11-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/tags/%E7%9C%81%E9%80%89/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1503,6 +1489,27 @@
   
   <url>
     <loc>https://blog.handwer-std.top/tags/%E5%88%86%E5%B1%82%E5%9B%BE/</loc>
+    <lastmod>2020-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/tags/BZOJ/</loc>
+    <lastmod>2020-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/tags/USACO/</loc>
+    <lastmod>2020-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/tags/%E7%94%9F%E6%88%90%E6%A0%91/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1565,27 +1572,6 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/%E6%95%B0%E5%AD%A6/</loc>
-    <lastmod>2020-11-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/tags/%E6%95%B0%E8%AE%BA/</loc>
-    <lastmod>2020-11-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/tags/EXGCD/</loc>
-    <lastmod>2020-11-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.handwer-std.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
@@ -1601,6 +1587,27 @@
   
   <url>
     <loc>https://blog.handwer-std.top/tags/%E6%A0%91/</loc>
+    <lastmod>2020-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/tags/%E6%95%B0%E5%AD%A6/</loc>
+    <lastmod>2020-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/tags/%E6%95%B0%E8%AE%BA/</loc>
+    <lastmod>2020-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/tags/EXGCD/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1677,6 +1684,13 @@
   </url>
   
   <url>
+    <loc>https://blog.handwer-std.top/tags/%E6%9E%9A%E4%B8%BE/</loc>
+    <lastmod>2020-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.handwer-std.top/tags/%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
@@ -1719,7 +1733,7 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/%E6%9E%9A%E4%B8%BE/</loc>
+    <loc>https://blog.handwer-std.top/tags/%E5%9F%BA%E7%8E%AF%E6%A0%91/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1727,13 +1741,6 @@
   
   <url>
     <loc>https://blog.handwer-std.top/tags/%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2020-11-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/tags/%E5%9F%BA%E7%8E%AF%E6%A0%91/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1768,14 +1775,14 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/%E6%90%9C%E7%B4%A2/</loc>
+    <loc>https://blog.handwer-std.top/tags/%E6%AC%A7%E6%8B%89%E5%9B%BE/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/%E6%AC%A7%E6%8B%89%E5%9B%BE/</loc>
+    <loc>https://blog.handwer-std.top/tags/%E6%90%9C%E7%B4%A2/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1852,14 +1859,14 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/%E5%80%8D%E5%A2%9E/</loc>
+    <loc>https://blog.handwer-std.top/tags/%E6%89%BE%E8%A7%84%E5%BE%8B/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/%E6%89%BE%E8%A7%84%E5%BE%8B/</loc>
+    <loc>https://blog.handwer-std.top/tags/%E5%80%8D%E5%A2%9E/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1943,13 +1950,6 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/NOI/</loc>
-    <lastmod>2020-11-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.handwer-std.top/tags/%E5%88%86%E6%B2%BB/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
@@ -1958,6 +1958,13 @@
   
   <url>
     <loc>https://blog.handwer-std.top/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/</loc>
+    <lastmod>2020-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/tags/NOI/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1978,14 +1985,14 @@
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/</loc>
+    <loc>https://blog.handwer-std.top/tags/%E9%80%92%E5%BD%92/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.handwer-std.top/tags/%E9%80%92%E5%BD%92/</loc>
+    <loc>https://blog.handwer-std.top/tags/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -2125,6 +2132,20 @@
   </url>
   
   <url>
+    <loc>https://blog.handwer-std.top/tags/OI%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2020-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.handwer-std.top/tags/%E6%96%87%E7%AB%A0/</loc>
+    <lastmod>2020-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.handwer-std.top/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
@@ -2140,20 +2161,6 @@
   
   <url>
     <loc>https://blog.handwer-std.top/tags/RMQ%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2020-11-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/tags/OI%E7%9B%B8%E5%85%B3/</loc>
-    <lastmod>2020-11-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/tags/%E6%96%87%E7%AB%A0/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -2181,6 +2188,13 @@
   </url>
   
   <url>
+    <loc>https://blog.handwer-std.top/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F%E7%B3%BB%E7%BB%9F/</loc>
+    <lastmod>2020-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.handwer-std.top/tags/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1%E6%90%9C%E7%B4%A2/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
@@ -2189,13 +2203,6 @@
   
   <url>
     <loc>https://blog.handwer-std.top/tags/A/</loc>
-    <lastmod>2020-11-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.handwer-std.top/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2020-11-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
