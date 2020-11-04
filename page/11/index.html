@@ -75,7 +75,7 @@
       pjax: false,
       lazyload: {
         enable: true,
-        onlyPost: 'false',
+        only_post: 'false',
         loading: '/images/theme/loading.gif'
       },
       donate: {
@@ -83,22 +83,28 @@
         alipay: 'https://pic.izhaoo.com/alipay.jpg',
         wechat: 'https://pic.izhaoo.com/wechat.jpg'
       },
-      motto: {
-        api: '',
-        default: '现在，走吧，有花开在旅程。'
-      },
       galleries: {
         enable: true
       },
       fab: {
         enable: true,
-        alwaysShow: false
+        always_show: false
       },
       carrier: {
         enable: true
       },
       daovoice: {
         enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '现在，走吧，有花开在旅程。',
+          api: ''
+        },
       }
     }
   </script>
@@ -162,10 +168,23 @@
     <i class="iconfont iconmenu"></i>
   </nav>
   <div class="preview-image">
-    <h2 class="preview-motto" id="motto"></h2>
+    <h2 class="preview-motto" id="motto">现在，走吧，有花开在旅程。</h2>
     <!-- <span class="preview-cursor">|</span> -->
     
-    <img src="/images/theme/cloud.png" class="preview-overlay" draggable="false">
+    <div class="preview-overlay">
+      <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="preview-parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(var(--color-background-rgb), 0.7" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(var(--color-background-rgb), 0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(var(--color-background-rgb), 0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="rgb(var(--color-background-rgb))" />
+        </g>
+      </svg>
+    </div>
     
   </div>
   <div class="preview-scroll">
@@ -179,11 +198,71 @@
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
-    <a href="/2019-02-14/Luogu-P1108/" class="post-image">
+    <a href="/2019-02-14/Luogu-P3243/" class="post-image">
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-02-14/Luogu-P1108/">洛谷P1108《低价购买》</a></h3>
+      <h3 class="post-title"><a href="/2019-02-14/Luogu-P3243/" title="洛谷P3243《[HNOI2015]菜肴制作》" >洛谷P3243《[HNOI2015]菜肴制作》</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+反向建图 + 反向输出
+
+
+
+题目描述知名美食家小 A被邀请至ATM 大酒店，为其品评菜肴。 ATM 酒店为小 A 准备了 N 道菜肴，酒店按照为菜肴预估的质量从高到低给予1到N的顺序编号，预...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>二月 14, 2019</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3295</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2019-02-14/Luogu-P4047/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HajkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2019-02-14/Luogu-P4047/" title="洛谷P4047《[JSOI2010]部落划分》" >洛谷P4047《[JSOI2010]部落划分》</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+最小生成树后删边
+
+
+
+题目描述聪聪研究发现，荒岛野人总是过着群居的生活，但是，并不是整个荒岛上的所有野人都属于同一个部落，野人们总是拉帮结派形成属于自己的部落，不同的部落之间则经常发生争斗。...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>二月 14, 2019</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3341</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2019-02-14/Luogu-P1108/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HajkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2019-02-14/Luogu-P1108/" title="洛谷P1108《低价购买》" >洛谷P1108《低价购买》</a></h3>
       
       
       
@@ -204,15 +283,16 @@
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2019-02-14/Luogu-P1896/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaOTU.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-02-14/Luogu-P1896/">洛谷P1896《[SCOI2005]互不侵犯》</a></h3>
+      <h3 class="post-title"><a href="/2019-02-14/Luogu-P1896/" title="洛谷P1896《[SCOI2005]互不侵犯》" >洛谷P1896《[SCOI2005]互不侵犯》</a></h3>
       
       
       
@@ -236,15 +316,16 @@ ProjectDP - 27
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2019-02-13/MathProblems-NewSite/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HajkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-02-13/MathProblems-NewSite/">关于新开的「Handwer&#39;s Problems」</a></h3>
+      <h3 class="post-title"><a href="/2019-02-13/MathProblems-NewSite/" title="关于新开的「Handwer&#39;s Problems」" >关于新开的「Handwer&#39;s Problems」</a></h3>
       
       
       
@@ -263,15 +344,16 @@ ProjectDP - 27
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2019-02-04/Luogu-P2704/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0Hd961.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-02-04/Luogu-P2704/">洛谷P2704《[NOI2001]炮兵阵地》</a></h3>
+      <h3 class="post-title"><a href="/2019-02-04/Luogu-P2704/" title="洛谷P2704《[NOI2001]炮兵阵地》" >洛谷P2704《[NOI2001]炮兵阵地》</a></h3>
       
       
       
@@ -295,6 +377,7 @@ ProjectDP - 29
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -303,7 +386,7 @@ ProjectDP - 29
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-02-04/Luogu-P3183/">洛谷P3183《[HAOI2016]食物链》</a></h3>
+      <h3 class="post-title"><a href="/2019-02-04/Luogu-P3183/" title="洛谷P3183《[HAOI2016]食物链》" >洛谷P3183《[HAOI2016]食物链》</a></h3>
       
       
       
@@ -323,15 +406,16 @@ ProjectDP - 29
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2019-02-04/Luogu-P4017/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-02-04/Luogu-P4017/">洛谷P4017《最大食物链计数》</a></h3>
+      <h3 class="post-title"><a href="/2019-02-04/Luogu-P4017/" title="洛谷P4017《最大食物链计数》" >洛谷P4017《最大食物链计数》</a></h3>
       
       
       
@@ -352,15 +436,16 @@ ProjectDP - 29
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2019-02-04/BZOJ3060/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HajkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-02-04/BZOJ3060/">BZOJ3060《Tour de Byteotia》</a></h3>
+      <h3 class="post-title"><a href="/2019-02-04/BZOJ3060/" title="BZOJ3060《Tour de Byteotia》" >BZOJ3060《Tour de Byteotia》</a></h3>
       
       
       
@@ -385,67 +470,7 @@ ProjectDP - 29
     </div>
   </div>
 </div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2019-02-04/Luogu-P2619/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaOTU.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2019-02-04/Luogu-P2619/">洛谷P2619《[国家集训队2]Tree I》</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">
-年轻人的第一道国家集训队二分答案 + 最小生成树
 
-
-
-题目描述给你一个无向带权连通图，每条边是黑色或白色。让你求一棵最小权的恰好有need条白色边的生成树。
-题目保证有解。
-输入输出格式输入...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>二月 04, 2019</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3970</span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2019-02-04/Luogu-P1621/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaOTU.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2019-02-04/Luogu-P1621/">洛谷P1621《集合》</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">
-素数筛 + 并查集
-
-
-
-题目背景John的农场缺水了！！！
-题目描述Farmer John has decided to bring water to his N (1 &lt;= N &l...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>二月 04, 2019</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3003</span>
-      </div>
-    </div>
-  </div>
-</div>
   
 </section>
     <section class="paginator">
@@ -463,7 +488,7 @@ ProjectDP - 29
     
     
     <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
-      onMouseOut="this.style.color='#33333D'">
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  icongithub-fill "></i>
     </a>
     
@@ -471,8 +496,8 @@ ProjectDP - 29
     
     
     
-    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
-      onMouseOut="this.style.color='#33333D'">
+    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FF3B00'"
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  iconmail"></i>
     </a>
     
@@ -542,16 +567,6 @@ ProjectDP - 29
   })();
 </script>
 
-
-<script>
-  var _hmt = _hmt || [];
-  (function () {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-</script>
 
 
 

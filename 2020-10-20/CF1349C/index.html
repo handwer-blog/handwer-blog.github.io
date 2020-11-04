@@ -84,7 +84,7 @@ n \times m
       pjax: false,
       lazyload: {
         enable: true,
-        onlyPost: 'false',
+        only_post: 'false',
         loading: '/images/theme/loading.gif'
       },
       donate: {
@@ -92,22 +92,28 @@ n \times m
         alipay: 'https://pic.izhaoo.com/alipay.jpg',
         wechat: 'https://pic.izhaoo.com/wechat.jpg'
       },
-      motto: {
-        api: '',
-        default: '现在，走吧，有花开在旅程。'
-      },
       galleries: {
         enable: true
       },
       fab: {
         enable: true,
-        alwaysShow: false
+        always_show: false
       },
       carrier: {
         enable: true
       },
       daovoice: {
         enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '现在，走吧，有花开在旅程。',
+          api: ''
+        },
       }
     }
   </script>
@@ -326,7 +332,7 @@ n \times m
     
     
     <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
-      onMouseOut="this.style.color='#33333D'">
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  icongithub-fill "></i>
     </a>
     
@@ -334,8 +340,8 @@ n \times m
     
     
     
-    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
-      onMouseOut="this.style.color='#33333D'">
+    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FF3B00'"
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  iconmail"></i>
     </a>
     
@@ -405,16 +411,6 @@ n \times m
   })();
 </script>
 
-
-<script>
-  var _hmt = _hmt || [];
-  (function () {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-</script>
 
 
 

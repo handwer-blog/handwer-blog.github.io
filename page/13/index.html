@@ -75,7 +75,7 @@
       pjax: false,
       lazyload: {
         enable: true,
-        onlyPost: 'false',
+        only_post: 'false',
         loading: '/images/theme/loading.gif'
       },
       donate: {
@@ -83,22 +83,28 @@
         alipay: 'https://pic.izhaoo.com/alipay.jpg',
         wechat: 'https://pic.izhaoo.com/wechat.jpg'
       },
-      motto: {
-        api: '',
-        default: '现在，走吧，有花开在旅程。'
-      },
       galleries: {
         enable: true
       },
       fab: {
         enable: true,
-        alwaysShow: false
+        always_show: false
       },
       carrier: {
         enable: true
       },
       daovoice: {
         enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '现在，走吧，有花开在旅程。',
+          api: ''
+        },
       }
     }
   </script>
@@ -162,10 +168,23 @@
     <i class="iconfont iconmenu"></i>
   </nav>
   <div class="preview-image">
-    <h2 class="preview-motto" id="motto"></h2>
+    <h2 class="preview-motto" id="motto">现在，走吧，有花开在旅程。</h2>
     <!-- <span class="preview-cursor">|</span> -->
     
-    <img src="/images/theme/cloud.png" class="preview-overlay" draggable="false">
+    <div class="preview-overlay">
+      <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="preview-parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(var(--color-background-rgb), 0.7" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(var(--color-background-rgb), 0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(var(--color-background-rgb), 0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="rgb(var(--color-background-rgb))" />
+        </g>
+      </svg>
+    </div>
     
   </div>
   <div class="preview-scroll">
@@ -179,11 +198,70 @@
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
-    <a href="/2019-01-24/BipartiteGraph/" class="post-image">
+    <a href="/2019-01-24/ProjectDP/" class="post-image">
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-01-24/BipartiteGraph/">二分图匹配学习笔记 &amp; HDU2063 题解</a></h3>
+      <h3 class="post-title"><a href="/2019-01-24/ProjectDP/" title="ProjectDP" >ProjectDP</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+DP计划
+
+为提高自己的DP水平，我创建了一个名为「DP计划」的工程，用它来记录自己的题目完成情况，同时编程、调试、代码储存也使用此工程。
+项目地址：View ProjectDP on Git...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 24, 2019</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>101</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2019-01-24/Luogu-P1083/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HajkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2019-01-24/Luogu-P1083/" title="洛谷P1083《借教室》" >洛谷P1083《借教室》</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+前缀和 + 二分答案
+
+
+
+题目描述在大学期间，经常需要租借教室。大到院系举办活动，小到学习小组自习讨论，都需要向学校申请借教室。教室的大小功能不同，借教室人的身份不同，借教室的手续也不一样。...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 24, 2019</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>5775</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2019-01-24/BipartiteGraph/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HajkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2019-01-24/BipartiteGraph/" title="二分图匹配学习笔记 &amp; HDU2063 题解" >二分图匹配学习笔记 &amp; HDU2063 题解</a></h3>
       
       
       
@@ -233,15 +311,16 @@ V
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2019-01-23/Luogu-P5019/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0Hd961.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-01-23/Luogu-P5019/">洛谷P5019「NOIP 2013 / 2018」《铺设道路》</a></h3>
+      <h3 class="post-title"><a href="/2019-01-23/Luogu-P5019/" title="洛谷P5019「NOIP 2013 / 2018」《铺设道路》" >洛谷P5019「NOIP 2013 / 2018」《铺设道路》</a></h3>
       
       
       
@@ -262,6 +341,7 @@ CCF：我&nbsp;抄&nbsp;我&nbsp;自&nbsp;己
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -270,7 +350,7 @@ CCF：我&nbsp;抄&nbsp;我&nbsp;自&nbsp;己
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0Hd961.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-01-23/Luogu-P5020/">Luogu-P5020</a></h3>
+      <h3 class="post-title"><a href="/2019-01-23/Luogu-P5020/" title="Luogu-P5020" >Luogu-P5020</a></h3>
       
       
       
@@ -286,6 +366,7 @@ CCF：我&nbsp;抄&nbsp;我&nbsp;自&nbsp;己
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -294,7 +375,7 @@ CCF：我&nbsp;抄&nbsp;我&nbsp;自&nbsp;己
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HajkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-01-23/Luogu-P1330/">洛谷P1330《封锁阳光大学》</a></h3>
+      <h3 class="post-title"><a href="/2019-01-23/Luogu-P1330/" title="洛谷P1330《封锁阳光大学》" >洛谷P1330《封锁阳光大学》</a></h3>
       
       
       
@@ -316,6 +397,7 @@ CCF：我&nbsp;抄&nbsp;我&nbsp;自&nbsp;己
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -324,7 +406,7 @@ CCF：我&nbsp;抄&nbsp;我&nbsp;自&nbsp;己
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-01-22/Luogu-P1969/">洛谷P1969「NOIP 2013 / 2018」《积木大赛》</a></h3>
+      <h3 class="post-title"><a href="/2019-01-22/Luogu-P1969/" title="洛谷P1969「NOIP 2013 / 2018」《积木大赛》" >洛谷P1969「NOIP 2013 / 2018」《积木大赛》</a></h3>
       
       
       
@@ -361,6 +443,7 @@ n
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -369,7 +452,7 @@ n
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0Hd961.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-01-22/Luogu-P1119/">洛谷P1119《灾后重建》</a></h3>
+      <h3 class="post-title"><a href="/2019-01-22/Luogu-P1119/" title="洛谷P1119《灾后重建》" >洛谷P1119《灾后重建》</a></h3>
       
       
       
@@ -390,15 +473,16 @@ n
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2019-01-21/Luogu-P1341/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaOTU.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaxfJ.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-01-21/Luogu-P1341/">洛谷P1341《无序字母对》</a></h3>
+      <h3 class="post-title"><a href="/2019-01-21/Luogu-P1341/" title="洛谷P1341《无序字母对》" >洛谷P1341《无序字母对》</a></h3>
       
       
       
@@ -420,94 +504,7 @@ n
     </div>
   </div>
 </div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2019-01-20/Luogu-P2731/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaxfJ.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2019-01-20/Luogu-P2731/">洛谷P2731《骑马修栅栏 Riding the Fences》</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">
-欧拉图板子题
 
-
-
-题目背景Farmer John每年有很多栅栏要修理。他总是骑着马穿过每一个栅栏并修复它破损的地方。
-题目描述John是一个与其他农民一样懒的人。他讨厌骑马，因此从来不两次经...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 20, 2019</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3762</span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2019-01-18/EulerPath-EulerCircuit/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2019-01-18/EulerPath-EulerCircuit/">欧拉图学习笔记</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">
-从一个点出发走一走
-
-
-
-约定
-定义 
- (A,B) 
-
-
-
-
-
-
-
-
- 
- 
- 
- 
- 
-
- 表示从 
- A \rightarrow B 
-
-
-
-
-
-
- 
- 
- 
-
- 的一条边（若无特别说明...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 18, 2019</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>4555</span>
-      </div>
-    </div>
-  </div>
-</div>
   
 </section>
     <section class="paginator">
@@ -525,7 +522,7 @@ n
     
     
     <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
-      onMouseOut="this.style.color='#33333D'">
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  icongithub-fill "></i>
     </a>
     
@@ -533,8 +530,8 @@ n
     
     
     
-    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
-      onMouseOut="this.style.color='#33333D'">
+    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FF3B00'"
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  iconmail"></i>
     </a>
     
@@ -604,16 +601,6 @@ n
   })();
 </script>
 
-
-<script>
-  var _hmt = _hmt || [];
-  (function () {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-</script>
 
 
 

@@ -75,7 +75,7 @@
       pjax: false,
       lazyload: {
         enable: true,
-        onlyPost: 'false',
+        only_post: 'false',
         loading: '/images/theme/loading.gif'
       },
       donate: {
@@ -83,22 +83,28 @@
         alipay: 'https://pic.izhaoo.com/alipay.jpg',
         wechat: 'https://pic.izhaoo.com/wechat.jpg'
       },
-      motto: {
-        api: '',
-        default: '现在，走吧，有花开在旅程。'
-      },
       galleries: {
         enable: true
       },
       fab: {
         enable: true,
-        alwaysShow: false
+        always_show: false
       },
       carrier: {
         enable: true
       },
       daovoice: {
         enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '现在，走吧，有花开在旅程。',
+          api: ''
+        },
       }
     }
   </script>
@@ -162,10 +168,23 @@
     <i class="iconfont iconmenu"></i>
   </nav>
   <div class="preview-image">
-    <h2 class="preview-motto" id="motto"></h2>
+    <h2 class="preview-motto" id="motto">现在，走吧，有花开在旅程。</h2>
     <!-- <span class="preview-cursor">|</span> -->
     
-    <img src="/images/theme/cloud.png" class="preview-overlay" draggable="false">
+    <div class="preview-overlay">
+      <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="preview-parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(var(--color-background-rgb), 0.7" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(var(--color-background-rgb), 0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(var(--color-background-rgb), 0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="rgb(var(--color-background-rgb))" />
+        </g>
+      </svg>
+    </div>
     
   </div>
   <div class="preview-scroll">
@@ -179,11 +198,121 @@
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
-    <a href="/2018-11-25/BZOJ2763-Luogu-P4568-JLOI2011/" class="post-image">
+    <a href="/2018-12-08/UVA10004-Bipartite-Graph-Coloring/" class="post-image">
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2018-11-25/BZOJ2763-Luogu-P4568-JLOI2011/">洛谷P4568《飞行路线》</a></h3>
+      <h3 class="post-title"><a href="/2018-12-08/UVA10004-Bipartite-Graph-Coloring/" title="二分图染色学习笔记" >二分图染色学习笔记</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+本质上就是一个 BFS
+
+
+
+模板题目地址
+算法简介二分图是这样一个图：有两顶点集且图中每条边的的两个顶点分别位于两个顶点集中，每个顶点集中没有边直接相连接！无向图
+G
+
+
+
+
+ 
+
+为二分图...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十二月 08, 2018</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>4592</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2018-12-08/CF1073B/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2018-12-08/CF1073B/" title="CodeForces 1073B 《Vasya and Books》" >CodeForces 1073B 《Vasya and Books》</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">
+很明显是栈了好吧
+
+
+
+题目地址
+题目大意给定 
+n
+
+
+
+
+ 
+
+ 本书,序号分别为
+1
+
+
+
+
+ 
+
+到
+n
+
+
+
+
+ 
+
+，现在执行
+n
+
+
+
+
+ 
+
+个操作， 第
+i
+
+
+
+
+ 
+
+个...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十二月 08, 2018</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>2438</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2018-11-25/BZOJ2763-Luogu-P4568-JLOI2011/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0Hd961.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2018-11-25/BZOJ2763-Luogu-P4568-JLOI2011/" title="洛谷P4568《飞行路线》" >洛谷P4568《飞行路线》</a></h3>
       
       
       
@@ -206,15 +335,16 @@
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2018-11-24/SecureYourPC/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaxfJ.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2018-11-24/SecureYourPC/">让你的 PC 更加安全</a></h3>
+      <h3 class="post-title"><a href="/2018-11-24/SecureYourPC/" title="让你的 PC 更加安全" >让你的 PC 更加安全</a></h3>
       
       
       
@@ -235,15 +365,16 @@ Password: 🔑
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2018-11-10/Luogu-P2010/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaOTU.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2018-11-10/Luogu-P2010/">洛谷P2010《回文日期》</a></h3>
+      <h3 class="post-title"><a href="/2018-11-10/Luogu-P2010/" title="洛谷P2010《回文日期》" >洛谷P2010《回文日期》</a></h3>
       
       
       
@@ -265,15 +396,16 @@ Password: 🔑
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2018-11-05/LYOI-Mid-KT-Team-Contest2/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaOTU.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2018-11-05/LYOI-Mid-KT-Team-Contest2/">「LYOI初中坑题组」模拟赛#2 题解</a></h3>
+      <h3 class="post-title"><a href="/2018-11-05/LYOI-Mid-KT-Team-Contest2/" title="「LYOI初中坑题组」模拟赛#2 题解" >「LYOI初中坑题组」模拟赛#2 题解</a></h3>
       
       
       
@@ -296,15 +428,16 @@ T1. 复制-粘贴题目描述小 y 是一个聪明的程序员，但是他懒到
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2018-11-03/LYOI-Mid-KT-Team-Contest1/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0Hd961.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2018-11-03/LYOI-Mid-KT-Team-Contest1/">「LYOI初中坑题组」模拟赛#1 题解</a></h3>
+      <h3 class="post-title"><a href="/2018-11-03/LYOI-Mid-KT-Team-Contest1/" title="「LYOI初中坑题组」模拟赛#1 题解" >「LYOI初中坑题组」模拟赛#1 题解</a></h3>
       
       
       
@@ -327,15 +460,16 @@ T1. 求和题面小马克今年成为小学生。不久后她将进行她的第�
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2018-11-02/Arbiter/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaOTU.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaxfJ.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2018-11-02/Arbiter/">CCF 钦定评测系统 Arbiter 使用指南</a></h3>
+      <h3 class="post-title"><a href="/2018-11-02/Arbiter/" title="CCF 钦定评测系统 Arbiter 使用指南" >CCF 钦定评测系统 Arbiter 使用指南</a></h3>
       
       
       
@@ -356,15 +490,16 @@ Developed by GAIT
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2018-11-02/NOIP2018-PJ/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaxfJ.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2018-11-02/NOIP2018-PJ/">NOIP2018游记</a></h3>
+      <h3 class="post-title"><a href="/2018-11-02/NOIP2018-PJ/" title="NOIP2018游记" >NOIP2018游记</a></h3>
       
       
       
@@ -387,94 +522,7 @@ Day 1上午今天在学生活动中心肝了一个上午又做...</p>
     </div>
   </div>
 </div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2018-11-01/Manacher/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HajkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2018-11-01/Manacher/">Manacher 算法学习笔记</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">
 
-O(n)
-
-
-
-
-
-
-
- 
- 
- 
- 
-
-回文串
-
-
-
-Manacher 是什么Manacher 是一种可以在
-O(n)
-
-
-
-
-
-
-
- 
- 
- 
- 
-
-的时间复杂度内求出一个字符串的最长回...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 01, 2018</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>4149</span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2018-11-01/Luogu-P1280/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaOTU.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2018-11-01/Luogu-P1280/">洛谷P1280《尼克的任务》</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">
-线性DP
-
-
-
-题目🔗
-题目描述尼克每天上班之前都连接上英特网，接收他的上司发来的邮件，这些邮件包含了尼克主管的部门当天要完成的全部任务，每个任务由一个开始时刻与一个持续时间构成。
-尼克的一...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 01, 2018</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>4077</span>
-      </div>
-    </div>
-  </div>
-</div>
   
 </section>
     <section class="paginator">
@@ -492,7 +540,7 @@ O(n)
     
     
     <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
-      onMouseOut="this.style.color='#33333D'">
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  icongithub-fill "></i>
     </a>
     
@@ -500,8 +548,8 @@ O(n)
     
     
     
-    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
-      onMouseOut="this.style.color='#33333D'">
+    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FF3B00'"
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  iconmail"></i>
     </a>
     
@@ -571,16 +619,6 @@ O(n)
   })();
 </script>
 
-
-<script>
-  var _hmt = _hmt || [];
-  (function () {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-</script>
 
 
 

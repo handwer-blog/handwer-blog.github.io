@@ -75,7 +75,7 @@
       pjax: false,
       lazyload: {
         enable: true,
-        onlyPost: 'false',
+        only_post: 'false',
         loading: '/images/theme/loading.gif'
       },
       donate: {
@@ -83,22 +83,28 @@
         alipay: 'https://pic.izhaoo.com/alipay.jpg',
         wechat: 'https://pic.izhaoo.com/wechat.jpg'
       },
-      motto: {
-        api: '',
-        default: '现在，走吧，有花开在旅程。'
-      },
       galleries: {
         enable: true
       },
       fab: {
         enable: true,
-        alwaysShow: false
+        always_show: false
       },
       carrier: {
         enable: true
       },
       daovoice: {
         enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '现在，走吧，有花开在旅程。',
+          api: ''
+        },
       }
     }
   </script>
@@ -162,10 +168,23 @@
     <i class="iconfont iconmenu"></i>
   </nav>
   <div class="preview-image">
-    <h2 class="preview-motto" id="motto"></h2>
+    <h2 class="preview-motto" id="motto">现在，走吧，有花开在旅程。</h2>
     <!-- <span class="preview-cursor">|</span> -->
     
-    <img src="/images/theme/cloud.png" class="preview-overlay" draggable="false">
+    <div class="preview-overlay">
+      <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="preview-parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(var(--color-background-rgb), 0.7" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(var(--color-background-rgb), 0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(var(--color-background-rgb), 0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="rgb(var(--color-background-rgb))" />
+        </g>
+      </svg>
+    </div>
     
   </div>
   <div class="preview-scroll">
@@ -179,11 +198,75 @@
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
+    <a href="/2020-10-18/guo-ji-a-li-he-tao-zi-de-you-xi/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2020-10-18/guo-ji-a-li-he-tao-zi-de-you-xi/" title="「国家集训队」 阿狸和桃子的游戏" >「国家集训队」 阿狸和桃子的游戏</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">题意简述给定 
+n
+
+
+
+
+ 
+
+ 个点的一棵树，点有点权。有两个人在树上染色，先手后手轮流染黑白两色，最后的得分是自己染的点权和 + 两端均为自己的颜色的边权和。 求先手的得分与后手的得分之差...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 18, 2020</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>2975</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2020-10-17/cha-fen-yue-shu-xi-tong/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2020-10-17/cha-fen-yue-shu-xi-tong/" title="差分约束系统学习笔记" >差分约束系统学习笔记</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">0x01 引子解不等式组大家都会解吧形式化地，给定一个不等式组 
+
+\left\{
+\begin{array}{l}
+x_1 - x_2 \leq a\\
+x_2 - x_3 \leq b\\
+...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 17, 2020</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3431</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
     <a href="/2020-10-17/cha-fen-yue-shu-xuan-jiang/" class="post-image">
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-17/cha-fen-yue-shu-xuan-jiang/">差分约束杂题选讲</a></h3>
+      <h3 class="post-title"><a href="/2020-10-17/cha-fen-yue-shu-xuan-jiang/" title="差分约束杂题选讲" >差分约束杂题选讲</a></h3>
       
       
       
@@ -201,6 +284,7 @@ HDU 3592 World Exhibition线性约束板子题。和 POJ3169 Layout 相同。
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -209,7 +293,7 @@ HDU 3592 World Exhibition线性约束板子题。和 POJ3169 Layout 相同。
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaxfJ.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-17/POJ3169/">POJ3169 Layout</a></h3>
+      <h3 class="post-title"><a href="/2020-10-17/POJ3169/" title="POJ3169 Layout" >POJ3169 Layout</a></h3>
       
       
       
@@ -225,6 +309,7 @@ HDU 3592 World Exhibition线性约束板子题。和 POJ3169 Layout 相同。
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -233,7 +318,7 @@ HDU 3592 World Exhibition线性约束板子题。和 POJ3169 Layout 相同。
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HajkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-17/POJ1716/">POJ1716 Integer Intervals</a></h3>
+      <h3 class="post-title"><a href="/2020-10-17/POJ1716/" title="POJ1716 Integer Intervals" >POJ1716 Integer Intervals</a></h3>
       
       
       
@@ -262,6 +347,7 @@ d_i
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -270,7 +356,7 @@ d_i
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-16/POJ2777/">POJ2777 Count Color</a></h3>
+      <h3 class="post-title"><a href="/2020-10-16/POJ2777/" title="POJ2777 Count Color" >POJ2777 Count Color</a></h3>
       
       
       
@@ -304,6 +390,7 @@ d_i
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -312,7 +399,7 @@ d_i
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0Hd961.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-16/POI2009-WIE-Hexer/">POI2009 WIE-Hexer</a></h3>
+      <h3 class="post-title"><a href="/2020-10-16/POI2009-WIE-Hexer/" title="POI2009 WIE-Hexer" >POI2009 WIE-Hexer</a></h3>
       
       
       
@@ -328,6 +415,7 @@ d_i
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -336,7 +424,7 @@ d_i
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaOTU.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-16/NOIP2015-yun-shu-ji-hua/">NOIP2015 运输计划</a></h3>
+      <h3 class="post-title"><a href="/2020-10-16/NOIP2015-yun-shu-ji-hua/" title="NOIP2015 运输计划" >NOIP2015 运输计划</a></h3>
       
       
       
@@ -367,6 +455,7 @@ u\rightarrow v
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -375,7 +464,7 @@ u\rightarrow v
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaxfJ.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-16/HDU2795/">HDU2795 Billboard</a></h3>
+      <h3 class="post-title"><a href="/2020-10-16/HDU2795/" title="HDU2795 Billboard" >HDU2795 Billboard</a></h3>
       
       
       
@@ -394,77 +483,7 @@ u\rightarrow v
     </div>
   </div>
 </div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020-10-16/ba-shu-ma-wen-ti/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-16/ba-shu-ma-wen-ti/">八数码问题</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">题目简述也没啥好简述的，去看洛谷吧。
 
-
-解题思路没啥好方法，爆搜得了。
-当然考场上不能这么自暴自弃，考虑优化。
-
-定义估价函数 
-h(x)
-
-
-
-
-
-
-
- 
- 
- 
- 
-
- 为当前所有数字到它...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 16, 2020</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>2609</span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020-10-16/yan-ge-ci-xiao-sheng-cheng-shu/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HajkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-16/yan-ge-ci-xiao-sheng-cheng-shu/">严格次小生成树</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">题意简述给定一个无向连通图，求出它的一棵生成树，满足边权之和仅次于最小生成树。
-解题思路一个很自然的想法就是，枚举每一条选中的边，用另外一条没选中的边替换，求出次小值。
-考虑怎么优化这个算法。
-...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 16, 2020</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>7518</span>
-      </div>
-    </div>
-  </div>
-</div>
   
 </section>
     <section class="paginator">
@@ -482,7 +501,7 @@ h(x)
     
     
     <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
-      onMouseOut="this.style.color='#33333D'">
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  icongithub-fill "></i>
     </a>
     
@@ -490,8 +509,8 @@ h(x)
     
     
     
-    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
-      onMouseOut="this.style.color='#33333D'">
+    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FF3B00'"
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  iconmail"></i>
     </a>
     
@@ -561,16 +580,6 @@ h(x)
   })();
 </script>
 
-
-<script>
-  var _hmt = _hmt || [];
-  (function () {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-</script>
 
 
 

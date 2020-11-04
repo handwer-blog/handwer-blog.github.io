@@ -75,7 +75,7 @@
       pjax: false,
       lazyload: {
         enable: true,
-        onlyPost: 'false',
+        only_post: 'false',
         loading: '/images/theme/loading.gif'
       },
       donate: {
@@ -83,22 +83,28 @@
         alipay: 'https://pic.izhaoo.com/alipay.jpg',
         wechat: 'https://pic.izhaoo.com/wechat.jpg'
       },
-      motto: {
-        api: '',
-        default: '现在，走吧，有花开在旅程。'
-      },
       galleries: {
         enable: true
       },
       fab: {
         enable: true,
-        alwaysShow: false
+        always_show: false
       },
       carrier: {
         enable: true
       },
       daovoice: {
         enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '现在，走吧，有花开在旅程。',
+          api: ''
+        },
       }
     }
   </script>
@@ -162,10 +168,23 @@
     <i class="iconfont iconmenu"></i>
   </nav>
   <div class="preview-image">
-    <h2 class="preview-motto" id="motto"></h2>
+    <h2 class="preview-motto" id="motto">现在，走吧，有花开在旅程。</h2>
     <!-- <span class="preview-cursor">|</span> -->
     
-    <img src="/images/theme/cloud.png" class="preview-overlay" draggable="false">
+    <div class="preview-overlay">
+      <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="preview-parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(var(--color-background-rgb), 0.7" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(var(--color-background-rgb), 0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(var(--color-background-rgb), 0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="rgb(var(--color-background-rgb))" />
+        </g>
+      </svg>
+    </div>
     
   </div>
   <div class="preview-scroll">
@@ -179,11 +198,84 @@
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
+    <a href="/2020-10-16/ba-shu-ma-wen-ti/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2020-10-16/ba-shu-ma-wen-ti/" title="八数码问题" >八数码问题</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">题目简述也没啥好简述的，去看洛谷吧。
+
+
+解题思路没啥好方法，爆搜得了。
+当然考场上不能这么自暴自弃，考虑优化。
+
+定义估价函数 
+h(x)
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+
+ 为当前所有数字到它...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 16, 2020</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>2609</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2020-10-16/yan-ge-ci-xiao-sheng-cheng-shu/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HajkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2020-10-16/yan-ge-ci-xiao-sheng-cheng-shu/" title="严格次小生成树" >严格次小生成树</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">题意简述给定一个无向连通图，求出它的一棵生成树，满足边权之和仅次于最小生成树。
+解题思路一个很自然的想法就是，枚举每一条选中的边，用另外一条没选中的边替换，求出次小值。
+考虑怎么优化这个算法。
+...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 16, 2020</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>7518</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
     <a href="/2020-10-16/yan-ge-ci-duan-lu/" class="post-image">
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-16/yan-ge-ci-duan-lu/">严格次短路</a></h3>
+      <h3 class="post-title"><a href="/2020-10-16/yan-ge-ci-duan-lu/" title="严格次短路" >严格次短路</a></h3>
       
       
       
@@ -200,6 +292,7 @@
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -208,7 +301,7 @@
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-02-05/Fake-Android-Q-Navigation-Handle/">如何把 Android P 的小药丸改成 Q 的小横条</a></h3>
+      <h3 class="post-title"><a href="/2020-02-05/Fake-Android-Q-Navigation-Handle/" title="如何把 Android P 的小药丸改成 Q 的小横条" >如何把 Android P 的小药丸改成 Q 的小横条</a></h3>
       
       
       
@@ -229,15 +322,16 @@ Android Q 是真的香，可惜我只有 Android P
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2020-01-20/Luogu-P1608/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaxfJ.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0Hd961.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-01-20/Luogu-P1608/">洛谷P1608《路径统计》</a></h3>
+      <h3 class="post-title"><a href="/2020-01-20/Luogu-P1608/" title="洛谷P1608《路径统计》" >洛谷P1608《路径统计》</a></h3>
       
       
       
@@ -262,15 +356,16 @@ Android Q 是真的香，可惜我只有 Android P
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2020-01-18/POJ2001/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-01-18/POJ2001/">POJ2001《Shortest Prefixes》</a></h3>
+      <h3 class="post-title"><a href="/2020-01-18/POJ2001/" title="POJ2001《Shortest Prefixes》" >POJ2001《Shortest Prefixes》</a></h3>
       
       
       
@@ -296,15 +391,16 @@ Android Q 是真的香，可惜我只有 Android P
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2020-01-17/Luogu-P2761/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0Hd961.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaOTU.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-01-17/Luogu-P2761/">洛谷P2761《软件补丁问题》</a></h3>
+      <h3 class="post-title"><a href="/2020-01-17/Luogu-P2761/" title="洛谷P2761《软件补丁问题》" >洛谷P2761《软件补丁问题》</a></h3>
       
       
       
@@ -327,15 +423,16 @@ Android Q 是真的香，可惜我只有 Android P
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2019-11-05/Luogu-P2449/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-11-05/Luogu-P2449/">洛谷P2449《[SDOI2005]矩形》</a></h3>
+      <h3 class="post-title"><a href="/2019-11-05/Luogu-P2449/" title="洛谷P2449《[SDOI2005]矩形》" >洛谷P2449《[SDOI2005]矩形》</a></h3>
       
       
       
@@ -357,15 +454,16 @@ Android Q 是真的香，可惜我只有 Android P
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2019-11-04/Luogu-P3200/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2019-11-04/Luogu-P3200/">洛谷P3200《[HNOI2009]有趣的数列》</a></h3>
+      <h3 class="post-title"><a href="/2019-11-04/Luogu-P3200/" title="洛谷P3200《[HNOI2009]有趣的数列》" >洛谷P3200《[HNOI2009]有趣的数列》</a></h3>
       
       
       
@@ -388,86 +486,7 @@ Android Q 是真的香，可惜我只有 Android P
     </div>
   </div>
 </div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2019-11-03/BZOJ3331/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaxfJ.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2019-11-03/BZOJ3331/">BZOJ3331《[BeiJing2013]压力》</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">题意给你一张 n 个点 m 条边的无向图，再给你 q 个点对，让你计算对于每一个点，有多少个点对间的路径必定经过这个点。N≤100000,M,Q≤200000。
 
-
-解析首先可以发现这样一个东西...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 03, 2019</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>5055</span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2019-11-03/Persistent-Segment-Tree/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2019-11-03/Persistent-Segment-Tree/">可持久化线段树学习笔记</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">
-可持久化数据结构初探
-
-
-
-操作请设计一个支持如下操作的数据结构：
-
-扩大这个数据结构的范围（如从 
-[1,n]
-
-
-
-
-
-
-
-
- 
- 
- 
- 
- 
-
- 扩大到 
-[1,n + k]
-
-
-
-
-...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 03, 2019</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>5350</span>
-      </div>
-    </div>
-  </div>
-</div>
   
 </section>
     <section class="paginator">
@@ -485,7 +504,7 @@ Android Q 是真的香，可惜我只有 Android P
     
     
     <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
-      onMouseOut="this.style.color='#33333D'">
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  icongithub-fill "></i>
     </a>
     
@@ -493,8 +512,8 @@ Android Q 是真的香，可惜我只有 Android P
     
     
     
-    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
-      onMouseOut="this.style.color='#33333D'">
+    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FF3B00'"
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  iconmail"></i>
     </a>
     
@@ -564,16 +583,6 @@ Android Q 是真的香，可惜我只有 Android P
   })();
 </script>
 
-
-<script>
-  var _hmt = _hmt || [];
-  (function () {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-</script>
 
 
 

@@ -75,7 +75,7 @@
       pjax: false,
       lazyload: {
         enable: true,
-        onlyPost: 'false',
+        only_post: 'false',
         loading: '/images/theme/loading.gif'
       },
       donate: {
@@ -83,22 +83,28 @@
         alipay: 'https://pic.izhaoo.com/alipay.jpg',
         wechat: 'https://pic.izhaoo.com/wechat.jpg'
       },
-      motto: {
-        api: '',
-        default: '现在，走吧，有花开在旅程。'
-      },
       galleries: {
         enable: true
       },
       fab: {
         enable: true,
-        alwaysShow: false
+        always_show: false
       },
       carrier: {
         enable: true
       },
       daovoice: {
         enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '现在，走吧，有花开在旅程。',
+          api: ''
+        },
       }
     }
   </script>
@@ -162,10 +168,23 @@
     <i class="iconfont iconmenu"></i>
   </nav>
   <div class="preview-image">
-    <h2 class="preview-motto" id="motto"></h2>
+    <h2 class="preview-motto" id="motto">现在，走吧，有花开在旅程。</h2>
     <!-- <span class="preview-cursor">|</span> -->
     
-    <img src="/images/theme/cloud.png" class="preview-overlay" draggable="false">
+    <div class="preview-overlay">
+      <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="preview-parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(var(--color-background-rgb), 0.7" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(var(--color-background-rgb), 0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(var(--color-background-rgb), 0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="rgb(var(--color-background-rgb))" />
+        </g>
+      </svg>
+    </div>
     
   </div>
   <div class="preview-scroll">
@@ -179,11 +198,63 @@
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
+    <a href="/2020-10-27/CF1405/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2020-10-27/CF1405/" title="Codeforces Round 668 (Div. 2)" >Codeforces Round 668 (Div. 2)</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">做题情况7 分钟 A，23 分钟 B，然后想了一场 C，D 直接跳过不看，E 有了初步思路但不大会写
+A. Permutation Forgery解题思路猜结论：直接把序列反转即可手玩了一下确实...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 27, 2020</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>10186</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2020-10-23/CF1418/" class="post-image">
+      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaxfJ.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2020-10-23/CF1418/" title="Educational Codeforces Round 95" >Educational Codeforces Round 95</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">做题情况这场有一小半的题是以前做过的，这次把没做的补了一下。
+A. Buying Torches题意简述假设你在玩 mc，背包里有 1 根棍子。现在你要和村民交易来造火把，村民支持以下两种交易：...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 23, 2020</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>8863</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
     <a href="/2020-10-23/CF1417/" class="post-image">
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-23/CF1417/">Codeforces Round 673 (Div. 2)</a></h3>
+      <h3 class="post-title"><a href="/2020-10-23/CF1417/" title="Codeforces Round 673 (Div. 2)" >Codeforces Round 673 (Div. 2)</a></h3>
       
       
       
@@ -212,6 +283,7 @@ k
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -220,7 +292,7 @@ k
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-22/CF1422/">Codeforces Round 675 (Div. 2)</a></h3>
+      <h3 class="post-title"><a href="/2020-10-22/CF1422/" title="Codeforces Round 675 (Div. 2)" >Codeforces Round 675 (Div. 2)</a></h3>
       
       
       
@@ -237,6 +309,7 @@ A. Fence题意简述给定一个四边形的三条边长，输出任意一个合
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -245,7 +318,7 @@ A. Fence题意简述给定一个四边形的三条边长，输出任意一个合
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-21/CF1426F/">CodeForces 1426F Numbers of Subsequences</a></h3>
+      <h3 class="post-title"><a href="/2020-10-21/CF1426F/" title="CodeForces 1426F Numbers of Subsequences" >CodeForces 1426F Numbers of Subsequences</a></h3>
       
       
       
@@ -263,6 +336,7 @@ A. Fence题意简述给定一个四边形的三条边长，输出任意一个合
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -271,7 +345,7 @@ A. Fence题意简述给定一个四边形的三条边长，输出任意一个合
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0Hd961.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-20/CF1349C/">CodeForces 1349C Orac and Game of Life</a></h3>
+      <h3 class="post-title"><a href="/2020-10-20/CF1349C/" title="CodeForces 1349C Orac and Game of Life" >CodeForces 1349C Orac and Game of Life</a></h3>
       
       
       
@@ -299,6 +373,7 @@ n \times m
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -307,7 +382,7 @@ n \times m
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaOTU.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-19/CF875F/">CodeForces 875F Royal Questions</a></h3>
+      <h3 class="post-title"><a href="/2020-10-19/CF875F/" title="CodeForces 875F Royal Questions" >CodeForces 875F Royal Questions</a></h3>
       
       
       
@@ -324,6 +399,7 @@ n \times m
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -332,7 +408,7 @@ n \times m
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HajkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-19/CF1311E/">CodeForces 1311E Construct the Binary Tree</a></h3>
+      <h3 class="post-title"><a href="/2020-10-19/CF1311E/" title="CodeForces 1311E Construct the Binary Tree" >CodeForces 1311E Construct the Binary Tree</a></h3>
       
       
       
@@ -350,6 +426,7 @@ n \times m
     </div>
   </div>
 </div>
+
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
@@ -358,7 +435,7 @@ n \times m
       <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-19/NOIP2014-lian-he-quan-zhi/">NOIP2014 联合权值</a></h3>
+      <h3 class="post-title"><a href="/2020-10-19/NOIP2014-lian-he-quan-zhi/" title="NOIP2014 联合权值" >NOIP2014 联合权值</a></h3>
       
       
       
@@ -385,68 +462,7 @@ w
     </div>
   </div>
 </div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020-10-18/guo-ji-a-li-he-tao-zi-de-you-xi/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-18/guo-ji-a-li-he-tao-zi-de-you-xi/">「国家集训队」 阿狸和桃子的游戏</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">题意简述给定 
-n
 
-
-
-
- 
-
- 个点的一棵树，点有点权。有两个人在树上染色，先手后手轮流染黑白两色，最后的得分是自己染的点权和 + 两端均为自己的颜色的边权和。 求先手的得分与后手的得分之差...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 18, 2020</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>2975</span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020-10-17/cha-fen-yue-shu-xi-tong/" class="post-image">
-      <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020-10-17/cha-fen-yue-shu-xi-tong/">差分约束系统学习笔记</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">0x01 引子解不等式组大家都会解吧形式化地，给定一个不等式组 
-
-\left\{
-\begin{array}{l}
-x_1 - x_2 \leq a\\
-x_2 - x_3 \leq b\\
-...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 17, 2020</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3431</span>
-      </div>
-    </div>
-  </div>
-</div>
   
 </section>
     <section class="paginator">
@@ -464,7 +480,7 @@ x_2 - x_3 \leq b\\
     
     
     <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
-      onMouseOut="this.style.color='#33333D'">
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  icongithub-fill "></i>
     </a>
     
@@ -472,8 +488,8 @@ x_2 - x_3 \leq b\\
     
     
     
-    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
-      onMouseOut="this.style.color='#33333D'">
+    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FF3B00'"
+      onMouseOut="this.style.color=''">
       <i class="iconfont footer-social-item  iconmail"></i>
     </a>
     
@@ -543,16 +559,6 @@ x_2 - x_3 \leq b\\
   })();
 </script>
 
-
-<script>
-  var _hmt = _hmt || [];
-  (function () {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-</script>
 
 
 
