@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>洛谷P3224 [HNOI2012]永无乡 - Handwer&#39;s Blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="题意简述维护一个带点权的动态图，要求支持加一条边，查询..."> 
+  
+  <meta name="author" content="Handwer STD"> 
+
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0H2W79.jpg">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/dracula.min.css" name="highlight-style" mode="dark">
+
+  
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '/images/theme/loading.gif'
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '/images/theme/welcome.jpeg',
+          api: ''
+        },
+        motto: {
+          default: '现在，走吧，有花开在旅程。',
+          api: ''
+        },
+      }
+    }
+  </script>
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-N0TBYCY1Y9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-N0TBYCY1Y9');</script><meta name="google-site-verification" content="WaGFIC-uJdr1PIUJ-RhuT6ib4LjnfDwA62eHSIYlsxQ" /><script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?6312bf13672874e872c54e5dc4510825"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script>
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left">
+    
+    
+      <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+    
+  </div>
+  <div class="center">洛谷P3224 [HNOI2012]永无乡</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+  <div class="qrcode">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/weapp-code.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="qrcode">
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/frlink " class="underline"> 友链</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">洛谷P3224 [HNOI2012]永无乡</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 05, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3872</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h1><p>维护一个带点权的动态图，要求支持加一条边，查询某个连通块中点权第 k 小的<strong>点编号</strong>。</p>
+<p>点数量、点权 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.832ex" height="2.843ex" style="vertical-align: -0.505ex;" viewBox="0 -1006.6 2511.2 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">\leq 10^5</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAIN-2264" x="0" y="0"></use>
+<g transform="translate(1056,0)">
+ <use xlink:href="#E1-MJMAIN-31"></use>
+ <use xlink:href="#E1-MJMAIN-30" x="500" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-35" x="1415" y="583"></use>
+</g>
+</g>
+</svg>，操作数 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.835ex" height="2.843ex" style="vertical-align: -0.505ex;" viewBox="0 -1006.6 4234.6 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">\leq 3\times 10^5</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAIN-2264" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-33" x="1056" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-D7" x="1779" y="0"></use>
+<g transform="translate(2779,0)">
+ <use xlink:href="#E1-MJMAIN-31"></use>
+ <use xlink:href="#E1-MJMAIN-30" x="500" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-35" x="1415" y="583"></use>
+</g>
+</g>
+</svg></p>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>看到查询第 k 小，很容易想到二叉搜索树、权值线段树、权值树状数组等数据结构。</p>
+<p>那么一个很显然的想法就是，我们对每个连通块维护一个权值数据结构，用于查询第 k 大，在<strong>两个连通块之间</strong>加边就是合并两个数据结构。</p>
+<p>树状数组好像除了 hash 没什么好的合并方法，平衡树难写难调<del>而且我也不会</del>，所以我们就可以愉快地采用<strong>动态开点权值线段树</strong>来实现查询第 k 大和线段树合并啦！</p>
+<hr>
+<p>下面是线段树合并简介。</p>
+<p>其实非常好写，就是一句话：人有我有节点合并，人有我无节点继承，人无我有节点不管，递归处理左右儿子。</p>
+<p>感觉有点可持久化那味。看代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 将以 p2 为根的线段树合并进以 p1 为根的线段树</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;p1, <span class="hljs-keyword">int</span> p2)</span> </span>&#123;<br>    <span class="hljs-comment">// 人有我无节点继承</span><br>    <span class="hljs-keyword">if</span> (!p1) &#123; p1 = p2; <span class="hljs-keyword">return</span>; &#125; <br>    <span class="hljs-comment">// 人无我有节点不管</span><br>    <span class="hljs-keyword">if</span> (!p2) <span class="hljs-keyword">return</span>;<br>    <span class="hljs-comment">// 人有我有节点合并</span><br>    sum[p1] += sum[p2];<br>    <span class="hljs-comment">// 递归处理左右儿子</span><br>    Merge(ls[p1], ls[p2]); Merge(rs[p1], rs[p2]);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 原题 P3224 [HNOI2012]永无乡</span><br><span class="hljs-comment">// 题目大意：动态图，支持加一条边，查询某连通块点权第 k 小</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DEBUG(x) std::cerr &lt;&lt; #x &lt;&lt; <span class="hljs-meta-string">&quot; = &quot;</span> &lt;&lt; x &lt;&lt; std::endl;</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> forall(G,u) for (int i_ = 0, __for_siz__ = (int) G[u].size(); i_ &lt; __for_siz__; ++i_) </span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ALL(x) (x).begin(), (x).end()</span><br><br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// int s = 0, x = 1; char ch = getchar();</span><br>    <span class="hljs-comment">// while (!isdigit(ch)) &#123; if (ch == &#x27;-&#x27;) x = -x; ch = getchar(); &#125;</span><br>    <span class="hljs-comment">// while (isdigit(ch)) &#123; s = s * 10 + ch - &#x27;0&#x27;; ch = getchar(); &#125;</span><br>    <span class="hljs-comment">// return s * x;</span><br>    <span class="hljs-keyword">int</span> x; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x); <span class="hljs-keyword">return</span> x;<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXN = <span class="hljs-number">100000</span> + <span class="hljs-number">10</span>;<br><br><span class="hljs-keyword">int</span> n, m, q;<br><span class="hljs-keyword">int</span> ref[MAXN];<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">DSU</span> &#123;</span><br>    <span class="hljs-keyword">int</span> u[MAXN];<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123; <span class="hljs-keyword">return</span> !u[x] ? x : u[x] = Find(u[x]); &#125;<br>&#125; dsu;<br><br><span class="hljs-keyword">namespace</span> SegtTree &#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> SIZ = <span class="hljs-number">2000000</span> + <span class="hljs-number">10</span>;<br><br>    <span class="hljs-keyword">int</span> sum[SIZ];<br>    <span class="hljs-keyword">int</span> root[MAXN], cnt, ls[SIZ], rs[SIZ];<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span> </span>&#123; sum[p] = sum[ls[p]] + sum[rs[p]]; &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;p, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r, <span class="hljs-keyword">int</span> pos)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (!p) p = ++cnt;<br>        <span class="hljs-keyword">if</span> (l == r) &#123; ++sum[p]; <span class="hljs-keyword">return</span>; &#125;<br>        <span class="hljs-keyword">int</span> mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span> (pos &lt;= mid) Insert(ls[p], l, mid, pos);<br>        <span class="hljs-keyword">else</span> Insert(rs[p], mid + <span class="hljs-number">1</span>, r, pos);<br>        Update(p);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;p1, <span class="hljs-keyword">int</span> p2)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (!p1) &#123; p1 = p2; <span class="hljs-keyword">return</span>; &#125; <br>        <span class="hljs-keyword">if</span> (!p2) <span class="hljs-keyword">return</span>;<br>        sum[p1] += sum[p2];<br>        Merge(ls[p1], ls[p2]); Merge(rs[p1], rs[p2]);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r, <span class="hljs-keyword">int</span> rank)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (l == r) <span class="hljs-keyword">return</span> l;<br>        <span class="hljs-keyword">int</span> mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span> (sum[ls[p]] &gt;= rank) <span class="hljs-keyword">return</span> Query(ls[p], l, mid, rank);<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> Query(rs[p], mid + <span class="hljs-number">1</span>, r, rank - sum[ls[p]]);<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    n = read(); m = read();<br>    <span class="hljs-keyword">using</span> SegtTree::root;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>        <span class="hljs-keyword">int</span> x = read(); ref[x] = i;<br>        SegtTree::Insert(root[i], <span class="hljs-number">1</span>, n, x);<br>    &#125;<br>    <span class="hljs-comment">// for (int i = 1; i &lt;= n * 4; ++i) printf(&quot;%d%c&quot;, SegtTree::sum[i], &quot; \n&quot;[i == 4 * n]);</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) &#123;<br>        <span class="hljs-keyword">int</span> u = dsu.Find(read()); <span class="hljs-keyword">int</span> v = dsu.Find(read());<br>        dsu.u[u] = v;<br>        SegtTree::Merge(root[v], root[u]);<br>    &#125;<br>    q = read();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= q; ++i) &#123;<br>        <span class="hljs-keyword">char</span> op[<span class="hljs-number">2</span>]; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>, op);<br>        <span class="hljs-keyword">int</span> x = read(); <span class="hljs-keyword">int</span> y = read();<br>        <span class="hljs-keyword">if</span> (op[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;Q&#x27;</span>) &#123;<br>            x = dsu.Find(x);<br>            <span class="hljs-keyword">if</span> (SegtTree::sum[root[x]] &lt; y) <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;-1&quot;</span>);<br>            <span class="hljs-keyword">else</span> <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, ref[SegtTree::Query(root[x], <span class="hljs-number">1</span>, n, y)]);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            x = dsu.Find(x); y = dsu.Find(y);<br>            <span class="hljs-keyword">if</span> (x == y) <span class="hljs-keyword">continue</span>;<br>            dsu.u[x] = y;<br>            SegtTree::Merge(root[y], root[x]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>Handwer STD</li>
+  <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2020-11-05/Luogu-P3224/index.html">https://blog.handwer-std.top/2020-11-05/Luogu-P3224/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/" rel="tag">各省省选</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="tag">并查集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag">线段树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%90%88%E5%B9%B6/" rel="tag">线段树合并</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2020-11-05/Luogu-P3199/"><i class="iconfont iconleft"></i>洛谷P3199 [HNOI2009]最小圈</a>
+  
+  
+    <a href="/2020-11-05/CF1354D/">CodeForces 1354D Multiset<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz",
+        app_key: "y8tzSOvAsnOqNYwRNQI7WG9v",
+        placeholder: "看了这么多，可能你有话想说",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color=''">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FF3B00'"
+      onMouseOut="this.style.color=''">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</html>
