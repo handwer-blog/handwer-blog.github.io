@@ -46,7 +46,7 @@
 
   
   
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_onl0g0h21np.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
 
   
 
@@ -104,7 +104,7 @@
       },
       preview: {
         background: {
-          default: '',
+          default: '/images/theme/welcome.jpeg',
           api: ''
         },
         motto: {
@@ -127,13 +127,18 @@
 
 
 <nav class="navbar">
-  <div class="left"></div>
-  <div class="center">洛谷P2606《排列计数》</div>
-  <div class="right">
+  <div class="left">
+    
     
       <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
     
+  </div>
+  <div class="center">洛谷P2606《排列计数》</div>
+  <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+  <div class="qrcode">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/weapp-code.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="qrcode">
   </div>
 </nav>
 
@@ -183,7 +188,7 @@
     <article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdSp9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">洛谷P2606《排列计数》</h1>
     <div class="head-info">
@@ -291,7 +296,7 @@
 </g>
 </svg>个点的权值要小……<br/>想一想二叉树的表示方法……这好像是一个小根堆？</p>
 <p>问题转化为了：求1-n的所有排列中，可以构成一个小根堆的排列的个数</p>
-<p>考虑dp<br/>设<code>dp[u]</code>表示以u为根结点分配1~size(u)的小根堆的方案数<br/>转移：MATHJAX-SSR-1307</p>
+<p>考虑dp<br/>设<code>dp[u]</code>表示以u为根结点分配1~size(u)的小根堆的方案数<br/>转移：MATHJAX-SSR-1312</p>
 <p>最终答案就是<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.357ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 2306.5 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">dp(1)</title>
 <defs aria-hidden="true">
@@ -444,8 +449,6 @@
 
 
 <script src="/js/utils.js"></script>
-<script src="/js/modules.js"></script>
-<script src="/js/zui.js"></script>
 <script src="/js/script.js"></script>
 
 

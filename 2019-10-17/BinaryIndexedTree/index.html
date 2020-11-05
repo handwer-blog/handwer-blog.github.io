@@ -46,7 +46,7 @@
 
   
   
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_onl0g0h21np.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
 
   
 
@@ -104,7 +104,7 @@
       },
       preview: {
         background: {
-          default: '',
+          default: '/images/theme/welcome.jpeg',
           api: ''
         },
         motto: {
@@ -127,13 +127,18 @@
 
 
 <nav class="navbar">
-  <div class="left"></div>
-  <div class="center">树状数组学习笔记</div>
-  <div class="right">
+  <div class="left">
+    
     
       <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
     
+  </div>
+  <div class="center">树状数组学习笔记</div>
+  <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+  <div class="qrcode">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/weapp-code.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="qrcode">
   </div>
 </nav>
 
@@ -190,7 +195,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 17, 2019</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>13151</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>13149</span>
     </div>
   </div>
 </section>
@@ -345,7 +350,7 @@
 <h2 id="区间加减、单点查询"><a href="#区间加减、单点查询" class="headerlink" title="区间加减、单点查询"></a>区间加减、单点查询</h2><p>不知道你们有没有听说过一个东西叫做「差分」</p>
 <p>定义差分数组 <code>d[i] = a[i] - a[i - 1]</code>，其中 <code>a[]</code> 表示原数列<br>那么对 <code>d[i]</code> 求一个前缀和就可以得出 <code>a[i]</code>的值了<br>举个例子：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">数组下标从 <span class="hljs-number">0</span> 开始，元素存储从 <span class="hljs-number">1</span> 开始，a[<span class="hljs-number">0</span>] = d[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span><br>a[] = &#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>&#125;<br>d[] = &#123;/, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">-2</span>&#125;<br></code></pre></td></tr></table></figure>
-<p>发现了什么？<br>MATHJAX-SSR-147</p>
+<p>发现了什么？<br>MATHJAX-SSR-58</p>
 <p>如何修改<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.274ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 3992.9 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\text{[L,R]}+x</title>
 <defs aria-hidden="true">
@@ -748,7 +753,7 @@
 </g>
 </g>
 </svg></p>
-<p>为了方便，定义 MATHJAX-SSR-152</p>
+<p>为了方便，定义 MATHJAX-SSR-63</p>
 <p style="text-align:center"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="73.577ex" height="7.509ex" style="vertical-align: -3.338ex;" viewBox="0 -1796 31679 3233.2" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\sum_{i = x_1}^{x_2}\sum_{j = y_1}^{y_2}a_{i,j}=f(x_2,y_2)-f(x_1 - 1,y_2)-f(x_2,y_1-1)+f(x_1-1,y_1-1)</title>
 <defs aria-hidden="true">
@@ -1719,8 +1724,6 @@
 
 
 <script src="/js/utils.js"></script>
-<script src="/js/modules.js"></script>
-<script src="/js/zui.js"></script>
 <script src="/js/script.js"></script>
 
 
