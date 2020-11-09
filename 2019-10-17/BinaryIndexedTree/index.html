@@ -177,6 +177,11 @@
       
       
       
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
       <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
       
     </ul>
@@ -188,7 +193,7 @@
     <article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HaxfJ.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">树状数组学习笔记</h1>
     <div class="head-info">
@@ -350,7 +355,7 @@
 <h2 id="区间加减、单点查询"><a href="#区间加减、单点查询" class="headerlink" title="区间加减、单点查询"></a>区间加减、单点查询</h2><p>不知道你们有没有听说过一个东西叫做「差分」</p>
 <p>定义差分数组 <code>d[i] = a[i] - a[i - 1]</code>，其中 <code>a[]</code> 表示原数列<br>那么对 <code>d[i]</code> 求一个前缀和就可以得出 <code>a[i]</code>的值了<br>举个例子：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">数组下标从 <span class="hljs-number">0</span> 开始，元素存储从 <span class="hljs-number">1</span> 开始，a[<span class="hljs-number">0</span>] = d[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span><br>a[] = &#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>&#125;<br>d[] = &#123;/, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">-2</span>&#125;<br></code></pre></td></tr></table></figure>
-<p>发现了什么？<br>MATHJAX-SSR-45</p>
+<p>发现了什么？<br>MATHJAX-SSR-59</p>
 <p>如何修改<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.274ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 3992.9 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\text{[L,R]}+x</title>
 <defs aria-hidden="true">
@@ -753,7 +758,7 @@
 </g>
 </g>
 </svg></p>
-<p>为了方便，定义 MATHJAX-SSR-50</p>
+<p>为了方便，定义 MATHJAX-SSR-64</p>
 <p style="text-align:center"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="73.577ex" height="7.509ex" style="vertical-align: -3.338ex;" viewBox="0 -1796 31679 3233.2" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\sum_{i = x_1}^{x_2}\sum_{j = y_1}^{y_2}a_{i,j}=f(x_2,y_2)-f(x_1 - 1,y_2)-f(x_2,y_1-1)+f(x_1-1,y_1-1)</title>
 <defs aria-hidden="true">
