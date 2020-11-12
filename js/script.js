@@ -178,13 +178,13 @@ console.log("%c Github %c", "background:#333333; color:#ffffff", "", "https://gi
     },
     donate: function () {
       $(".donate .icon").on("mouseover", function () {
-        $(".donate .qrcode").show();
+        $("#qrcode-donate").show();
       });
       $(".donate .icon").children("a").on("mouseover", function () {
-        $(".donate .qrcode img").attr('src', eval('CONFIG.donate.' + $(this).attr('id')))
+        $("#qrcode-donate img").attr('src', eval('CONFIG.donate.' + $(this).attr('id')))
       });
       $(".donate .icon").on("mouseout", function () {
-        $(".donate .qrcode").hide();
+        $("#qrcode-donate").hide();
       });
     },
     lazyload: function () {
@@ -220,16 +220,27 @@ console.log("%c Github %c", "background:#333333; color:#ffffff", "", "https://gi
         $(".qrcode").fadeOut(300);
       });
       $(".j-navbar-qrcode").on("click", function () {
-        if ($(".qrcode").is(":hidden")) {
-          $(".qrcode").fadeIn(300);
+        if ($("#qrcode-navbar").is(":hidden")) {
+          $("#qrcode-navbar").fadeIn(300);
         } else {
-          $(".qrcode").fadeOut(300);
+          $("#qrcode-navbar").fadeOut(300);
         }
       });
     },
     preview: function () {
       fn.background();
       fn.motto();
+    },
+    qrcode: function () {
+      if (CONFIG.qrcode.type === 'url') {
+        $("#qrcode-navbar").qrcode({
+          text: window.location.href,
+          width: 150,
+          height: 150
+        });
+      } else if (CONFIG.qrcode.type === 'image') {
+        $("#qrcode-navbar").append('<img src="' + CONFIG.qrcode.image + '" alt="qrcode" />');
+      }
     }
   }
 
@@ -258,6 +269,9 @@ console.log("%c Github %c", "background:#333333; color:#ffffff", "", "https://gi
     }
     if (CONFIG.carrier.enable) {
       action.carrier();
+    }
+    if (CONFIG.qrcode.enable) {
+      action.qrcode();
     }
   });
 

@@ -103,6 +103,11 @@ body p {
 body ul {
   margin: 0;
 }
+body a,
+body div,
+body span {
+  -webkit-tap-highlight-color: transparent;
+}
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-track {
   width: 6px;
@@ -884,7 +889,7 @@ body ul {
 .navbar .iconfont:hover {
   cursor: pointer;
 }
-.navbar .qrcode {
+.navbar #qrcode-navbar {
   position: absolute;
   display: none;
   z-index: 10;
@@ -894,7 +899,7 @@ body ul {
   border: 1px solid #eee;
   background-color: var(--color-background);
 }
-.navbar .qrcode img {
+.navbar #qrcode-navbar img {
   width: 150px;
   height: 150px;
 }
@@ -982,9 +987,10 @@ body ul {
   width: 100%;
   position: absolute;
   bottom: -1px;
-  left: 0;
+  left: -100vw;
   right: 0;
   z-index: 50;
+  filter: drop-shadow(var(--color-background) 100vw 0px);
 }
 .preview .preview-image .preview-overlay .preview-waves {
   position: relative;
@@ -1388,7 +1394,7 @@ body ul {
   margin-bottom: 20px;
   position: relative;
 }
-.article .wrap .main .extra .donate .qrcode {
+.article .wrap .main .extra .donate #qrcode-donate {
   padding: 10px;
   width: 200px;
   height: 200px;
@@ -1399,7 +1405,7 @@ body ul {
   z-index: 10;
   display: none;
 }
-.article .wrap .main .extra .donate .qrcode img {
+.article .wrap .main .extra .donate #qrcode-donate img {
   position: absolute;
   top: 0;
   left: 0;

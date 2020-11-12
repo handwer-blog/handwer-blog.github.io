@@ -111,6 +111,11 @@ Password: 🔑
           default: '现在，走吧，有花开在旅程。',
           api: ''
         },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
       }
     }
   </script>
@@ -129,6 +134,8 @@ Password: 🔑
 <nav class="navbar">
   <div class="left">
     
+      <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+    
     
       <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
     
@@ -137,9 +144,9 @@ Password: 🔑
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
-  <div class="qrcode">
-    <img   class="lazyload" data-original="https://pic.izhaoo.com/weapp-code.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="qrcode">
-  </div>
+  
+    <div id="qrcode-navbar"></div>
+  
 </nav>
 
   <nav class="menu">
@@ -193,7 +200,7 @@ Password: 🔑
     <article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/11/08/BIDGm4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0Hd961.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">让你的 PC 更加安全</h1>
     <div class="head-info">
@@ -260,39 +267,6 @@ Password: 🔑
 
       </section>
       
-      <section class="comments">
-  
-  <div class="btn" id="comments-btn">查看评论</div>
-  
-  
-<div id="valine"></div>
-<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-  window.onload = function () {
-    var loadValine = function () {
-      new Valine({
-        el: '#valine',
-        app_id: "C91grFXiz9WXlDKws9gDKPTA-gzGzoHsz",
-        app_key: "y8tzSOvAsnOqNYwRNQI7WG9v",
-        placeholder: "看了这么多，可能你有话想说",
-        avatar: "mp",
-        pageSize: "10",
-        lang: "zh-CN",
-      });
-    }
-    if ( true ) {
-      $("#comments-btn").on("click", function () {
-        $(this).hide();
-        loadValine();
-      });
-    } else {
-      loadValine();
-    }
-  };
-</script>
-
-</section>
-      
     </section>
   </div>
 </article>
@@ -356,6 +330,13 @@ Password: 🔑
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
 
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
 
 
