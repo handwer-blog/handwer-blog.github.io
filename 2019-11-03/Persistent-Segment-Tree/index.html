@@ -2,7 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="zh-CN" color-mode=light>
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -11,30 +10,18 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
-
-  
   
   <meta name="description" content="
 可持久化数据结构初探
 
 
 
-操作请设计一个支持如下操..."> 
-  
-  <meta name="author" content="Handwer STD"> 
-
-  
-    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="16x16">
-  
-  
-    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="32x32">
-  
-  
-    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" sizes="180x180">
-  
-  
-    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" color="#333333">
-  
+操作请设计一个支持如下操...">
+  <meta name="author" content="Handwer STD">
+  <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" sizes="180x180">
+  <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" color="#333333">
   
     <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0H2W79.jpg">
     <meta rel="msapplication-TileColor" content="#000000">
@@ -45,31 +32,30 @@
 
 
   
-  
+    
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
 
   
 
   
-  
-  
+    
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
   
 
   
-  
-  
-  
-  
+    
+      
+        
+        
 <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
 
-  
-  
-  
+      
+        
+        
 <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/dracula.min.css" name="highlight-style" mode="dark">
 
-  
+      
   
 
   <script>
@@ -109,105 +95,103 @@
         },
         motto: {
           default: '现在，走吧，有花开在旅程。',
-          api: ''
+          api: '',
+          data_contents: '["data","content"]'
         },
       },
       qrcode: {
         enable: true,
         type: 'url',
         image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        model: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
       }
     }
   </script>
 
   
-  <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-N0TBYCY1Y9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-N0TBYCY1Y9');</script><meta name="google-site-verification" content="WaGFIC-uJdr1PIUJ-RhuT6ib4LjnfDwA62eHSIYlsxQ" /><script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?6312bf13672874e872c54e5dc4510825"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script>
+    <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-N0TBYCY1Y9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-N0TBYCY1Y9');</script><meta name="google-site-verification" content="WaGFIC-uJdr1PIUJ-RhuT6ib4LjnfDwA62eHSIYlsxQ" /><script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?6312bf13672874e872c54e5dc4510825"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script>
   
 
   
+
 <meta name="generator" content="Hexo 5.2.0"></head>
+
 <body class="lock-screen">
   <div class="loading"></div>
   
 
 
-<nav class="navbar">
-  <div class="left">
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+    </div>
+    <div class="center">可持久化线段树学习笔记</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
     
-      <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      <div id="qrcode-navbar"></div>
     
-    
-      <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
-    
-  </div>
-  <div class="center">可持久化线段树学习笔记</div>
-  <div class="right">
-    <i class="iconfont iconmenu j-navbar-menu"></i>
-  </div>
-  
-    <div id="qrcode-navbar"></div>
-  
-</nav>
+  </nav>
 
-  <nav class="menu">
+  
+
+<nav class="menu">
   <div class="menu-wrap">
     <div class="menu-close">
       <i class="iconfont iconbaseline-close-px"></i>
     </div>
-    <ul class="menu-content">
-      
-      
-      
-      
-      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/frlink " class="underline"> 友链</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
-      
-    </ul>
-    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/frlink " class="underline "> 友链</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
   </div>
 </nav>
   <main id="main">
-  <div class="container" id="container">
-    <article class="article">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HavY4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0HdplR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">可持久化线段树学习笔记</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 03, 2019</span
-        class="post-info-item">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 03, 2019</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5350</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5402</span>
     </div>
   </div>
 </section>
@@ -392,9 +376,9 @@
 <p>顺着算法 2 想下去。发现算法 2 有大量无用的空间，怎么办？</p>
 <p>搬出树形结构，再加动态开点。</p>
 <h3 id="树的结构及修改操作"><a href="#树的结构及修改操作" class="headerlink" title="树的结构及修改操作"></a>树的结构及修改操作</h3><p>一棵线段树长这样：</p>
-<p><img   class="lazyload" data-original="https://s2.ax1x.com/2019/11/03/KX0NHU.md.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="KX0NHU.md.png"></p>
-<p>然后发现修改第二个元素需要经历这些节点：<br><img   class="lazyload" data-original="https://s2.ax1x.com/2019/11/03/KX0gHO.md.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="KX0gHO.md.png"></p>
-<p>依据算法 2，开一些新的点作为这个版本的点<br><img   class="lazyload" data-original="https://s2.ax1x.com/2019/11/03/KXDUfJ.md.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="KXDUfJ.md.png"><br>蓝点为原来的点，橙点为这个版本经过的点</p>
+<p><img    class="lazyload" data-original="https://s2.ax1x.com/2019/11/03/KX0NHU.md.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">KX0NHU.md.png</span></p>
+<p>然后发现修改第二个元素需要经历这些节点：<br><img    class="lazyload" data-original="https://s2.ax1x.com/2019/11/03/KX0gHO.md.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">KX0gHO.md.png</span></p>
+<p>依据算法 2，开一些新的点作为这个版本的点<br><img    class="lazyload" data-original="https://s2.ax1x.com/2019/11/03/KXDUfJ.md.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">KXDUfJ.md.png</span><br>蓝点为原来的点，橙点为这个版本经过的点</p>
 <p>可以发现它不再是一棵树。但是如果不看那些“被修改”的蓝点，它仍然是一棵二叉树……怎么办？</p>
 <p>不妨把它视为多棵线段树，每一棵树都是一个版本，最顶上的依然是树根，只不过<strong>这些线段树共享了一些相同的节点</strong>。</p>
 <p>具体实现的话，就把线段树的根节点<strong>们</strong>存在一个数组<code>root[]</code>中，这样，<code>root[i]</code>就表示第 i 棵（第 i 个版本的）线段树的根节点编号。</p>
@@ -405,7 +389,7 @@
 
 <h3 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h3><p>明白了 <code>root[]</code> 数组的意义，查询就很简单了</p>
 <hr>
-<p><img   class="lazyload" data-original="https://s2.ax1x.com/2019/11/03/KX258O.md.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="KX258O.md.png"></p>
+<p><img    class="lazyload" data-original="https://s2.ax1x.com/2019/11/03/KX258O.md.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">KX258O.md.png</span></p>
 <p>比如说查询版本 1（初始版本为 0），就是顺着版本 1 的根节点往下找对应位置，查到底部返回。图中灰色的节点是查版本 1 永远碰不到的节点——因为它们在版本 1 中被修改了，而剩下的点依然形成了一棵线段树，顺着这棵树查下去就完事了</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 查询操作，root 不加引用是因为查询操作没必要对线段树进行修改</span><br><span class="hljs-comment">// 经典的单点查询，不讲了</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> root, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r, <span class="hljs-keyword">int</span> pos)</span> </span>&#123;  <br>    <span class="hljs-keyword">if</span> (l == r) <span class="hljs-keyword">return</span> tree[root].val;  <br>    <span class="hljs-keyword">int</span> mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;  <br>    <span class="hljs-keyword">if</span> (pos &lt;= mid) <span class="hljs-keyword">return</span> query(tree[root].ls, l, mid, pos);  <br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> query(tree[root].rs, mid + <span class="hljs-number">1</span>, r, pos);  <br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// ...</span><br>    query(roots[查询的版本], <span class="hljs-number">1</span>, n, 查询的位置);<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -420,68 +404,78 @@
       </section>
       <section class="extra">
         
-        <ul class="copyright">
+          <ul class="copyright">
   
-  <li><strong>本文作者：</strong>Handwer STD</li>
-  <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2019-11-03/Persistent-Segment-Tree/index.html">https://blog.handwer-std.top/2019-11-03/Persistent-Segment-Tree/index.html</a></li>
-  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
-      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+    <li><strong>本文作者：</strong>Handwer STD</li>
+    <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2019-11-03/Persistent-Segment-Tree/index.html" title="https:&#x2F;&#x2F;blog.handwer-std.top&#x2F;2019-11-03&#x2F;Persistent-Segment-Tree&#x2F;index.html">https:&#x2F;&#x2F;blog.handwer-std.top&#x2F;2019-11-03&#x2F;Persistent-Segment-Tree&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
 </ul>
         
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag">可持久化线段树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag">可持久化线段树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul> 
 
         
-<nav class="nav">
-  
+  <nav class="nav">
     <a href="/2019-11-03/BZOJ3331/"><i class="iconfont iconleft"></i>BZOJ3331《[BeiJing2013]压力》</a>
-  
-  
     <a href="/2019-11-02/Luogu-P1383/">洛谷P1383「IOI 2012」《高级打字机》<i class="iconfont iconright"></i></a>
-  
-</nav>
+  </nav>
 
       </section>
       
     </section>
   </div>
-</article>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C"><span class="toc-text">操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90"><span class="toc-text">解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E7%AE%97%E6%B3%95-1"><span class="toc-text">朴素算法 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E7%AE%97%E6%B3%95-2"><span class="toc-text">朴素算法 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-text">可持久化线段树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E7%BB%93%E6%9E%84%E5%8F%8A%E4%BF%AE%E6%94%B9%E6%93%8D%E4%BD%9C"><span class="toc-text">树的结构及修改操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C"><span class="toc-text">查询操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-text">杂项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%8C%83%E5%9B%B4"><span class="toc-text">扩大数据结构范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9E%E6%BB%9A%E5%88%B0%E6%9F%90%E4%B8%AA%E7%89%88%E6%9C%AC"><span class="toc-text">回滚到某个版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="toc-text">关于数据范围</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">代码实现</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
   </div>
 </main>
-  <footer class="footer">
-  <div class="footer-social">
-    
-    
-    
-    
-    
-    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
-      onMouseOut="this.style.color=''">
-      <i class="iconfont footer-social-item  icongithub-fill "></i>
-    </a>
-    
-    
-    
-    
-    
-    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FF3B00'"
-      onMouseOut="this.style.color=''">
-      <i class="iconfont footer-social-item  iconmail"></i>
-    </a>
-    
-  </div>
-  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://github.com/HandwerSTD "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:handwer@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
 </footer>
   
       <div class="fab fab-plus">
     <i class="iconfont iconplus"></i>
   </div>
   
+  
   <div class="fab fab-up">
     <i class="iconfont iconcaret-up"></i>
   </div>
+  
+  
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
   
   
     
@@ -490,21 +484,17 @@
   
 </body>
 
-
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 
 
 
-
-
-
+  
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
 
 
 
 
-
-
+  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
 
@@ -512,8 +502,7 @@
 
 
 
-
-
+  
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
 
@@ -526,21 +515,21 @@
 
 
 
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
-<script>
-  (function () {
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    } else {
-      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-  })();
-</script>
 
 
 

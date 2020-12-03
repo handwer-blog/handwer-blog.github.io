@@ -2,7 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="zh-CN" color-mode=light>
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -11,8 +10,6 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
-
-  
   
   <meta name="description" content="
 两个结点找共同的爸爸
@@ -20,22 +17,12 @@
 
 
 LCA 的概念
-在图论和..."> 
-  
-  <meta name="author" content="Handwer STD"> 
-
-  
-    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="16x16">
-  
-  
-    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="32x32">
-  
-  
-    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" sizes="180x180">
-  
-  
-    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" color="#333333">
-  
+在图论和...">
+  <meta name="author" content="Handwer STD">
+  <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" sizes="180x180">
+  <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" color="#333333">
   
     <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0H2W79.jpg">
     <meta rel="msapplication-TileColor" content="#000000">
@@ -46,31 +33,30 @@ LCA 的概念
 
 
   
-  
+    
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
 
   
 
   
-  
-  
+    
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
   
 
   
-  
-  
-  
-  
+    
+      
+        
+        
 <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
 
-  
-  
-  
+      
+        
+        
 <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/dracula.min.css" name="highlight-style" mode="dark">
 
-  
+      
   
 
   <script>
@@ -110,105 +96,103 @@ LCA 的概念
         },
         motto: {
           default: '现在，走吧，有花开在旅程。',
-          api: ''
+          api: '',
+          data_contents: '["data","content"]'
         },
       },
       qrcode: {
         enable: true,
         type: 'url',
         image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        model: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
       }
     }
   </script>
 
   
-  <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-N0TBYCY1Y9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-N0TBYCY1Y9');</script><meta name="google-site-verification" content="WaGFIC-uJdr1PIUJ-RhuT6ib4LjnfDwA62eHSIYlsxQ" /><script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?6312bf13672874e872c54e5dc4510825"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script>
+    <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-N0TBYCY1Y9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-N0TBYCY1Y9');</script><meta name="google-site-verification" content="WaGFIC-uJdr1PIUJ-RhuT6ib4LjnfDwA62eHSIYlsxQ" /><script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?6312bf13672874e872c54e5dc4510825"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script>
   
 
   
+
 <meta name="generator" content="Hexo 5.2.0"></head>
+
 <body class="lock-screen">
   <div class="loading"></div>
   
 
 
-<nav class="navbar">
-  <div class="left">
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+    </div>
+    <div class="center">最近公共祖先 LCA 算法学习笔记</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
     
-      <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      <div id="qrcode-navbar"></div>
     
-    
-      <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
-    
-  </div>
-  <div class="center">最近公共祖先 LCA 算法学习笔记</div>
-  <div class="right">
-    <i class="iconfont iconmenu j-navbar-menu"></i>
-  </div>
-  
-    <div id="qrcode-navbar"></div>
-  
-</nav>
+  </nav>
 
-  <nav class="menu">
+  
+
+<nav class="menu">
   <div class="menu-wrap">
     <div class="menu-close">
       <i class="iconfont iconbaseline-close-px"></i>
     </div>
-    <ul class="menu-content">
-      
-      
-      
-      
-      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/frlink " class="underline"> 友链</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
-      
-    </ul>
-    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/frlink " class="underline "> 友链</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
   </div>
 </nav>
   <main id="main">
-  <div class="container" id="container">
-    <article class="article">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
   <img   class="lazyload" data-original="https://s1.ax1x.com/2020/10/16/0Hd961.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">最近公共祖先 LCA 算法学习笔记</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 07, 2018</span
-        class="post-info-item">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 07, 2018</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4391</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4407</span>
     </div>
   </div>
 </section>
@@ -226,7 +210,7 @@ LCA 的概念
 <p><del>看不懂没关系</del></p>
 <p>简单的来说，就是两个节点v和w的最近的祖先节点</p>
 <p>如下图</p>
-<p><img   class="lazyload" data-original="https://user-images.githubusercontent.com/33089328/43761882-f2ed7180-9a58-11e8-946c-acabf14c1b25.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image"></p>
+<p><img    class="lazyload" data-original="https://user-images.githubusercontent.com/33089328/43761882-f2ed7180-9a58-11e8-946c-acabf14c1b25.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">image</span></p>
 <p>6和7的LCA是2，3和7的LCA是1</p>
 <h1 id="LCA-的求法"><a href="#LCA-的求法" class="headerlink" title="LCA 的求法"></a>LCA 的求法</h1><h2 id="暴力求解"><a href="#暴力求解" class="headerlink" title="暴力求解"></a>暴力求解</h2><p>让他们一步一步往上爬，直到相遇</p>
 <blockquote>
@@ -239,7 +223,7 @@ LCA 的概念
 </blockquote>
 <p>但是在这里，我们要考虑<del><code>开倒车</code></del>从大到小跳</p>
 <p>因为<code>如果我们从小到大跳，就会出现要「回溯」的情况，因为我们不一定能精准地跳，而从大到小跳可以避开这种情况</code></p>
-<p><img   class="lazyload" data-original="http://images.cnblogs.com/cnblogs_com/wxl-Ezio/1173002/o_QQ%E5%9B%BE%E7%89%8720180320205056.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="图片来自cnblogs"></p>
+<p><img    class="lazyload" data-original="http://images.cnblogs.com/cnblogs_com/wxl-Ezio/1173002/o_QQ%E5%9B%BE%E7%89%8720180320205056.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">图片来自cnblogs</span></p>
 <center><small><small><small>图源cnblogs</small></small></small></center>
 
 <p>对于上面这一棵更复杂的树，我们考虑17和18的LCA</p>
@@ -457,68 +441,78 @@ LCA 的概念
       </section>
       <section class="extra">
         
-        <ul class="copyright">
+          <ul class="copyright">
   
-  <li><strong>本文作者：</strong>Handwer STD</li>
-  <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2018-08-07/LeastCommonAncestors/index.html">https://blog.handwer-std.top/2018-08-07/LeastCommonAncestors/index.html</a></li>
-  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
-      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+    <li><strong>本文作者：</strong>Handwer STD</li>
+    <li><strong>本文链接：</strong><a href="https://blog.handwer-std.top/2018-08-07/LeastCommonAncestors/index.html" title="https:&#x2F;&#x2F;blog.handwer-std.top&#x2F;2018-08-07&#x2F;LeastCommonAncestors&#x2F;index.html">https:&#x2F;&#x2F;blog.handwer-std.top&#x2F;2018-08-07&#x2F;LeastCommonAncestors&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
 </ul>
         
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCA/" rel="tag">LCA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%80%8D%E5%A2%9E/" rel="tag">倍增</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%95/" rel="tag">图论算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCA/" rel="tag">LCA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%80%8D%E5%A2%9E/" rel="tag">倍增</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%95/" rel="tag">图论算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul> 
 
         
-<nav class="nav">
-  
+  <nav class="nav">
     <a href="/2018-08-08/Luogu-P3884/"><i class="iconfont iconleft"></i>洛谷P3884《[JLOI2009]二叉树问题》</a>
-  
-  
     <a href="/2018-08-05/Luogu-P1531/">洛谷P1531《I Hate It》<i class="iconfont iconright"></i></a>
-  
-</nav>
+  </nav>
 
       </section>
       
     </section>
   </div>
-</article>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LCA-%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">LCA 的概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LCA-%E7%9A%84%E6%B1%82%E6%B3%95"><span class="toc-text">LCA 的求法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B%E6%B1%82%E8%A7%A3"><span class="toc-text">暴力求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%80%8D%E5%A2%9E%E6%B1%82%E8%A7%A3"><span class="toc-text">倍增求解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LCA-%E7%9A%84%E4%BB%A3%E7%A0%81-amp-%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B"><span class="toc-text">LCA 的代码 &amp; 实现流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B"><span class="toc-text">实现流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-text">完整代码</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
   </div>
 </main>
-  <footer class="footer">
-  <div class="footer-social">
-    
-    
-    
-    
-    
-    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
-      onMouseOut="this.style.color=''">
-      <i class="iconfont footer-social-item  icongithub-fill "></i>
-    </a>
-    
-    
-    
-    
-    
-    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FF3B00'"
-      onMouseOut="this.style.color=''">
-      <i class="iconfont footer-social-item  iconmail"></i>
-    </a>
-    
-  </div>
-  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://github.com/HandwerSTD "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:handwer@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
 </footer>
   
       <div class="fab fab-plus">
     <i class="iconfont iconplus"></i>
   </div>
   
+  
   <div class="fab fab-up">
     <i class="iconfont iconcaret-up"></i>
   </div>
+  
+  
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
   
   
     
@@ -527,21 +521,17 @@ LCA 的概念
   
 </body>
 
-
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 
 
 
-
-
-
+  
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
 
 
 
 
-
-
+  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
 
@@ -549,8 +539,7 @@ LCA 的概念
 
 
 
-
-
+  
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
 
@@ -563,21 +552,21 @@ LCA 的概念
 
 
 
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
-<script>
-  (function () {
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    } else {
-      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-  })();
-</script>
 
 
 

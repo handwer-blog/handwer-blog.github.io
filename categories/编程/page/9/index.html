@@ -2,7 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="zh-CN" color-mode=light>
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -11,24 +10,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
-
   
   
-  
-  <meta name="author" content="Handwer STD"> 
-
-  
-    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="16x16">
-  
-  
-    <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="32x32">
-  
-  
-    <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" sizes="180x180">
-  
-  
-    <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" color="#333333">
-  
+  <meta name="author" content="Handwer STD">
+  <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" sizes="180x180">
+  <meta rel="mask-icon" href="https://s1.ax1x.com/2020/10/16/0H2W79.jpg" color="#333333">
   
     <meta rel="msapplication-TileImage" content="https://s1.ax1x.com/2020/10/16/0H2W79.jpg">
     <meta rel="msapplication-TileColor" content="#000000">
@@ -39,31 +27,30 @@
 
 
   
-  
+    
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
 
   
 
   
-  
-  
+    
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
   
 
   
-  
-  
-  
-  
+    
+      
+        
+        
 <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
 
-  
-  
-  
+      
+        
+        
 <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/dracula.min.css" name="highlight-style" mode="dark">
 
-  
+      
   
 
   <script>
@@ -103,90 +90,87 @@
         },
         motto: {
           default: '现在，走吧，有花开在旅程。',
-          api: ''
+          api: '',
+          data_contents: '["data","content"]'
         },
       },
       qrcode: {
         enable: true,
         type: 'url',
         image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        model: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
       }
     }
   </script>
 
   
-  <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-N0TBYCY1Y9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-N0TBYCY1Y9');</script><meta name="google-site-verification" content="WaGFIC-uJdr1PIUJ-RhuT6ib4LjnfDwA62eHSIYlsxQ" /><script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?6312bf13672874e872c54e5dc4510825"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script>
+    <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-N0TBYCY1Y9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-N0TBYCY1Y9');</script><meta name="google-site-verification" content="WaGFIC-uJdr1PIUJ-RhuT6ib4LjnfDwA62eHSIYlsxQ" /><script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?6312bf13672874e872c54e5dc4510825"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script>
   
 
   
+
 <meta name="generator" content="Hexo 5.2.0"></head>
+
 <body class="lock-screen">
   <div class="loading"></div>
   
 
 
-<nav class="navbar">
-  <div class="left">
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+    </div>
+    <div class="center">分类</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
     
-      <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      <div id="qrcode-navbar"></div>
     
-    
-      <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
-    
-  </div>
-  <div class="center">分类</div>
-  <div class="right">
-    <i class="iconfont iconmenu j-navbar-menu"></i>
-  </div>
-  
-    <div id="qrcode-navbar"></div>
-  
-</nav>
+  </nav>
 
-  <nav class="menu">
+  
+
+<nav class="menu">
   <div class="menu-wrap">
     <div class="menu-close">
       <i class="iconfont iconbaseline-close-px"></i>
     </div>
-    <ul class="menu-content">
-      
-      
-      
-      
-      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/frlink " class="underline"> 友链</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
-      
-      
-      
-      
-      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
-      
-    </ul>
-    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/frlink " class="underline "> 友链</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
   </div>
 </nav>
   <main id="main">
@@ -196,98 +180,102 @@
         <h3 class="archive-total"># 编程</h3>
         
         
+          
+            <h3 class="archive-year">2019 年</h3>
+          
+          <div class="archive-item">
+            <a class="archive-date" href="/2019-07-21/Luogu-P2606/">07/21</a>
+            <a class="archive-title" href="/2019-07-21/Luogu-P2606/">洛谷P2606《排列计数》</a>
+          </div>
         
-        <h3 class="archive-year">2019</h3>
+          
+          <div class="archive-item">
+            <a class="archive-date" href="/2019-07-21/MonotoneStack-Luogu-P1901-Luogu-P1823-Luogu-P2947/">07/21</a>
+            <a class="archive-title" href="/2019-07-21/MonotoneStack-Luogu-P1901-Luogu-P1823-Luogu-P2947/">单调栈专项练习</a>
+          </div>
         
-        <div class="archive-item">
-          <a class="archive-date" href="/2019-07-21/Luogu-P2606/">07/21</a>
-          <a class="archive-title" href="/2019-07-21/Luogu-P2606/">洛谷P2606《排列计数》</a>
-        </div>
+          
+          <div class="archive-item">
+            <a class="archive-date" href="/2019-07-18/BZOJ3884-Luogu-P4139/">07/18</a>
+            <a class="archive-title" href="/2019-07-18/BZOJ3884-Luogu-P4139/">BZOJ3884 洛谷P4139《上帝与集合的正确用法》</a>
+          </div>
         
+          
+          <div class="archive-item">
+            <a class="archive-date" href="/2019-07-12/Articles-Reform/">07/12</a>
+            <a class="archive-title" href="/2019-07-12/Articles-Reform/">关于近期对博客大部分文章进行整理的说明</a>
+          </div>
         
-        <div class="archive-item">
-          <a class="archive-date" href="/2019-07-21/MonotoneStack-Luogu-P1901-Luogu-P1823-Luogu-P2947/">07/21</a>
-          <a class="archive-title" href="/2019-07-21/MonotoneStack-Luogu-P1901-Luogu-P1823-Luogu-P2947/">单调栈专项练习</a>
-        </div>
+          
+          <div class="archive-item">
+            <a class="archive-date" href="/2019-07-12/Luogu-P3907/">07/12</a>
+            <a class="archive-title" href="/2019-07-12/Luogu-P3907/">洛谷P3907《圈的异或》</a>
+          </div>
         
+          
+          <div class="archive-item">
+            <a class="archive-date" href="/2019-07-06/Luogu-P2023/">07/06</a>
+            <a class="archive-title" href="/2019-07-06/Luogu-P2023/">洛谷P2023《维护序列》</a>
+          </div>
         
-        <div class="archive-item">
-          <a class="archive-date" href="/2019-07-18/BZOJ3884-Luogu-P4139/">07/18</a>
-          <a class="archive-title" href="/2019-07-18/BZOJ3884-Luogu-P4139/">BZOJ3884 洛谷P4139《上帝与集合的正确用法》</a>
-        </div>
+          
+          <div class="archive-item">
+            <a class="archive-date" href="/2019-05-11/Luogu-P2016/">05/11</a>
+            <a class="archive-title" href="/2019-05-11/Luogu-P2016/">洛谷P2016《战略游戏》</a>
+          </div>
         
+          
+          <div class="archive-item">
+            <a class="archive-date" href="/2019-05-11/Luogu-P2014/">05/11</a>
+            <a class="archive-title" href="/2019-05-11/Luogu-P2014/">洛谷P2014《选课》</a>
+          </div>
         
-        <div class="archive-item">
-          <a class="archive-date" href="/2019-07-12/Articles-Reform/">07/12</a>
-          <a class="archive-title" href="/2019-07-12/Articles-Reform/">关于近期对博客大部分文章进行整理的说明</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2019-07-12/Luogu-P3907/">07/12</a>
-          <a class="archive-title" href="/2019-07-12/Luogu-P3907/">洛谷P3907《圈的异或》</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2019-07-06/Luogu-P2023/">07/06</a>
-          <a class="archive-title" href="/2019-07-06/Luogu-P2023/">洛谷P2023《维护序列》</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2019-05-11/Luogu-P2016/">05/11</a>
-          <a class="archive-title" href="/2019-05-11/Luogu-P2016/">洛谷P2016《战略游戏》</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2019-05-11/Luogu-P2014/">05/11</a>
-          <a class="archive-title" href="/2019-05-11/Luogu-P2014/">洛谷P2014《选课》</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2019-03-30/Luogu-P1967/">03/30</a>
-          <a class="archive-title" href="/2019-03-30/Luogu-P1967/">洛谷P1967「NOIP2013」《货车运输》</a>
-        </div>
+          
+          <div class="archive-item">
+            <a class="archive-date" href="/2019-03-30/Luogu-P1967/">03/30</a>
+            <a class="archive-title" href="/2019-03-30/Luogu-P1967/">洛谷P1967「NOIP2013」《货车运输》</a>
+          </div>
         
       </div>
     </div>
   </section>
 </main>
-  <footer class="footer">
-  <div class="footer-social">
-    
-    
-    
-    
-    
-    <a href="https://github.com/HandwerSTD " target="_blank" onMouseOver="this.style.color= '#24292E'"
-      onMouseOut="this.style.color=''">
-      <i class="iconfont footer-social-item  icongithub-fill "></i>
-    </a>
-    
-    
-    
-    
-    
-    <a href="mailto:handwer@qq.com " target="_blank" onMouseOver="this.style.color='#FF3B00'"
-      onMouseOut="this.style.color=''">
-      <i class="iconfont footer-social-item  iconmail"></i>
-    </a>
-    
-  </div>
-  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://github.com/HandwerSTD "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:handwer@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
 </footer>
   
       <div class="fab fab-plus">
     <i class="iconfont iconplus"></i>
   </div>
   
+  
   <div class="fab fab-up">
     <i class="iconfont iconcaret-up"></i>
   </div>
+  
+  
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
   
   
     
@@ -296,21 +284,17 @@
   
 </body>
 
-
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 
 
 
-
-
-
+  
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
 
 
 
 
-
-
+  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
 
@@ -318,8 +302,7 @@
 
 
 
-
-
+  
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
 
@@ -332,21 +315,21 @@
 
 
 
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
-<script>
-  (function () {
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    } else {
-      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-  })();
-</script>
 
 
 
